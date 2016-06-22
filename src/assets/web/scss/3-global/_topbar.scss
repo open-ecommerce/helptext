@@ -1,0 +1,14 @@
+//
+.top-bar {
+  .menu > li {
+      a {
+        color: #eee;
+      }
+    }
+  .menu > li.active {
+      a {
+        color: #fff;
+        font-weight: bolder;
+      }
+    }
+}

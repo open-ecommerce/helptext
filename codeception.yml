@@ -1,0 +1,29 @@
+actor: Tester
+coverage:
+#    enabled: true
+#    c3_url: http://web/
+#    remote: false
+    white_list:
+        include:
+            - src/*
+    blacklist:
+        include:
+             - ../root/.composer/vendor/*
+             - vendor/*
+             - tests/*
+paths:
+    tests: tests/codeception
+    log: tests/codeception/_output
+    data: tests/codeception/_data
+    helpers: tests/codeception/_support
+settings:
+    bootstrap: _bootstrap.php
+    suite_class: \PHPUnit_Framework_TestSuite
+    memory_limit: 1024M
+    log: true
+    colors: true
+config:
+    # the entry script URL (with host info) for functional and acceptance tests
+    # PLEASE ADJUST IT TO THE ACTUAL ENTRY SCRIPT URL
+    test_entry_url: http://web:80/index.php
+    #test_entry_url: http://test-myapp.192.168.59.103.xip.io/index.php

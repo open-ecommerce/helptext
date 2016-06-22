@@ -1,0 +1,28 @@
+{
+    "name": "foundationize/yii2-foundation",
+    "description": "The Foundation extension for the Yii2 framework",
+    "keywords": ["yii2", "foundation"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/foundationize/yii2-foundation/issues",
+        "wiki": "https://github.com/foundationize/yii2-foundation/wiki",
+        "source": "https://github.com/foundationize/yii2-foundation.git"
+    },
+    "authors": [
+        {
+            "name": "Gert van Tonder",
+            "email": "gvanto@gmail.com",
+            "homepage": "http://foundationize.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "foundationize\\foundation\\": ""
+        }
+    }       
+}
