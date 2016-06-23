@@ -25,8 +25,8 @@ npm install -g browser-sync
 ```
 ## Composer
 ```
-php composer.phar global require "fxp/composer-asset-plugin:~1.1.1"
-php composer.phar create-project --prefer-dist --stability=dev jacmoe/yii2-app-advanced-gulp-sass advanced
+composer global require "fxp/composer-asset-plugin:~1.1.1"
+composer update
 ```
 
 ## Post-installation

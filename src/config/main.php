@@ -16,6 +16,7 @@ $common = [
         'log',
     ],
     'aliases' => [
+        '@frontmedia' => '@app/media',        
         '@admin-views' => '@app/modules/backend/views',
     ],
     'components' => [
@@ -142,6 +143,14 @@ $common = [
             'allowedIPs' => ['*'],
             'roles' => ['translate-module'],
         ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+            // enter optional module parameters below - only if you need to  
+            // use your own export download action or custom translation 
+            // message source
+            'downloadAction' => 'gridview/export/download',
+        //'i18n' => [],           
+        ],        
         'treemanager' => [
             'class' => '\kartik\tree\Module',
             'layout' => '@admin-views/layouts/main',

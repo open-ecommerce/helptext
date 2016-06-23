@@ -10,7 +10,7 @@ COMPATIBILITY:
 # Gulp will reference these paths when it copies files
 PATHS:
   # Path to dist folder
-  dist: "web/assets/dist"
+  dist: "src/assets/web/dist"
   # Paths to fonts
   fonts:
     - "vendor/bower/font-awesome/fonts/**/*"
@@ -56,5 +56,5 @@ PATHS:
     - "vendor/yiisoft/yii2/assets/yii.validation.js"
     - "vendor/yiisoft/yii2/assets/yii.activeForm.js"
     # Paths to your own project code are here
-    - "js/!(custom).js"
-    - "js/custom.js"
+    - "src/assets/web/js/!(app).js"
+    - "src/assets/web/js/app.js"

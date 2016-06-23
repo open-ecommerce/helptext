@@ -36,7 +36,6 @@
     "vlucas/phpdotenv": "2.*",
     "yiisoft/yii2": "^2.0.7",
     "yiisoft/yii2-bootstrap": "*",
-    "yiisoft/yii2-swiftmailer": "*",
     "yiisoft/yii2-swiftmailer": "2.*",
     "kartik-v/yii2-grid": "*",
     "kartik-v/yii2-widget-select2": "*",
@@ -47,14 +46,12 @@
     "kartik-v/yii2-export": "@dev",
     "spanjeta/yii2-backup": "*",
     "open-ecommerce/yii2-backuprestore": "dev-master",
+    "bower-asset/foundation-sites": "^6.2",
     "bower-asset/font-awesome": "^4.5",
     "bower-asset/bootstrap-sass": "3.3.6",
-    "bower-asset/foundation-sites": "^6.2",
     "bower-asset/motion-ui": "^1.2.2",
-    "bower-asset/font-awesome": "^4.5",
     "bower-asset/sass-rem": "^1.2",
-    "bower-asset/what-input": "^1.1"    
-    
+    "bower-asset/what-input": "^1.1" 
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",
