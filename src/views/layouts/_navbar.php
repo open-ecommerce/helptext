@@ -1,4 +1,7 @@
 <?php
+// OE using the https://github.com/dmstr/yii2-pages-module to build the menu from the admin
+
+
 
 namespace app\views\layouts;
 
@@ -45,6 +48,18 @@ NavBar::begin(
         ],
     ]
 );
+
+$menuItems = [
+                ['label' => 'Contact Us', 'url' => ['/site/contact']],
+             ];
+
+echo Nav::widget(
+    [
+        'options' => ['class' => 'navbar-nav'],
+        'encodeLabels' => false,
+        'items' => $menuItems,
+    ]
+);
 echo Nav::widget(
     [
         'options' => ['class' => 'navbar-nav'],
@@ -52,6 +67,7 @@ echo Nav::widget(
         'items' => \dmstr\modules\pages\models\Tree::getMenuItems('root'),
     ]
 );
+
 ?>
     <ul class="nav navbar-nav pull-right">
         <li class="dropdown" id="menuLogin">
