@@ -121,6 +121,9 @@ $common = [
         ],
         'user' => [
             'class' => 'dektrium\user\Module',
+            'modelMap' => [
+                'User' => 'app\models\Profile',
+            ],
             'layout' => '@app/views/layouts/container',
             'defaultRoute' => 'profile',
             'adminPermission' => 'user-module',
@@ -204,6 +207,7 @@ $web = [
         ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
+            //'admins' => ['admin'],
         ],
     ],
 ];

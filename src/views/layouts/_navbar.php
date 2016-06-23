@@ -49,7 +49,7 @@ NavBar::begin(
     ]
 );
 
-$menuItems = [
+$menuBeforeItems = [
                 ['label' => 'Contact Us', 'url' => ['/site/contact']],
              ];
 
@@ -57,7 +57,7 @@ echo Nav::widget(
     [
         'options' => ['class' => 'navbar-nav'],
         'encodeLabels' => false,
-        'items' => $menuItems,
+        'items' => $menuBeforeItems,
     ]
 );
 echo Nav::widget(
