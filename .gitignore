@@ -43,6 +43,9 @@ nbproject
 logs
 
 
+web/assets/
+
+
 
 web/assets-prod
 local.php
