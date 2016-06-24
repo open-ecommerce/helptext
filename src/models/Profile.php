@@ -11,9 +11,7 @@
  */
 
 namespace app\models;
-
 use Yii;
-
 use dektrium\user\models\Profile as BaseProfile;
 
 class Profile extends BaseProfile
@@ -28,6 +26,8 @@ class Profile extends BaseProfile
         $scenarios['update'][]   = 'skills';
         $scenarios['register'][] = 'skills';
 
+        
+        
 
         return $scenarios;
     }
@@ -40,6 +40,25 @@ class Profile extends BaseProfile
         $rules['skillsRequired'] = ['skills', 'required'];
         $rules['skillsLength']   = ['skills', 'string', 'max' => 255];
 
+        $rules['availabilityRequired'] = ['availability', 'required'];
+        $rules['availabilityLength']   = ['availability', 'integer'];
+
+        // add firstname rules
+        $rules['firstnameRequired'] = ['firstname', 'required'];
+        $rules['firstnameLength']   = ['firstname', 'string', 'max' => 255];
+
+        // add lastname rules
+        $rules['lastnameRequired']  = ['lastname', 'required'];
+        $rules['lastnameLength']    = ['lastname', 'string', 'max' => 255];
+
+        // add birthday rules
+        $rules['birthdayRequired']  = ['birthday', 'safe'];
+        $rules['birthdayLength']    = ['birthday', 'date', 'format' => 'yyyy-mm-dd'];
+
+        $rules['countries_idRequired'] = ['countries_id', 'safe'];
+        $rules['countries_idLength']   = ['countries_id', 'integer'];
+        
+        
         return $rules;
     }
 
@@ -47,7 +66,11 @@ class Profile extends BaseProfile
     public function attributeLabels()
     {
         return [
-            'skills' => Yii::t('userextended', 'This are the skills'),
+            'firstname' => Yii::t('userextended', 'Firstname'),
+            'lastname' => Yii::t('userextended', 'Lastname'),
+            'birthday' => Yii::t('userextended', 'Birthday'),            
+            'availability' => Yii::t('userextended', 'Availability'),            
+            'skills' => Yii::t('userextended', 'Skills'),
         ];
     }
 
