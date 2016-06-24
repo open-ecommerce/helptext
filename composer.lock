@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "15398f540cd06819d5808b3376a5c4f1",
-    "content-hash": "9625d346105e998de2d44e9e5ded4d18",
+    "hash": "aa395590577925880148ee0646c474b4",
+    "content-hash": "1c29a56e14f284ff522f83d087f6acdf",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -977,6 +977,53 @@
                 "yii"
             ],
             "time": "2013-12-10 17:49:58"
+        },
+        {
+            "name": "cinghie/yii2-user-extended",
+            "version": "v0.5.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cinghie/yii2-user-extended.git",
+                "reference": "2bae3c90738eaefcb472413e101b128817f939ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cinghie/yii2-user-extended/zipball/2bae3c90738eaefcb472413e101b128817f939ed",
+                "reference": "2bae3c90738eaefcb472413e101b128817f939ed",
+                "shasum": ""
+            },
+            "require": {
+                "dektrium/yii2-rbac": "*",
+                "dektrium/yii2-user": "*",
+                "kartik-v/yii2-widgets": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cinghie\\yii2userextended\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gogodigital.it",
+                    "email": "info@gogodigital.it",
+                    "homepage": "http://www.gogodigital.it/"
+                }
+            ],
+            "description": "Module to extend funtionalities of Yii2 User by Dektrium.",
+            "homepage": "https://github.com/cinghie/yii2-user-extended",
+            "keywords": [
+                "yii2",
+                "yii2 user",
+                "yii2 user field",
+                "yii2 user management"
+            ],
+            "time": "2016-03-23 20:45:24"
         },
         {
             "name": "codemix/yii2-localeurls",

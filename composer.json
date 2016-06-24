@@ -51,7 +51,8 @@
     "bower-asset/bootstrap-sass": "3.3.6",
     "bower-asset/motion-ui": "^1.2.2",
     "bower-asset/sass-rem": "^1.2",
-    "bower-asset/what-input": "^1.1" 
+    "bower-asset/what-input": "^1.1",
+    "cinghie/yii2-user-extended": "*"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",

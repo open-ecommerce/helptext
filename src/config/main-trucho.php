@@ -94,12 +94,12 @@ $common = [
             'rootUsers' => ['admin'],
         ],
         'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@vendor/dektrium/yii2-user/views/admin' => '@app/views/user/admin',
-                    '@yii/gii/views/layouts' => '@admin-views/layouts',
+                'theme' => [
+                        'pathMap' => [
+                                '@dektrium/rbac/views' => '@vendor/cinghie/yii2-user-extended/views',
+                                '@dektrium/user/views' => '@vendor/cinghie/yii2-user-extended/views',
+                        ],
                 ],
-            ],
         ],
 
     ],
@@ -119,21 +119,7 @@ $common = [
             'class' => 'dmstr\modules\prototype\Module',
             'layout' => '@admin-views/layouts/box',
         ],
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            'modelMap' => [
-                'Profile' => 'app\models\Profile',
-            ],
-            'layout' => '@app/views/layouts/container',
-            'defaultRoute' => 'profile',
-            'adminPermission' => 'user-module',
-            'enableFlashMessages' => false,
-        ],
-        'rbac' => [
-            'class' => 'dektrium\rbac\Module',
-            'layout' => '@admin-views/layouts/box',
-            'enableFlashMessages' => false,
-        ],
+
         'settings' => [
             'class' => 'pheme\settings\Module',
             'layout' => '@admin-views/layouts/box',
@@ -162,7 +148,34 @@ $common = [
                 'fontAwesome' => true,
             ],
         ],
-    ],
+        // Yii2 RBAC
+        'rbac' => [
+                'class' => 'dektrium\rbac\Module',
+            ],
+        // Yii2 User
+            'user' => [
+                    'class' => 'dektrium\user\Module',
+                    // Yii2 User Controllers Overrides
+                    'controllerMap' => [
+                        'admin' => 'cinghie\yii2userextended\controllers\AdminController',
+                        'settings' => 'cinghie\yii2userextended\controllers\SettingsController',
+                    ],
+                    // Yii2 User Models Overrides
+                    'modelMap' => [
+                        'RegistrationForm' => 'cinghie\yii2userextended\models\RegistrationForm',
+                        'Profile'          => 'cinghie\yii2userextended\models\Profile',
+                        'SettingsForm'     => 'cinghie\yii2userextended\models\SettingsForm',
+                        'User'             => 'cinghie\yii2userextended\models\User',
+                    ],
+            ],
+            // Yii2 User Extended
+            'userextended' => [
+                'class' => 'cinghie\yii2userextended\Module',
+                'avatarPath' => '@webroot/img/users/', // Path to your avatar files
+                'avatarURL'  => '@web/img/users/', // Url to your avatar files
+                'showTitles' => true, // Set false in adminLTE
+            ],        
+        ],
     'params' => [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
         'yii.migrations' => [
@@ -205,10 +218,7 @@ $web = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => getenv('APP_COOKIE_VALIDATION_KEY'),
         ],
-        'user' => [
-            'identityClass' => 'dektrium\user\models\User',
-            //'admins' => ['admin'],
-        ],
+
     ],
 ];
 
