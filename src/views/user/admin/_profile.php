@@ -2,7 +2,7 @@
 
 use yii\bootstrap\ActiveForm;
 
-use app\models\Countries;
+use app\models\Country;
 //use kartik\form\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\datecontrol\DateControl;
@@ -44,11 +44,7 @@ use kartik\helpers\Html;
     <?= $form->field($profile, 'availability')->dropDownList([1 => 'Yes', 0 => 'No'], ['prompt' => '- Choose']) ?>
 
 
-    //<?= $form->field($profile, 'countries_id')->dropDownList(ArrayHelper::map(Countries::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>    
-
-
-
-
+    <?= $form->field($profile, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>    
 
 
 

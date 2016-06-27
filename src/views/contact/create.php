@@ -4,17 +4,17 @@ use yii\helpers\Html;
 
 /**
 * @var yii\web\View $this
-* @var app\models\Countries $model
+* @var app\models\Contact $model
 */
 
 $this->title = Yii::t('app', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Countries'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giiant-crud countries-create">
+<div class="giiant-crud contact-create">
 
     <h1>
-        <?= Yii::t('app', 'Countries') ?>        <small>
+        <?= Yii::t('app', 'Contact') ?>        <small>
                         <?= $model->id ?>        </small>
     </h1>
 

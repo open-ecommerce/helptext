@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /**
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
-    * @var app\models\CountriesSearch $searchModel
+    * @var app\models\ContacttrySearch $searchModel
 */
 
 
@@ -19,7 +19,7 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
 ?>
-<div class="giiant-crud countries-index">
+<div class="giiant-crud contact-index">
 
     <?php //             echo $this->render('_search', ['model' =>$searchModel]);
         ?>
@@ -28,7 +28,7 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
     <h1>
-        <?= Yii::t('app', 'Countries') ?>        <small>
+        <?= Yii::t('app', 'Contacts') ?>        <small>
             List
         </small>
     </h1>
@@ -87,8 +87,21 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
             },
             'contentOptions' => ['nowrap'=>'nowrap']
         ],
-			'country_code',
-			'country_name',
+			'id',
+			'contact_label',
+			'city',
+			'id_country',
+			'id_language',
+			'birthday',
+			'first_name',
+			/*'last_name',*/
+			/*'address_line1',*/
+			/*'address_line2',*/
+			/*'state',*/
+			/*'gender',*/
+			/*'marital_status',*/
+			/*'postal_code',*/
+			/*'comments',*/
         ],
         ]); ?>
     </div>

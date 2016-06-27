@@ -4,8 +4,8 @@
 
 namespace app\models\base;
 
-use app\models\Countries;
-    use app\models\CountriesSearch;
+use app\models\Country;
+    use app\models\CountrySearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\helpers\Url;
@@ -13,9 +13,9 @@ use yii\filters\AccessControl;
 use dmstr\bootstrap\Tabs;
 
 /**
-* CountriesController implements the CRUD actions for Countries model.
+* CountryController implements the CRUD actions for Country model.
 */
-class CountriesController extends Controller
+class CountryController extends Controller
 {
 /**
 * @var boolean whether to enable CSRF validation for the actions in this controller.
@@ -25,12 +25,12 @@ public $enableCsrfValidation = false;
 
 
 /**
-* Lists all Countries models.
+* Lists all Country models.
 * @return mixed
 */
 public function actionIndex()
 {
-    $searchModel  = new CountriesSearch;
+    $searchModel  = new CountrySearch;
     $dataProvider = $searchModel->search($_GET);
 
 Tabs::clearLocalStorage();
@@ -45,7 +45,7 @@ return $this->render('index', [
 }
 
 /**
-* Displays a single Countries model.
+* Displays a single Country model.
 * @param integer $id
 *
 * @return mixed
@@ -62,13 +62,13 @@ return $this->render('view', [
 }
 
 /**
-* Creates a new Countries model.
+* Creates a new Country model.
 * If creation is successful, the browser will be redirected to the 'view' page.
 * @return mixed
 */
 public function actionCreate()
 {
-$model = new Countries;
+$model = new Country;
 
 try {
 if ($model->load($_POST) && $model->save()) {
@@ -84,7 +84,7 @@ return $this->render('create', ['model' => $model]);
 }
 
 /**
-* Updates an existing Countries model.
+* Updates an existing Country model.
 * If update is successful, the browser will be redirected to the 'view' page.
 * @param integer $id
 * @return mixed
@@ -103,7 +103,7 @@ return $this->render('update', [
 }
 
 /**
-* Deletes an existing Countries model.
+* Deletes an existing Country model.
 * If deletion is successful, the browser will be redirected to the 'index' page.
 * @param integer $id
 * @return mixed
@@ -134,15 +134,15 @@ return $this->redirect(['index']);
 }
 
 /**
-* Finds the Countries model based on its primary key value.
+* Finds the Country model based on its primary key value.
 * If the model is not found, a 404 HTTP exception will be thrown.
 * @param integer $id
-* @return Countries the loaded model
+* @return Country the loaded model
 * @throws HttpException if the model cannot be found
 */
 protected function findModel($id)
 {
-if (($model = Countries::findOne($id)) !== null) {
+if (($model = Country::findOne($id)) !== null) {
 return $model;
 } else {
 throw new HttpException(404, 'The requested page does not exist.');

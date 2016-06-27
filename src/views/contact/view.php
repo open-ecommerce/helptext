@@ -9,16 +9,16 @@ use dmstr\bootstrap\Tabs;
 
 /**
 * @var yii\web\View $this
-* @var app\models\Countries $model
+* @var app\models\Contact $model
 */
 $copyParams = $model->attributes;
 
-$this->title = Yii::t('app', 'Countries');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Countries'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Contact');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 ?>
-<div class="giiant-crud countries-view">
+<div class="giiant-crud contact-view">
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     <?php endif; ?>
 
     <h1>
-        <?= Yii::t('app', 'Countries') ?>        <small>
+        <?= Yii::t('app', 'Contact') ?>        <small>
             <?= $model->id ?>        </small>
     </h1>
 
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
             <?= Html::a(
             '<span class="glyphicon glyphicon-copy"></span> ' . Yii::t('app', 'Copy'),
-            ['create', 'id' => $model->id, 'Countries'=>$copyParams],
+            ['create', 'id' => $model->id, 'Contact'=>$copyParams],
             ['class' => 'btn btn-success']) ?>
 
             <?= Html::a(
@@ -64,15 +64,27 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
     <hr />
 
-    <?php $this->beginBlock('app\models\Countries'); ?>
+    <?php $this->beginBlock('app\models\Contact'); ?>
 
     
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
             'id',
-        'country_code',
-        'country_name',
+        'id_country',
+        'id_language',
+        'contact_label',
+        'first_name',
+        'last_name',
+        'gender',
+        'marital_status',
+        'birthday',
+        'address_line1',
+        'address_line2',
+        'city',
+        'state',
+        'postal_code',
+        'comments',
     ],
     ]); ?>
 
@@ -95,7 +107,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
                      'encodeLabels' => false,
                      'items' => [ [
     'label'   => '<b class=""># '.$model->id.'</b>',
-    'content' => $this->blocks['app\models\Countries'],
+    'content' => $this->blocks['app\models\Contact'],
     'active'  => true,
 ], ]
                  ]

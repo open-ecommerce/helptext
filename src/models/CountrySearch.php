@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Countries;
+use app\models\Country;
 
 /**
-* CountriesSearch represents the model behind the search form about `app\models\Countries`.
+* CountrySearch represents the model behind the search form about `app\models\Country`.
 */
-class CountriesSearch extends Countries
+class CountrySearch extends Country
 {
 /**
 * @inheritdoc
@@ -41,7 +41,7 @@ return Model::scenarios();
 */
 public function search($params)
 {
-$query = Countries::find();
+$query = Country::find();
 
 $dataProvider = new ActiveDataProvider([
 'query' => $query,

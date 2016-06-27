@@ -25,8 +25,6 @@ class Profile extends BaseProfile
         $scenarios['create'][]   = 'skills';
         $scenarios['update'][]   = 'skills';
         $scenarios['register'][] = 'skills';
-
-        
         
 
         return $scenarios;
@@ -55,8 +53,8 @@ class Profile extends BaseProfile
         $rules['birthdayRequired']  = ['birthday', 'safe'];
         $rules['birthdayLength']    = ['birthday', 'date', 'format' => 'yyyy-mm-dd'];
 
-        $rules['countries_idRequired'] = ['countries_id', 'safe'];
-        $rules['countries_idLength']   = ['countries_id', 'integer'];
+        $rules['id_countryRequired'] = ['id_country', 'safe'];
+        $rules['id_countryLength']   = ['id_country', 'integer'];
         
         
         return $rules;
@@ -66,11 +64,12 @@ class Profile extends BaseProfile
     public function attributeLabels()
     {
         return [
-            'firstname' => Yii::t('userextended', 'Firstname'),
-            'lastname' => Yii::t('userextended', 'Lastname'),
+            'firstname' => Yii::t('userextended', 'First Name'),
+            'lastname' => Yii::t('userextended', 'Surname'),
             'birthday' => Yii::t('userextended', 'Birthday'),            
             'availability' => Yii::t('userextended', 'Availability'),            
             'skills' => Yii::t('userextended', 'Skills'),
+            'id_country' => Yii::t('userextended', 'Nationality'),
         ];
     }
 

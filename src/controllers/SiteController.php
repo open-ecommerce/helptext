@@ -90,14 +90,14 @@ class SiteController extends Controller
      * Renders the contact page
      * @return string
      */
-    public function actionContact()
+    public function actionContactus()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->sendEmail(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
             return $this->refresh();
         } else {
-            return $this->render('contact', [
+            return $this->render('contactus', [
                 'model' => $model,
             ]);
         }

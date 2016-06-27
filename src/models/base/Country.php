@@ -7,14 +7,14 @@ namespace app\models\base;
 use Yii;
 
 /**
- * This is the base-model class for table "countries".
+ * This is the base-model class for table "country".
  *
  * @property integer $id
  * @property string $country_code
  * @property string $country_name
  * @property string $aliasModel
  */
-abstract class Countries extends \yii\db\ActiveRecord
+abstract class Country extends \yii\db\ActiveRecord
 {
 
 
@@ -24,7 +24,7 @@ abstract class Countries extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'countries';
+        return 'country';
     }
 
 
