@@ -1,81 +1,51 @@
 <?php
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
+use app\models\Languages;
+use app\models\Country;
+use kartik\form\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\datecontrol\DateControl;
+use kartik\helpers\Html;
 
-/**
-* @var yii\web\View $this
-* @var app\models\Contact $model
-* @var yii\widgets\ActiveForm $form
-*/
+/* @var $this yii\web\View */
+/* @var $model app\models\Contacts */
+/* @var $form yii\widgets\ActiveForm */
+
 
 ?>
 
-<div class="contact-form">
-
-    <?php $form = ActiveForm::begin([
-    'id' => 'Contact',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-error'
-    ]
-    );
-    ?>
-
-    <div class="">
-        <?php $this->beginBlock('main'); ?>
-
-        <p>
-            
-			<?= $form->field($model, 'id')->textInput() ?>
-			<?= $form->field($model, 'id_country')->textInput() ?>
-			<?= $form->field($model, 'id_language')->textInput() ?>
-			<?= $form->field($model, 'contact_label')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'marital_status')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'birthday')->textInput() ?>
-			<?= $form->field($model, 'address_line1')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'address_line2')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'postal_code')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'comments')->textInput(['maxlength' => true]) ?>
-        </p>
-        <?php $this->endBlock(); ?>
-        
-        <?=
-    Tabs::widget(
-                 [
-                   'encodeLabels' => false,
-                     'items' => [ [
-    'label'   => Yii::t('app', StringHelper::basename('app\models\Contact')),
-    'content' => $this->blocks['main'],
-    'active'  => true,
-], ]
-                 ]
-    );
-    ?>
-        <hr/>
-
-        <?php echo $form->errorSummary($model); ?>
-
-        <?= Html::submitButton(
-        '<span class="glyphicon glyphicon-check"></span> ' .
-        ($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')),
-        [
-        'id' => 'save-' . $model->formName(),
-        'class' => 'btn btn-success'
-        ]
-        );
-        ?>
-
-        <?php ActiveForm::end(); ?>
-
+<?php $form = ActiveForm::begin(); ?>
+<div class="row">
+    <div class="large-6 columns">
+        <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'gender')->dropDownList(['M' => 'Male', 'F' => 'Female', 'O' => 'Other'], ['prompt' => '- Choose Gender']) ?>
+        <?= $form->field($model, 'marital_status')->dropDownList(['Maried' => 'Maried', 'Single' => 'Single'], ['prompt' => '- Choose Status']) ?>
+        <?php
+        echo $form->field($model, 'birthday')->widget(DateControl::classname(), [
+            'type' => DateControl::FORMAT_DATE,
+            'displayFormat' => 'php:d M Y',
+            'saveFormat' => 'php:Y-m-d',
+        ]);
+        ?>  
+        <?= $form->field($model, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>    
     </div>
-
+    <div class="large-6 columns">
+        <?= $form->field($model, 'address_line1')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'address_line2')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true]) ?>
+    </div>       
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('rows' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
+    </div>       
 </div>
 
+<div class="form-group">
+    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
+    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+</div>
+<?php ActiveForm::end(); ?>

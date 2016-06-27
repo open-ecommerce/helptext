@@ -5,7 +5,7 @@
 namespace app\controllers\base;
 
 use app\models\Contact;
-    use app\models\ContactSearch;
+use app\models\ContactSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\helpers\Url;

@@ -12,7 +12,6 @@ use Yii;
  * @property integer $id
  * @property integer $id_country
  * @property integer $id_language
- * @property string $contact_label
  * @property string $first_name
  * @property string $last_name
  * @property string $gender
@@ -46,10 +45,10 @@ abstract class Contact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'contact_label', 'city'], 'required'],
-            [['id', 'id_country', 'id_language'], 'integer'],
+            [['first_name'], 'required'],
+            [['id_country', 'id_language'], 'integer'],
             [['birthday'], 'safe'],
-            [['contact_label', 'first_name', 'last_name', 'address_line1', 'address_line2', 'city', 'state'], 'string', 'max' => 50],
+            [['first_name', 'last_name', 'address_line1', 'address_line2', 'city', 'state'], 'string', 'max' => 50],
             [['gender', 'marital_status'], 'string', 'max' => 10],
             [['postal_code'], 'string', 'max' => 15],
             [['comments'], 'string', 'max' => 100]
@@ -63,22 +62,21 @@ abstract class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_country' => Yii::t('app', 'Id Country'),
-            'id_language' => Yii::t('app', 'Id Language'),
-            'contact_label' => Yii::t('app', 'Contact Label'),
-            'first_name' => Yii::t('app', 'First Name'),
-            'last_name' => Yii::t('app', 'Last Name'),
+            'id_country' => Yii::t('app', 'Nationality'),
+            'id_language' => Yii::t('app', 'First Language'),
+            'first_name' => Yii::t('app', 'Names'),
+            'last_name' => Yii::t('app', 'Surname'),
             'gender' => Yii::t('app', 'Gender'),
             'marital_status' => Yii::t('app', 'Marital Status'),
-            'birthday' => Yii::t('app', 'Birthday'),
-            'address_line1' => Yii::t('app', 'Address Line1'),
-            'address_line2' => Yii::t('app', 'Address Line2'),
+            'address_line1' => Yii::t('app', 'Address'),
+            'address_line2' => Yii::t('app', 'Address'),
             'city' => Yii::t('app', 'City'),
-            'state' => Yii::t('app', 'State'),
-            'postal_code' => Yii::t('app', 'Postal Code'),
+            'state' => Yii::t('app', 'County'),
+            'postal_code' => Yii::t('app', 'Postcode'),
             'comments' => Yii::t('app', 'Comments'),
         ];
     }
+
 
 
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 /**
 * This is the class for controller "CountryController".
 */
-class CountryController extends \app\models\base\CountryController
+class CountryController extends \app\controllers\base\CountryController
 {
 
 }

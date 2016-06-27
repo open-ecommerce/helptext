@@ -73,7 +73,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
             'id',
         'id_country',
         'id_language',
-        'contact_label',
         'first_name',
         'last_name',
         'gender',

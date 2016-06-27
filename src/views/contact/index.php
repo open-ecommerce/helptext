@@ -1,114 +1,128 @@
 <?php
 
+//to do some work y desde aca tambien
+
+use yii\jui\DatePicker;
 use yii\helpers\Html;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\Url;
-use yii\grid\GridView;
+use app\models\Languages;
+use yii\helpers\ArrayHelper;
 
-/**
-* @var yii\web\View $this
-* @var yii\data\ActiveDataProvider $dataProvider
-    * @var app\models\ContacttrySearch $searchModel
-*/
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\CustomersSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->title = date('l jS \of F Y');
 
-if (isset($actionColumnTemplates)) {
-$actionColumnTemplate = implode(' ', $actionColumnTemplates);
-    $actionColumnTemplateString = $actionColumnTemplate;
-} else {
-Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']);
-    $actionColumnTemplateString = "{view} {update} {delete}";
-}
+$deleteTip = "Delete this client detail and all the attendances records.";
+$deleteMsg = "Are you sure you want to delete this client detail and all the attendances records?";
+
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giiant-crud contact-index">
+<div class="customers-index">
+<?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
+    <?php
 
-    <?php //             echo $this->render('_search', ['model' =>$searchModel]);
-        ?>
 
-    
-    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
-
-    <h1>
-        <?= Yii::t('app', 'Contacts') ?>        <small>
-            List
-        </small>
-    </h1>
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
-        </div>
-
-        <div class="pull-right">
-
-                        
-            <?= 
-            \yii\bootstrap\ButtonDropdown::widget(
-            [
-            'id' => 'giiant-relations',
-            'encodeLabel' => false,
-            'label' => '<span class="glyphicon glyphicon-paperclip"></span> ' . Yii::t('app', 'Relations'),
-            'dropdown' => [
-            'options' => [
-            'class' => 'dropdown-menu-right'
-            ],
-            'encodeLabels' => false,
-            'items' => []
-            ],
-            'options' => [
-            'class' => 'btn-default'
-            ]
-            ]
-            );
-            ?>        </div>
-    </div>
-
-    <hr />
-
-    <div class="table-responsive">
-        <?= GridView::widget([
-        'layout' => '{summary}{pager}{items}{pager}',
-        'dataProvider' => $dataProvider,
-        'pager' => [
-        'class' => yii\widgets\LinkPager::className(),
-        'firstPageLabel' => Yii::t('app', 'First'),
-        'lastPageLabel' => Yii::t('app', 'Last')        ],
-                    'filterModel' => $searchModel,
-                'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
-        'headerRowOptions' => ['class'=>'x'],
-        'columns' => [
-
-                [
-            'class' => 'yii\grid\ActionColumn',
-            'template' => $actionColumnTemplateString,
-            'urlCreator' => function($action, $model, $key, $index) {
-                // using the column name as key, not mapping to 'id' like the standard generator
-                $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                $params[0] = \Yii::$app->controller->id ? \Yii::$app->controller->id . '/' . $action : $action;
-                return Url::toRoute($params);
+    $gridColumns = [
+        [
+            'attribute' => 'id',
+            'label' => 'Client #',
+            'width' => '10px',
+            'hAlign' => 'center',
+        ],
+        [
+            'class' => 'kartik\grid\ExpandRowColumn',
+            'value' => function ($model, $key, $index, $column) {
+                return GridView::ROW_COLLAPSED;
             },
-            'contentOptions' => ['nowrap'=>'nowrap']
+            'detailUrl' => Url::to(['attendance/detail']),
+            'detailRowCssClass' => GridView::TYPE_DEFAULT,
+            'pageSummary' => false,
         ],
-			'id',
-			'contact_label',
-			'city',
-			'id_country',
-			'id_language',
-			'birthday',
-			'first_name',
-			/*'last_name',*/
-			/*'address_line1',*/
-			/*'address_line2',*/
-			/*'state',*/
-			/*'gender',*/
-			/*'marital_status',*/
-			/*'postal_code',*/
-			/*'comments',*/
+        [
+            'attribute' => 'last_name',
+            'vAlign' => 'middle',
+            'label' => 'Surname',
+            'format' => 'html',
         ],
-        ]); ?>
-    </div>
+        [
+            'attribute' => 'first_name',
+            'vAlign' => 'middle',
+            'label' => 'First Name',
+            'format' => 'html',
+        ],
+        [
+            'attribute' => 'gender',
+            'label' => 'Gender',
+            'width' => '10px',
+            'hAlign' => 'center',
+        ],
+        [
+                    'attribute' => 'comments',
+                ],
+                [
+                    'class' => 'kartik\grid\ActionColumn',
+                    'header' => 'Update',
+                    'template' => '{update}',
+                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
+                ],
+                [
+                    'class' => 'kartik\grid\ActionColumn',
+                    'header' => 'Delete',
+                    'template' => '{delete}',
+                    'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
+                    'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],
+                ],
+            ];
+            ?>
+
+
+            <?=
+            GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'resizableColumns' => false,
+                'showPageSummary' => false,
+                'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+                'filterRowOptions' => ['class' => 'kartik-sheet-style'],
+                'responsive' => true,
+                'beforeHeader' => [
+                    [
+                        'columns' => [
+                            ['content' => 'Clients\'s Details', 'options' => ['colspan' => 6, 'class' => 'text-center warning']],
+                            ['content' => 'Today\'s Dropin', 'options' => ['colspan' => 4, 'class' => 'text-center success']],
+                            ['content' => 'Clients\'s Comments', 'options' => ['colspan' => 3, 'class' => 'text-center warning']],
+                            ['content' => 'Editing Clients\'s', 'options' => ['colspan' => 2, 'class' => 'text-center warning']],
+                        ],
+                        'options' => ['class' => 'skip-export'] // remove this row from export
+                    ]
+                ],
+                'pjax' => true, // pjax is set to always true for this demo
+                'pjaxSettings' => [
+                    'neverTimeout' => true,
+                ],
+                'hover' => true,
+                'panel' => [
+                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> List of clients - ' . $this->title . '</h3>',
+                    'type' => 'primary',
+                    'showFooter' => false
+                ],
+                'columns' => $gridColumns,
+                // set export properties
+                'export' => [
+                    'fontAwesome' => true
+                ],
+                // set your toolbar
+                'toolbar' => [
+                    ['content' =>
+                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create new Client', ['create'], ['class' => 'btn btn-success']),
+                    ],
+                    '{export}',
+                ],
+            ]);
+            ?>
 
 </div>
-
-
-<?php \yii\widgets\Pjax::end() ?>
-
-

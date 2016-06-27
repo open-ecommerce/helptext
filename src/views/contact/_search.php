@@ -23,7 +23,6 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'id_language') ?>
 
-		<?= $form->field($model, 'contact_label') ?>
 
 		<?= $form->field($model, 'first_name') ?>
 
