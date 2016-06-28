@@ -50,8 +50,24 @@ NavBar::begin(
 );
 
 $menuBeforeItems = [
-                ['label' => 'Contact Us', 'url' => ['/site/contact']],
-             ];
+    ['label' => 'Clients', 'items' => [
+            ['label' => 'Clients List', 'url' => ['/contact']],
+            ['label' => 'Create New Client', 'url' => ['/contact/create']],
+        ]],    
+    ['label' => 'Cases', 'items' => [
+            ['label' => 'Cases List', 'url' => ['/cases']],
+            ['label' => 'Create New Case', 'url' => ['/cases/create']],
+        ]],    
+    ['label' => 'Auxiliary Tables', 'items' => [
+            ['label' => 'Severities', 'url' => ['/severity']],
+            ['label' => 'Outcome categories', 'url' => ['/outcome-category']],
+        ]],    
+    ['label' => 'Reports', 'items' => [
+            ['label' => 'Cases', 'url' => ['#']],
+            ['label' => 'Cases by Helpers', 'url' => ['#']],
+        ]],    
+    ['label' => 'Contact Us', 'url' => ['/site/contact']],
+ ];
 
 echo Nav::widget(
     [

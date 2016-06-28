@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' =>
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 ?>
-<div class="giiant-crud contact-view">
+<div class="row contact-view">
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>

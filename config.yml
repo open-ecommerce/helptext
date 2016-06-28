@@ -15,6 +15,9 @@ PATHS:
   fonts:
     - "vendor/bower/font-awesome/fonts/**/*"
     - "vendor/bower/bootstrap/fonts/**/*"
+  # Paths to images folder  
+  images:
+    - "src/assets/web/img/**/*"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "vendor/bower/foundation-sites/scss"

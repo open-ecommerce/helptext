@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Languages'), 'url' =
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
 ?>
-<div class="giiant-crud languages-update">
+<div class="row languages-update">
 
     <h1>
         <?= Yii::t('app', 'Languages') ?>

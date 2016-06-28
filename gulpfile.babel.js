@@ -24,11 +24,15 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(sass, babelscript, plainscript, fonts)));
+ gulp.series(clean, gulp.parallel(sass, babelscript, plainscript, fonts, images)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
   gulp.series('build', server, watch));
+
+// Build the site, run the server, and watch for file changes
+gulp.task('img',
+  gulp.series(images));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -41,6 +45,16 @@ function fonts() {
   return gulp.src(PATHS.fonts)
     .pipe(gulp.dest(PATHS.dist + '/fonts'));
 }
+
+
+// Mimify and copy images
+function images() {
+    return gulp.src(PATHS.images)
+    .pipe($.imagemin())
+    .pipe(gulp.dest(PATHS.dist + '/img'));
+}
+
+
 
 // Compile Sass into CSS
 // In production, the CSS is compressed

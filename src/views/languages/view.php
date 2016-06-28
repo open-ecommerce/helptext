@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Languages'), 'url' =
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 ?>
-<div class="giiant-crud languages-view">
+<div class="row languages-view">
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>

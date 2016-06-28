@@ -11,7 +11,7 @@ $this->title = Yii::t('app', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Severities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giiant-crud severity-create">
+<div class="row severity-create">
 
     <h1>
         <?= Yii::t('app', 'Severity') ?>        <small>

@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function ($model, $key, $index, $column) {
                 return GridView::ROW_COLLAPSED;
             },
-            'detailUrl' => Url::to(['attendance/detail']),
+            'detailUrl' => Url::to(['cases/detail']),
             'detailRowCssClass' => GridView::TYPE_DEFAULT,
             'pageSummary' => false,
         ],
