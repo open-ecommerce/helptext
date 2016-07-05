@@ -101,7 +101,11 @@ $common = [
                 ],
             ],
         ],
-
+        'Yii2Twilio' => array(
+            'class' => 'filipajdacic\yiitwilio\YiiTwilio',
+            'account_sid' => 'AC53f6315a0310cea60b88107e78ad80cb',
+            'auth_key' => '910a762c709348ade494146e3050705d', 
+        ),        
     ],
     'modules' => [
         'backend' => [
@@ -177,7 +181,7 @@ $common = [
             '@vendor/dmstr/yii2-prototype-module/src/migrations',
         ],
     ],
-
+     
 ];
 
 $web = [

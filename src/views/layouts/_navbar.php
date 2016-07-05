@@ -67,6 +67,7 @@ $menuBeforeItems = [
             ['label' => 'Cases by Helpers', 'url' => ['#']],
         ]],    
     ['label' => 'Contact Us', 'url' => ['/site/contact']],
+    ['label' => 'Testing', 'url' => ['/site/testing']],
  ];
 
 echo Nav::widget(

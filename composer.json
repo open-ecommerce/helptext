@@ -44,6 +44,7 @@
     "kartik-v/yii2-helpers": "dev-master",
     "kartik-v/yii2-datecontrol": "dev-master",
     "kartik-v/yii2-export": "@dev",
+    "kartik-v/yii2-detail-view": "@dev",
     "spanjeta/yii2-backup": "*",
     "open-ecommerce/yii2-backuprestore": "dev-master",
     "bower-asset/foundation-sites": "^6.2",
@@ -52,7 +53,9 @@
     "bower-asset/motion-ui": "^1.2.2",
     "bower-asset/sass-rem": "^1.2",
     "bower-asset/what-input": "^1.1",
-    "cinghie/yii2-user-extended": "*"
+    "cinghie/yii2-user-extended": "*",
+    "filipajdacic/yii2-twilio": "dev-master",
+        "twilio/sdk": "^4.10"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",

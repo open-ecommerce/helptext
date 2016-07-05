@@ -12,12 +12,17 @@ use Yii;
  * @property integer $id
  * @property integer $id_contact
  * @property integer $id_category
- * @property integer $id_severity
  * @property integer $id_outcome
+ * @property integer $id_severity
  * @property string $start_date
  * @property string $close_date
- * @property string $state
+ * @property boolean $state
  * @property string $comments
+ *
+ * @property \app\models\CaseCategory $idCategory
+ * @property \app\models\Contact $idContact
+ * @property \app\models\OutcomeCategory $idOutcome
+ * @property \app\models\Severity $idSeverity
  * @property string $aliasModel
  */
 abstract class Cases extends \yii\db\ActiveRecord
@@ -40,10 +45,14 @@ abstract class Cases extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_contact', 'id_category', 'id_severity', 'id_outcome'], 'integer'],
+            [['id_contact', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
             [['start_date', 'close_date'], 'safe'],
+            [['state'], 'boolean'],
             [['comments'], 'string'],
-            [['state'], 'string', 'max' => 50]
+            [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => CaseCategory::className(), 'targetAttribute' => ['id_category' => 'id']],
+            [['id_contact'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['id_contact' => 'id']],
+            [['id_outcome'], 'exist', 'skipOnError' => true, 'targetClass' => OutcomeCategory::className(), 'targetAttribute' => ['id_outcome' => 'id']],
+            [['id_severity'], 'exist', 'skipOnError' => true, 'targetClass' => Severity::className(), 'targetAttribute' => ['id_severity' => 'id']]
         ];
     }
 
@@ -54,10 +63,10 @@ abstract class Cases extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_contact' => Yii::t('app', 'Client'),
-            'id_category' => Yii::t('app', 'Case Category'),
-            'id_severity' => Yii::t('app', 'Severity'),
-            'id_outcome' => Yii::t('app', 'Outcome'),
+            'id_contact' => Yii::t('app', 'Id Contact'),
+            'id_category' => Yii::t('app', 'Id Category'),
+            'id_outcome' => Yii::t('app', 'Id Outcome'),
+            'id_severity' => Yii::t('app', 'Id Severity'),
             'start_date' => Yii::t('app', 'Start Date'),
             'close_date' => Yii::t('app', 'Close Date'),
             'state' => Yii::t('app', 'State'),
@@ -65,6 +74,48 @@ abstract class Cases extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(\app\models\CaseCategory::className(), ['id' => 'id_category']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getContact()
+    {
+        return $this->hasOne(\app\models\Contact::className(), ['id' => 'id_contact']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOutcome()
+    {
+        return $this->hasOne(\app\models\OutcomeCategory::className(), ['id' => 'id_outcome']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSeverity()
+    {
+        return $this->hasOne(\app\models\Severity::className(), ['id' => 'id_severity']);
+    }
+
+
+    
+    /**
+     * @inheritdoc
+     * @return CasesQuery the active query used by this AR class.
+     */
+//    public static function find()
+//    {
+//        return new CasesQuery(get_called_class());
+//    }
 
 
 }

@@ -102,6 +102,17 @@ class SiteController extends Controller
             ]);
         }
     }    
+
+    /**
+     * Renders the testing page
+     * @return string
+     */
+    public function actionTesting()
+    {
+        $this->layout = 'container';
+        return $this->render('testing');
+    } 
+
     
     
 }

@@ -35,7 +35,6 @@ use kartik\helpers\Html;
     <div class="large-6 columns">
         <?= $form->field($model, 'id_category')->dropDownList(ArrayHelper::map(\app\models\CaseCategory::find()->orderBy('case_category')->all(), 'id', 'case_category'),['prompt' => '- Choose Category']) ?>
         <?= $form->field($model, 'id_severity')->dropDownList(ArrayHelper::map(\app\models\Severity::find()->orderBy('severity')->all(), 'id', 'severity'),['prompt' => '- Choose Severity']) ?>    
-
         <?= $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'),['prompt' => '- Choose Outcome']) ?>    
     </div>       
 </div>
