@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /**
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
-    * @var app\models\LanguagesSearch $searchModel
+* @var app\models\LanguagesSearch $searchModel
 */
 
 
@@ -18,6 +18,7 @@ use yii\helpers\Url;
             "To" => "+447551524625",   // Text this number
             "Body" => "Hello from my Yii2 Application!",
         ));
+        echo "se supone que salio";
     } catch (\Services_Twilio_RestException $e) {
             echo $e->getMessage();
     }
