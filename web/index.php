@@ -1,8 +1,5 @@
 <?php
-# $rootPath = __DIR__.'/..';
-
-$rootPath = '/var/www/helptext';
- 
+$rootPath = __DIR__.'/..';
 require($rootPath.'/vendor/autoload.php');
 require($rootPath.'/src/config/env.php');
 defined('YII_DEBUG') or define('YII_DEBUG', (boolean)getenv('YII_DEBUG'));
@@ -11,4 +8,3 @@ require($rootPath.'/vendor/yiisoft/yii2/Yii.php');
 $config = require($rootPath.'/src/config/main.php');
 $application = new yii\web\Application($config);
 $application->run();
-
