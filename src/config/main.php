@@ -236,6 +236,7 @@ $allowedIPs = [
     '::1',
     '192.168.*',
     '172.17.*',
+    '86.149.250.223',
 ];
 
 // detecting current application type based on `php_sapi_name()` since we've no application ready yet.
