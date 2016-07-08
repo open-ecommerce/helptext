@@ -44,8 +44,8 @@ logs
 
 
 # web/assets/
+# web/assets-prod
 
-web/assets-prod
 local.php
 docker-compose.override.yml
 version
