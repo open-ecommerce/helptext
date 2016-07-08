@@ -1,0 +1,6 @@
+AddType application/x-httpd-php55 .php
+allow from all
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
