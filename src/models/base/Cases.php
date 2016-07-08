@@ -6,6 +6,9 @@ namespace app\models\base;
 
 use Yii;
 
+use dektrium\user\models\Profile;
+use dektrium\user\models\User;
+
 /**
  * This is the base-model class for table "cases".
  *
@@ -45,10 +48,11 @@ abstract class Cases extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_contact', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
+            [['id_contact', 'id_user', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
             [['start_date', 'close_date'], 'safe'],
             [['state'], 'boolean'],
             [['comments'], 'string'],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => \dektrium\user\models\Profile::className(), 'targetAttribute' => ['id_user' => 'user_id']],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => CaseCategory::className(), 'targetAttribute' => ['id_category' => 'id']],
             [['id_contact'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['id_contact' => 'id']],
             [['id_outcome'], 'exist', 'skipOnError' => true, 'targetClass' => OutcomeCategory::className(), 'targetAttribute' => ['id_outcome' => 'id']],
@@ -63,10 +67,11 @@ abstract class Cases extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_contact' => Yii::t('app', 'Id Contact'),
-            'id_category' => Yii::t('app', 'Id Category'),
-            'id_outcome' => Yii::t('app', 'Id Outcome'),
-            'id_severity' => Yii::t('app', 'Id Severity'),
+            'id_contact' => Yii::t('app', 'Client'),
+            'id_user' => Yii::t('app', 'Helper'),
+            'id_category' => Yii::t('app', 'Category'),
+            'id_outcome' => Yii::t('app', 'Outcome'),
+            'id_severity' => Yii::t('app', 'Severity'),
             'start_date' => Yii::t('app', 'Start Date'),
             'close_date' => Yii::t('app', 'Close Date'),
             'state' => Yii::t('app', 'State'),
@@ -90,6 +95,24 @@ abstract class Cases extends \yii\db\ActiveRecord
         return $this->hasOne(\app\models\Contact::className(), ['id' => 'id_contact']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(\dektrium\user\models\User::className(), ['id' => 'id_user']);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(\dektrium\user\models\Profile::className(), ['user_id' => 'id_user']);
+    }
+    
+    
     /**
      * @return \yii\db\ActiveQuery
      */

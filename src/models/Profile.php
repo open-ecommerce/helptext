@@ -11,63 +11,59 @@
  */
 
 namespace app\models;
+
 use Yii;
 use dektrium\user\models\Profile as BaseProfile;
 
-class Profile extends BaseProfile
-{
+class Profile extends BaseProfile {
 
-    public function scenarios()
-    {
+    public function scenarios() {
         $scenarios = parent::scenarios();
 
         // add skils to scenarios
-        $scenarios['create'][]   = 'skills';
-        $scenarios['update'][]   = 'skills';
+        $scenarios['create'][] = 'skills';
+        $scenarios['update'][] = 'skills';
         $scenarios['register'][] = 'skills';
-        
+
 
         return $scenarios;
     }
 
-    public function rules()
-    {
+    public function rules() {
         $rules = parent::rules();
 
         // add skills rules
-        $rules['skillsRequired'] = ['skills', 'required'];
-        $rules['skillsLength']   = ['skills', 'string', 'max' => 255];
+        $rules['skillsLength'] = ['skills', 'string', 'max' => 255];
 
         $rules['availabilityRequired'] = ['availability', 'required'];
-        $rules['availabilityLength']   = ['availability', 'integer'];
+        $rules['availabilityLength'] = ['availability', 'integer'];
 
         // add firstname rules
         $rules['firstnameRequired'] = ['firstname', 'required'];
-        $rules['firstnameLength']   = ['firstname', 'string', 'max' => 255];
+        $rules['firstnameLength'] = ['firstname', 'string', 'max' => 255];
 
         // add lastname rules
-        $rules['lastnameRequired']  = ['lastname', 'required'];
-        $rules['lastnameLength']    = ['lastname', 'string', 'max' => 255];
+        $rules['lastnameRequired'] = ['lastname', 'required'];
+        $rules['lastnameLength'] = ['lastname', 'string', 'max' => 255];
 
         // add birthday rules
-        $rules['birthdayRequired']  = ['birthday', 'safe'];
-        $rules['birthdayLength']    = ['birthday', 'date', 'format' => 'yyyy-mm-dd'];
+        $rules['birthdayRequired'] = ['birthday', 'safe'];
+        $rules['birthdayLength'] = ['birthday', 'date', 'format' => 'yyyy-mm-dd'];
 
         $rules['id_countryRequired'] = ['id_country', 'safe'];
-        $rules['id_countryLength']   = ['id_country', 'integer'];
-        
-        
+        $rules['id_countryLength'] = ['id_country', 'integer'];
+
+
         return $rules;
     }
 
     /** @inheritdoc */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'firstname' => Yii::t('userextended', 'First Name'),
             'lastname' => Yii::t('userextended', 'Surname'),
-            'birthday' => Yii::t('userextended', 'Birthday'),            
-            'availability' => Yii::t('userextended', 'Availability'),            
+            'birthday' => Yii::t('userextended', 'Birthday'),
+            'availability' => Yii::t('userextended', 'Availability'),
             'skills' => Yii::t('userextended', 'Skills'),
             'id_country' => Yii::t('userextended', 'Nationality'),
         ];
@@ -76,17 +72,16 @@ class Profile extends BaseProfile
     /**
      * @return \yii\db\ActiveQueryInterface
      */
-    public function getAccount()
-    {
+    public function getAccount() {
         return $this->hasOne($this->module->modelMap['Account'], ['user_id' => 'user_id']);
     }
 
     /**
      * @return \yii\db\ActiveQueryInterface
      */
-    public function getAccountAttributes()
-    {
+    public function getAccountAttributes() {
         return $this->hasOne($this->module->modelMap['Account'], ['user_id' => 'user_id'])->asArray()->one();
     }
+
 
 }

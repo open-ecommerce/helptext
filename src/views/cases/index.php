@@ -6,6 +6,8 @@ use yii\jui\DatePicker;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
+use dektrium\user\models\Profile;
+use dektrium\user\models\User;
 use app\models\Severity;
 use yii\helpers\ArrayHelper;
 
@@ -35,7 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'contact.last_name',
+            'attribute' => 'id_contact',
+            'value' => function($model) { return $model->contact->first_name . " " . $model->contact->last_name ; },
+            'hAlign' => 'center',
+            'vAlign' => 'middle',
+        ],
+        [
+            'attribute' => 'id_user',
+            'value' => function($model) { return $model->profile->firstname . " " . $model->profile->lastname ; },
+            'width' => '50px',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],

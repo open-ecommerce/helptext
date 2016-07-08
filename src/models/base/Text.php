@@ -64,10 +64,19 @@ abstract class Text extends \yii\db\ActiveRecord
      * @inheritdoc
      * @return TextQuery the active query used by this AR class.
      */
-    public static function find()
+//    public static function find()
+//    {
+//        return new app\models\search\TextQuery(get_called_class());
+//    }
+    
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCase()
     {
-        return new TextQuery(get_called_class());
-    }
+        return $this->hasOne(\app\models\Contact::className(), ['id' => 'id_case']);
+    }    
 
 
 }
