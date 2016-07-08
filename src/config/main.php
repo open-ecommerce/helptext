@@ -151,7 +151,7 @@ $common = [
             'roles' => ['translate-module'],
         ],
         'datecontrol' => [
-            'class' => '\kartik\datecontrol\Module'
+            'class' => '\kartik\datecontrol\Module',
         ],        
         'gridview' => [
             'class' => '\kartik\grid\Module',

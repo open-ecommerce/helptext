@@ -1,9 +1,12 @@
 <?php
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
+
 use yii\helpers\StringHelper;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\datecontrol\Module;
+use kartik\datecontrol\DateControl;
+use kartik\helpers\Html;
 
 /**
 * @var yii\web\View $this
@@ -13,59 +16,31 @@ use yii\helpers\StringHelper;
 
 ?>
 
-<div class="text-form">
 
-    <?php $form = ActiveForm::begin([
-    'id' => 'Text',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-error'
-    ]
-    );
-    ?>
-
-    <div class="">
-        <?php $this->beginBlock('main'); ?>
-
-        <p>
-            
-			<?= $form->field($model, 'id_phone')->textInput() ?>
-			<?= $form->field($model, 'id_case')->textInput() ?>
-			<?= $form->field($model, 'id_sender_type')->textInput() ?>
-			<?= $form->field($model, 'message')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'sent')->textInput() ?>
-        </p>
-        <?php $this->endBlock(); ?>
-        
-        <?=
-    Tabs::widget(
-                 [
-                   'encodeLabels' => false,
-                     'items' => [ [
-    'label'   => Yii::t('app', StringHelper::basename('app\models\Text')),
-    'content' => $this->blocks['main'],
-    'active'  => true,
-], ]
-                 ]
-    );
-    ?>
-        <hr/>
-
-        <?php echo $form->errorSummary($model); ?>
-
-        <?= Html::submitButton(
-        '<span class="glyphicon glyphicon-check"></span> ' .
-        ($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')),
-        [
-        'id' => 'save-' . $model->formName(),
-        'class' => 'btn btn-success'
-        ]
-        );
-        ?>
-
-        <?php ActiveForm::end(); ?>
-
-    </div>
-
+<?php $form = ActiveForm::begin(); ?>
+<div class="row">
+    <div class="large-12 columns">
+        <?= $form->field($model, 'id_phone')->textInput() ?>
+        <?= $form->field($model, 'id_case')->textInput() ?>
+        <?= $form->field($model, 'id_sender_type')->textInput() ?>
+        <?= $form->field($model, 'message')->textInput(['maxlength' => true]) ?>
+        <?php
+        echo $form->field($model, 'sent')->widget(DateControl::classname(), [
+            'type' => DateControl::FORMAT_DATE,
+            'displayFormat' => 'php:d M Y',
+            'saveFormat' => 'php:Y-m-d',
+        ]);
+        ?>  
+    </div>    
 </div>
+
+
+<div class="form-group">
+    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
+    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+</div>
+<?php ActiveForm::end(); ?>
+
+
+
 
