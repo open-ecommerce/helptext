@@ -63,7 +63,7 @@ gulp --production
 
 
 dev enviourment notes:
-
+```
 etc/apache2/sites-available configuration
 <VirtualHost *:80>
     ServerName helptext.dev
@@ -77,7 +77,14 @@ etc/apache2/sites-available configuration
     </Directory>
     ErrorLog ${APACHE_LOG_DIR}/helptext.log
 </VirtualHost>
+```
 
+
+you will need swiftmailer in order to work the email
+```
+sudo apt-get update
+sudo apt-get install libphp-swiftmailer
+```
 
 
 

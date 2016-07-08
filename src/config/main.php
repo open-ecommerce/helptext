@@ -65,7 +65,7 @@ $common = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => YII_ENV_PROD ? false : true,
+            //'useFileTransport' => YII_ENV_PROD ? false : true,
         ],
         // Note: enable db sessions, if multiple containers are running
         #'session' => [
