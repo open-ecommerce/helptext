@@ -21,12 +21,12 @@ class Text extends BaseText {
 
         echo "vamos cacho porfa";
         
-        //$caller = $_REQUEST['From'];
-        //$message = $_REQUEST['Body'];
+        $caller = $_REQUEST['From'];
+        $message = $_REQUEST['Body'];
 
 
-        $caller = "+447551524625";
-        $message = "lo que escribieron";
+        //$caller = "+447551524625";
+        //$message = "lo que escribieron";
         
         
         $text = new Text();
@@ -43,7 +43,7 @@ class Text extends BaseText {
             $message = $twilioService->account->messages->create(array(
                 "From" => "+441234480212", // From a valid Twilio number
                 "To" => $caller,   // Text this number
-                "Body" => $message,
+                "Body" => "el mensaje es: " . $message,
             ));
 
 
