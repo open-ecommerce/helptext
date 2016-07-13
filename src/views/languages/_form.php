@@ -29,8 +29,8 @@ use yii\helpers\StringHelper;
 
         <p>
             
-			<?= $form->field($model, 'language')->textarea(['rows' => 6]) ?>
-			<?= $form->field($model, 'short_name')->textarea(['rows' => 6]) ?>
+			<?= $form->field($model, 'language')->textarea(['col-md-12s' => 6]) ?>
+			<?= $form->field($model, 'short_name')->textarea(['col-md-12s' => 6]) ?>
         </p>
         <?php $this->endBlock(); ?>
         

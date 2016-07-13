@@ -59,6 +59,7 @@ $menuBeforeItems = [
             ['label' => 'Create New Case', 'url' => ['/cases/create']],
         ]],    
     ['label' => 'Auxiliary Tables', 'items' => [
+            ['label' => 'Texts', 'url' => ['/text']],
             ['label' => 'Severities', 'url' => ['/severity']],
             ['label' => 'Outcome categories', 'url' => ['/outcome-category']],
         ]],    
@@ -67,7 +68,7 @@ $menuBeforeItems = [
             ['label' => 'Cases by Helpers', 'url' => ['#']],
         ]],    
     ['label' => 'Contact Us', 'url' => ['/site/contact']],
-    ['label' => 'Testing', 'url' => ['/site/testing']],
+//    ['label' => 'Testing', 'url' => ['/site/testing']],
  ];
 
 echo Nav::widget(

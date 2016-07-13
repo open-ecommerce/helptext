@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Severities'), 'url' 
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
 ?>
-<div class="row severity-update">
+<div class="col-md-12 severity-update">
 
     <h1>
         <?= Yii::t('app', 'Severity') ?>

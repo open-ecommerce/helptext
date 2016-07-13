@@ -19,7 +19,7 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
 ?>
-<div class="row country-index">
+<div class="col-md-12 country-index">
 
     <?php //             echo $this->render('_search', ['model' =>$searchModel]);
         ?>

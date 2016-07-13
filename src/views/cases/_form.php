@@ -1,6 +1,6 @@
 <?php
-
-use kartik\form\ActiveForm;
+use yii\bootstrap\ActiveForm;
+//use kartik\form\ActiveForm;
 use yii\helpers\ArrayHelper;
 use dektrium\user\models\Profile;
 use dektrium\user\models\User;
@@ -15,7 +15,7 @@ use kartik\helpers\Html;
 
 ?>
 <?php $form = ActiveForm::begin(); ?>
-<div class="row">
+<div class="col-md-12">
     <div class="large-6 columns">
         <?= $form->field($model, 'id_contact')->dropDownList(ArrayHelper::map(\app\models\Contact::find()->orderBy('last_name')->all(),
                 'id',
@@ -29,6 +29,7 @@ use kartik\helpers\Html;
             'saveFormat' => 'php:Y-m-d',
         ]);
         ?>  
+        
         <?php
         echo $form->field($model, 'close_date')->widget(DateControl::classname(), [
             'type' => DateControl::FORMAT_DATE,
@@ -48,9 +49,9 @@ use kartik\helpers\Html;
         <?= $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'),['prompt' => '- Choose Outcome']) ?>    
     </div>       
 </div>
-<div class="row">
+<div class="col-md-12">
     <div class="large-12 columns">
-        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('rows' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
+        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
     </div>       
 </div>
 

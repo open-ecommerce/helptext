@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 ?>
-<div class="row text-view">
+<div class="col-md-12 text-view">
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>

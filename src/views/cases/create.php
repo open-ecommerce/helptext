@@ -11,7 +11,7 @@ $this->title = Yii::t('app', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row cases-create">
+<div class="col-md-12 cases-create">
 
     <h1>
         <?= Yii::t('app', 'Cases') ?>        <small>

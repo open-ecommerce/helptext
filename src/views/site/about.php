@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="featurette">
         <div class="container">
-            <div class="row">
+            <div class="col-md-12">
                 <div class="col-md-12 text-center">
                     <p class="lead">This is the internal managment system for the Destitute Asylum Seekers Drop-In.<br>
                     If you need to work with the system please signup or ask for your credentials.</p>

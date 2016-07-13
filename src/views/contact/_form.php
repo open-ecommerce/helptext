@@ -15,7 +15,7 @@ use kartik\helpers\Html;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-<div class="row">
+<div class="col-md-12">
     <div class="large-6 columns">
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
@@ -38,9 +38,9 @@ use kartik\helpers\Html;
         <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true]) ?>
     </div>       
 </div>
-<div class="row">
+<div class="col-md-12">
     <div class="large-12 columns">
-        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('rows' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
+        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
     </div>       
 </div>
 

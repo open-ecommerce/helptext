@@ -1,20 +1,24 @@
 <?php
 
 namespace app\controllers;
+
 use app\models\Text;
 use app\models\search\TextSearch;
+use app\models\Contact;
+use dektrium\user\models\Profile;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use dmstr\bootstrap\Tabs;
-
+use yii\web\Response;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 
 /**
-* This is the class for controller "TextController".
-*/
-class TextController extends \app\controllers\base\TextController
-{
+ * This is the class for controller "TextController".
+ */
+class TextController extends \app\controllers\base\TextController {
 
     /**
      * Testing functionality
@@ -34,7 +38,7 @@ class TextController extends \app\controllers\base\TextController
         }
 
 
-        
+
 
 //        try {
 //            if ($model->load($_POST) && $model->save()) {
@@ -47,9 +51,6 @@ class TextController extends \app\controllers\base\TextController
 //            $model->addError('_exception', $msg);
 //        }
 //        return $this->render('create', ['model' => $model]);        
-        
-        
-        
 //        
 //        $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 //
@@ -66,8 +67,57 @@ class TextController extends \app\controllers\base\TextController
 //                echo $e->getMessage();
 //        }
 //        
-   }    
+    }
+
 //    
+
+    /**
+     * Creates a new Text model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionTestsms() {
+        $model = new Text;
+        $modelContact = new Contact;
+        try {
+            if ($model->load($_POST) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } elseif (!\Yii::$app->request->isPost) {
+                $model->load($_GET);
+            }
+        } catch (\Exception $e) {
+            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+            $model->addError('_exception', $msg);
+        }
+        return $this->render('testsms', ['modelContact' => $modelContact, 'model' => $model]);
+    }
+
+    public function actionContacts() {
+        $out = [];
+        
+       
+
+
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id_sender_type = $parents[0];
+                //if the sender is a user
+                if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
+                    $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {return $name->firstname . " " . $name->lastname;});                                       
+                } else {
+                    $senders = ArrayHelper::map(Contact::find()->orderBy('last_name')->all(), 'id', function($name) {return $name->first_name . " " . $name->last_name;});                                       
+                }
+
+                foreach ($senders as $id => $value ){
+                   $out[] = ['id' => $id, 'name' => $value]; 
+                }
+
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
 }
-
-

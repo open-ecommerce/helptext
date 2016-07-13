@@ -11,7 +11,7 @@ $this->title = Yii::t('app', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Languages'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row languages-create">
+<div class="col-md-12 languages-create">
 
     <h1>
         <?= Yii::t('app', 'Languages') ?>        <small>

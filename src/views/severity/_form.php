@@ -29,7 +29,7 @@ use yii\helpers\StringHelper;
 
         <p>
 			<?= $form->field($model, 'severity')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'sla')->textarea(['rows' => 6]) ?>
+			<?= $form->field($model, 'sla')->textarea(['col-md-12s' => 6]) ?>
         </p>
         <?php $this->endBlock(); ?>
         

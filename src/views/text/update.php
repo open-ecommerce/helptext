@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
 ?>
-<div class="row text-update">
+<div class="col-md-12 text-update">
 
     <h1>
         <?= Yii::t('app', 'Text') ?>

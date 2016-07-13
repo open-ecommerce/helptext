@@ -51,7 +51,12 @@ $imgPath = $bundle->baseUrl;
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'head']) ?>
-    <?php $this->head() ?>
+
+    <?php $this->head() ?>    
+    
+    
+    
+    
 </head>
 <body>
 <?php $this->beginBody() ?>

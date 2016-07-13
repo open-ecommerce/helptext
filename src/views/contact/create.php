@@ -11,26 +11,25 @@ $this->title = Yii::t('app', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row contact-create">
 
-    <h1>
-        <?= Yii::t('app', 'Contact') ?>        <small>
+<div class="container contact-create">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>
+                    <?= Yii::t('app', 'Create new client') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
+                </h3>
+            </div>
 
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
+            <div class="panel-body">
+
+                <?=
+                $this->render('_form', [
+                    'model' => $model,
+                ]);
+                ?>
+            </div>
         </div>
     </div>
-
-    <hr />
-
-    <?= $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>

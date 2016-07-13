@@ -18,7 +18,7 @@ use kartik\helpers\Html;
 
 
 <?php $form = ActiveForm::begin(); ?>
-<div class="row">
+<div class="col-md-12">
     <div class="large-12 columns">
         <?= $form->field($model, 'id_phone')->textInput() ?>
         <?= $form->field($model, 'id_case')->textInput() ?>

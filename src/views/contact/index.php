@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['content' => 'Clients\'s Comments', 'options' => ['colspan' => 3, 'class' => 'text-center warning']],
                             ['content' => 'Editing Clients\'s', 'options' => ['colspan' => 2, 'class' => 'text-center warning']],
                         ],
-                        'options' => ['class' => 'skip-export'] // remove this row from export
+                        'options' => ['class' => 'skip-export'] // remove this col-md-12 from export
                     ]
                 ],
                 'pjax' => true, // pjax is set to always true for this demo

@@ -96,6 +96,7 @@ $common = [
         'view' => [
             'theme' => [
                 'pathMap' => [
+                    // lindisimo con otros assets '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/phundament/app',
                     '@vendor/dektrium/yii2-user/views/admin' => '@app/views/user/admin',
                     '@yii/gii/views/layouts' => '@admin-views/layouts',
                 ],
@@ -180,6 +181,10 @@ $common = [
             '@vendor/pheme/yii2-settings/migrations',
             '@vendor/dmstr/yii2-prototype-module/src/migrations',
         ],
+        'contactLabel' => 'Client', //contact table
+        'senderTypeIdUser' => '2', //id from sender_type table
+        'userLabel' => 'Helper', //user table
+        'senderTypeIdUser' => '3', //id from sender_type table
     ],
      
 ];
