@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use \app\models\base\Text as BaseText;
 use app\models\Phone;
+use app\models\Profile;
 
 /**
  * This is the model class for table "text".
@@ -29,9 +30,16 @@ class Text extends BaseText {
             $message = $_REQUEST['Body'];
         }
         
-        
-        
-        
+        $profile = Profile::findOne(['phone'=>$caller]);                                       
+        if ($profile->phone === NULL){
+            $isUser = FALSE;
+            $id_sender_type = \Yii::$app->params['senderTypeIdContact'];
+        } else {
+            $isUser =  TRUE;                       
+            $userId = $profile->user_id;  
+            $id_sender_type = \Yii::$app->params['senderTypeIdUser'];
+        }                                   
+
         
         
         // save the text in the db       

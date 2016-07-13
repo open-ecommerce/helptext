@@ -182,7 +182,7 @@ $common = [
             '@vendor/dmstr/yii2-prototype-module/src/migrations',
         ],
         'contactLabel' => 'Client', //contact table
-        'senderTypeIdUser' => '2', //id from sender_type table
+        'senderTypeIdContact' => '2', //id from sender_type table
         'userLabel' => 'Helper', //user table
         'senderTypeIdUser' => '3', //id from sender_type table
     ],
