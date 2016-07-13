@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Text;
 use app\models\search\TextSearch;
 use app\models\Contact;
+use app\models\ContactPhone;
 use dektrium\user\models\Profile;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -80,7 +81,7 @@ class TextController extends \app\controllers\base\TextController {
         $model = new Text;
         $modelContact = new Contact;
         try {
-            if ($model->load($_POST) && $model->save()) {
+            if ($model->load($_POST) && $model->receiveSMS()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
@@ -94,10 +95,6 @@ class TextController extends \app\controllers\base\TextController {
 
     public function actionContacts() {
         $out = [];
-        
-       
-
-
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
@@ -108,11 +105,9 @@ class TextController extends \app\controllers\base\TextController {
                 } else {
                     $senders = ArrayHelper::map(Contact::find()->orderBy('last_name')->all(), 'id', function($name) {return $name->first_name . " " . $name->last_name;});                                       
                 }
-
                 foreach ($senders as $id => $value ){
                    $out[] = ['id' => $id, 'name' => $value]; 
                 }
-
                 echo Json::encode(['output' => $out, 'selected' => '']);
                 return;
             }
@@ -120,4 +115,35 @@ class TextController extends \app\controllers\base\TextController {
         echo Json::encode(['output' => '', 'selected' => '']);
     }
 
+    public function actionPhones() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id_sender_type = $parents[0];
+                $id_sender = $parents[1];
+                //if the sender is a user
+                if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
+                   $profile = Profile::findOne(['user_id'=>$id_sender]);                                       
+                   if ($profile->phone === NULL){
+                       $phoneValue = "No phone added to the profile.";
+                   } else {
+                       $phoneValue = $profile->phone;                       
+                   }
+                   $out[] = ['id' => $phoneValue, 'name' => $phoneValue]; 
+                  
+                } else {
+                    $senders = ArrayHelper::map(ContactPhone::find()->orderBy('id')->all(), 'id', 'id_phone');                                       
+                    foreach ($senders as $id => $value ){
+                       $out[] = ['id' => $value, 'name' => $value]; 
+                    }
+                }
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+    
+    
 }

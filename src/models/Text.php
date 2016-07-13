@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use \app\models\base\Text as BaseText;
+use app\models\Phone;
 
 /**
  * This is the model class for table "text".
@@ -17,18 +18,23 @@ class Text extends BaseText {
 
        
         //$model->load($_POST);
-        
 
-        echo "vamos cacho porfa";
         
-        $caller = $_REQUEST['From'];
-        $message = $_REQUEST['Body'];
-
-
-        //$caller = "+447551524625";
-        //$message = "lo que escribieron";
+        if (Yii::$app->request->post()) {
+            $caller = $this->id_phone;
+            $message = $this->message;
+        } else {
+            // real sms from twillo
+            $caller = $_REQUEST['From'];
+            $message = $_REQUEST['Body'];
+        }
         
         
+        
+        
+        
+        
+        // save the text in the db       
         $text = new Text();
         $text->id_phone = $caller;
         $text->id_case = 1;
@@ -37,6 +43,8 @@ class Text extends BaseText {
         $text->sent = 1;
         $text->save();
 
+        
+        // reply to sender
         $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 
         try {

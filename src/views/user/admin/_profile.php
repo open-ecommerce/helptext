@@ -27,6 +27,7 @@ use kartik\helpers\Html;
    
     <?= $form->field($profile, 'firstname') ?>
     <?= $form->field($profile, 'lastname') ?>
+    <?= $form->field($profile, 'phone') ?>
     <?= $form->field($profile, 'public_email') ?>
     <?= $form->field($profile, 'website') ?>
     <?= $form->field($profile, 'location') ?>

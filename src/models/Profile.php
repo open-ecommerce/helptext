@@ -46,6 +46,11 @@ class Profile extends BaseProfile {
         $rules['lastnameRequired'] = ['lastname', 'required'];
         $rules['lastnameLength'] = ['lastname', 'string', 'max' => 255];
 
+        // add firstname rules
+        $rules['phone'] = ['phone', 'required'];
+        $rules['phone'] = ['phone', 'string', 'max' => 255];        
+        
+        
         // add birthday rules
         $rules['birthdayRequired'] = ['birthday', 'safe'];
         $rules['birthdayLength'] = ['birthday', 'date', 'format' => 'yyyy-mm-dd'];
@@ -62,6 +67,7 @@ class Profile extends BaseProfile {
         return [
             'firstname' => Yii::t('userextended', 'First Name'),
             'lastname' => Yii::t('userextended', 'Surname'),
+            'phone' => Yii::t('userextended', 'Phone'),
             'birthday' => Yii::t('userextended', 'Birthday'),
             'availability' => Yii::t('userextended', 'Availability'),
             'skills' => Yii::t('userextended', 'Skills'),
@@ -72,15 +78,15 @@ class Profile extends BaseProfile {
     /**
      * @return \yii\db\ActiveQueryInterface
      */
-    public function getAccount() {
-        return $this->hasOne($this->module->modelMap['Account'], ['user_id' => 'user_id']);
+    public function getProfile() {
+        return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'user_id']);
     }
 
     /**
      * @return \yii\db\ActiveQueryInterface
      */
-    public function getAccountAttributes() {
-        return $this->hasOne($this->module->modelMap['Account'], ['user_id' => 'user_id'])->asArray()->one();
+    public function getProfileAttributes() {
+        return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'user_id'])->asArray()->one();
     }
 
 

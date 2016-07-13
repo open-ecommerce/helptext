@@ -29,26 +29,24 @@ use yii\helpers\url;
 
 
     <?php
-// Parent 
-//echo $form->field($model, 'cat')->dropDownList($catList, ['id'=>'cat-id']);
 // Child # 1
     echo $form->field($modelContact, 'first_name')->widget(DepDrop::classname(), [
         'options' => ['id' => 'id_contacts'],
         'pluginOptions' => [
             'depends' => ['text-id_sender_type'],
-            'placeholder' => 'Select porfa...',
+            'placeholder' => 'Select sender from the system',
             'url' => Url::to(['/text/contacts'])
         ]
     ]);
 
 //// Child # 2
-//echo $form->field($model, 'prod')->widget(DepDrop::classname(), [
-//    'pluginOptions'=>[
-//        'depends'=>['cat-id', 'subcat-id'],
-//        'placeholder'=>'Select...',
-//        'url'=>Url::to(['/site/prod'])
-//    ]
-//]);
+    echo $form->field($model, 'id_phone')->widget(DepDrop::classname(), [
+        'pluginOptions'=>[
+            'depends'=>['text-id_sender_type', 'id_contacts'],
+            'placeholder'=>'Select phone number',
+            'url'=>Url::to(['/text/phones'])
+        ]
+    ]);
     ?>
 
 
