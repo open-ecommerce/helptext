@@ -135,10 +135,10 @@ abstract class Cases extends \yii\db\ActiveRecord
      * @inheritdoc
      * @return CasesQuery the active query used by this AR class.
      */
-//    public static function find()
-//    {
-//        return new CasesQuery(get_called_class());
-//    }
+    public static function find()
+    {
+        return new \app\models\CasesQuery(get_called_class());
+    }
 
 
 }

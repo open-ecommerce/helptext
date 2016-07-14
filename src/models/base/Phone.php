@@ -58,7 +58,7 @@ abstract class Phone extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new PhoneQuery(get_called_class());
+        return new \app\models\PhoneQuery(get_called_class());
     }
 
 

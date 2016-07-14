@@ -57,7 +57,8 @@
     "cinghie/yii2-user-extended": "*",
     "filipajdacic/yii2-twilio": "dev-master",
     "twilio/sdk": "^4.10",
-        "dmstr/yii2-adminlte-asset": "2.*"
+    "dmstr/yii2-adminlte-asset": "2.*",
+    "borales/yii2-phone-input": "*"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",

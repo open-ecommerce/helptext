@@ -14,6 +14,7 @@ namespace app\models;
 
 use Yii;
 use dektrium\user\models\Profile as BaseProfile;
+use yii\db\Query;
 
 class Profile extends BaseProfile {
 
@@ -89,5 +90,24 @@ class Profile extends BaseProfile {
         return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'user_id'])->asArray()->one();
     }
 
+    /**
+     * check the next available helper
+     * @return user_id
+     */
+    public function getNextUser() {
+        
+        
+        $query = new Query;
+        
+        $query->select('id, name')
+                ->from('qry_next_available_user')
+                ->limit(1);        
+        
+        $result = $query->all();
+        
+        return $result[0]['id'];
+        
+    }
 
+    
 }

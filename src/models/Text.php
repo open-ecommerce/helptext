@@ -1,72 +1,110 @@
 <?php
-
 namespace app\models;
 
 use Yii;
 use \app\models\base\Text as BaseText;
 use app\models\Phone;
+use app\models\ContactPhone;
 use app\models\Profile;
+use app\models\Cases;
 
 /**
  * This is the model class for table "text".
  */
 class Text extends BaseText {
-
     /**
      * @return \yii\db\ActiveQuery
      */
     public function receiveSMS() {
-
-       
         //$model->load($_POST);
 
-        
         if (Yii::$app->request->post()) {
-            $caller = $this->id_phone;
+            if (empty($this->id_phone)){
+                $callerPhone = "+" . rand(1111111111,9999999999);
+            } else {
+                $callerPhone = $this->id_phone;
+            }
+                
             $message = $this->message;
         } else {
             // real sms from twillo
-            $caller = $_REQUEST['From'];
+            $callerPhone = $_REQUEST['From'];
             $message = $_REQUEST['Body'];
         }
-        
-        $profile = Profile::findOne(['phone'=>$caller]);                                       
-        if ($profile->phone === NULL){
+        $profile = Profile::findOne(['phone' => $callerPhone]);
+        //check if is the phone of an existing user
+        if ($profile === NULL) { //is a client
             $isUser = FALSE;
             $id_sender_type = \Yii::$app->params['senderTypeIdContact'];
+
+            //check if the phone exist in any contact
+            $phone = Phone::findOne(['id' => $callerPhone]);
+            if ($phone === NULL) { //the phone is not in the system
+                //create new contact
+                $contact = new Contact();
+                //$contact->first_name = "no name yet";                
+                $contact->save();                
+                $callerId = $contact->id;
+
+                //create new phone
+                $phone = new Phone();
+                $phone->id = $callerPhone;
+                $phone->comment = "added by system";
+                $phone->save();
+
+                //add phone to contact_phone
+                $contactPhone = new ContactPhone();
+                $contactPhone->id_contact = $callerId;
+                $contactPhone->id_phone = $callerPhone;
+                $contactPhone->save();
+
+                $profile = new Profile();
+                $nextUserId = $profile->NextUser;
+                
+                
+                // create new case       
+                $case = new Cases();
+                $case->id_contact = $callerId;
+                $case->id_user = $nextUserId;
+                $case->start_date = date("Y-m-d H:i:s");
+                $case->state = 1;
+                $case->comments = "New case to review";
+                $case->save();
+                $id_case = $case->id;
+
+                // save the text in the db       
+                $text = new Text();
+                $text->id_phone = $callerPhone;
+                $text->id_case = $id_case;
+                $text->id_sender_type = $id_sender_type;
+                $text->message = $message;
+                $text->sent = date("Y-m-d H:i:s");
+                $text->save();
+                
+            } else {
+                
+            }
         } else {
-            $isUser =  TRUE;                       
-            $userId = $profile->user_id;  
+            $isUser = TRUE;
+            $userId = $profile->user_id;
             $id_sender_type = \Yii::$app->params['senderTypeIdUser'];
-        }                                   
+        }
 
-        
-        
-        // save the text in the db       
-        $text = new Text();
-        $text->id_phone = $caller;
-        $text->id_case = 1;
-        $text->id_sender_type = 1;
-        $text->message = $message;
-        $text->sent = 1;
-        $text->save();
 
-        
+
         // reply to sender
         $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 
         try {
             $message = $twilioService->account->messages->create(array(
                 "From" => "+441234480212", // From a valid Twilio number
-                "To" => $caller,   // Text this number
+                "To" => $callerPhone, // Text this number
                 "Body" => "el mensaje es: " . $message,
             ));
-
-
         } catch (\Services_Twilio_RestException $e) {
-                echo $e->getMessage();
+            echo $e->getMessage();
         }
-        
+
         // Step 4: make an array of people we know, to send them a message.
         // Feel free to change/add your own phone number and name here.
 //        $volunteers = array(
@@ -84,11 +122,10 @@ class Text extends BaseText {
 //                    // the number we are sending to - Any phone number
 //                    $number,
 //                    // the sms body
-//                    "Hey $name, $caller said: $message"
+//                    "Hey $name, $callerPhone said: $message"
 //            );
 //        }
 //
-
 //        // make an associative array of senders we know, indexed by phone number
 //        $people = array(
 //            "+447551524625" => "Eduardito",
@@ -101,11 +138,6 @@ class Text extends BaseText {
 //        if (!$name = $people[$_REQUEST['From']]) {
 //            $name = "Amigo";
 //        }
-
     }
 
-    
-    
-    
-    
 }

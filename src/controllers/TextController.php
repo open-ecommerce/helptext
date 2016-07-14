@@ -133,7 +133,12 @@ class TextController extends \app\controllers\base\TextController {
                    $out[] = ['id' => $phoneValue, 'name' => $phoneValue]; 
                   
                 } else {
-                    $senders = ArrayHelper::map(ContactPhone::find()->orderBy('id')->all(), 'id', 'id_phone');                                       
+                    $senders = ArrayHelper::map(
+                            ContactPhone::find()
+                                ->where(['id_contact' => $id_sender])
+                                ->orderBy('id')
+                                ->all(),
+                            'id', 'id_phone');                                       
                     foreach ($senders as $id => $value ){
                        $out[] = ['id' => $value, 'name' => $value]; 
                     }
