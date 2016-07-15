@@ -1113,7 +1113,7 @@ REPLACE INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `co
 -- Dumping structure for view helptext_dev.qry_next_available_user
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `qry_next_available_user`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `qry_next_available_user` AS select `p`.`user_id` AS `id`,`p`.`firstname` AS `name` from ((`profile` `p` left join `cases` `c` on((`c`.`id_user` = `p`.`user_id`))) left join `text` `t` on((`t`.`id_case` = `c`.`id`))) where ((`p`.`availability` = 1) and (`c`.`state` = 1)) group by `p`.`user_id` order by `t`.`sent`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`oeuat_helptext`@`localhost` SQL SECURITY DEFINER VIEW `qry_next_available_user` AS select `p`.`user_id` AS `id`,`p`.`firstname` AS `name` from ((`profile` `p` left join `cases` `c` on((`c`.`id_user` = `p`.`user_id`))) left join `text` `t` on((`t`.`id_case` = `c`.`id`))) where ((`p`.`availability` = 1) and (`c`.`state` = 1)) group by `p`.`user_id` order by `t`.`sent`;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
