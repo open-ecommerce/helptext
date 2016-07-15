@@ -31,8 +31,6 @@ use dektrium\user\models\User;
 abstract class Cases extends \yii\db\ActiveRecord
 {
 
-
-
     /**
      * @inheritdoc
      */
@@ -51,10 +49,11 @@ abstract class Cases extends \yii\db\ActiveRecord
             [['id_contact', 'id_user', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
             [['start_date', 'close_date'], 'safe'],
             [['state'], 'boolean'],
-            [['comments'], 'string'],
+            [['comments', 'id_phone'], 'string'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => \dektrium\user\models\Profile::className(), 'targetAttribute' => ['id_user' => 'user_id']],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => CaseCategory::className(), 'targetAttribute' => ['id_category' => 'id']],
             [['id_contact'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['id_contact' => 'id']],
+            [['id_phone'], 'exist', 'skipOnError' => true, 'targetClass' => Phone::className(), 'targetAttribute' => ['id_phone' => 'id']],
             [['id_outcome'], 'exist', 'skipOnError' => true, 'targetClass' => OutcomeCategory::className(), 'targetAttribute' => ['id_outcome' => 'id']],
             [['id_severity'], 'exist', 'skipOnError' => true, 'targetClass' => Severity::className(), 'targetAttribute' => ['id_severity' => 'id']]
         ];
@@ -68,6 +67,7 @@ abstract class Cases extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'id_contact' => Yii::t('app', 'Client'),
+            'id_phone' => Yii::t('app', 'Active Client Phone'),
             'id_user' => Yii::t('app', 'Helper'),
             'id_category' => Yii::t('app', 'Category'),
             'id_outcome' => Yii::t('app', 'Outcome'),
@@ -95,6 +95,15 @@ abstract class Cases extends \yii\db\ActiveRecord
         return $this->hasOne(\app\models\Contact::className(), ['id' => 'id_contact']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPhone()
+    {
+        return $this->hasOne(\app\models\Phone::className(), ['id' => 'id_phone']);
+    }
+    
+    
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use Yii;
@@ -12,25 +13,45 @@ use app\models\Cases;
  * This is the model class for table "text".
  */
 class Text extends BaseText {
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function receiveSMS() {
         //$model->load($_POST);
 
+        
+        $messageToSend = "";
+        $response = "";
+        
+        $twilioService = Yii::$app->Yii2Twilio->initTwilio();
+
         if (Yii::$app->request->post()) {
-            if (empty($this->id_phone)){
-                $callerPhone = "+" . rand(1111111111,9999999999);
+            if (empty($this->id_phone)) {
+                $callerPhone = "+" . rand(1111111111, 9999999999);
             } else {
                 $callerPhone = $this->id_phone;
             }
-                
+
             $message = $this->message;
         } else {
             // real sms from twillo
             $callerPhone = $_REQUEST['From'];
             $message = $_REQUEST['Body'];
         }
+
+        $currentIdCase = $this->getCaseFromText($message);
+        if ($currentIdCase != 0) {
+            $case = Cases::findOne(['id' => $currentIdCase]);
+            if ($case === NULL) { //case not found
+                $isCurrentIdCaseOpen = FALSE;
+            } else {
+                $isCurrentIdCaseOpen = $case->state;
+                $assignedUser = $case->id_user;
+                $contactPhone = $case->id_phone;
+            }
+        }
+
         $profile = Profile::findOne(['phone' => $callerPhone]);
         //check if is the phone of an existing user
         if ($profile === NULL) { //is a client
@@ -43,7 +64,7 @@ class Text extends BaseText {
                 //create new contact
                 $contact = new Contact();
                 //$contact->first_name = "no name yet";                
-                $contact->save();                
+                $contact->save();
                 $callerId = $contact->id;
 
                 //create new phone
@@ -60,11 +81,12 @@ class Text extends BaseText {
 
                 $profile = new Profile();
                 $nextUserId = $profile->NextUser;
-                
-                
+                $toPhone = $profile->Phone;
+
                 // create new case       
                 $case = new Cases();
                 $case->id_contact = $callerId;
+                $case->id_phone = $callerPhone;
                 $case->id_user = $nextUserId;
                 $case->start_date = date("Y-m-d H:i:s");
                 $case->state = 1;
@@ -80,31 +102,67 @@ class Text extends BaseText {
                 $text->message = $message;
                 $text->sent = date("Y-m-d H:i:s");
                 $text->save();
+
+                $response =  "This is an auhomatic response, we created a new case\r\n";
+                $response .= "Your Case number is:" . $id_case . "\r\n";                        
+                $response .= "We will contact you as soon as possible.\r\n";
+
+                $messageToSend = "From Case#" . $id_case . "# \r\n";                        
+                $messageToSend .= $message;
                 
             } else {
-                
+                if (!$isCurrentIdCaseOpen) {
+                    $response =  "This is an automatic response,\r\n";
+                    $response .= "We will contact you as soon as possible.\r\n";
+                    $response .= "Your Case number is:" . $id_case;                        
+                }               
             }
         } else {
             $isUser = TRUE;
             $userId = $profile->user_id;
             $id_sender_type = \Yii::$app->params['senderTypeIdUser'];
+
+            if ($currentIdCase === 0) {
+                $response = "Your last message:\r\n";
+                $response .= "\"" . $message . "\" don't have a case number.\r\n";
+                $response .= "We need the case number to deliver the message to the right person\r\n";
+            } else {
+                $toPhone = $contactPhone;
+                $messageToSend = "Your Case number is:" . $currentIdCase . "\r\n";
+                $messageToSend .= $message;            
+            }
+            
         }
 
-
-
-        // reply to sender
-        $twilioService = Yii::$app->Yii2Twilio->initTwilio();
-
-        try {
-            $message = $twilioService->account->messages->create(array(
-                "From" => "+441234480212", // From a valid Twilio number
-                "To" => $callerPhone, // Text this number
-                "Body" => "el mensaje es: " . $message,
-            ));
-        } catch (\Services_Twilio_RestException $e) {
-            echo $e->getMessage();
+        //autoresponse to caller        
+        if (!empty($response)) {
+            try {
+                $newsms = $twilioService->account->messages->create(array(
+                    "From" => "+441234480212", // From a valid Twilio number
+                    "To" => $callerPhone, // Text this number
+                    "Body" => $response,
+                ));
+            } catch (\Services_Twilio_RestException $e) {
+                echo $e->getMessage();
+            }
         }
 
+        //sending message to destinatary        
+        if (!empty($messageToSend)) {        
+            try {
+                $newsms = $twilioService->account->messages->create(array(
+                    "From" => "+441234480212", // From a valid Twilio number
+                    "To" => $toPhone, // Text this number
+                    "Body" => $messageToSend,
+                ));
+            } catch (\Services_Twilio_RestException $e) {
+                echo $e->getMessage();
+            }
+        }
+        
+        
+        
+        
         // Step 4: make an array of people we know, to send them a message.
         // Feel free to change/add your own phone number and name here.
 //        $volunteers = array(
@@ -138,6 +196,19 @@ class Text extends BaseText {
 //        if (!$name = $people[$_REQUEST['From']]) {
 //            $name = "Amigo";
 //        }
+    }
+
+    private function getCaseFromText($text) {
+
+        $caseNumber = 0;
+
+
+        if (preg_match("/case#(.*)#/", $text, $output)) {
+            $caseNumber = $output[1];
+        }
+
+
+        return $caseNumber;
     }
 
 }
