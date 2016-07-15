@@ -21,9 +21,7 @@ use yii\helpers\url;
 
 
 <?php $form = ActiveForm::begin(); ?>
-<div class="row">
-    <div class="col-md-10 col-md-offset-1">
-
+<div id="mobile-mockup-form" class="row">
 
     <?= $form->field($model, 'id_sender_type')->dropDownList(['2' => 'Clients', '3' => 'Helpers'], ['prompt' => '- Choose Sender']) ?>
 
@@ -53,17 +51,16 @@ use yii\helpers\url;
     <?= $form->field($model, 'message')->textInput(['maxlength' => true]) ?>
 
 
-
+    <br><br>
 
 
     <div class="form-group">
 <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
-<?= Html::submitButton($model->isNewRecord ? 'Send SMS to helptext' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+<?= Html::submitButton($model->isNewRecord ? 'Send SMS to helptext' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-success pull-right']) ?>
     </div>
 <?php ActiveForm::end(); ?>
 
 
 
-</div>    
 
 </div>    

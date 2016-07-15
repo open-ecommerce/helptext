@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </h3>
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body sms-tester">
 
                 <?=
                 $this->render('_formtestsms', [
