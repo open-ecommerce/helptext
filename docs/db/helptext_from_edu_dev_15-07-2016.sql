@@ -11,7 +11,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table helptext_dev.auth_assignment
-DROP TABLE IF EXISTS `auth_assignment`;
 CREATE TABLE IF NOT EXISTS `auth_assignment` (
   `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -20,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
   CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.auth_assignment: ~1 rows (approximately)
+-- Dumping data for table helptext_dev.auth_assignment: ~0 rows (approximately)
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
 REPLACE INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 	('Helper', '2', 1468426789);
@@ -28,7 +27,6 @@ REPLACE INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 
 
 -- Dumping structure for table helptext_dev.auth_item
-DROP TABLE IF EXISTS `auth_item`;
 CREATE TABLE IF NOT EXISTS `auth_item` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
@@ -57,7 +55,6 @@ REPLACE INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `c
 
 
 -- Dumping structure for table helptext_dev.auth_item_child
-DROP TABLE IF EXISTS `auth_item_child`;
 CREATE TABLE IF NOT EXISTS `auth_item_child` (
   `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -77,7 +74,6 @@ REPLACE INTO `auth_item_child` (`parent`, `child`) VALUES
 
 
 -- Dumping structure for table helptext_dev.auth_rule
-DROP TABLE IF EXISTS `auth_rule`;
 CREATE TABLE IF NOT EXISTS `auth_rule` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `data` text COLLATE utf8_unicode_ci,
@@ -92,10 +88,10 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 
 
 -- Dumping structure for table helptext_dev.cases
-DROP TABLE IF EXISTS `cases`;
 CREATE TABLE IF NOT EXISTS `cases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_contact` int(11) DEFAULT NULL,
+  `id_phone` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `id_category` int(11) DEFAULT NULL,
   `id_outcome` int(11) DEFAULT NULL,
@@ -110,45 +106,46 @@ CREATE TABLE IF NOT EXISTS `cases` (
   KEY `id_outcome` (`id_outcome`),
   KEY `severity` (`id_severity`),
   KEY `id_user` (`id_user`),
+  KEY `id_phone` (`id_phone`),
   CONSTRAINT `fk_category` FOREIGN KEY (`id_category`) REFERENCES `case_category` (`id`),
   CONSTRAINT `fk_contact` FOREIGN KEY (`id_contact`) REFERENCES `contact` (`id`),
   CONSTRAINT `fk_outcome` FOREIGN KEY (`id_outcome`) REFERENCES `outcome_category` (`id`),
   CONSTRAINT `fk_severity` FOREIGN KEY (`id_severity`) REFERENCES `severity` (`id`),
   CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.cases: ~4 rows (approximately)
+-- Dumping data for table helptext_dev.cases: ~6 rows (approximately)
 /*!40000 ALTER TABLE `cases` DISABLE KEYS */;
-REPLACE INTO `cases` (`id`, `id_contact`, `id_user`, `id_category`, `id_outcome`, `id_severity`, `start_date`, `close_date`, `state`, `comments`) VALUES
-	(1, 1, 8, 3, 2, 1, '2016-07-05 14:54:22', '2016-07-05 14:54:24', NULL, 'Nada solo esto aguante peres caso'),
-	(2, 1, 2, 1, 2, 2, NULL, NULL, b'1', 'bbbbbbbbbbbbb'),
-	(3, 1, 2, 1, 2, 2, NULL, NULL, b'1', 'Estoy trabajando en este'),
-	(4, 2, 2, 3, 2, 1, NULL, NULL, NULL, 'afasfasf');
+REPLACE INTO `cases` (`id`, `id_contact`, `id_phone`, `id_user`, `id_category`, `id_outcome`, `id_severity`, `start_date`, `close_date`, `state`, `comments`) VALUES
+	(1, 1, '+447508849527', 2, 3, 2, 1, '2016-07-05 14:54:22', '2016-07-05 14:54:24', b'1', 'Main testing case'),
+	(2, 2, NULL, 4, 1, 2, 2, NULL, NULL, b'1', 'bbbbbbbbbbbbb'),
+	(4, 2, NULL, 8, 3, 2, 1, NULL, NULL, b'1', 'afasfasf'),
+	(5, 15, NULL, 4, NULL, NULL, NULL, '2016-07-14 17:13:30', NULL, b'1', 'New case to review'),
+	(6, 16, NULL, 4, NULL, NULL, NULL, '2016-07-14 17:23:37', NULL, b'1', 'New case to review');
 /*!40000 ALTER TABLE `cases` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.case_category
-DROP TABLE IF EXISTS `case_category`;
 CREATE TABLE IF NOT EXISTS `case_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `case_category` varchar(50) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table helptext_dev.case_category: ~6 rows (approximately)
 /*!40000 ALTER TABLE `case_category` DISABLE KEYS */;
 REPLACE INTO `case_category` (`id`, `case_category`) VALUES
-	(1, 'Eviction'),
+	(1, 'Not Set'),
 	(2, 'Deportation'),
 	(3, 'Detention'),
 	(4, 'Information'),
 	(5, 'Medical Related'),
-	(6, 'Others');
+	(6, 'Others'),
+	(7, 'Eviction');
 /*!40000 ALTER TABLE `case_category` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.case_text
-DROP TABLE IF EXISTS `case_text`;
 CREATE TABLE IF NOT EXISTS `case_text` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_case` int(11) NOT NULL DEFAULT '0',
@@ -164,7 +161,6 @@ CREATE TABLE IF NOT EXISTS `case_text` (
 
 
 -- Dumping structure for table helptext_dev.contact
-DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_country` int(11) DEFAULT NULL COMMENT 'Nationality',
@@ -185,18 +181,20 @@ CREATE TABLE IF NOT EXISTS `contact` (
   KEY `id_language` (`id_language`),
   CONSTRAINT `fk_country` FOREIGN KEY (`id_country`) REFERENCES `country` (`id`),
   CONSTRAINT `fk_language` FOREIGN KEY (`id_language`) REFERENCES `languages` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.contact: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.contact: ~4 rows (approximately)
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
 REPLACE INTO `contact` (`id`, `id_country`, `id_language`, `first_name`, `last_name`, `gender`, `marital_status`, `birthday`, `address_line1`, `address_line2`, `city`, `state`, `postal_code`, `comments`) VALUES
-	(1, 3, NULL, 'Eduardo cliente', 'silva', 'M', 'Maried', '2016-06-27', 'afasf', 'asfasf', 'asfasf', 'asfasf', '234234', 'asfasdf'),
-	(2, 6, NULL, 'tester2', 'asfasf', 'F', 'Maried', '2016-06-27', 'asfasf', 'asfasf', 'asfasf', '', '', 'asfasfasf');
+	(1, 3, NULL, 'Client Nokia Phone', 'silva', 'M', 'Maried', '2016-06-27', 'afasf', 'asfasf', 'asfasf', 'asfasf', '234234', 'asfasdf'),
+	(2, 6, NULL, 'tester2', 'asfasf', 'F', 'Maried', '2016-06-27', 'asfasf', 'asfasf', 'asfasf', '', '', 'asfasfasf'),
+	(3, 16, NULL, 'Client no phone', 'Client no phone', 'M', 'Maried', '2016-07-20', '', '', '', '', '', ''),
+	(15, NULL, NULL, 'no name yet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(16, NULL, NULL, 'no name yet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.contact_phone
-DROP TABLE IF EXISTS `contact_phone`;
 CREATE TABLE IF NOT EXISTS `contact_phone` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_contact` int(11) NOT NULL DEFAULT '0' COMMENT 'Contact',
@@ -206,18 +204,17 @@ CREATE TABLE IF NOT EXISTS `contact_phone` (
   KEY `id_contact` (`id_contact`),
   CONSTRAINT `fk_contact_phone_id` FOREIGN KEY (`id_contact`) REFERENCES `contact` (`id`),
   CONSTRAINT `fk_phone` FOREIGN KEY (`id_phone`) REFERENCES `phone` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.contact_phone: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.contact_phone: ~1 rows (approximately)
 /*!40000 ALTER TABLE `contact_phone` DISABLE KEYS */;
 REPLACE INTO `contact_phone` (`id`, `id_contact`, `id_phone`) VALUES
-	(2, 1, '+447551524625'),
-	(5, 1, '+447508849527');
+	(2, 1, '+447508849527'),
+	(16, 16, '+7968637380');
 /*!40000 ALTER TABLE `contact_phone` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.country
-DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_code` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -477,7 +474,6 @@ REPLACE INTO `country` (`id`, `country_code`, `country_name`) VALUES
 
 
 -- Dumping structure for table helptext_dev.dmstr_page
-DROP TABLE IF EXISTS `dmstr_page`;
 CREATE TABLE IF NOT EXISTS `dmstr_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `root` int(11) NOT NULL,
@@ -533,7 +529,6 @@ REPLACE INTO `dmstr_page` (`id`, `root`, `lft`, `rgt`, `lvl`, `page_title`, `nam
 
 
 -- Dumping structure for table helptext_dev.html
-DROP TABLE IF EXISTS `html`;
 CREATE TABLE IF NOT EXISTS `html` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -552,7 +547,6 @@ REPLACE INTO `html` (`id`, `key`, `value`) VALUES
 
 
 -- Dumping structure for table helptext_dev.language
-DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
   `language_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `language` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
@@ -648,7 +642,6 @@ REPLACE INTO `language` (`language_id`, `language`, `country`, `name`, `name_asc
 
 
 -- Dumping structure for table helptext_dev.languages
-DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `language` mediumtext CHARACTER SET utf8 NOT NULL,
@@ -771,7 +764,6 @@ REPLACE INTO `languages` (`id`, `language`, `short_name`) VALUES
 
 
 -- Dumping structure for table helptext_dev.language_source
-DROP TABLE IF EXISTS `language_source`;
 CREATE TABLE IF NOT EXISTS `language_source` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -785,7 +777,6 @@ CREATE TABLE IF NOT EXISTS `language_source` (
 
 
 -- Dumping structure for table helptext_dev.language_translate
-DROP TABLE IF EXISTS `language_translate`;
 CREATE TABLE IF NOT EXISTS `language_translate` (
   `id` int(11) NOT NULL,
   `language` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
@@ -802,7 +793,6 @@ CREATE TABLE IF NOT EXISTS `language_translate` (
 
 
 -- Dumping structure for table helptext_dev.less
-DROP TABLE IF EXISTS `less`;
 CREATE TABLE IF NOT EXISTS `less` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -817,7 +807,6 @@ CREATE TABLE IF NOT EXISTS `less` (
 
 
 -- Dumping structure for table helptext_dev.migration
-DROP TABLE IF EXISTS `migration`;
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
   `alias` varchar(180) NOT NULL,
@@ -858,7 +847,6 @@ REPLACE INTO `migration` (`version`, `alias`, `apply_time`) VALUES
 
 
 -- Dumping structure for table helptext_dev.outcome_category
-DROP TABLE IF EXISTS `outcome_category`;
 CREATE TABLE IF NOT EXISTS `outcome_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `outcome` varchar(50) NOT NULL DEFAULT '0',
@@ -875,23 +863,25 @@ REPLACE INTO `outcome_category` (`id`, `outcome`) VALUES
 
 
 -- Dumping structure for table helptext_dev.phone
-DROP TABLE IF EXISTS `phone`;
 CREATE TABLE IF NOT EXISTS `phone` (
   `id` varchar(15) CHARACTER SET latin1 NOT NULL,
   `comment` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.phone: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.phone: ~7 rows (approximately)
 /*!40000 ALTER TABLE `phone` DISABLE KEYS */;
 REPLACE INTO `phone` (`id`, `comment`) VALUES
-	('+447508849527', 'otro mio de ee'),
-	('+447551524625', 'este es el mio normal vodaphone');
+	('+2968035894', 'added by system'),
+	('+4387362913', 'added by system'),
+	('+447508849527', 'EE nokia phone to test client'),
+	('+5027810893', 'added by system'),
+	('+7921464339', 'added by system'),
+	('+7968637380', 'added by system');
 /*!40000 ALTER TABLE `phone` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.profile
-DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -918,18 +908,25 @@ CREATE TABLE IF NOT EXISTS `profile` (
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
 REPLACE INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`, `id_country`, `availability`, `skills`, `firstname`, `lastname`, `birthday`, `avatar`, `terms`, `phone`) VALUES
 	(1, '', '', 'info@open-ecommerce.org', 'e49de8ff6009a963195568839177e24d', '', '', '', 1, 1, 'nada', 'adminname', 'adminsuraname', '1966-07-16', '', 0, NULL),
-	(2, 'Eduardo Silva', 'eduardo@open-ecommerce.org', 'eduardo@open-ecommerce.org', '1f6df2c9dac05c886ac3f90e692f93af', 'London', 'http://www.open-ecommerce.org', 'Esto solo lo que quiero decir de mi', 16, 0, 'eduardo adfasf', 'Helper Eduardo', 'Silva', '2016-06-17', '', 0, '+447508849527'),
+	(2, 'Eduardo Helper', 'eduardo@open-ecommerce.org', 'eduardo@open-ecommerce.org', '1f6df2c9dac05c886ac3f90e692f93af', 'London', 'http://www.open-ecommerce.org', 'Esto solo lo que quiero decir de mi', 16, 1, 'eduardo adfasf', 'Helper Eduardo', 'Silva', '2016-06-17', '', 0, '+447551524625'),
 	(3, NULL, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', 1, 1, 'esto', 'Tester1', 'ApellidoTester', '2016-07-13', '', 0, NULL),
-	(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Nada', 'Pepe', 'Marqueta', '0000-00-00', '', 0, NULL),
+	(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'Nada', 'Pepe', 'Marqueta', '0000-00-00', '', 0, NULL),
 	(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan', 'Pitufo', '0000-00-00', '', 0, NULL),
 	(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Jackson', 'Brown', '0000-00-00', '', 0, NULL),
 	(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pepito', 'cuevas', '0000-00-00', '', 0, NULL),
-	(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pepe', 'Biondi', '0000-00-00', '', 0, NULL);
+	(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 'pepe2', 'Biondi', '0000-00-00', '', 0, NULL);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 
 
+-- Dumping structure for view helptext_dev.qry_next_available_user
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `qry_next_available_user` (
+	`id` INT(11) NOT NULL,
+	`name` VARCHAR(255) NULL COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
 -- Dumping structure for table helptext_dev.sender_type
-DROP TABLE IF EXISTS `sender_type`;
 CREATE TABLE IF NOT EXISTS `sender_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sender_type` varchar(50) NOT NULL DEFAULT '0',
@@ -946,7 +943,6 @@ REPLACE INTO `sender_type` (`id`, `sender_type`) VALUES
 
 
 -- Dumping structure for table helptext_dev.settings
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -968,24 +964,23 @@ REPLACE INTO `settings` (`id`, `type`, `section`, `key`, `value`, `active`, `cre
 
 
 -- Dumping structure for table helptext_dev.severity
-DROP TABLE IF EXISTS `severity`;
 CREATE TABLE IF NOT EXISTS `severity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `severity` varchar(50) NOT NULL COMMENT 'Severity',
   `sla` text NOT NULL COMMENT 'Sevice Level Agreement',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table helptext_dev.severity: ~0 rows (approximately)
 /*!40000 ALTER TABLE `severity` DISABLE KEYS */;
 REPLACE INTO `severity` (`id`, `severity`, `sla`) VALUES
-	(1, 'Severity 1', 'Contact the client within 24hs'),
-	(2, 'Severity 2', 'about severity 2');
+	(1, 'Not Set', ''),
+	(2, 'Severity 1', 'Contact the client within 24hs'),
+	(3, 'Severity 2', 'about severity 2');
 /*!40000 ALTER TABLE `severity` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.social_account
-DROP TABLE IF EXISTS `social_account`;
 CREATE TABLE IF NOT EXISTS `social_account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -1009,7 +1004,6 @@ CREATE TABLE IF NOT EXISTS `social_account` (
 
 
 -- Dumping structure for table helptext_dev.text
-DROP TABLE IF EXISTS `text`;
 CREATE TABLE IF NOT EXISTS `text` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_phone` varchar(15) NOT NULL DEFAULT '0',
@@ -1023,19 +1017,19 @@ CREATE TABLE IF NOT EXISTS `text` (
   KEY `id_sender_type` (`id_sender_type`),
   CONSTRAINT `fk_case` FOREIGN KEY (`id_case`) REFERENCES `cases` (`id`),
   CONSTRAINT `fk_sender_type` FOREIGN KEY (`id_sender_type`) REFERENCES `sender_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumping data for table helptext_dev.text: ~3 rows (approximately)
+-- Dumping data for table helptext_dev.text: ~4 rows (approximately)
 /*!40000 ALTER TABLE `text` DISABLE KEYS */;
 REPLACE INTO `text` (`id`, `id_phone`, `id_case`, `id_sender_type`, `message`, `sent`) VALUES
-	(1, '+447551524625', 1, 2, 'nada', '0000-00-00 00:00:00'),
-	(2, '+447551524625', 1, 2, 'nada', '0000-00-00 00:00:00'),
-	(5, '+447508849527', 1, 1, 'aaaaaaaaaaaaa rrrrrr', '0000-00-00 00:00:00');
+	(1, '+447551524625', 1, 2, 'nada', '2016-06-01 01:01:01'),
+	(2, '+447551524625', 1, 2, 'nada', '2016-06-01 01:10:01'),
+	(5, '+447551524625', 1, 1, 'aaaaaaaaaaaaa rrrrrr', '2016-06-01 01:21:01'),
+	(9, '+7968637380', 6, 2, 'Vamos canejo a ver que onda', '2016-07-14 17:23:37');
 /*!40000 ALTER TABLE `text` ENABLE KEYS */;
 
 
 -- Dumping structure for table helptext_dev.text_template
-DROP TABLE IF EXISTS `text_template`;
 CREATE TABLE IF NOT EXISTS `text_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
@@ -1052,7 +1046,6 @@ REPLACE INTO `text_template` (`id`, `name`, `message`) VALUES
 
 
 -- Dumping structure for table helptext_dev.token
-DROP TABLE IF EXISTS `token`;
 CREATE TABLE IF NOT EXISTS `token` (
   `user_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
@@ -1071,7 +1064,6 @@ REPLACE INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 
 
 -- Dumping structure for table helptext_dev.twig
-DROP TABLE IF EXISTS `twig`;
 CREATE TABLE IF NOT EXISTS `twig` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -1086,7 +1078,6 @@ CREATE TABLE IF NOT EXISTS `twig` (
 
 
 -- Dumping structure for table helptext_dev.user
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -1117,6 +1108,12 @@ REPLACE INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `co
 	(7, 'tester3@open-ecommerce.org', 'tester3@open-ecommerce.org', '$2y$10$Zl7xEiSCYBeDa4kRn1ldWeKpyV0HMWl93IRQd9hWsaLdPRzUuMaDu', 'Q_Rn636doTi3ue2-dMFuJ2coLfqlR4CG', 1467980744, NULL, NULL, '127.0.0.1', 1467980720, 1467980720, 0),
 	(8, 'tester4', 'tester4@open-ecommerce.org', '$2y$10$11fIiKaiQqp/thlCNmKXv.hd9NX4p6/eIisTotolxH1QmAT.BoJAq', 'XZNX5JKdcV6RZElK0DMsODjBQeexYnDf', NULL, NULL, NULL, '192.168.1.74', 1467980966, 1467980966, 0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+
+-- Dumping structure for view helptext_dev.qry_next_available_user
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `qry_next_available_user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `qry_next_available_user` AS select `p`.`user_id` AS `id`,`p`.`firstname` AS `name` from ((`profile` `p` left join `cases` `c` on((`c`.`id_user` = `p`.`user_id`))) left join `text` `t` on((`t`.`id_case` = `c`.`id`))) where ((`p`.`availability` = 1) and (`c`.`state` = 1)) group by `p`.`user_id` order by `t`.`sent`;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
