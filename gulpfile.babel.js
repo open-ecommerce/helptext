@@ -59,22 +59,18 @@ function images() {
 // Compile Less into CSS
 // In production, the CSS is compressed
 function less() {
-  return gulp.src('src/assets/web/less/app.less')
-    .pipe($.sourcemaps.init())
-    .pipe($.less({
-      includePaths: PATHS.less
-    })
-      .on('error', $.less.logError))
-    .pipe($.autoprefixer({
-      browsers: COMPATIBILITY
-    }))
-    .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
-    .pipe($.if(PRODUCTION, $.cssnano()))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist + '/css'))
-    .pipe(browser.reload({ stream: true }));
+  return gulp.src(PATHS.less)
+  .pipe($.less())
+  .pipe(gulp.dest(PATHS.dist + '/css'))
+  .pipe($.autoprefixer({
+    browsers: COMPATIBILITY
+  }))
+  .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
+  .pipe($.if(PRODUCTION, $.cssnano()))
+  .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+  .pipe(gulp.dest(PATHS.dist + '/css'))
+  .pipe(browser.reload({ stream: true }));
 }
-
 
 
 // Combine Babel (ES6) JavaScript into one file

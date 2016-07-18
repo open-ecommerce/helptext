@@ -1,7 +1,7 @@
 {
-  "name": "yii2-app-advanced-zurbified",
+  "name": "yii2-app-helptext",
   "version": "1.0.0",
-  "description": "Basic Yii2 application with Gulp and Sass support",
+  "description": "Yii2 Phundament4 application with Gulp and Less support",
   "license": "MIT",
   "main": "gulpfile.js",
   "scripts": {
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jacmoe/yii2-app-advanced-zurbified.git"
+    "url": "git@github.com:open-ecommerce/helptext.git"
   },
-  "author": "Jacob Moen",
-  "homepage": "http://jacmoe.dk",
+  "author": "open-ecommerce.org",
+  "homepage": "http://open-ecommerce.org",
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-plugin-transform-es2015-arrow-functions": "^6.5.2",
@@ -38,7 +38,7 @@
     "gulp-imagemin": "^3.0.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.1.0",
+    "gulp-less": "^3.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
     "js-yaml": "^3.4.6",

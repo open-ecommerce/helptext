@@ -15,13 +15,13 @@ PATHS:
   fonts:
     - "vendor/bower/font-awesome/fonts/**/*"
     - "vendor/bower/bootstrap/fonts/**/*"
-  # Paths to images folder  
+  # Paths to images folder
   images:
     - "src/assets/web/img/**/*"
-  # Paths to Sass libraries, which can then be loaded with @import
+  # Paths to Less libraries, which can then be loaded with @import
   less:
-  - "src/assets/web/css/**/*.less"
-    
+  - "src/assets/web/less/app.less"
+
   # Paths to JavaScript libraries, which are compined into one file
   # babelscript:
 
