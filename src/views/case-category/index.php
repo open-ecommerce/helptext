@@ -19,12 +19,13 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
 ?>
+
 <div class="giiant-crud case-category-index">
 
     <?php //             echo $this->render('_search', ['model' =>$searchModel]);
         ?>
 
-    
+
     <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
     <h1>
@@ -39,8 +40,8 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 
         <div class="pull-right">
 
-                        
-            <?= 
+
+            <?=
             \yii\bootstrap\ButtonDropdown::widget(
             [
             'id' => 'giiant-relations',
@@ -94,7 +95,4 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 
 </div>
 
-
 <?php \yii\widgets\Pjax::end() ?>
-
-

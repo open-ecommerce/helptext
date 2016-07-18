@@ -7,7 +7,7 @@ use yii\helpers\Html;
 * @var app\models\Contact $model
 */
 
-$this->title = Yii::t('app', 'Create');
+$this->title = Yii::t('app', 'Create New Client');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>
-                    <?= Yii::t('app', 'Create new client') ?>        <small>
+                    <?= Yii::t('app', 'Create New Client') ?>        <small>
                         <?= $model->id ?>        </small>
                 </h3>
             </div>

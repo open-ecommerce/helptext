@@ -21,6 +21,7 @@ $deleteMsg = "Are you sure you want to delete this client detail and all the att
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="col-md-12 text-index">
 <div class="customers-index">
 <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
     <?php
@@ -125,4 +126,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
             ?>
 
+</div>
 </div>

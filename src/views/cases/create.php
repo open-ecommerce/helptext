@@ -7,30 +7,27 @@ use yii\helpers\Html;
 * @var app\models\Cases $model
 */
 
-$this->title = Yii::t('app', 'Create');
+$this->title = Yii::t('app', 'Create New Case');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-12 cases-create">
 
-    <h1>
-        <?= Yii::t('app', 'Cases') ?>        <small>
+<div class="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>
+                    <?= Yii::t('app', 'Create New Case') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
+                </h3>
+            </div>
 
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
+            <div class="panel-body">
+
+              <?= $this->render('_form', [
+              'model' => $model,
+              ]); ?>
+            </div>
         </div>
     </div>
-
-    <hr />
-
-    <?= $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>

@@ -16,7 +16,7 @@ use kartik\helpers\Html;
 
 <?php $form = ActiveForm::begin(); ?>
 <div class="col-md-12">
-    <div class="large-6 columns">
+    <div class="col-md-6">
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'gender')->dropDownList(['M' => 'Male', 'F' => 'Female', 'O' => 'Other'], ['prompt' => '- Choose Gender']) ?>
@@ -27,25 +27,25 @@ use kartik\helpers\Html;
             'displayFormat' => 'php:d M Y',
             'saveFormat' => 'php:Y-m-d',
         ]);
-        ?>  
-        <?= $form->field($model, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>    
+        ?>
+        <?= $form->field($model, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>
     </div>
-    <div class="large-6 columns">
+    <div class="col-md-6">
         <?= $form->field($model, 'address_line1')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'address_line2')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true]) ?>
-    </div>       
+    </div>
 </div>
 <div class="col-md-12">
     <div class="large-12 columns">
         <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
-    </div>       
+    </div>
 </div>
 
 <div class="form-group">
-    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
+    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
