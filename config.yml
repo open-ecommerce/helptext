@@ -19,39 +19,12 @@ PATHS:
   images:
     - "src/assets/web/img/**/*"
   # Paths to Sass libraries, which can then be loaded with @import
-  sass:
-    - "vendor/bower/foundation-sites/scss"
-    - "vendor/bower/motion-ui/src"
-    - "vendor/bower/font-awesome/scss"
+  less:
+  - "src/assets/web/css/**/*.less"
+    
   # Paths to JavaScript libraries, which are compined into one file
-  babelscript:
-    # Libraries requried by Foundation
-    - "vendor/bower/jquery/dist/jquery.js"
-    - "vendor/bower/what-input/what-input.js"
-    # Core Foundation files
-    - "vendor/bower/foundation-sites/js/foundation.core.js"
-    - "vendor/bower/foundation-sites/js/foundation.util.*.js"
-    # Individual Foundation components
-    # If you aren't using a component, just remove it from the list
-    - "vendor/bower/foundation-sites/js/foundation.abide.js"
-    - "vendor/bower/foundation-sites/js/foundation.accordion.js"
-    - "vendor/bower/foundation-sites/js/foundation.accordionMenu.js"
-    - "vendor/bower/foundation-sites/js/foundation.drilldown.js"
-    - "vendor/bower/foundation-sites/js/foundation.dropdown.js"
-    - "vendor/bower/foundation-sites/js/foundation.dropdownMenu.js"
-    - "vendor/bower/foundation-sites/js/foundation.equalizer.js"
-    - "vendor/bower/foundation-sites/js/foundation.interchange.js"
-    - "vendor/bower/foundation-sites/js/foundation.magellan.js"
-    - "vendor/bower/foundation-sites/js/foundation.offcanvas.js"
-    - "vendor/bower/foundation-sites/js/foundation.orbit.js"
-    - "vendor/bower/foundation-sites/js/foundation.responsiveMenu.js"
-    - "vendor/bower/foundation-sites/js/foundation.responsiveToggle.js"
-    - "vendor/bower/foundation-sites/js/foundation.reveal.js"
-    - "vendor/bower/foundation-sites/js/foundation.slider.js"
-    - "vendor/bower/foundation-sites/js/foundation.sticky.js"
-    - "vendor/bower/foundation-sites/js/foundation.tabs.js"
-    - "vendor/bower/foundation-sites/js/foundation.toggler.js"
-    - "vendor/bower/foundation-sites/js/foundation.tooltip.js"
+  # babelscript:
+
   # Javascript that do not want to be run through Babel
   plainscript:
     # Yii2 scripts

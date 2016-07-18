@@ -24,7 +24,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(sass, babelscript, plainscript, fonts, images)));
+ gulp.series(clean, gulp.parallel(less, plainscript, fonts, images)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -56,15 +56,15 @@ function images() {
 
 
 
-// Compile Sass into CSS
+// Compile Less into CSS
 // In production, the CSS is compressed
-function sass() {
-  return gulp.src('src/assets/web/scss/app.scss')
+function less() {
+  return gulp.src('src/assets/web/less/app.less')
     .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      includePaths: PATHS.sass
+    .pipe($.less({
+      includePaths: PATHS.less
     })
-      .on('error', $.sass.logError))
+      .on('error', $.less.logError))
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
@@ -74,6 +74,8 @@ function sass() {
     .pipe(gulp.dest(PATHS.dist + '/css'))
     .pipe(browser.reload({ stream: true }));
 }
+
+
 
 // Combine Babel (ES6) JavaScript into one file
 // In production, the file is minified
@@ -115,6 +117,6 @@ function server(done) {
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.fonts, fonts);
-  gulp.watch('scss/**/*.scss', sass);
+  gulp.watch('less/**/*.less', less);
   gulp.watch('js/**/*.js', gulp.series(plainscript, browser.reload));
 }
