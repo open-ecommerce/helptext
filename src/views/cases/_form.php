@@ -16,11 +16,11 @@ use kartik\helpers\Html;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="col-md-12">
-    <div class="large-6 columns">
+    <div class="col-md-6">
         <?= $form->field($model, 'id_contact')->dropDownList(ArrayHelper::map(\app\models\Contact::find()->orderBy('last_name')->all(),
                 'id',
                 function($model, $defaultValue) { return $model['first_name'].' '.$model['last_name']; })
-                , ['prompt' => '- Select Client']) ?>                   
+                , ['prompt' => '- Select Client']) ?>
         <?= $form->field($model, 'state')->dropDownList(['0' => 'Close', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
         <?php
         echo $form->field($model, 'start_date')->widget(DateControl::classname(), [
@@ -28,37 +28,33 @@ use kartik\helpers\Html;
             'displayFormat' => 'php:d M Y',
             'saveFormat' => 'php:Y-m-d',
         ]);
-        ?>  
-        
+        ?>
+
         <?php
         echo $form->field($model, 'close_date')->widget(DateControl::classname(), [
             'type' => DateControl::FORMAT_DATE,
             'displayFormat' => 'php:d M Y',
             'saveFormat' => 'php:Y-m-d',
         ]);
-        ?>  
+        ?>
     </div>
-    
-    <div class="large-6 columns">
+
+    <div class="col-md-6">
         <?= $form->field($model, 'id_user')->dropDownList(ArrayHelper::map(\dektrium\user\models\Profile::find()->orderBy('lastname')->all(),
                 'user_id',
                 function($model, $defaultValue) { return $model['firstname'].' '.$model['lastname']; })
-                , ['prompt' => '- Asigned Helper']) ?>                   
+                , ['prompt' => '- Asigned Helper']) ?>
         <?= $form->field($model, 'id_category')->dropDownList(ArrayHelper::map(\app\models\CaseCategory::find()->orderBy('case_category')->all(), 'id', 'case_category'),['prompt' => '- Choose Category']) ?>
-        <?= $form->field($model, 'id_severity')->dropDownList(ArrayHelper::map(\app\models\Severity::find()->orderBy('severity')->all(), 'id', 'severity'),['prompt' => '- Choose Severity']) ?>    
-        <?= $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'),['prompt' => '- Choose Outcome']) ?>    
-    </div>       
+        <?= $form->field($model, 'id_severity')->dropDownList(ArrayHelper::map(\app\models\Severity::find()->orderBy('severity')->all(), 'id', 'severity'),['prompt' => '- Choose Severity']) ?>
+        <?= $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'),['prompt' => '- Choose Outcome']) ?>
+    </div>
 </div>
 <div class="col-md-12">
-    <div class="large-12 columns">
         <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
-    </div>       
 </div>
 
 <div class="form-group">
-    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
+    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
-
-

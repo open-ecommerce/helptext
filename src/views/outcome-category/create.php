@@ -7,16 +7,17 @@ use yii\helpers\Html;
 * @var app\models\OutcomeCategory $model
 */
 
-$this->title = Yii::t('app', 'Create');
+$this->title = Yii::t('app', 'Create Category');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'OutcomeCategories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="customers-index col-md-12">
 <div class="giiant-crud outcome-category-create">
 
-    <h1>
-        <?= Yii::t('app', 'OutcomeCategory') ?>        <small>
+    <h3>
+        <?= Yii::t('app', 'Outcome Category') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
+    </h3>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
@@ -33,4 +34,5 @@ $this->params['breadcrumbs'][] = $this->title;
     'model' => $model,
     ]); ?>
 
+</div>
 </div>
