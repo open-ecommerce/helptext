@@ -6,6 +6,7 @@ use app\models\Text;
 use app\models\search\TextSearch;
 use app\models\Contact;
 use app\models\ContactPhone;
+use app\models\Cases;
 use dektrium\user\models\Profile;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -15,6 +16,7 @@ use dmstr\bootstrap\Tabs;
 use yii\web\Response;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the class for controller "TextController".
@@ -149,6 +151,62 @@ class TextController extends \app\controllers\base\TextController {
         }
         echo Json::encode(['output' => '', 'selected' => '']);
     }
+
+
+
+
+    public function actionViewsms() {
+
+        $current_id = $_GET['1']['id'];
+
+        //$sessionName = Yii::$app->user->getId().".parentURL";
+        //$parentURL = Yii::$app->session->get($sessionName);
+//
+//        if (!isset($parentURL)) {
+//            //$url = $this->redirect(Yii::$app->request->referrer);
+//            $url = $_SERVER["HTTP_REFERER"];
+//
+//            //Yii::$app->session->set('user.parentURL', $_SERVER["HTTP_REFERER"]);
+//            Yii::$app->session->set($sessionName, $url);
+//        }
+
+        //$today = date("Y-m-d");
+        //$beforeToday = 'DropinDate>' . $today;
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Text::find()->where(['id_case' => $current_id]),
+        ]);
+
+        
+       $contact = Cases::find()->where(['id' => $current_id])->one();        
+        
+        
+        $modelContacts = Contact::find()->where(['id' => $contact->id])->one();
+        
+        
+        
+//
+//        if ($model === null) {
+//            $model = new Text;
+//            $model->id_case = $current_id;
+//        }
+
+
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            unset (Yii::$app->session[$sessionName]);
+//            Yii::$app->session->destroySession($sessionName);
+//            return $this->redirect($parentURL);
+//        } else {
+
+            return $this->render('//text/case-sms', [
+                'dataProvider' => $dataProvider,
+                'modelContacts' => $modelContacts,
+                ]);
+
+
+  //      }
+    }
+
     
     
 }

@@ -88,7 +88,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'width' => '10px',
             'format' => ['date', 'php:d M Y'],
             'filter' => false,
-        ],        
+        ],
+        [
+            'class' => 'kartik\grid\ActionColumn',
+            'template' => '{view_conversation}',
+            'header' => 'Edit',
+            'buttons' => [
+                'view_conversation' => function ($url, $model) {
+                    return Html::a('<i class="glyphicon glyphicon-comment"></i>', $url, ['class' => 'btn btn-success'], [
+                                'title' => Yii::t('app', 'Change today\'s lists'),
+                    ]);
+                }
+                    ],
+                    'urlCreator' => function ($action, $model, $key, $index) {
+                if ($action === 'view_conversation') {
+                    $url = Yii::$app->urlManager->createUrl(array('text/viewsms', ['id' => $key]));
+                    return $url;
+                }
+            }
+        ],                    
         [
                     'attribute' => 'comments',
                 ],
