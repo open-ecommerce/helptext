@@ -40,9 +40,6 @@ class TextController extends \app\controllers\base\TextController {
             $model->addError('_exception', $msg);
         }
 
-
-
-
 //        try {
 //            if ($model->load($_POST) && $model->save()) {
 //                return $this->redirect(['view', 'id' => $model->id]);
@@ -158,28 +155,13 @@ class TextController extends \app\controllers\base\TextController {
     public function actionViewsms() {
 
         $current_id = $_GET['1']['id'];
-
-        //$sessionName = Yii::$app->user->getId().".parentURL";
-        //$parentURL = Yii::$app->session->get($sessionName);
-//
-//        if (!isset($parentURL)) {
-//            //$url = $this->redirect(Yii::$app->request->referrer);
-//            $url = $_SERVER["HTTP_REFERER"];
-//
-//            //Yii::$app->session->set('user.parentURL', $_SERVER["HTTP_REFERER"]);
-//            Yii::$app->session->set($sessionName, $url);
-//        }
-
-        //$today = date("Y-m-d");
-        //$beforeToday = 'DropinDate>' . $today;
         
         $dataProvider = new ActiveDataProvider([
             'query' => Text::find()->where(['id_case' => $current_id]),
         ]);
 
-        
-       $contact = Cases::find()->where(['id' => $current_id])->one();        
-       $modelContacts = Contact::find()->where(['id' => $contact->id])->one();
+       //$contact = Cases::find()->where(['id' => $current_id])->one();        
+       $modelCases = Cases::find()->where(['id' => $current_id])->one();
        $modelNewText = new Text();
         
 
@@ -188,11 +170,16 @@ class TextController extends \app\controllers\base\TextController {
             // use Yii's response format to encode output as JSON
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
+            
             // read your posted model attributes
             if ($modelNewText->load($_POST)) {
                 // read or convert your posted information
                 $value = $modelNewText->message;
-
+                $modelNewText->message = "case#".$current_id."# ".$value;
+                
+                $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
+                
+                
 
                 try {
                     $modelNewText->receiveSMS();
@@ -200,8 +187,7 @@ class TextController extends \app\controllers\base\TextController {
                     $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                     $modelNewText->addError('_exception', $msg);
                 }
-
-
+                
                 // return JSON encoded output in the below format
                 //return ['output'=>$value, 'message'=>''];
 
@@ -214,14 +200,11 @@ class TextController extends \app\controllers\base\TextController {
                 return ['output'=>'', 'message'=>''];
             }
         }       
-       
-       
-//
+
 //        if ($model === null) {
 //            $model = new Text;
 //            $model->id_case = $current_id;
 //        }
-
 
 //        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 //            unset (Yii::$app->session[$sessionName]);
@@ -229,18 +212,12 @@ class TextController extends \app\controllers\base\TextController {
 //            return $this->redirect($parentURL);
 //        } else {
 
-       
-       
-       
-       
-       
+
             return $this->render('//text/case-sms', [
                 'dataProvider' => $dataProvider,
-                'modelContacts' => $modelContacts,
+                'modelCases' => $modelCases,
                 'modelNewText' => $modelNewText, 
                 ]);
-
-
   //      }
     }
 

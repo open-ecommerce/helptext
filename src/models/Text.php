@@ -20,7 +20,6 @@ class Text extends BaseText {
     public function receiveSMS() {
         //$model->load($_POST);
 
-        
         $messageToSend = "";
         $response = "";
         
@@ -129,7 +128,17 @@ class Text extends BaseText {
             } else {
                 $toPhone = $contactPhone;
                 $messageToSend = "Your Case number is:" . $currentIdCase . "\r\n";
-                $messageToSend .= $message;            
+                $messageToSend .= $message;
+                
+                // save the text in the db       
+                $text = new Text();
+                $text->id_phone = $callerPhone;
+                $text->id_case = $currentIdCase;
+                $text->id_sender_type = $id_sender_type;
+                $text->message = $message;
+                $text->sent = date("Y-m-d H:i:s");
+                $text->save();                                
+                
             }
             
         }

@@ -8,6 +8,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\Contact;
+use dektrium\user\models\User;
 use kartik\form\ActiveForm;
 use kartik\editable\Editable;
 
@@ -25,31 +26,31 @@ $formater = \yii::$app->formatter;
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <?= Yii::t('app', 'Case#1cambiar') ?>
+                        <?= Yii::t('app', 'Case#').$modelCases->id."# " .Yii::t('app', 'Current helper: ') .  $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <ul>
                         <?php
-                        foreach ($dataProvider->models as $model) {
+                        foreach ($dataProvider->models as $text) {
 
-                            switch ($model->id_sender_type) {
+                            switch ($text->id_sender_type) {
                                 case 1: //automatic response
-                                    $sender = $model->id_phone . "<br>Automatic response";
+                                    $sender = $text->id_phone . "<br>Automatic response";
                                     break;
                                 case 2: //contact
-                                    $sender = $model->id_phone . "<br>" . $modelContacts->first_name;
+                                    $sender = $text->id_phone . "<br>" . $modelCases->contact->first_name;
                                     break;
                                 case 3:
-                                    $sender = $model->id_phone . "<br>aca user";
+                                    $sender = $text->id_phone . "<br>" . $modelCases->profile->firstname;
                                     break;
                             }
                             echo '<li>';
-                            echo '<div class="bubble-' . $model->id_sender_type . '">';
-                            echo '<span class="personName-' . $model->id_sender_type . '">' . $sender . '</span><hr>';
-                            echo '<span class="personSay-' . $model->id_sender_type . '">' . $model->message . '</span><br>';
+                            echo '<div class="bubble-' . $text->id_sender_type . '">';
+                            echo '<span class="personName-' . $text->id_sender_type . '">' . $sender . '</span><hr>';
+                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $text->message . '</span><br>';
                             echo '<br>';
-                            echo '<span class="sms-time">' . $formater->asDate($model->sent, 'php:d M Y h:i A') . '</span>';
+                            echo '<span class="sms-time">' . $formater->asDate($text->sent, 'php:d M Y h:i A') . '</span>';
                             echo '</div><br>';
                             echo '</li>';
                         }
@@ -60,19 +61,22 @@ $formater = \yii::$app->formatter;
                 <div class="panel-footer">
 
                     <?php
-                        echo Editable::widget([
+                        $editable = Editable::begin([
                             'model'=>$modelNewText,
-                            'name'=>'message', 
+                            'attribute'=>'message',
                             'asPopover' => true,
-                            'displayValue' => 'click to send a new text ...',
-                            'inputType' => Editable::INPUT_TEXTAREA,
-                            'value' => "",
-                            'header' => 'New SMS',
-                            'submitOnEnter' => false,
                             'size'=>'lg',
-                            'options' => ['class'=>'form-control', 'rows'=>5, 'placeholder'=>'Enter text...']
-                        ]);
+                            'displayValue' => 'click to send a new text ...',
+                            'options'=>['placeholder'=>'Enter location...']
+                        ]);                    
+          
+                        $form = $editable->getForm();
+                        echo Html::hiddenInput('kv-complex', '1');
+                        $editable->afterInput = 
+                            $form->field($modelNewText, 'message')->textInput(['placeholder'=>'Enter zip code...']);
+                        Editable::end();                    
                         ?>
+                    
                         
                     </div>
                 </div>               

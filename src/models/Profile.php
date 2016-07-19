@@ -108,6 +108,11 @@ class Profile extends BaseProfile {
         return $result[0]['id'];
         
     }
-
     
+    
+    public function getUserProfile() {
+
+        return \Yii::$app->user->identity->profile;
+    }
+
 }

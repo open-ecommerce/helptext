@@ -30,9 +30,14 @@ gulp.task('build',
 gulp.task('default',
   gulp.series('build', server, watch));
 
-// Build the site, run the server, and watch for file changes
+// Compress files
 gulp.task('img',
   gulp.series(images));
+
+// Watch for file changes
+gulp.task('watch',
+  gulp.series(watch));
+
 
 
 // Delete the "dist" folder
