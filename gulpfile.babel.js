@@ -34,11 +34,13 @@ gulp.task('default',
 gulp.task('img',
   gulp.series(images));
 
+
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {
   rimraf(PATHS.dist, done);
 }
+
 
 // Copy fonts
 function fonts() {
@@ -55,11 +57,10 @@ function images() {
 }
 
 
-
 // Compile Less into CSS
 // In production, the CSS is compressed
 function less() {
-  return gulp.src(PATHS.less)
+  return gulp.src(PATHS.lessstart)
   .pipe($.less())
   .pipe(gulp.dest(PATHS.dist + '/css'))
   .pipe($.autoprefixer({
@@ -93,7 +94,7 @@ function babelscript() {
 function plainscript() {
   return gulp.src(PATHS.plainscript)
     .pipe($.sourcemaps.init())
-    .pipe($.concat('custom.js'))
+    .pipe($.concat('app.js'))
     .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
     .pipe($.if(PRODUCTION, $.uglify()
       .on('error', e => { console.log(e); })
@@ -105,14 +106,17 @@ function plainscript() {
 // Start a server with BrowserSync to preview the site in
 function server(done) {
   browser.init({
-      proxy: PROXY
+      logPrefix: "correct link:" + PROXY + "/" + PORT,
+      proxy: PROXY,
+      port: PORT,
   });
   done();
 }
 
-// Watch for changes to static assets, pages, Sass, and JavaScript
+
+// Watch for changes to static assets, pages, Less, and JavaScript
 function watch() {
   gulp.watch(PATHS.fonts, fonts);
-  gulp.watch('less/**/*.less', less);
-  gulp.watch('js/**/*.js', gulp.series(plainscript, browser.reload));
+  gulp.watch(PATHS.lesswatch, less);
+  gulp.watch(PATHS.js, gulp.series(plainscript, browser.reload));
 }

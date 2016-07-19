@@ -179,10 +179,8 @@ class TextController extends \app\controllers\base\TextController {
 
         
        $contact = Cases::find()->where(['id' => $current_id])->one();        
-        
-        
-        $modelContacts = Contact::find()->where(['id' => $contact->id])->one();
-        
+       $modelContacts = Contact::find()->where(['id' => $contact->id])->one();
+       $modelNewText = new Text();
         
         
 //
@@ -201,6 +199,7 @@ class TextController extends \app\controllers\base\TextController {
             return $this->render('//text/case-sms', [
                 'dataProvider' => $dataProvider,
                 'modelContacts' => $modelContacts,
+                'modelNewText' => $modelNewText, 
                 ]);
 
 

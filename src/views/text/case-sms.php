@@ -8,14 +8,15 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\Contact;
+use kartik\form\ActiveForm;
+use yii\widgets\Pjax;
 
 $formater = \yii::$app->formatter;
-
 ?>
 
 <div class="container" id="sms-texts">
     <?php
-    $this->title = Yii::t('app', 'Create');
+    $this->title = Yii::t('app', 'View Case conversations');
     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
     $this->params['breadcrumbs'][] = $this->title;
     ?>
@@ -27,7 +28,7 @@ $formater = \yii::$app->formatter;
                         <?= Yii::t('app', 'Case#1cambiar') ?>
                     </h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="conversation">
                     <ul>
                         <?php
                         foreach ($dataProvider->models as $model) {
@@ -57,9 +58,46 @@ $formater = \yii::$app->formatter;
                     <br>
                 </div>
                 <div class="panel-footer">
+
+
+                    <?php
+                    $this->registerJs(
+                       '$("document").ready(function(){ 
+                        $("#new_message").on("pjax:end", function() {
+                            $.pjax.reload({container:"#conversation"});
+                        });
+                    });'
+                    );
+                    ?>
+
+                    <?php yii\widgets\Pjax::begin(['id' => 'new_message']) ?>
+                    <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]); ?>
+
+
                     <div class="input-group input-group-addon">
-                        <input type="text" class="form-control" placeholder="type your text">
+                        <?php
+                        echo $form->field($modelNewText, 'message', [
+                            'addon' => [
+                                'prepend' => [
+                                    'content' => '<i class="glyphicon glyphicon-phone"></i>'
+                                ],
+                                'append' => [
+                                    'content' => Html::button('Send', ['class' => 'btn btn-primary']),
+                                    'asButton' => true
+                                ]
+                            ]
+                        ]);
+                        ?>
                     </div>
+                    <div class="form-group">
+                        <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
+                        <?= Html::submitButton($modelNewText->isNewRecord ? 'Create' : 'Update', ['class' => $modelNewText->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+                    <?php yii\widgets\Pjax::end() ?>
+
+
+
                 </div>               
             </div>
         </div>

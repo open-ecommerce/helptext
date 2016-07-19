@@ -259,6 +259,7 @@ if (php_sapi_name() == 'cli') {
             'class' => 'yii\debug\Module',
             'allowedIPs' => $allowedIPs,
         ];
+        $common['components']['assetManager']['forceCopy'] = 'debug';
     }
     $config = \yii\helpers\ArrayHelper::merge($common, $web);
 }

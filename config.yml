@@ -1,6 +1,6 @@
 # Your project's server will run on localhost:xxxx at this port
-PROXY: "http://localhost"
-PORT: 8000
+PROXY: "http://helptext.dev"
+PORT: 3000
 
 # Autoprefixer will make sure your CSS works with these browsers
 COMPATIBILITY:
@@ -9,6 +9,9 @@ COMPATIBILITY:
 
 # Gulp will reference these paths when it copies files
 PATHS:
+  # Path to compiled assets folder
+  assets: "web/assets"
+
   # Path to dist folder
   dist: "src/assets/web/dist"
   # Paths to fonts
@@ -16,14 +19,18 @@ PATHS:
     - "vendor/bower/font-awesome/fonts/**/*"
     - "vendor/bower/bootstrap/fonts/**/*"
   # Paths to images folder
-  images:
-    - "src/assets/web/img/**/*"
+  images: "src/assets/web/img/**/*"
+
   # Paths to Less libraries, which can then be loaded with @import
-  less:
-  - "src/assets/web/less/app.less"
+  lessstart: "src/assets/web/less/app.less"
+    
+  lesswatch: "src/assets/web/less/**/*.less"
 
   # Paths to JavaScript libraries, which are compined into one file
   # babelscript:
+
+  js: "src/assets/web/js/**/*.js"
+
 
   # Javascript that do not want to be run through Babel
   plainscript:
