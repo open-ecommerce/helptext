@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\Contact;
 use kartik\form\ActiveForm;
-use yii\widgets\Pjax;
+use kartik\editable\Editable;
 
 $formater = \yii::$app->formatter;
 ?>
@@ -28,7 +28,7 @@ $formater = \yii::$app->formatter;
                         <?= Yii::t('app', 'Case#1cambiar') ?>
                     </h3>
                 </div>
-                <div class="panel-body" id="conversation">
+                <div class="panel-body">
                     <ul>
                         <?php
                         foreach ($dataProvider->models as $model) {
@@ -59,45 +59,22 @@ $formater = \yii::$app->formatter;
                 </div>
                 <div class="panel-footer">
 
-
                     <?php
-                    $this->registerJs(
-                       '$("document").ready(function(){ 
-                        $("#new_message").on("pjax:end", function() {
-                            $.pjax.reload({container:"#conversation"});
-                        });
-                    });'
-                    );
-                    ?>
-
-                    <?php yii\widgets\Pjax::begin(['id' => 'new_message']) ?>
-                    <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]); ?>
-
-
-                    <div class="input-group input-group-addon">
-                        <?php
-                        echo $form->field($modelNewText, 'message', [
-                            'addon' => [
-                                'prepend' => [
-                                    'content' => '<i class="glyphicon glyphicon-phone"></i>'
-                                ],
-                                'append' => [
-                                    'content' => Html::button('Send', ['class' => 'btn btn-primary']),
-                                    'asButton' => true
-                                ]
-                            ]
+                        echo Editable::widget([
+                            'model'=>$modelNewText,
+                            'name'=>'message', 
+                            'asPopover' => true,
+                            'displayValue' => 'click to send a new text ...',
+                            'inputType' => Editable::INPUT_TEXTAREA,
+                            'value' => "",
+                            'header' => 'New SMS',
+                            'submitOnEnter' => false,
+                            'size'=>'lg',
+                            'options' => ['class'=>'form-control', 'rows'=>5, 'placeholder'=>'Enter text...']
                         ]);
                         ?>
+                        
                     </div>
-                    <div class="form-group">
-                        <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
-                        <?= Html::submitButton($modelNewText->isNewRecord ? 'Create' : 'Update', ['class' => $modelNewText->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
-                    </div>
-                    <?php ActiveForm::end(); ?>
-                    <?php yii\widgets\Pjax::end() ?>
-
-
-
                 </div>               
             </div>
         </div>

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ce635c60849304b9415fc6c7a03d063",
-    "content-hash": "c21ac5e30205104d15c9d953a48fa599",
+    "hash": "16b332683e32aca21d60f5c4872ebb68",
+    "content-hash": "af01c3978e61d774541df5bd36688c22",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -446,16 +446,16 @@
         },
         {
             "name": "bower-asset/intl-tel-input",
-            "version": "v9.0.2",
+            "version": "v9.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jackocnr/intl-tel-input.git",
-                "reference": "7ce2b87350c541bfac404cf4bcefaabedc8deb1c"
+                "reference": "33725c619187e039bb715a2d5e4b3393aff9c43e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackocnr/intl-tel-input/zipball/7ce2b87350c541bfac404cf4bcefaabedc8deb1c",
-                "reference": "7ce2b87350c541bfac404cf4bcefaabedc8deb1c",
+                "url": "https://api.github.com/repos/jackocnr/intl-tel-input/zipball/33725c619187e039bb715a2d5e4b3393aff9c43e",
+                "reference": "33725c619187e039bb715a2d5e4b3393aff9c43e",
                 "shasum": ""
             },
             "require": {
@@ -2172,6 +2172,50 @@
             "time": "2016-07-09 12:56:05"
         },
         {
+            "name": "kartik-v/bootstrap-popover-x",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-popover-x.git",
+                "reference": "ce1d165af25f6e6caaf97083e20b5a3ad7c7b7c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-popover-x/zipball/ce1d165af25f6e6caaf97083e20b5a3ad7c7b7c6",
+                "reference": "ce1d165af25f6e6caaf97083e20b5a3ad7c7b7c6",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\popover\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Bootstrap Popover Extended - Popover with modal behavior, styling enhancements and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-popover-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-popover",
+                "popover",
+                "popover-x"
+            ],
+            "time": "2015-03-18 13:08:39"
+        },
+        {
             "name": "kartik-v/bootstrap-star-rating",
             "version": "v4.0.1",
             "source": {
@@ -2498,6 +2542,54 @@
             "time": "2016-02-22 10:58:46"
         },
         {
+            "name": "kartik-v/yii2-editable",
+            "version": "v1.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-editable.git",
+                "reference": "7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-editable/zipball/7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd",
+                "reference": "7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "~1.7",
+                "kartik-v/yii2-popover-x": "~1.3"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\editable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced editable widget for Yii 2.0 that allows easy editing of displayed data with numerous configuration possibilities.",
+            "homepage": "https://github.com/kartik-v/yii2-editable",
+            "keywords": [
+                "bootstrap",
+                "editable",
+                "input",
+                "jquery",
+                "popover",
+                "popover-x",
+                "widget"
+            ],
+            "time": "2015-12-27 16:31:06"
+        },
+        {
             "name": "kartik-v/yii2-export",
             "version": "v1.2.5",
             "source": {
@@ -2748,6 +2840,54 @@
                 "yii2"
             ],
             "time": "2014-11-10 18:09:37"
+        },
+        {
+            "name": "kartik-v/yii2-popover-x",
+            "version": "v1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-popover-x.git",
+                "reference": "38f2208cf92f8c4a7758f485575a881cade1970c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-popover-x/zipball/38f2208cf92f8c4a7758f485575a881cade1970c",
+                "reference": "38f2208cf92f8c4a7758f485575a881cade1970c",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-popover-x": "~1.4",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\popover\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An extended bootstrap 3.0 popover widget which combines both the bootstrap popover and modal features and includes various new styling enhancements.",
+            "homepage": "https://github.com/kartik-v/yii2-popover-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-popover",
+                "popover",
+                "popover-x"
+            ],
+            "time": "2016-01-12 16:59:09"
         },
         {
             "name": "kartik-v/yii2-tree-manager",
@@ -3822,16 +3962,16 @@
         },
         {
             "name": "mikehaertl/php-shellcommand",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/php-shellcommand.git",
-                "reference": "ff2cf46599e6382e982a324d23b7b05ced3965c6"
+                "reference": "0de4e2cce17936ec7cef60a62c722a4aaa56c18c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/ff2cf46599e6382e982a324d23b7b05ced3965c6",
-                "reference": "ff2cf46599e6382e982a324d23b7b05ced3965c6",
+                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/0de4e2cce17936ec7cef60a62c722a4aaa56c18c",
+                "reference": "0de4e2cce17936ec7cef60a62c722a4aaa56c18c",
                 "shasum": ""
             },
             "type": "library",
@@ -3854,7 +3994,7 @@
             "keywords": [
                 "shell"
             ],
-            "time": "2016-05-23 16:28:11"
+            "time": "2016-07-16 09:42:31"
         },
         {
             "name": "open-ecommerce/yii2-backuprestore",

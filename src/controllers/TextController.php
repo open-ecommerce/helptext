@@ -182,7 +182,40 @@ class TextController extends \app\controllers\base\TextController {
        $modelContacts = Contact::find()->where(['id' => $contact->id])->one();
        $modelNewText = new Text();
         
-        
+
+        // Check if there is an Editable ajax request
+        if (isset($_POST['hasEditable'])) {
+            // use Yii's response format to encode output as JSON
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            // read your posted model attributes
+            if ($modelNewText->load($_POST)) {
+                // read or convert your posted information
+                $value = $modelNewText->message;
+
+
+                try {
+                    $modelNewText->receiveSMS();
+                } catch (\Exception $e) {
+                    $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+                    $modelNewText->addError('_exception', $msg);
+                }
+
+
+                // return JSON encoded output in the below format
+                //return ['output'=>$value, 'message'=>''];
+
+                
+                // alternatively you can return a validation error
+                return ['output'=>'', 'message'=>$msg];
+            }
+            // else if nothing to do always return an empty JSON encoded output
+            else {
+                return ['output'=>'', 'message'=>''];
+            }
+        }       
+       
+       
 //
 //        if ($model === null) {
 //            $model = new Text;
@@ -196,6 +229,11 @@ class TextController extends \app\controllers\base\TextController {
 //            return $this->redirect($parentURL);
 //        } else {
 
+       
+       
+       
+       
+       
             return $this->render('//text/case-sms', [
                 'dataProvider' => $dataProvider,
                 'modelContacts' => $modelContacts,

@@ -46,6 +46,7 @@
     "kartik-v/yii2-export": "@dev",
     "kartik-v/yii2-detail-view": "@dev",
     "kartik-v/dependent-dropdown": "@dev",
+    "kartik-v/yii2-editable": "*",
     "spanjeta/yii2-backup": "*",
     "open-ecommerce/yii2-backuprestore": "dev-master",
     "bower-asset/font-awesome": "^4.5",
