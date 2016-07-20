@@ -18,7 +18,6 @@ class Text extends BaseText {
      * @return \yii\db\ActiveQuery
      */
     public function receiveSMS() {
-        //$model->load($_POST);
 
         $messageToSend = "";
         $response = "";
@@ -26,32 +25,42 @@ class Text extends BaseText {
         $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 
         if (Yii::$app->request->post()) {
+
+            $message = $this->message;
+
             if (empty($this->id_phone)) {
                 $callerPhone = "+" . rand(1111111111, 9999999999);
             } else {
                 $callerPhone = $this->id_phone;
             }
 
-            $message = $this->message;
+            if (empty($this->id_case)) {
+                $currentIdCase = $this->getCaseFromText($message);
+            } else {
+                $currentIdCase = $this->id_case;
+            }
+            
+            
         } else {
             // real sms from twillo
             $callerPhone = $_REQUEST['From'];
             $message = $_REQUEST['Body'];
         }
 
-        $currentIdCase = $this->getCaseFromText($message);
         if ($currentIdCase != 0) {
             $case = Cases::findOne(['id' => $currentIdCase]);
             if ($case === NULL) { //case not found
                 $isCurrentIdCaseOpen = FALSE;
             } else {
                 $isCurrentIdCaseOpen = $case->state;
+
                 $assignedUser = $case->id_user;
                 $contactPhone = $case->id_phone;
+
             }
         }
-
         $profile = Profile::findOne(['phone' => $callerPhone]);
+
         //check if is the phone of an existing user
         if ($profile === NULL) { //is a client
             $isUser = FALSE;
@@ -127,7 +136,6 @@ class Text extends BaseText {
                 $response .= "We need the case number to deliver the message to the right person\r\n";
             } else {
                 $toPhone = $contactPhone;
-                $messageToSend = "Your Case number is:" . $currentIdCase . "\r\n";
                 $messageToSend .= $message;
                 
                 // save the text in the db       
@@ -138,9 +146,7 @@ class Text extends BaseText {
                 $text->message = $message;
                 $text->sent = date("Y-m-d H:i:s");
                 $text->save();                                
-                
             }
-            
         }
 
         //autoresponse to caller        
@@ -151,8 +157,9 @@ class Text extends BaseText {
                     "To" => $callerPhone, // Text this number
                     "Body" => $response,
                 ));
+                $return = "sms sent to client: " . $callerPhone;
             } catch (\Services_Twilio_RestException $e) {
-                echo $e->getMessage();
+                $return = $e->getMessage();
             }
         }
 
@@ -164,8 +171,9 @@ class Text extends BaseText {
                     "To" => $toPhone, // Text this number
                     "Body" => $messageToSend,
                 ));
+                $return = "sms sent to helper: " . $toPhone;
             } catch (\Services_Twilio_RestException $e) {
-                echo $e->getMessage();
+                $return = $e->getMessage();
             }
         }
         
@@ -205,6 +213,7 @@ class Text extends BaseText {
 //        if (!$name = $people[$_REQUEST['From']]) {
 //            $name = "Amigo";
 //        }
+        return $return;
     }
 
     private function getCaseFromText($text) {

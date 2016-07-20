@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use app\models\Contact;
 use dektrium\user\models\User;
 use kartik\form\ActiveForm;
-use kartik\editable\Editable;
+use yii\widgets\Pjax;
 
 $formater = \yii::$app->formatter;
 ?>
@@ -21,13 +21,22 @@ $formater = \yii::$app->formatter;
     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
     $this->params['breadcrumbs'][] = $this->title;
     ?>
+
+
+
+
     <div class="container">
         <div class="col-lg-12">
             <div class="panel panel-default">
+
+
                 <div class="panel-heading">
-                    <h3>
-                        <?= Yii::t('app', 'Case#').$modelCases->id."# " .Yii::t('app', 'Current helper: ') .  $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
-                    </h3>
+                    <h4>
+                        <?= Yii::t('app', 'Case Number: ') . $modelCases->id ?>
+                    </h4>
+                    <h5>
+                        <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
+                    </h5>
                 </div>
                 <div class="panel-body">
                     <ul>
@@ -59,29 +68,44 @@ $formater = \yii::$app->formatter;
                     <br>
                 </div>
                 <div class="panel-footer">
-
                     <?php
-                        $editable = Editable::begin([
-                            'model'=>$modelNewText,
-                            'attribute'=>'message',
-                            'asPopover' => true,
-                            'size'=>'lg',
-                            'displayValue' => 'click to send a new text ...',
-                            'options'=>['placeholder'=>'Enter location...']
-                        ]);                    
-          
-                        $form = $editable->getForm();
-                        echo Html::hiddenInput('kv-complex', '1');
-                        $editable->afterInput = 
-                            $form->field($modelNewText, 'message')->textInput(['placeholder'=>'Enter zip code...']);
-                        Editable::end();                    
-                        ?>
+
+                    Pjax::begin(); 
+
+                    $form = ActiveForm::begin([
+                        'id' => 'sms-form', 
+                        'type' => ActiveForm::TYPE_HORIZONTAL,
+                        'formConfig' => ['showLabels'=>false]
+                    ]);                     
+
+                    echo Html::hiddenInput('case_id', $modelCases->id);
+                    echo "<h5>".$response."</h5>";
+                    echo $form->field($modelNewText, 'message', 
+                    [
+                        'addon' => [
+                            'prepend' => ['content'=>'<i class="glyphicon glyphicon-comment"></i>'],
+                            'append' => [
+                                'content' => Html::submitButton('Send SMS', ['class'=>'btn btn-primary'], ['name' => 'send-button']), 
+                                'asButton' => true
+                            ]
+                        ]
+                    ]);
+                                        
+
+                    ActiveForm::end();                    
+
+                    Pjax::end(); 
                     
-                        
-                    </div>
-                </div>               
-            </div>
+                    ?>
+
+                </div>
+            </div>               
         </div>
     </div>
 </div>
+</div>
+
+
+
+
 

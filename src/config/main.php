@@ -213,6 +213,15 @@ $web = [
                     'levels' => ['error', 'warning'],
                     'logVars' => [],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['trace'],
+                    'categories' => ['sms'],
+                    'logVars' => [],
+                    'enabled' => YII_DEBUG,                    
+                    'logFile' => '@app/runtime/logs/sms/requests.log',
+                ],
+
             ],
         ],
         'request' => [

@@ -98,14 +98,18 @@ class TextController extends \app\controllers\base\TextController {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
                 $id_sender_type = $parents[0];
-                //if the sender is a user
+//if the sender is a user
                 if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
-                    $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {return $name->firstname . " " . $name->lastname;});                                       
+                    $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {
+                                return $name->firstname . " " . $name->lastname;
+                            });
                 } else {
-                    $senders = ArrayHelper::map(Contact::find()->orderBy('last_name')->all(), 'id', function($name) {return $name->first_name . " " . $name->last_name;});                                       
+                    $senders = ArrayHelper::map(Contact::find()->orderBy('last_name')->all(), 'id', function($name) {
+                                return $name->first_name . " " . $name->last_name;
+                            });
                 }
-                foreach ($senders as $id => $value ){
-                   $out[] = ['id' => $id, 'name' => $value]; 
+                foreach ($senders as $id => $value) {
+                    $out[] = ['id' => $id, 'name' => $value];
                 }
                 echo Json::encode(['output' => $out, 'selected' => '']);
                 return;
@@ -121,25 +125,23 @@ class TextController extends \app\controllers\base\TextController {
             if ($parents != null) {
                 $id_sender_type = $parents[0];
                 $id_sender = $parents[1];
-                //if the sender is a user
+//if the sender is a user
                 if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
-                   $profile = Profile::findOne(['user_id'=>$id_sender]);                                       
-                   if ($profile->phone === NULL){
-                       $phoneValue = "No phone added to the profile.";
-                   } else {
-                       $phoneValue = $profile->phone;                       
-                   }
-                   $out[] = ['id' => $phoneValue, 'name' => $phoneValue]; 
-                  
+                    $profile = Profile::findOne(['user_id' => $id_sender]);
+                    if ($profile->phone === NULL) {
+                        $phoneValue = "No phone added to the profile.";
+                    } else {
+                        $phoneValue = $profile->phone;
+                    }
+                    $out[] = ['id' => $phoneValue, 'name' => $phoneValue];
                 } else {
                     $senders = ArrayHelper::map(
-                            ContactPhone::find()
-                                ->where(['id_contact' => $id_sender])
-                                ->orderBy('id')
-                                ->all(),
-                            'id', 'id_phone');                                       
-                    foreach ($senders as $id => $value ){
-                       $out[] = ['id' => $value, 'name' => $value]; 
+                                    ContactPhone::find()
+                                            ->where(['id_contact' => $id_sender])
+                                            ->orderBy('id')
+                                            ->all(), 'id', 'id_phone');
+                    foreach ($senders as $id => $value) {
+                        $out[] = ['id' => $value, 'name' => $value];
                     }
                 }
                 echo Json::encode(['output' => $out, 'selected' => '']);
@@ -149,37 +151,24 @@ class TextController extends \app\controllers\base\TextController {
         echo Json::encode(['output' => '', 'selected' => '']);
     }
 
+    public function actionNewSMS() {
 
+        if ($modelNewText->load(Yii::$app->request->post()) && $modelNewText->save()) {
 
-
-    public function actionViewsms() {
-
-        $current_id = $_GET['1']['id'];
-        
-        $dataProvider = new ActiveDataProvider([
-            'query' => Text::find()->where(['id_case' => $current_id]),
-        ]);
-
-       //$contact = Cases::find()->where(['id' => $current_id])->one();        
-       $modelCases = Cases::find()->where(['id' => $current_id])->one();
-       $modelNewText = new Text();
-        
-
-        // Check if there is an Editable ajax request
-        if (isset($_POST['hasEditable'])) {
-            // use Yii's response format to encode output as JSON
+//if (isset($_POST['hasEditable'])) {
+// use Yii's response format to encode output as JSON
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-            
-            // read your posted model attributes
+
+// read your posted model attributes
             if ($modelNewText->load($_POST)) {
-                // read or convert your posted information
+// read or convert your posted information
                 $value = $modelNewText->message;
-                $modelNewText->message = "case#".$current_id."# ".$value;
-                
+                $modelNewText->message = "case#" . $current_id . "# " . $value;
+
                 $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
-                
-                
+
+
 
                 try {
                     $modelNewText->receiveSMS();
@@ -187,40 +176,63 @@ class TextController extends \app\controllers\base\TextController {
                     $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                     $modelNewText->addError('_exception', $msg);
                 }
-                
-                // return JSON encoded output in the below format
-                //return ['output'=>$value, 'message'=>''];
 
-                
-                // alternatively you can return a validation error
-                return ['output'=>'', 'message'=>$msg];
+// return JSON encoded output in the below format
+//return ['output'=>$value, 'message'=>''];
+// alternatively you can return a validation error
+                return ['output' => '', 'message' => $msg];
             }
-            // else if nothing to do always return an empty JSON encoded output
+// else if nothing to do always return an empty JSON encoded output
             else {
-                return ['output'=>'', 'message'=>''];
+                return ['output' => '', 'message' => ''];
             }
-        }       
-
-//        if ($model === null) {
-//            $model = new Text;
-//            $model->id_case = $current_id;
-//        }
-
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            unset (Yii::$app->session[$sessionName]);
-//            Yii::$app->session->destroySession($sessionName);
-//            return $this->redirect($parentURL);
-//        } else {
-
-
-            return $this->render('//text/case-sms', [
-                'dataProvider' => $dataProvider,
-                'modelCases' => $modelCases,
-                'modelNewText' => $modelNewText, 
-                ]);
-  //      }
+        }
     }
 
-    
-    
+    public function actionViewsms() {
+
+        
+        \Yii::info('viva peron y la virgen', 'sms');
+        
+        $msg = '';
+        $modelNewText = new Text();
+        
+        if (isset($_POST['case_id'])) {
+            $current_case_id = $_POST['case_id'];
+
+            //$msg = $_POST['Text']['message'];
+            $modelNewText->load($_POST);
+
+            
+            $value = $modelNewText->message;
+            $modelNewText->message = "case#" . $current_case_id . "# " . $value;
+            $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
+            $modelNewText->id_case = $current_case_id;
+
+            try {
+                $response = $modelNewText->receiveSMS();
+            } catch (\Exception $e) {
+                $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+                $modelNewText->addError('_exception', $response);
+            }
+            
+        } else {            
+            $current_case_id = $_GET['1']['id'];
+            $response = "";            
+        }
+
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Text::find()->where(['id_case' => $current_case_id]),
+        ]);
+        $modelCases = Cases::find()->where(['id' => $current_case_id])->one();
+
+        return $this->render('case-sms', [
+                    'dataProvider' => $dataProvider,
+                    'modelCases' => $modelCases,
+                    'modelNewText' => $modelNewText,
+                    'response' => $response
+        ]);
+    }
+
 }
