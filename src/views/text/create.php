@@ -7,30 +7,22 @@ use yii\helpers\Html;
 * @var app\models\Text $model
 */
 
-$this->title = Yii::t('app', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Send Text');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Send Text'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-12 text-create">
-
-    <h1>
-        <?= Yii::t('app', 'Text') ?>        <small>
+<div class="container text-create">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+        <?= Yii::t('app', 'Send Text') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
-
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
+          </h3>
         </div>
-    </div>
-
-    <hr />
-
     <?= $this->render('_form', [
     'model' => $model,
     ]); ?>
-
+  </div>
+</div>
 </div>

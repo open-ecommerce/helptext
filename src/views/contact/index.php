@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-md-12 text-index">
 <div class="customers-index">
+  
 <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
     <?php
 

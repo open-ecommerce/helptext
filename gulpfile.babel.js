@@ -34,6 +34,10 @@ gulp.task('default',
 gulp.task('img',
   gulp.series(images));
 
+// watch
+  gulp.task('watch',
+    gulp.series(watch));
+
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {
@@ -113,6 +117,6 @@ function server(done) {
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.fonts, fonts);
-  gulp.watch('less/**/*.less', less);
+  gulp.watch('src/assets/web/less/**/*.less', less);
   gulp.watch('js/**/*.js', gulp.series(plainscript, browser.reload));
 }

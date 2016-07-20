@@ -11,9 +11,8 @@ $this->title = Yii::t('app', 'Create New Client');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="container contact-create">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>
@@ -21,14 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $model->id ?>        </small>
                 </h3>
             </div>
-
             <div class="panel-body">
-
                 <?=
                 $this->render('_form', [
                     'model' => $model,
-                ]);
-                ?>
+                ]);?>
             </div>
         </div>
     </div>

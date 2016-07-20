@@ -13,8 +13,6 @@ use yii\helpers\StringHelper;
 
 ?>
 
-<div class="outcome-category-form">
-
     <?php $form = ActiveForm::begin([
     'id' => 'OutcomeCategory',
     'layout' => 'horizontal',
@@ -28,11 +26,11 @@ use yii\helpers\StringHelper;
         <?php $this->beginBlock('main'); ?>
 
         <p>
-            
+
 			<?= $form->field($model, 'outcome')->textInput(['maxlength' => true]) ?>
         </p>
         <?php $this->endBlock(); ?>
-        
+
         <?=
     Tabs::widget(
                  [
@@ -48,7 +46,7 @@ use yii\helpers\StringHelper;
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
-
+        <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
         <?= Html::submitButton(
         '<span class="glyphicon glyphicon-check"></span> ' .
         ($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')),
@@ -64,4 +62,3 @@ use yii\helpers\StringHelper;
     </div>
 
 </div>
-
