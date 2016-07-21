@@ -111,8 +111,11 @@ class Profile extends BaseProfile {
     
     
     public function getUserProfile() {
-
-        return \Yii::$app->user->identity->profile;
+        if (!\Yii::$app->user->isGuest) {
+            return \Yii::$app->user->identity->profile;
+        } else {
+            return false;
+        }
     }
 
 }

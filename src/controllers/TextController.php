@@ -191,9 +191,6 @@ class TextController extends \app\controllers\base\TextController {
 
     public function actionViewsms() {
 
-        
-        \Yii::info('viva peron y la virgen', 'sms');
-        
         $msg = '';
         $modelNewText = new Text();
         

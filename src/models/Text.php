@@ -8,6 +8,7 @@ use app\models\Phone;
 use app\models\ContactPhone;
 use app\models\Profile;
 use app\models\Cases;
+use app\helpers\HelptextHelpers;
 
 /**
  * This is the model class for table "text".
@@ -19,6 +20,9 @@ class Text extends BaseText {
      */
     public function receiveSMS() {
 
+        HelptextHelpers::logger('receving sms', 'sms');
+        
+        
         $messageToSend = "";
         $response = "";
         

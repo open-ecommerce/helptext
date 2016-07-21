@@ -96,7 +96,7 @@ $common = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    // lindisimo con otros assets '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/phundament/app',
+                    //'@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/phundament/app',
                     '@vendor/dektrium/yii2-user/views/admin' => '@app/views/user/admin',
                     '@yii/gii/views/layouts' => '@admin-views/layouts',
                 ],
@@ -215,11 +215,10 @@ $web = [
                 ],
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['trace'],
-                    'categories' => ['sms'],
+                    'levels' => ['info', 'trace', 'error', 'warning'],
+                    'categories' => ['sms', 'degugging' ],
                     'logVars' => [],
-                    'enabled' => YII_DEBUG,                    
-                    'logFile' => '@app/runtime/logs/sms/requests.log',
+                    'logFile' => '@runtime/logs/sms/requests.log',
                 ],
 
             ],
