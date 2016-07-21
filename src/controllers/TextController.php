@@ -26,24 +26,24 @@ use app\helpers\OeHelpers;
 class TextController extends \app\controllers\base\TextController {
 
     /**
-     * main entrance by twillo or other providers
+     * main entrance by twilio or other providers
      * @param $ph
      *
      * @return mixed
      */
     public function actionSms() {
 
-        OeHelpers::logger('receving sms from twillo', 'sms');
+        OeHelpers::logger('receving sms from twilio', 'sms');
 
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
         }
-        
 
         $model = new Text;
+        $model->source = "twilio";
 
         try {
-            $model->receiveSMS('twillo');
+            $model->receiveSMS();
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
@@ -73,7 +73,10 @@ class TextController extends \app\controllers\base\TextController {
         $model = new Text;
         $modelContact = new Contact;
         try {
-            if ($model->load($_POST) && $model->receiveSMS()) {
+            $model->source = "system-test";
+            if ($model->load($_POST)) {
+                $model->source = 'from system phone tester';                
+                $model->receiveSMS();
                 return $this->redirect(['view', 'id' => $model->id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
@@ -198,8 +201,10 @@ class TextController extends \app\controllers\base\TextController {
             $modelNewText->message = "case#" . $current_case_id . "# " . $value;
             $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
             $modelNewText->id_case = $current_case_id;
+            $modelNewText->source = "helper from system";
 
             try {
+                
                 $response = $modelNewText->receiveSMS('from system');
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
