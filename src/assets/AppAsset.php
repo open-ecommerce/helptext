@@ -26,13 +26,19 @@ class AppAsset extends AssetBundle
     ];
 
     public $css = [
+<<<<<<< HEAD
         // Note: we are using gulp to compile and generate the app.less in the dist folder
+=======
+        // Note: less files require a compiler (available by default on Phundament Docker images)
+        // use .css alternatively
+        // 'less/app.less',
+>>>>>>> mariango
            'css/app.css',
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
-        //'foundationize\foundation\FoundationAsset', // in with the new   
+        //'foundationize\foundation\FoundationAsset', // in with the new
         'yii\bootstrap\BootstrapPluginAsset',
         // if we recompile the less files from 'yii\bootstrap\BootstrapAsset' and include the css in app.css
         // we need set bundle to `false` in application config and remove the following line

@@ -122,6 +122,11 @@ function server(done) {
 // Watch for changes to static assets, pages, Less, and JavaScript
 function watch() {
   gulp.watch(PATHS.fonts, fonts);
+<<<<<<< HEAD
   gulp.watch(PATHS.lesswatch, less);
   gulp.watch(PATHS.js, gulp.series(plainscript, browser.reload));
+=======
+  gulp.watch('src/assets/web/less/**/*.less', less);
+  gulp.watch('js/**/*.js', gulp.series(plainscript, browser.reload));
+>>>>>>> mariango
 }

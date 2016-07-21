@@ -11,28 +11,20 @@ $this->title = Yii::t('app', 'Create Category');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'OutcomeCategories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="customers-index col-md-12">
-<div class="giiant-crud outcome-category-create">
-
-    <h3>
-        <?= Yii::t('app', 'Outcome Category') ?>        <small>
+<div class="container outcome-create">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            <?= Yii::t('app', 'Outcome Category') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h3>
-
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <?= $this->render('_form', [
+          'model' => $model,
+          ]); ?>
         </div>
     </div>
-
-    <hr />
-
-    <?= $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>
 </div>

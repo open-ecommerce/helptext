@@ -11,8 +11,8 @@ $this->title = Yii::t('app', 'Create Severity');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Severities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container">
-  <div class="col-md-12 severity-create">
+<div class="container severity-create">
+  <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
@@ -20,21 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $model->id ?>        </small>
           </h3>
       </div>
-      <div class="clearfix crud-navigation">
-          <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
-          </div>
-      </div>
-        <hr />
-
+        <div class="panel-body">
         <?= $this->render('_form', [
           'model' => $model,
         ]); ?>
-
-      </div>
+        </div>
     </div>
   </div>
-  
+</div>

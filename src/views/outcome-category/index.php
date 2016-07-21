@@ -27,12 +27,12 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 
 
     <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
-
-    <h1>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3>
         <?= Yii::t('app', 'OutcomeCategories') ?>        <small>
-            List
         </small>
-    </h1>
+    </h3>
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -61,8 +61,8 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
             );
             ?>        </div>
     </div>
-
-    <hr />
+</div>
+</div>
 
     <div class="table-responsive">
         <?= GridView::widget([

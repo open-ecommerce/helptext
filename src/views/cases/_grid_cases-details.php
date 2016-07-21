@@ -17,20 +17,20 @@ $deleteMsg = "Are you sure you want to delete this client case details?";
 
 <div class="contacts-cases-list">
     <?php
-    $gridColumns = [ 
+    $gridColumns = [
         [
             'attribute' => 'start_date',
             'format' => ['date', 'php:d M Y'],
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'width' => '30px',            
+            'width' => '30px',
         ],
         [
             'attribute' => 'close_date',
             'format' => ['date', 'php:d M Y'],
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'width' => '30px',            
+            'width' => '30px',
         ],
         [
             'attribute' => 'comments',
@@ -38,13 +38,31 @@ $deleteMsg = "Are you sure you want to delete this client case details?";
         ],
         [
             'class' => 'kartik\grid\ActionColumn',
+            'template' => '{view_conversation}',
+            'header' => 'Edit',
+            'buttons' => [
+                'view_conversation' => function ($url, $model) {
+                    return Html::a('<i class="glyphicon glyphicon-comment"></i>', $url, ['class' => 'btn btn-success'], [
+                                'title' => Yii::t('app', 'Change today\'s lists'),
+                    ]);
+                }
+                    ],
+                    'urlCreator' => function ($action, $model, $key, $index) {
+                if ($action === 'view_conversation') {
+                    $url = Yii::$app->urlManager->createUrl(array('text/viewsms', ['id' => $key]));
+                    return $url;
+                }
+            }
+        ],
+        [
+            'class' => 'kartik\grid\ActionColumn',
             'header' => 'Delete',
             'template' => '{delete}',
             'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
             'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],
-        ],        
-        
-        
+        ],
+
+
 //        [
 //            'class' => 'kartik\grid\ActionColumn',
 //        ],

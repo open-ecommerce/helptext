@@ -30,17 +30,13 @@ use kartik\helpers\Html;
             'displayFormat' => 'php:d M Y',
             'saveFormat' => 'php:Y-m-d',
         ]);
-        ?>  
-    </div>    
+        ?>
+    </div>
 </div>
 
 
 <div class="form-group">
-    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
-    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+    <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
+    <?= Html::submitButton($model->isNewRecord ? 'Send' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
-
-
-
-

@@ -32,7 +32,7 @@ use yii\helpers\StringHelper;
 			<?= $form->field($model, 'sla')->textarea(['col-md-12s' => 6]) ?>
         </p>
         <?php $this->endBlock(); ?>
-        
+
         <?=
     Tabs::widget(
                  [
@@ -64,4 +64,3 @@ use yii\helpers\StringHelper;
     </div>
 
 </div>
-

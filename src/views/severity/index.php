@@ -24,14 +24,14 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     <?php //             echo $this->render('_search', ['model' =>$searchModel]);
         ?>
 
-    
-    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
-    <h1>
-        <?= Yii::t('app', 'Severities') ?>        <small>
-            List
+    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3>
+        <?= Yii::t('app', 'Severities Types') ?>        <small>
         </small>
-    </h1>
+    </h3>
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -39,8 +39,8 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 
         <div class="pull-right">
 
-                        
-            <?= 
+
+            <?=
             \yii\bootstrap\ButtonDropdown::widget(
             [
             'id' => 'giiant-relations',
@@ -60,9 +60,8 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
             );
             ?>        </div>
     </div>
-
-    <hr />
-
+</div>
+</div>
     <div class="table-responsive">
         <?= GridView::widget([
         'layout' => '{summary}{pager}{items}{pager}',
@@ -96,5 +95,3 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 
 
 <?php \yii\widgets\Pjax::end() ?>
-
-

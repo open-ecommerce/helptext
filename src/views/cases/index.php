@@ -73,13 +73,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'width' => '10px',
             'format' => ['date', 'php:d M Y'],
             'filter' => false,
-        ],        
+        ],
         [
             'attribute' => 'State',
             'class' => 'kartik\grid\BooleanColumn',
             'vAlign' => 'middle',
             'value' => 'state',
-        ],        
+        ],
         [
             'attribute' => 'close_date',
             'value' => 'close_date',
@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $url;
                 }
             }
-        ],                    
+        ],
         [
                     'attribute' => 'comments',
                 ],
@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // set your toolbar
                 'toolbar' => [
                     ['content' =>
-                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create new Case', ['create'], ['class' => 'btn btn-success']),
+                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
                     ],
                     '{export}',
                 ],
@@ -162,4 +162,3 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
 
 </div>
-

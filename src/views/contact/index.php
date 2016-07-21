@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-md-12 text-index">
 <div class="customers-index">
+
 <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
     <?php
 
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'detailUrl' => Url::to(['cases/detail']),
             'detailRowCssClass' => GridView::TYPE_DEFAULT,
             'pageSummary' => false,
-        ],
+        ],        
         [
             'attribute' => 'last_name',
             'vAlign' => 'middle',
@@ -85,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
             GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'resizableColumns' => false,
+                'resizableColumns' => true,
                 'showPageSummary' => false,
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
                 'filterRowOptions' => ['class' => 'kartik-sheet-style'],
@@ -94,8 +95,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'columns' => [
                             ['content' => 'Clients\'s Details', 'options' => ['colspan' => 6, 'class' => 'text-center warning']],
-                            ['content' => 'Today\'s Dropin', 'options' => ['colspan' => 4, 'class' => 'text-center success']],
-                            ['content' => 'Clients\'s Comments', 'options' => ['colspan' => 3, 'class' => 'text-center warning']],
                             ['content' => 'Editing Clients\'s', 'options' => ['colspan' => 2, 'class' => 'text-center warning']],
                         ],
                         'options' => ['class' => 'skip-export'] // remove this col-md-12 from export
