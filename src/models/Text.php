@@ -8,7 +8,7 @@ use app\models\Phone;
 use app\models\ContactPhone;
 use app\models\Profile;
 use app\models\Cases;
-use app\helpers\HelptextHelpers;
+use app\helpers\OeHelpers;
 
 /**
  * This is the model class for table "text".
@@ -18,15 +18,13 @@ class Text extends BaseText {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function receiveSMS() {
+    public function receiveSMS($source) {
 
-        HelptextHelpers::logger('receving sms', 'sms');
-        
+        OeHelpers::logger('receving sms from:'.$source, 'sms');
         
         $messageToSend = "";
         $response = "";
         
-        $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 
         if (Yii::$app->request->post()) {
 
@@ -155,30 +153,12 @@ class Text extends BaseText {
 
         //autoresponse to caller        
         if (!empty($response)) {
-            try {
-                $newsms = $twilioService->account->messages->create(array(
-                    "From" => "+441234480212", // From a valid Twilio number
-                    "To" => $callerPhone, // Text this number
-                    "Body" => $response,
-                ));
-                $return = "sms sent to client: " . $callerPhone;
-            } catch (\Services_Twilio_RestException $e) {
-                $return = $e->getMessage();
-            }
+            $return = $this->sendSMS($response, $callerPhone);
         }
 
         //sending message to destinatary        
         if (!empty($messageToSend)) {        
-            try {
-                $newsms = $twilioService->account->messages->create(array(
-                    "From" => "+441234480212", // From a valid Twilio number
-                    "To" => $toPhone, // Text this number
-                    "Body" => $messageToSend,
-                ));
-                $return = "sms sent to helper: " . $toPhone;
-            } catch (\Services_Twilio_RestException $e) {
-                $return = $e->getMessage();
-            }
+            $return = $this->sendSMS($messageToSend, $toPhone);
         }
         
         
@@ -220,6 +200,49 @@ class Text extends BaseText {
         return $return;
     }
 
+    
+    /**
+     * @return string
+     */
+    public function sendSMS($msg, $toPhone) {
+        
+        switch (\Yii::$app->params['smsProvider']) {
+            case 'twillo':
+                $response = $this->twilloSMS($msg, $toPhone);
+                break;
+        }
+
+        return $response;
+    }    
+    
+
+
+    /**
+     * @return string
+     */
+    public function twilloSMS($msg, $toPhone) {
+
+        $twilioService = Yii::$app->Yii2Twilio->initTwilio();        
+
+        try {
+                $newsms = $twilioService->account->messages->create(array(
+                    "From" => "+441234480212", // From a valid Twilio number
+                    "To" => $toPhone, // Text this number
+                    "Body" => $msg,
+                ));
+                $response = "sms sent to client: " . $toPhone;
+            } catch (\Services_Twilio_RestException $e) {
+                $response = $e->getMessage();
+            }
+        
+        
+        return $response;
+    }    
+
+
+
+    
+    
     private function getCaseFromText($text) {
 
         $caseNumber = 0;

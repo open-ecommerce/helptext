@@ -5,7 +5,7 @@ namespace app\helpers;
 use Yii;
 use yii\helpers\ArrayHelper;
 
-class HelptextHelpers
+class OeHelpers
 {
     public static function logger($msg, $where='generic')
     {

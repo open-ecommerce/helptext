@@ -26,14 +26,10 @@ class AppAsset extends AssetBundle
     ];
 
     public $css = [
-<<<<<<< HEAD
         // Note: we are using gulp to compile and generate the app.less in the dist folder
-=======
-        // Note: less files require a compiler (available by default on Phundament Docker images)
         // use .css alternatively
         // 'less/app.less',
->>>>>>> mariango
-           'css/app.css',
+       'css/app.css',
     ];
 
     public $depends = [

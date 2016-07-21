@@ -187,6 +187,7 @@ $common = [
         'senderTypeIdUser' => '3', //id from sender_type table
         'countryUkId' => '229', //id of uk from country table
         'languagesEnId' => '1', //id of the english from languages table
+        'smsProvider' => 'twillo', //sms provider
     ],
      
 ];

@@ -17,6 +17,8 @@ use yii\web\Response;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
+use app\helpers\OeHelpers;
+
 
 /**
  * This is the class for controller "TextController".
@@ -24,17 +26,24 @@ use yii\data\ActiveDataProvider;
 class TextController extends \app\controllers\base\TextController {
 
     /**
-     * Testing functionality
-     * @param integer $id
+     * main entrance by twillo or other providers
+     * @param $ph
      *
      * @return mixed
      */
     public function actionSms() {
 
+        OeHelpers::logger('receving sms from twillo', 'sms');
+
+        foreach ($_POST as $key => $value) {
+            OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
+        }
+        
+
         $model = new Text;
 
         try {
-            $model->receiveSMS();
+            $model->receiveSMS('twillo');
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
@@ -50,23 +59,7 @@ class TextController extends \app\controllers\base\TextController {
 //            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
 //            $model->addError('_exception', $msg);
 //        }
-//        return $this->render('create', ['model' => $model]);        
-//        
-//        $twilioService = Yii::$app->Yii2Twilio->initTwilio();
-//
-//        try {
-//            $message = $twilioService->account->messages->create(array(
-//                "From" => "+441234480212", // From a valid Twilio number
-//                "To" => "+447551524625",   // Text this number
-//                "Body" => "esto es del live",
-//            ));
-//
-//            echo "se habra mandado el texto?";
-//
-//        } catch (\Services_Twilio_RestException $e) {
-//                echo $e->getMessage();
-//        }
-//        
+       
     }
 
 //    
@@ -207,7 +200,7 @@ class TextController extends \app\controllers\base\TextController {
             $modelNewText->id_case = $current_case_id;
 
             try {
-                $response = $modelNewText->receiveSMS();
+                $response = $modelNewText->receiveSMS('from system');
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewText->addError('_exception', $response);
