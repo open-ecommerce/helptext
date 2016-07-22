@@ -242,7 +242,7 @@ class TextController extends \app\controllers\base\TextController {
         OeHelpers::logger('receving call from twilio', 'call');
 
         foreach ($_POST as $key => $value) {
-            OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
+            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
         }
 
 

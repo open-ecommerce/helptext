@@ -217,9 +217,9 @@ $web = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['info', 'trace', 'error', 'warning'],
-                    'categories' => ['sms', 'degugging' ],
+                    'categories' => ['sms', 'call', 'degugging' ],
                     'logVars' => [],
-                    'logFile' => '@runtime/logs/sms/requests.log',
+                    'logFile' => '@runtime/logs/call/requests.log',
                 ],
 
             ],
