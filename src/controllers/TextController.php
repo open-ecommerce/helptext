@@ -230,4 +230,39 @@ class TextController extends \app\controllers\base\TextController {
         ]);
     }
 
+    
+    /**
+     * main entrance by twilio calls
+     * @param $ph
+     *
+     * @return mixed
+     */
+    public function actionCall() {
+
+        OeHelpers::logger('receving call from twilio', 'call');
+
+        foreach ($_POST as $key => $value) {
+            OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
+        }
+
+
+        return $this->renderPartial('twilio-response');        
+        
+        
+        
+        
+//        $model = new Text;
+//        $model->source = "twilio";
+//
+//        try {
+//            $model->receiveSMS();
+//        } catch (\Exception $e) {
+//            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+//            $model->addError('_exception', $msg);
+//        }
+
+       
+    }    
+    
+    
 }
