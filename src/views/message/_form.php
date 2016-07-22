@@ -10,7 +10,7 @@ use kartik\helpers\Html;
 
 /**
 * @var yii\web\View $this
-* @var app\models\Text $model
+* @var app\models\Message $model
 * @var yii\widgets\ActiveForm $form
 */
 

@@ -9,12 +9,12 @@ use dmstr\bootstrap\Tabs;
 
 /**
 * @var yii\web\View $this
-* @var app\models\Text $model
+* @var app\models\Message $model
 */
 $copyParams = $model->attributes;
 
-$this->title = Yii::t('app', 'Text');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Message');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     <?php endif; ?>
 
     <h1>
-        <?= Yii::t('app', 'Text') ?>        <small>
+        <?= Yii::t('app', 'Message') ?>        <small>
             <?= $model->id ?>        </small>
     </h1>
 
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
             <?= Html::a(
             '<span class="glyphicon glyphicon-copy"></span> ' . Yii::t('app', 'Copy'),
-            ['create', 'id' => $model->id, 'Text'=>$copyParams],
+            ['create', 'id' => $model->id, 'Message'=>$copyParams],
             ['class' => 'btn btn-success']) ?>
 
             <?= Html::a(
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
     <hr />
 
-    <?php $this->beginBlock('app\models\Text'); ?>
+    <?php $this->beginBlock('app\models\Message'); ?>
 
     
     <?= DetailView::widget([
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
                      'encodeLabels' => false,
                      'items' => [ [
     'label'   => '<b class=""># '.$model->id.'</b>',
-    'content' => $this->blocks['app\models\Text'],
+    'content' => $this->blocks['app\models\Message'],
     'active'  => true,
 ], ]
                  ]

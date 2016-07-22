@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Text;
-use app\models\search\TextSearch;
+use app\models\Message;
+use app\models\MessageSearch;
 use app\models\Contact;
 use app\models\ContactPhone;
 use app\models\Cases;
@@ -21,9 +21,9 @@ use app\helpers\OeHelpers;
 
 
 /**
- * This is the class for controller "TextController".
+ * This is the class for controller "MessageController".
  */
-class TextController extends \app\controllers\base\TextController {
+class MessageController extends \app\controllers\base\MessageController {
 
     /**
      * main entrance by twilio or other providers
@@ -39,7 +39,7 @@ class TextController extends \app\controllers\base\TextController {
             OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
         }
 
-        $model = new Text;
+        $model = new Message;
         $model->source = "twilio";
 
         try {
@@ -65,12 +65,12 @@ class TextController extends \app\controllers\base\TextController {
 //    
 
     /**
-     * Creates a new Text model.
+     * Creates a new Message model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionTestsms() {
-        $model = new Text;
+        $model = new Message;
         $modelContact = new Contact;
         try {
             $model->source = "system-test";
@@ -149,7 +149,7 @@ class TextController extends \app\controllers\base\TextController {
 
     public function actionNewSMS() {
 
-        if ($modelNewText->load(Yii::$app->request->post()) && $modelNewText->save()) {
+        if ($modelNewMessage->load(Yii::$app->request->post()) && $modelNewMessage->save()) {
 
 //if (isset($_POST['hasEditable'])) {
 // use Yii's response format to encode output as JSON
@@ -157,20 +157,20 @@ class TextController extends \app\controllers\base\TextController {
 
 
 // read your posted model attributes
-            if ($modelNewText->load($_POST)) {
+            if ($modelNewMessage->load($_POST)) {
 // read or convert your posted information
-                $value = $modelNewText->message;
-                $modelNewText->message = "case#" . $current_id . "# " . $value;
+                $value = $modelNewMessage->message;
+                $modelNewMessage->message = "case#" . $current_id . "# " . $value;
 
-                $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
+                $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
 
 
 
                 try {
-                    $modelNewText->receiveSMS();
+                    $modelNewMessage->receiveSMS();
                 } catch (\Exception $e) {
                     $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-                    $modelNewText->addError('_exception', $msg);
+                    $modelNewMessage->addError('_exception', $msg);
                 }
 
 // return JSON encoded output in the below format
@@ -188,27 +188,27 @@ class TextController extends \app\controllers\base\TextController {
     public function actionViewsms() {
 
         $msg = '';
-        $modelNewText = new Text();
+        $modelNewMessage = new Message();
         
         if (isset($_POST['case_id'])) {
             $current_case_id = $_POST['case_id'];
 
-            //$msg = $_POST['Text']['message'];
-            $modelNewText->load($_POST);
+            //$msg = $_POST['Message']['message'];
+            $modelNewMessage->load($_POST);
 
             
-            $value = $modelNewText->message;
-            $modelNewText->message = "case#" . $current_case_id . "# " . $value;
-            $modelNewText->id_phone = \app\models\Profile::getUserProfile()->phone;
-            $modelNewText->id_case = $current_case_id;
-            $modelNewText->source = "helper from system";
+            $value = $modelNewMessage->message;
+            $modelNewMessage->message = "case#" . $current_case_id . "# " . $value;
+            $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
+            $modelNewMessage->id_case = $current_case_id;
+            $modelNewMessage->source = "helper from system";
 
             try {
                 
-                $response = $modelNewText->receiveSMS('from system');
+                $response = $modelNewMessage->receiveSMS('from system');
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-                $modelNewText->addError('_exception', $response);
+                $modelNewMessage->addError('_exception', $response);
             }
             
         } else {            
@@ -218,14 +218,14 @@ class TextController extends \app\controllers\base\TextController {
 
         
         $dataProvider = new ActiveDataProvider([
-            'query' => Text::find()->where(['id_case' => $current_case_id]),
+            'query' => Message::find()->where(['id_case' => $current_case_id]),
         ]);
         $modelCases = Cases::find()->where(['id' => $current_case_id])->one();
 
         return $this->render('case-sms', [
                     'dataProvider' => $dataProvider,
                     'modelCases' => $modelCases,
-                    'modelNewText' => $modelNewText,
+                    'modelNewMessage' => $modelNewMessage,
                     'response' => $response
         ]);
     }
@@ -251,7 +251,7 @@ class TextController extends \app\controllers\base\TextController {
         
         
         
-//        $model = new Text;
+//        $model = new Message;
 //        $model->source = "twilio";
 //
 //        try {

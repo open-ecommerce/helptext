@@ -18,7 +18,7 @@ $formater = \yii::$app->formatter;
 <div class="container" id="sms-texts">
     <?php
     $this->title = Yii::t('app', 'View Case conversations');
-    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
     $this->params['breadcrumbs'][] = $this->title;
     ?>
 
@@ -80,7 +80,7 @@ $formater = \yii::$app->formatter;
 
                     echo Html::hiddenInput('case_id', $modelCases->id);
                     echo "<h5>".$response."</h5>";
-                    echo $form->field($modelNewText, 'message', 
+                    echo $form->field($modelNewMessage, 'message', 
                     [
                         'addon' => [
                             'prepend' => ['content'=>'<i class="glyphicon glyphicon-comment"></i>'],

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 
 /**
 * @var yii\web\View $this
-* @var app\models\Text $model
+* @var app\models\Message $model
 */
 
-$this->title = Yii::t('app', 'Send Text');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Send Text'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Send Message');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Send Message'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container text-create">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
-        <?= Yii::t('app', 'Send Text') ?>        <small>
+        <?= Yii::t('app', 'Send Message') ?>        <small>
                         <?= $model->id ?>        </small>
           </h3>
         </div>

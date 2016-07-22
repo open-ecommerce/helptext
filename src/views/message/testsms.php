@@ -4,10 +4,10 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var app\models\Text $model
+ * @var app\models\Message $model
  */
 $this->title = Yii::t('app', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">

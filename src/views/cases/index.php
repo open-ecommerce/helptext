@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'urlCreator' => function ($action, $model, $key, $index) {
                 if ($action === 'view_conversation') {
-                    $url = Yii::$app->urlManager->createUrl(array('text/viewsms', ['id' => $key]));
+                    $url = Yii::$app->urlManager->createUrl(array('message/viewsms', ['id' => $key]));
                     return $url;
                 }
             }

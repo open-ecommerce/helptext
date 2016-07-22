@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /**
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
-    * @var app\models\TextSearch $searchModel
+    * @var app\models\MessageSearch $searchModel
 */
 
 
@@ -29,7 +29,7 @@ $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     <div class="panel panel-default">
     <div class="panel-heading">
     <h3>
-        <?= Yii::t('app', 'Text Archive') ?>        <small>
+        <?= Yii::t('app', 'Message Archive') ?>        <small>
         </small>
     </h3>
     <div class="clearfix crud-navigation">
