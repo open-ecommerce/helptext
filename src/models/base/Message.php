@@ -93,14 +93,14 @@ abstract class Message extends \yii\db\ActiveRecord
     }
 
 
-    
+
     /**
      * @inheritdoc
      * @return MessageQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new MessageQuery(get_called_class());
+        return new \app\models\search\MessageQuery(get_called_class());
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
 /**
  * This is the ActiveQuery class for [[Message]].
