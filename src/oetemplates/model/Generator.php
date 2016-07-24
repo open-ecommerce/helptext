@@ -41,32 +41,32 @@ class Generator extends \yii\gii\generators\model\Generator
      * @var bool whether or not to use BlameableBehavior
      */
     public $useBlameableBehavior = true;
-    
+
     /**
      * @var string the name of the column where the user who created the entry is stored
      */
     public $createdByColumn = 'created_by';
-    
+
     /**
      * @var string the name of the column where the user who updated the entry is stored
      */
     public $updatedByColumn = 'updated_by';
-    
+
     /**
      * @var bool whether or not to use TimestampBehavior
      */
     public $useTimestampBehavior = true;
-    
+
     /**
      * @var string the name of the column where the user who updated the entry is stored
      */
     public $createdAtColumn = 'created_at';
-    
+
     /**
      * @var string the name of the column where the user who updated the entry is stored
      */
     public $updatedAtColumn = 'updated_at';
-    
+
     /**
      * @var bool whether or not to use 2amigos/yii2-translateable-behavior
      */
@@ -102,10 +102,10 @@ class Generator extends \yii\gii\generators\model\Generator
     public $generateHintsFromComments = true;
 
     /**
-     * @var string form field for selecting and loading saved gii forms 
+     * @var string form field for selecting and loading saved gii forms
      */
     public $savedForm;
-    
+
     protected $classNames2;
 
     /**
@@ -133,10 +133,10 @@ class Generator extends \yii\gii\generators\model\Generator
             parent::rules(),
             [
                 [[
-                    'generateModelClass', 
+                    'generateModelClass',
                     'useTranslatableBehavior',
                     'generateHintsFromComments',
-                    'useBlameableBehavior', 
+                    'useBlameableBehavior',
                     'useTimestampBehavior',
                     'singularEntities'
                     ], 'boolean'],
@@ -162,7 +162,7 @@ class Generator extends \yii\gii\generators\model\Generator
             'generateRelations',
             'generateLabelsFromComments',
             'generateHintsFromComments',
-            'generateModelClass', 
+            'generateModelClass',
             'generateQuery',
             'queryNs',
             'queryClass',
@@ -171,7 +171,7 @@ class Generator extends \yii\gii\generators\model\Generator
             'singularEntities',
             'messageCategory',
             'useTranslatableBehavior',
-            'languageTableName', 
+            'languageTableName',
             'languageCodeColumn',
             'useBlameableBehavior',
             'createdByColumn',
@@ -180,8 +180,8 @@ class Generator extends \yii\gii\generators\model\Generator
             'createdAtColumn',
             'updatedAtColumn',
             ];
-    }    
-    
+    }
+
     /**
      * @inheritdoc
      */
@@ -262,10 +262,10 @@ class Generator extends \yii\gii\generators\model\Generator
             if (!empty($translations)) {
                 $params['translation'] = $translations;
             }
-           	
+
             $params['blameable'] = $this->generateBlameable($tableSchema);
             $params['timestamp'] = $this->generateTimestamp($tableSchema);
-            
+
             $files[] = new CodeFile(
                 Yii::getAlias(
                     '@' . str_replace('\\', '/', $this->ns)
@@ -296,18 +296,18 @@ class Generator extends \yii\gii\generators\model\Generator
                     );
                 }
             }
-            
+
             /**
              * create gii/[name]GiiantModel.json with actual form data
              */
             $suffix = str_replace(' ','', $this->getName());
             $formDataDir = Yii::getAlias('@' . str_replace('\\', '/', $this->ns));
-            $formDataFile = StringHelper::dirname($formDataDir) 
+            $formDataFile = StringHelper::dirname($formDataDir)
                     . '/gii'
                     . '/' . $tableName .$suffix .'.json' ;
-            
+
             $formData = json_encode(SaveForm::getFormAttributesValues($this,$this->formAttributes()));
-            $files[] = new CodeFile($formDataFile, $formData);            
+            $files[] = new CodeFile($formDataFile, $formData);
 
         }
         return $files;
@@ -524,7 +524,7 @@ class Generator extends \yii\gii\generators\model\Generator
                     $ea
                 ) . ",\n                ]\n            ]";
         }
-     
+
         $rules = array_merge(parent::generateRules($table), $rules);
         $table->columns = array_merge($table->columns, $columns);
         return $rules;
@@ -624,10 +624,10 @@ class Generator extends \yii\gii\generators\model\Generator
         ];
 
     }
-    
+
     /**
      * @param \yii\db\TableSchema $table the table schema
-     * 
+     *
      * @return string[]
      */
     protected function generateBlameable($table)
@@ -638,15 +638,15 @@ class Generator extends \yii\gii\generators\model\Generator
         if ($this->useBlameableBehavior && ($createdBy || $updatedBy)) {
             return [
                 'createdByAttribute' => $createdBy,
-                'updatedByAttribute' => $updatedBy,    				
+                'updatedByAttribute' => $updatedBy,
             ];
         }
         return [];
     }
-    
+
     /**
      * @param \yii\db\TableSchema $table the table schema
-     * 
+     *
      * @return string[]
      */
     protected function generateTimestamp($table)

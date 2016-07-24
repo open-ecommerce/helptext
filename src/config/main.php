@@ -16,7 +16,7 @@ $common = [
         'log',
     ],
     'aliases' => [
-        '@frontmedia' => '@app/media',        
+        '@frontmedia' => '@app/media',
         '@admin-views' => '@app/modules/backend/views',
     ],
     'components' => [
@@ -105,8 +105,8 @@ $common = [
         'Yii2Twilio' => array(
             'class' => 'filipajdacic\yiitwilio\YiiTwilio',
             'account_sid' => 'AC53f6315a0310cea60b88107e78ad80cb',
-            'auth_key' => '910a762c709348ade494146e3050705d', 
-        ),        
+            'auth_key' => '910a762c709348ade494146e3050705d',
+        ),
     ],
     'modules' => [
         'backend' => [
@@ -153,15 +153,15 @@ $common = [
         ],
         'datecontrol' => [
             'class' => '\kartik\datecontrol\Module',
-        ],        
+        ],
         'gridview' => [
             'class' => '\kartik\grid\Module',
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
             // message source
             'downloadAction' => 'gridview/export/download',
-        //'i18n' => [],           
-        ],        
+        //'i18n' => [],
+        ],
         'treemanager' => [
             'class' => '\kartik\tree\Module',
             'layout' => '@admin-views/layouts/main',
@@ -189,7 +189,7 @@ $common = [
         'languagesEnId' => '1', //id of the english from languages table
         'smsProvider' => 'twilio', //sms provider
     ],
-     
+
 ];
 
 $web = [
@@ -283,7 +283,32 @@ if (YII_ENV_DEV || YII_ENV_TEST) {
 
     $giiant = require __DIR__.'/giiant.php';
     $config = \yii\helpers\ArrayHelper::merge($config, $giiant);
+
+    $config['modules']['gii'] = [
+        'class'      => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1'],
+        'generators' => [
+            // generator name
+            'giiant-model' => [
+                //generator class
+                'class'     => 'schmunk42\giiant\generators\model\Generator',
+                //setting for out templates
+                'templates' => [
+                    // template name => path to template
+                    'oemodel' =>
+                        '@app/oetemplates/model/default',
+                ]
+            ]
+        ],
+    ];
+
 }
+
+
+
+
+
+
 
 if (file_exists(getenv('APP_CONFIG_FILE'))) {
     // Local configuration, if available
