@@ -13,10 +13,12 @@ use yii\db\Migration;
 // message,
 // message_type,
 // outcome_category,
-// phone,profile,
+// phone,
+// profile,
 // qry_next_available_user,
-// sender_type,settings,
-// severity,text_template
+// sender_type,
+// severity,
+// text_template
 
 
 class m160725_140527_create_all_tables extends Migration {
@@ -53,7 +55,7 @@ class m160725_140527_create_all_tables extends Migration {
                     'id_severity' => 'INT(11) NULL',
                     'start_date' => 'DATETIME NULL',
                     'close_date' => 'DATETIME NULL',
-                    'state' => 'BIT(1) NULL',
+                    'state' => 'BIT(1) NULL DEFAULT \'0\'',
                     'comments' => 'TEXT NULL',
                         ], $tableOptions_mysql);
             }
@@ -242,23 +244,6 @@ class m160725_140527_create_all_tables extends Migration {
         }
 
         /* MYSQL */
-        if (!in_array('settings', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%settings}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'type' => 'VARCHAR(255) NOT NULL',
-                    'section' => 'VARCHAR(255) NOT NULL',
-                    'key' => 'VARCHAR(255) NOT NULL',
-                    'value' => 'TEXT NULL',
-                    'active' => 'TINYINT(1) NULL',
-                    'created' => 'DATETIME NULL',
-                    'modified' => 'DATETIME NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
         if (!in_array('severity', $tables)) {
             if ($dbType == "mysql") {
                 $this->createTable('{{%severity}}', [
@@ -283,36 +268,35 @@ class m160725_140527_create_all_tables extends Migration {
         }
 
 
-        $this->createIndex('idx_id_contact_0109_00', 'cases', 'id_contact', 0);
-        $this->createIndex('idx_id_category_0109_01', 'cases', 'id_category', 0);
-        $this->createIndex('idx_id_outcome_011_02', 'cases', 'id_outcome', 0);
-        $this->createIndex('idx_id_severity_011_03', 'cases', 'id_severity', 0);
-        $this->createIndex('idx_id_user_011_04', 'cases', 'id_user', 0);
-        $this->createIndex('idx_id_phone_011_05', 'cases', 'id_phone', 0);
-        $this->createIndex('idx_id_country_0152_06', 'contact', 'id_country', 0);
-        $this->createIndex('idx_id_language_0152_07', 'contact', 'id_language', 0);
-        $this->createIndex('idx_id_phone_0182_08', 'contact_phone', 'id_phone', 0);
-        $this->createIndex('idx_id_contact_0182_09', 'contact_phone', 'id_contact', 0);
-        $this->createIndex('idx_id_phone_0368_10', 'message', 'id_phone', 0);
-        $this->createIndex('idx_id_case_0369_11', 'message', 'id_case', 0);
-        $this->createIndex('idx_id_sender_type_0369_12', 'message', 'id_sender_type', 0);
-        $this->createIndex('idx_id_message_type_0369_13', 'message', 'id_message_type', 0);
-        $this->createIndex('idx_UNIQUE_section_0986_14', 'settings', 'section', 1);
+        $this->createIndex('idx_id_contact_9123_00', 'cases', 'id_contact', 0);
+        $this->createIndex('idx_id_category_9123_01', 'cases', 'id_category', 0);
+        $this->createIndex('idx_id_outcome_9123_02', 'cases', 'id_outcome', 0);
+        $this->createIndex('idx_id_severity_9124_03', 'cases', 'id_severity', 0);
+        $this->createIndex('idx_id_user_9124_04', 'cases', 'id_user', 0);
+        $this->createIndex('idx_id_phone_9124_05', 'cases', 'id_phone', 0);
+        $this->createIndex('idx_id_country_9167_06', 'contact', 'id_country', 0);
+        $this->createIndex('idx_id_language_9168_07', 'contact', 'id_language', 0);
+        $this->createIndex('idx_id_phone_9198_08', 'contact_phone', 'id_phone', 0);
+        $this->createIndex('idx_id_contact_9198_09', 'contact_phone', 'id_contact', 0);
+        $this->createIndex('idx_id_phone_9401_10', 'message', 'id_phone', 0);
+        $this->createIndex('idx_id_case_9401_11', 'message', 'id_case', 0);
+        $this->createIndex('idx_id_sender_type_9401_12', 'message', 'id_sender_type', 0);
+        $this->createIndex('idx_id_message_type_9401_13', 'message', 'id_message_type', 0);
 
         $this->execute('SET foreign_key_checks = 0');
-        $this->addForeignKey('fk_case_category_0105_00', '{{%cases}}', 'id_category', '{{%case_category}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_contact_0105_01', '{{%cases}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_outcome_category_0105_02', '{{%cases}}', 'id_outcome', '{{%outcome_category}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_severity_0105_03', '{{%cases}}', 'id_severity', '{{%severity}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_0105_04', '{{%cases}}', 'id_user', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_country_0148_05', '{{%contact}}', 'id_country', '{{%country}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_languages_0148_06', '{{%contact}}', 'id_language', '{{%languages}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_contact_0178_07', '{{%contact_phone}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_phone_0178_08', '{{%contact_phone}}', 'id_phone', '{{%phone}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_cases_0364_09', '{{%message}}', 'id_case', '{{%cases}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_message_type_0364_010', '{{%message}}', 'id_message_type', '{{%message_type}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_sender_type_0364_011', '{{%message}}', 'id_sender_type', '{{%sender_type}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_0489_012', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_case_category_9119_00', '{{%cases}}', 'id_category', '{{%case_category}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_contact_9119_01', '{{%cases}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_outcome_category_9119_02', '{{%cases}}', 'id_outcome', '{{%outcome_category}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_severity_9119_03', '{{%cases}}', 'id_severity', '{{%severity}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_user_9119_04', '{{%cases}}', 'id_user', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_country_9163_05', '{{%contact}}', 'id_country', '{{%country}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_languages_9164_06', '{{%contact}}', 'id_language', '{{%languages}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_contact_9194_07', '{{%contact_phone}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_phone_9194_08', '{{%contact_phone}}', 'id_phone', '{{%phone}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_cases_9396_09', '{{%message}}', 'id_case', '{{%cases}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_message_type_9396_010', '{{%message}}', 'id_message_type', '{{%message_type}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_sender_type_9397_011', '{{%message}}', 'id_sender_type', '{{%sender_type}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_user_9525_012', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
         $this->execute('SET foreign_key_checks = 1;');
 
         $this->execute('SET foreign_key_checks = 0');
@@ -819,7 +803,6 @@ class m160725_140527_create_all_tables extends Migration {
         $this->insert('{{%sender_type}}', ['id' => '1', 'sender_type' => 'Automated Response']);
         $this->insert('{{%sender_type}}', ['id' => '2', 'sender_type' => 'Contact']);
         $this->insert('{{%sender_type}}', ['id' => '3', 'sender_type' => 'User']);
-        $this->insert('{{%settings}}', ['id' => '1', 'type' => 'boolean', 'section' => 'app.assets', 'key' => 'registerPrototypeAsset', 'value' => '1', 'active' => '0', 'created' => '2016-06-22 09:34:27', 'modified' => '2016-06-22 09:34:27']);
         $this->insert('{{%severity}}', ['id' => '1', 'severity' => 'Not Set', 'sla' => '']);
         $this->insert('{{%severity}}', ['id' => '2', 'severity' => 'Severity 1', 'sla' => 'Contact the client within 24hs']);
         $this->insert('{{%severity}}', ['id' => '3', 'severity' => 'Severity 2', 'sla' => 'about severity 2']);
@@ -876,15 +859,12 @@ class m160725_140527_create_all_tables extends Migration {
         $this->execute('DROP TABLE IF EXISTS `sender_type`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `settings`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `severity`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `text_template`');
         $this->execute('SET foreign_key_checks = 1;');
-        
+
         echo "m160725_140527_create_all_tables cannot be reverted.\n";
 
         return false;
