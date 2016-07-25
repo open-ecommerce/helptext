@@ -39,7 +39,7 @@ $deleteMsg = "Are you sure you want to delete this client case details?";
         [
             'class' => 'kartik\grid\ActionColumn',
             'template' => '{view_conversation}',
-            'header' => 'Edit',
+            'header' => 'View Messages',
             'buttons' => [
                 'view_conversation' => function ($url, $model) {
                     return Html::a('<i class="glyphicon glyphicon-comment"></i>', $url, ['class' => 'btn btn-success'], [
@@ -49,14 +49,14 @@ $deleteMsg = "Are you sure you want to delete this client case details?";
                     ],
                     'urlCreator' => function ($action, $model, $key, $index) {
                 if ($action === 'view_conversation') {
-                    $url = Yii::$app->urlManager->createUrl(array('text/viewsms', ['id' => $key]));
+                    $url = Yii::$app->urlManager->createUrl(array('message/viewsms', ['id' => $key]));
                     return $url;
                 }
             }
         ],
         [
             'class' => 'kartik\grid\ActionColumn',
-            'header' => 'Delete',
+            'header' => 'Delete Case',
             'template' => '{delete}',
             'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
             'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],

@@ -10,6 +10,8 @@ use app\models\Profile;
 use app\models\Cases;
 use app\helpers\OeHelpers;
 
+define('ANONYMIZE_TEXT', 'Anonymized message');
+
 /**
  * This is the model class for table "text".
  */
@@ -27,6 +29,8 @@ class Message extends BaseMessage {
     var $messageSid;
     var $output;
     var $phoneToSend;
+    var $anonymize;
+    var $automaticResponse;
 
     /**
      * @return multiple
@@ -34,6 +38,9 @@ class Message extends BaseMessage {
     public function receiveSMS() {
 
         OeHelpers::logger('receving sms from:' . $this->source, 'sms');
+
+        $this->anonymize = \Yii::$app->params['anonymize'];
+        $this->automaticResponse = \Yii::$app->params['smsAutomaticResponse'];
 
 
         if ($this->source === "twilio") {
@@ -105,21 +112,26 @@ class Message extends BaseMessage {
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
                 $text->id_sender_type = $this->id_sender_type;
-                $text->message = $this->message;
+                if ($this->anonymize) {
+                    $text->message = constant("ANONYMIZE_TEXT");
+                } else {
+                    $text->message = $this->message;
+                }
                 $text->sent = date("Y-m-d H:i:s");
                 $text->save();
 
-                $this->response = "This is an auhomatic response, we created a new case\r\n";
-                $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
-                $this->response .= "We will contact you as soon as possible.\r\n";
-
+                $this->response = '';
+                if ($this->automaticResponse) {
+                    $this->response = "This is an auhomatic response, we created a new case\r\n";
+                    $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
+                    $this->response .= "We will contact you as soon as possible.\r\n";
+                }
                 $this->messageToSend = "From Case#" . $this->currentIdCase . "# \r\n";
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->caseContactPhone;
-
             } else {
 
-                $this->setLastCaseByPhone();                
+                $this->setLastCaseByPhone();
 
                 if (!$this->isCurrentIdCaseOpen) {
                     $this->response = "This is an automatic response,\r\n";
@@ -136,10 +148,14 @@ class Message extends BaseMessage {
                     $text->id_phone = $this->id_phone;
                     $text->id_case = $this->currentIdCase;
                     $text->id_sender_type = $this->id_sender_type;
-                    $text->message = $this->message;
+                    if ($this->anonymize) {
+                        $text->message = constant("ANONYMIZE_TEXT");
+                    } else {
+                        $text->message = $this->message;
+                    }
                     $text->sent = date("Y-m-d H:i:s");
                     $text->save();
-                    }
+                }
             }
         } else {
             $isUser = TRUE;
@@ -159,7 +175,11 @@ class Message extends BaseMessage {
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
                 $text->id_sender_type = $this->id_sender_type;
-                $text->message = $this->message;
+                if ($this->anonymize) {
+                    $text->message = constant("ANONYMIZE_TEXT");
+                } else {
+                    $text->message = $this->message;
+                }
                 $text->sent = date("Y-m-d H:i:s");
                 $text->save();
             }
@@ -291,7 +311,7 @@ class Message extends BaseMessage {
             $this->assignedUserPhone = $user->phone;
             $this->caseContactPhone = $case->id_phone;
             $this->currentIdCase = $case->id;
-        } else{
+        } else {
             $this->isCurrentIdCaseOpen = FALSE;
         }
     }

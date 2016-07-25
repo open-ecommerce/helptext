@@ -43,6 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'detailUrl' => Url::to(['cases/detail']),
             'detailRowCssClass' => GridView::TYPE_DEFAULT,
             'pageSummary' => false,
+            'allowBatchToggle' => FALSE,
+            'expandOneOnly' => TRUE,
+            'expandTitle' => 'View all client cases',
+            'expandIcon' => '<span class="glyphicon glyphicon-plus"></span>',
+            'collapseIcon' => '<span class="glyphicon glyphicon-minus"></span>',
         ],        
         [
             'attribute' => 'last_name',

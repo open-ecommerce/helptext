@@ -1,9 +1,9 @@
 <?php
 
-Yii::setAlias('@app', dirname(__DIR__).'/..');
-Yii::setAlias('@runtime', dirname(__DIR__).'/../../runtime');
-Yii::setAlias('@web', dirname(__DIR__).'/../web');
-Yii::setAlias('@webroot', dirname(__DIR__).'/web');
+Yii::setAlias('@app', dirname(__DIR__) . '/..');
+Yii::setAlias('@runtime', dirname(__DIR__) . '/../../runtime');
+Yii::setAlias('@web', dirname(__DIR__) . '/../web');
+Yii::setAlias('@webroot', dirname(__DIR__) . '/web');
 Yii::setAlias('@root', '@app');
 
 $common = [
@@ -24,11 +24,11 @@ $common = [
             // Note: For using mounted volumes or shared folders
             'dirMode' => YII_ENV_PROD ? 0777 : null,
             'bundles' => getenv('APP_ASSET_USE_BUNDLED') ?
-                require(__DIR__.'/gen/bundle-prod.php') :
-                [
+                    require(__DIR__ . '/gen/bundle-prod.php') :
+                    [
                     // Note: if your asset bundle includes bootstrap, you can disable the default asset
                     #'yii\bootstrap\BootstrapAsset' => false,
-                ],
+                    ],
             'basePath' => '@app/../web/assets',
         ],
         'authManager' => [
@@ -61,11 +61,11 @@ $common = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            //'viewPath'         => '@common/mail',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            //'useFileTransport' => YII_ENV_PROD ? false : true,
+        //'viewPath'         => '@common/mail',
+        // send all mails to a file by default. You have to set
+        // 'useFileTransport' to false and configure a transport
+        // for the mailer to send real emails.
+        //'useFileTransport' => YII_ENV_PROD ? false : true,
         ],
         // Note: enable db sessions, if multiple containers are running
         #'session' => [
@@ -82,7 +82,7 @@ $common = [
             'baseUrl' => '/',
             'rules' => [
                 'docs/<file:[a-zA-Z0-9_\-\./]+>' => 'docs',
-                #'docs' => 'docs/default/index',
+            #'docs' => 'docs/default/index',
             ],
             'languages' => explode(',', getenv('APP_LANGUAGES')),
         ],
@@ -172,7 +172,7 @@ $common = [
         ],
         'utility' => [
             'class' => 'c006\utility\migration\Module',
-        ],        
+        ],
     ],
     'params' => [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
@@ -191,8 +191,21 @@ $common = [
         'countryUkId' => '229', //id of uk from country table
         'languagesEnId' => '1', //id of the english from languages table
         'smsProvider' => 'twilio', //sms provider
+        'anonymize' => TRUE, //remove all clients personal data from the system
+        'smsAutomaticResponse' => FALSE, //remove all clients personal data from the system
     ],
-
+    'as AccessBehavior' => [
+        'class' => 'app\components\AccessBehavior',
+        'allowedRoutes' => [
+            '/',
+            ['/user/registration/register'],
+            ['/user/registration/resend'],
+            ['/user/registration/confirm'],
+            ['/user/recovery/request'],
+            ['/user/recovery/reset']
+        ],
+    //'redirectUri' => '/'
+    ],
 ];
 
 $web = [
@@ -220,11 +233,10 @@ $web = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['info', 'trace', 'error', 'warning'],
-                    'categories' => ['sms', 'call', 'degugging' ],
+                    'categories' => ['sms', 'call', 'degugging'],
                     'logVars' => [],
                     'logFile' => '@runtime/logs/call/requests.log',
                 ],
-
             ],
         ],
         'request' => [
@@ -233,12 +245,8 @@ $web = [
         ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
-            //'admins' => ['admin'],
+        //'admins' => ['admin'],
         ],
-        
-       
-        
-        
     ],
 ];
 
@@ -250,7 +258,6 @@ $console = [
         'translate' => '\lajax\translatemanager\commands\TranslatemanagerController',
     ],
     'components' => [
-
     ],
 ];
 
@@ -288,27 +295,26 @@ if (YII_ENV_DEV || YII_ENV_TEST) {
         'allowedIPs' => $allowedIPs,
     ];
 
-    $giiant = require __DIR__.'/giiant.php';
+    $giiant = require __DIR__ . '/giiant.php';
     $config = \yii\helpers\ArrayHelper::merge($config, $giiant);
 
     $config['modules']['gii'] = [
-        'class'      => 'yii\gii\Module',
+        'class' => 'yii\gii\Module',
         'allowedIPs' => ['127.0.0.1'],
         'generators' => [
             // generator name
             'giiant-model' => [
                 //generator class
-                'class'     => 'schmunk42\giiant\generators\model\Generator',
+                'class' => 'schmunk42\giiant\generators\model\Generator',
                 //setting for out templates
                 'templates' => [
                     // template name => path to template
                     'oemodel' =>
-                        '@app/oetemplates/model/default',
+                    '@app/oetemplates/model/default',
                 ]
             ]
         ],
     ];
-
 }
 
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models\search;
+namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[Text]].
+ * This is the ActiveQuery class for [[Message]].
  *
- * @see Text
+ * @see Message
  */
-class TextQuery extends \yii\db\ActiveQuery
+class MessageQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class TextQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Text[]|array
+     * @return Message[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class TextQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Text|array|null
+     * @return Message|array|null
      */
     public function one($db = null)
     {

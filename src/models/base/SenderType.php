@@ -66,7 +66,7 @@ abstract class SenderType extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new SenderTypeQuery(get_called_class());
+        return new \app\models\SenderTypeQuery(get_called_class());
     }
 
 

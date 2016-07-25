@@ -100,7 +100,7 @@ abstract class Message extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new \app\models\search\MessageQuery(get_called_class());
+        return new \app\models\MessageQuery(get_called_class());
     }
 
 

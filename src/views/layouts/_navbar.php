@@ -56,16 +56,17 @@ $menuBeforeItems = [
         ]],    
     ['label' => 'Cases', 'items' => [
             ['label' => 'Cases List', 'url' => ['/cases']],
-            ['label' => 'Create New Case', 'url' => ['/cases/create']],
-        ]],    
-    ['label' => 'Auxiliary Tables', 'items' => [
-            ['label' => 'Texts', 'url' => ['/text']],
-            ['label' => 'Severities', 'url' => ['/severity']],
-            ['label' => 'Outcome categories', 'url' => ['/outcome-category']],
         ]],    
     ['label' => 'Reports', 'items' => [
             ['label' => 'Cases', 'url' => ['#']],
             ['label' => 'Cases by Helpers', 'url' => ['#']],
+        ]],    
+    ['label' => 'Utilities', 'items' => [
+            ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
+            ['label' => 'Case Categories', 'url' => ['/case-category']],
+            ['label' => 'Case Severities', 'url' => ['/severity']],
+            ['label' => 'Outcome categories', 'url' => ['/outcome-category']],
+            ['label' => 'Messages', 'url' => ['/message']],
         ]],    
     ['label' => 'Contact Us', 'url' => ['/site/contact']],
 //    ['label' => 'Testing', 'url' => ['/site/testing']],
@@ -87,7 +88,7 @@ echo Nav::widget(
 );
 
 ?>
-    <ul class="nav navbar-nav pull-right">
+<!--    <ul class="nav navbar-nav pull-right">
         <li class="dropdown" id="menuLogin">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
             <div class="dropdown-menu" style="padding:17px;">
@@ -98,7 +99,7 @@ echo Nav::widget(
                 </form>
             </div>
         </li>
-    </ul>
+    </ul>-->
 <?php
 echo Nav::widget(
     [
