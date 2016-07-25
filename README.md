@@ -1,4 +1,6 @@
-Project Based in Yii2 and Phundament4 with Gulp as assets generation tool
+![Yii2, Phundament, helptext, Less and Gulp ](hero.png)
+
+#Project Based in Yii2 and Phundament4 with Gulp as assets generation tool
 
 helptext
 This project is intended as a live, working pilot for a platform to empower existing non-profit helplines by providing access and management of mobile text and other emerging ways of communication. The platform will allow integration with their existing systems as well as upgrade, to enable them to keep-up and transfer their standards, knowledge and skills with ease.
