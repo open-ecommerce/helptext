@@ -53,7 +53,7 @@ class m160725_140527_create_all_tables extends Migration {
                     'id_severity' => 'INT(11) NULL',
                     'start_date' => 'DATETIME NULL',
                     'close_date' => 'DATETIME NULL',
-                    'state' => 'BIT(1) NULL DEFAULT \'0\'',
+                    'state' => 'BIT(1) NULL',
                     'comments' => 'TEXT NULL',
                         ], $tableOptions_mysql);
             }
