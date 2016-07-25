@@ -1,8 +1,17 @@
-Project Based in Yii2 and Phundament4
+Project Based in Yii2 and Phundament4 with Gulp as assets generation tool
 
 helptext
 This project is intended as a live, working pilot for a platform to empower existing non-profit helplines by providing access and management of mobile text and other emerging ways of communication. The platform will allow integration with their existing systems as well as upgrade, to enable them to keep-up and transfer their standards, knowledge and skills with ease.
 
+
+
+## Some features
+- Simplify configuration file by [Phundamental 4](https://github.com/phundament/app)
+- Dashboard theme based in [AdminLTE 2](http://almsaeedstudio.com/AdminLTE) for backend with extra plugins for chars.
+- User Managment with RDAC to use roles and permisions.
+- Migrations support with [yii2-migration-utility by Jon Chambers] (https://github.com/c006/yii2-migration-utility) 
+- Gulp configuration based in [Jacob Moen zurbified] (https://github.com/jacmoe/yii2-app-basic-zurbified) but with out foundation :)
+- Multi Phone Calls and SMS providers integration (ie. Twilio)
 
 
 # Installation
@@ -61,7 +70,7 @@ gulp --production
 ~~~
 
 
-dev enviourment notes:
+### dev enviourment notes:
 ```
 etc/apache2/sites-available configuration
 <VirtualHost *:80>
@@ -78,13 +87,34 @@ etc/apache2/sites-available configuration
 </VirtualHost>
 ```
 
-
 you will need swiftmailer in order to work the email
 ```
 sudo apt-get update
 sudo apt-get install libphp-swiftmailer
 ```
 
+###In Production with a shared hosting
+- Probably you want have the chance to create your own apache configuration file but you can add this to the .htaccess fiel in the web folder
+
+```
+
+AddType application/x-httpd-php55 .php
+
+allow from all
+
+IndexIgnore */*
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . index.php
+
+```
+
+- If the hosting has a proper security some php functions like exec will be ban.
+You don't need them to yii2 run or even create the assets folder, but you want be able to complie less on the go thats why we replace the less compilation and we run gulp before we go to staging or production.
 
 ###Troubleshooting on deploying
 
@@ -92,6 +122,9 @@ sudo apt-get install libphp-swiftmailer
 #Error "An internal server error occurred."
 - the app is running check db credentials in .env
 
+
+###Some other documentation
+- [Create new migrations](docs/migrations.md)
 
 
 

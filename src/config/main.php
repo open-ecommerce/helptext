@@ -170,6 +170,9 @@ $common = [
                 'fontAwesome' => true,
             ],
         ],
+        'utility' => [
+            'class' => 'c006\utility\migration\Module',
+        ],        
     ],
     'params' => [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
@@ -232,6 +235,10 @@ $web = [
             'identityClass' => 'dektrium\user\models\User',
             //'admins' => ['admin'],
         ],
+        
+       
+        
+        
     ],
 ];
 

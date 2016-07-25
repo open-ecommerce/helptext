@@ -60,7 +60,8 @@
     "twilio/sdk": "^4.10",
     "dmstr/yii2-adminlte-asset": "2.*",
     "borales/yii2-phone-input": "*",
-    "2amigos/yii2-chartjs-widget" : "~2.0"
+    "2amigos/yii2-chartjs-widget" : "~2.0",
+    "c006/yii2-migration-utility": "dev-master"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",

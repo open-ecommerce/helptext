@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74897c9bfbd815e1b4bbb6358a3ed34e",
-    "content-hash": "5c24e8a4959e16db7fbbf2ff92a77c9f",
+    "hash": "336cda1569ce840c9274f7a280a98213",
+    "content-hash": "a51b0f8d33e8ab365ef27434c7c6caa7",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -1086,6 +1086,45 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "c006/yii2-migration-utility",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c006/yii2-migration-utility.git",
+                "reference": "3fc4af92c20ca2bf97bf01a50819565b5a6fe621"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c006/yii2-migration-utility/zipball/3fc4af92c20ca2bf97bf01a50819565b5a6fe621",
+                "reference": "3fc4af92c20ca2bf97bf01a50819565b5a6fe621",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "c006\\utility\\migration\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Chambers",
+                    "email": "jchambers.dev@gmail.com"
+                }
+            ],
+            "description": "Automatically writes the create tables for migrations or create tables in general",
+            "keywords": [
+                "extension",
+                "migration",
+                "tables",
+                "yii2"
+            ],
+            "time": "2016-01-12 06:46:07"
         },
         {
             "name": "cebe/markdown",
@@ -6603,7 +6642,8 @@
         "kartik-v/yii2-detail-view": 20,
         "kartik-v/dependent-dropdown": 20,
         "open-ecommerce/yii2-backuprestore": 20,
-        "filipajdacic/yii2-twilio": 20
+        "filipajdacic/yii2-twilio": 20,
+        "c006/yii2-migration-utility": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
