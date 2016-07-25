@@ -2,6 +2,23 @@
 
 use yii\db\Migration;
 
+// case_category,
+// cases,
+// contact,
+// contact_phone,
+// country,
+// language,
+// language_source,
+// languages,
+// message,
+// message_type,
+// outcome_category,
+// phone,profile,
+// qry_next_available_user,
+// sender_type,settings,
+// severity,text_template
+
+
 class m160725_140527_create_all_tables extends Migration {
 
     public function up() {
@@ -11,60 +28,6 @@ class m160725_140527_create_all_tables extends Migration {
         $tableOptions_mssql = "";
         $tableOptions_pgsql = "";
         $tableOptions_sqlite = "";
-        /* MYSQL */
-        if (!in_array('auth_assignment', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%auth_assignment}}', [
-                    'item_name' => 'VARCHAR(64) NOT NULL',
-                    0 => 'PRIMARY KEY (`item_name`)',
-                    'user_id' => 'VARCHAR(64) NOT NULL',
-                    1 => 'KEY (`user_id`)',
-                    'created_at' => 'INT(11) NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('auth_item', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%auth_item}}', [
-                    'name' => 'VARCHAR(64) NOT NULL',
-                    0 => 'PRIMARY KEY (`name`)',
-                    'type' => 'INT(11) NOT NULL',
-                    'description' => 'TEXT NULL',
-                    'rule_name' => 'VARCHAR(64) NULL',
-                    'data' => 'TEXT NULL',
-                    'created_at' => 'INT(11) NULL',
-                    'updated_at' => 'INT(11) NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('auth_item_child', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%auth_item_child}}', [
-                    'parent' => 'VARCHAR(64) NOT NULL',
-                    0 => 'PRIMARY KEY (`parent`)',
-                    'child' => 'VARCHAR(64) NOT NULL',
-                    1 => 'KEY (`child`)',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('auth_rule', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%auth_rule}}', [
-                    'name' => 'VARCHAR(64) NOT NULL',
-                    0 => 'PRIMARY KEY (`name`)',
-                    'data' => 'TEXT NULL',
-                    'created_at' => 'INT(11) NULL',
-                    'updated_at' => 'INT(11) NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
         /* MYSQL */
         if (!in_array('case_category', $tables)) {
             if ($dbType == "mysql") {
@@ -144,63 +107,6 @@ class m160725_140527_create_all_tables extends Migration {
         }
 
         /* MYSQL */
-        if (!in_array('dmstr_page', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%dmstr_page}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'root' => 'INT(11) NOT NULL',
-                    'lft' => 'INT(11) NOT NULL',
-                    'rgt' => 'INT(11) NOT NULL',
-                    'lvl' => 'SMALLINT(6) NOT NULL',
-                    'page_title' => 'VARCHAR(255) NULL',
-                    'name' => 'VARCHAR(60) NOT NULL',
-                    'domain_id' => 'VARCHAR(255) NOT NULL',
-                    'slug' => 'VARCHAR(255) NULL',
-                    'route' => 'VARCHAR(255) NULL',
-                    'view' => 'VARCHAR(255) NULL',
-                    'default_meta_keywords' => 'VARCHAR(255) NULL',
-                    'default_meta_description' => 'TEXT NULL',
-                    'request_params' => 'TEXT NULL',
-                    'owner' => 'INT(11) NULL',
-                    'access_owner' => 'INT(11) NULL',
-                    'access_domain' => 'VARCHAR(8) NULL',
-                    'access_read' => 'VARCHAR(255) NULL',
-                    'access_update' => 'VARCHAR(255) NULL',
-                    'access_delete' => 'VARCHAR(255) NULL',
-                    'icon' => 'VARCHAR(255) NULL',
-                    'icon_type' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'active' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'selected' => 'SMALLINT(6) NULL DEFAULT \'0\'',
-                    'disabled' => 'SMALLINT(6) NULL DEFAULT \'0\'',
-                    'readonly' => 'SMALLINT(6) NULL DEFAULT \'0\'',
-                    'visible' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'collapsed' => 'SMALLINT(6) NULL DEFAULT \'0\'',
-                    'movable_u' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'movable_d' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'movable_l' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'movable_r' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'removable' => 'SMALLINT(6) NULL DEFAULT \'1\'',
-                    'removable_all' => 'SMALLINT(6) NULL DEFAULT \'0\'',
-                    'created_at' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ',
-                    'updated_at' => 'TIMESTAMP NOT NULL DEFAULT \'0000-00-00 00:00:00\'',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('html', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%html}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'key' => 'VARCHAR(255) NOT NULL',
-                    'value' => 'TEXT NOT NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
         if (!in_array('language', $tables)) {
             if ($dbType == "mysql") {
                 $this->createTable('{{%language}}', [
@@ -228,19 +134,6 @@ class m160725_140527_create_all_tables extends Migration {
         }
 
         /* MYSQL */
-        if (!in_array('language_translate', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%language_translate}}', [
-                    'id' => 'INT(11) NOT NULL',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'language' => 'VARCHAR(5) NOT NULL',
-                    1 => 'KEY (`language`)',
-                    'translation' => 'TEXT NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
         if (!in_array('languages', $tables)) {
             if ($dbType == "mysql") {
                 $this->createTable('{{%languages}}', [
@@ -248,18 +141,6 @@ class m160725_140527_create_all_tables extends Migration {
                     0 => 'PRIMARY KEY (`id`)',
                     'language' => 'MEDIUMTEXT NOT NULL',
                     'short_name' => 'MEDIUMTEXT NOT NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('less', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%less}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'key' => 'VARCHAR(255) NOT NULL',
-                    'value' => 'TEXT NULL',
                         ], $tableOptions_mysql);
             }
         }
@@ -390,24 +271,6 @@ class m160725_140527_create_all_tables extends Migration {
         }
 
         /* MYSQL */
-        if (!in_array('social_account', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%social_account}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'user_id' => 'INT(11) NULL',
-                    'provider' => 'VARCHAR(255) NOT NULL',
-                    'client_id' => 'VARCHAR(255) NOT NULL',
-                    'data' => 'TEXT NULL',
-                    'code' => 'VARCHAR(32) NULL',
-                    'created_at' => 'INT(11) NULL',
-                    'email' => 'VARCHAR(255) NULL',
-                    'username' => 'VARCHAR(255) NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
         if (!in_array('text_template', $tables)) {
             if ($dbType == "mysql") {
                 $this->createTable('{{%text_template}}', [
@@ -419,127 +282,40 @@ class m160725_140527_create_all_tables extends Migration {
             }
         }
 
-        /* MYSQL */
-        if (!in_array('token', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%token}}', [
-                    'user_id' => 'INT(11) NOT NULL',
-                    0 => 'PRIMARY KEY (`user_id`)',
-                    'code' => 'VARCHAR(32) NOT NULL',
-                    1 => 'KEY (`code`)',
-                    'created_at' => 'INT(11) NOT NULL',
-                    'type' => 'SMALLINT(6) NOT NULL',
-                    3 => 'KEY (`type`)',
-                        ], $tableOptions_mysql);
-            }
-        }
 
-        /* MYSQL */
-        if (!in_array('twig', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%twig}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'key' => 'VARCHAR(255) NOT NULL',
-                    'value' => 'TEXT NOT NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-        /* MYSQL */
-        if (!in_array('user', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%user}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'username' => 'VARCHAR(255) NOT NULL',
-                    'email' => 'VARCHAR(255) NOT NULL',
-                    'password_hash' => 'VARCHAR(60) NOT NULL',
-                    'auth_key' => 'VARCHAR(32) NOT NULL',
-                    'confirmed_at' => 'INT(11) NULL',
-                    'unconfirmed_email' => 'VARCHAR(255) NULL',
-                    'blocked_at' => 'INT(11) NULL',
-                    'registration_ip' => 'VARCHAR(45) NULL',
-                    'created_at' => 'INT(11) NOT NULL',
-                    'updated_at' => 'INT(11) NOT NULL',
-                    'flags' => 'INT(11) NOT NULL DEFAULT \'0\'',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-
-        $this->createIndex('idx_rule_name_7052_00', 'auth_item', 'rule_name', 0);
-        $this->createIndex('idx_type_7052_01', 'auth_item', 'type', 0);
-        $this->createIndex('idx_child_7079_02', 'auth_item_child', 'child', 0);
-        $this->createIndex('idx_id_contact_7169_03', 'cases', 'id_contact', 0);
-        $this->createIndex('idx_id_category_717_04', 'cases', 'id_category', 0);
-        $this->createIndex('idx_id_outcome_717_05', 'cases', 'id_outcome', 0);
-        $this->createIndex('idx_id_severity_717_06', 'cases', 'id_severity', 0);
-        $this->createIndex('idx_id_user_717_07', 'cases', 'id_user', 0);
-        $this->createIndex('idx_id_phone_717_08', 'cases', 'id_phone', 0);
-        $this->createIndex('idx_id_country_7212_09', 'contact', 'id_country', 0);
-        $this->createIndex('idx_id_language_7213_10', 'contact', 'id_language', 0);
-        $this->createIndex('idx_id_phone_7243_11', 'contact_phone', 'id_phone', 0);
-        $this->createIndex('idx_id_contact_7244_12', 'contact_phone', 'id_contact', 0);
-        $this->createIndex('idx_UNIQUE_domain_id_7365_13', 'dmstr_page', 'domain_id', 1);
-        $this->createIndex('idx_root_7365_14', 'dmstr_page', 'root', 0);
-        $this->createIndex('idx_lft_7365_15', 'dmstr_page', 'lft', 0);
-        $this->createIndex('idx_rgt_7365_16', 'dmstr_page', 'rgt', 0);
-        $this->createIndex('idx_lvl_7365_17', 'dmstr_page', 'lvl', 0);
-        $this->createIndex('idx_active_7365_18', 'dmstr_page', 'active', 0);
-        $this->createIndex('idx_UNIQUE_key_7395_19', 'html', 'key', 1);
-        $this->createIndex('idx_language_7502_20', 'language_translate', 'language', 0);
-        $this->createIndex('idx_UNIQUE_key_7564_21', 'less', 'key', 1);
-        $this->createIndex('idx_id_phone_7599_22', 'message', 'id_phone', 0);
-        $this->createIndex('idx_id_case_7599_23', 'message', 'id_case', 0);
-        $this->createIndex('idx_id_sender_type_7599_24', 'message', 'id_sender_type', 0);
-        $this->createIndex('idx_id_message_type_7599_25', 'message', 'id_message_type', 0);
-        $this->createIndex('idx_UNIQUE_section_8299_26', 'settings', 'section', 1);
-        $this->createIndex('idx_UNIQUE_provider_836_27', 'social_account', 'provider', 1);
-        $this->createIndex('idx_UNIQUE_code_836_28', 'social_account', 'code', 1);
-        $this->createIndex('idx_user_id_8361_29', 'social_account', 'user_id', 0);
-        $this->createIndex('idx_UNIQUE_user_id_8415_30', 'token', 'user_id', 1);
-        $this->createIndex('idx_UNIQUE_key_8441_31', 'twig', 'key', 1);
-        $this->createIndex('idx_UNIQUE_email_8479_32', 'user', 'email', 1);
-        $this->createIndex('idx_UNIQUE_username_8479_33', 'user', 'username', 1);
+        $this->createIndex('idx_id_contact_0109_00', 'cases', 'id_contact', 0);
+        $this->createIndex('idx_id_category_0109_01', 'cases', 'id_category', 0);
+        $this->createIndex('idx_id_outcome_011_02', 'cases', 'id_outcome', 0);
+        $this->createIndex('idx_id_severity_011_03', 'cases', 'id_severity', 0);
+        $this->createIndex('idx_id_user_011_04', 'cases', 'id_user', 0);
+        $this->createIndex('idx_id_phone_011_05', 'cases', 'id_phone', 0);
+        $this->createIndex('idx_id_country_0152_06', 'contact', 'id_country', 0);
+        $this->createIndex('idx_id_language_0152_07', 'contact', 'id_language', 0);
+        $this->createIndex('idx_id_phone_0182_08', 'contact_phone', 'id_phone', 0);
+        $this->createIndex('idx_id_contact_0182_09', 'contact_phone', 'id_contact', 0);
+        $this->createIndex('idx_id_phone_0368_10', 'message', 'id_phone', 0);
+        $this->createIndex('idx_id_case_0369_11', 'message', 'id_case', 0);
+        $this->createIndex('idx_id_sender_type_0369_12', 'message', 'id_sender_type', 0);
+        $this->createIndex('idx_id_message_type_0369_13', 'message', 'id_message_type', 0);
+        $this->createIndex('idx_UNIQUE_section_0986_14', 'settings', 'section', 1);
 
         $this->execute('SET foreign_key_checks = 0');
-        $this->addForeignKey('fk_auth_item_7014_00', '{{%auth_assignment}}', 'item_name', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_auth_rule_7048_01', '{{%auth_item}}', 'rule_name', '{{%auth_rule}}', 'name', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_auth_item_7075_02', '{{%auth_item_child}}', 'parent', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_auth_item_7076_03', '{{%auth_item_child}}', 'child', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_case_category_7164_04', '{{%cases}}', 'id_category', '{{%case_category}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_contact_7165_05', '{{%cases}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_outcome_category_7165_06', '{{%cases}}', 'id_outcome', '{{%outcome_category}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_severity_7165_07', '{{%cases}}', 'id_severity', '{{%severity}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_7165_08', '{{%cases}}', 'id_user', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_country_7208_09', '{{%contact}}', 'id_country', '{{%country}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_languages_7209_010', '{{%contact}}', 'id_language', '{{%languages}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_contact_7239_011', '{{%contact_phone}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_phone_7239_012', '{{%contact_phone}}', 'id_phone', '{{%phone}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_language_7492_013', '{{%language_translate}}', 'language', '{{%language}}', 'language_id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_language_source_7492_014', '{{%language_translate}}', 'id', '{{%language_source}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_cases_7594_015', '{{%message}}', 'id_case', '{{%cases}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_message_type_7595_016', '{{%message}}', 'id_message_type', '{{%message_type}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_sender_type_7595_017', '{{%message}}', 'id_sender_type', '{{%sender_type}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_772_018', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_8356_019', '{{%social_account}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
-        $this->addForeignKey('fk_user_8411_020', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_case_category_0105_00', '{{%cases}}', 'id_category', '{{%case_category}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_contact_0105_01', '{{%cases}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_outcome_category_0105_02', '{{%cases}}', 'id_outcome', '{{%outcome_category}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_severity_0105_03', '{{%cases}}', 'id_severity', '{{%severity}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_user_0105_04', '{{%cases}}', 'id_user', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_country_0148_05', '{{%contact}}', 'id_country', '{{%country}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_languages_0148_06', '{{%contact}}', 'id_language', '{{%languages}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_contact_0178_07', '{{%contact_phone}}', 'id_contact', '{{%contact}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_phone_0178_08', '{{%contact_phone}}', 'id_phone', '{{%phone}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_cases_0364_09', '{{%message}}', 'id_case', '{{%cases}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_message_type_0364_010', '{{%message}}', 'id_message_type', '{{%message_type}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_sender_type_0364_011', '{{%message}}', 'id_sender_type', '{{%sender_type}}', 'id', 'CASCADE', 'NO ACTION');
+        $this->addForeignKey('fk_user_0489_012', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'NO ACTION');
         $this->execute('SET foreign_key_checks = 1;');
 
         $this->execute('SET foreign_key_checks = 0');
-        $this->insert('{{%auth_assignment}}', ['item_name' => 'backend_default', 'user_id' => '2', 'created_at' => '1469442021']);
-        $this->insert('{{%auth_assignment}}', ['item_name' => 'Helper', 'user_id' => '2', 'created_at' => '1468426789']);
-        $this->insert('{{%auth_item}}', ['name' => 'Admin', 'type' => '1', 'description' => 'prototype editor', 'rule_name' => '', 'data' => '', 'created_at' => '1466528906', 'updated_at' => '1466695731']);
-        $this->insert('{{%auth_item}}', ['name' => 'app_site', 'type' => '2', 'description' => 'Main Site Controller', 'rule_name' => '', 'data' => '', 'created_at' => '1466528906', 'updated_at' => '1466528906']);
-        $this->insert('{{%auth_item}}', ['name' => 'backend_default', 'type' => '2', 'description' => 'Backend Dashboard', 'rule_name' => '', 'data' => '', 'created_at' => '1466528906', 'updated_at' => '1466528906']);
-        $this->insert('{{%auth_item}}', ['name' => 'Helper', 'type' => '1', 'description' => 'Volunteers taking cases', 'rule_name' => '', 'data' => '', 'created_at' => '1466695700', 'updated_at' => '1466695700']);
-        $this->insert('{{%auth_item}}', ['name' => 'pages', 'type' => '2', 'description' => 'Pages Module', 'rule_name' => '', 'data' => '', 'created_at' => '1466528905', 'updated_at' => '1466528905']);
-        $this->insert('{{%auth_item}}', ['name' => 'pages_default_page', 'type' => '2', 'description' => 'CMS-Page Action', 'rule_name' => '', 'data' => '', 'created_at' => '1466528907', 'updated_at' => '1466528907']);
-        $this->insert('{{%auth_item}}', ['name' => 'Public', 'type' => '1', 'description' => 'Unauthenticated User', 'rule_name' => '', 'data' => '', 'created_at' => '1466528906', 'updated_at' => '1466528906']);
-        $this->insert('{{%auth_item_child}}', ['parent' => 'Admin', 'child' => 'app_site']);
-        $this->insert('{{%auth_item_child}}', ['parent' => 'Admin', 'child' => 'backend_default']);
-        $this->insert('{{%auth_item_child}}', ['parent' => 'Admin', 'child' => 'pages']);
         $this->insert('{{%case_category}}', ['id' => '1', 'case_category' => 'Not Set']);
         $this->insert('{{%case_category}}', ['id' => '2', 'case_category' => 'Deportation']);
         $this->insert('{{%case_category}}', ['id' => '3', 'case_category' => 'Detention']);
@@ -802,18 +578,18 @@ class m160725_140527_create_all_tables extends Migration {
         $this->insert('{{%country}}', ['id' => '244', 'country_code' => 'ZR', 'country_name' => 'Zaire']);
         $this->insert('{{%country}}', ['id' => '245', 'country_code' => 'ZM', 'country_name' => 'Zambia']);
         $this->insert('{{%language}}', ['language_id' => 'af-ZA', 'language' => 'af', 'country' => 'za', 'name' => 'Afrikaans', 'name_ascii' => 'Afrikaans', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ar-AR', 'language' => 'ar', 'country' => 'ar', 'name' => '?????????', 'name_ascii' => 'Arabic', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'az-AZ', 'language' => 'az', 'country' => 'az', 'name' => 'Az?rbaycan dili', 'name_ascii' => 'Azerbaijani', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'be-BY', 'language' => 'be', 'country' => 'by', 'name' => '??????????', 'name_ascii' => 'Belarusian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'bg-BG', 'language' => 'bg', 'country' => 'bg', 'name' => '?????????', 'name_ascii' => 'Bulgarian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'bn-IN', 'language' => 'bn', 'country' => 'in', 'name' => '?????', 'name_ascii' => 'Bengali', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ar-AR', 'language' => 'ar', 'country' => 'ar', 'name' => '‏العربية‏', 'name_ascii' => 'Arabic', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'az-AZ', 'language' => 'az', 'country' => 'az', 'name' => 'Azərbaycan dili', 'name_ascii' => 'Azerbaijani', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'be-BY', 'language' => 'be', 'country' => 'by', 'name' => 'Беларуская', 'name_ascii' => 'Belarusian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'bg-BG', 'language' => 'bg', 'country' => 'bg', 'name' => 'Български', 'name_ascii' => 'Bulgarian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'bn-IN', 'language' => 'bn', 'country' => 'in', 'name' => 'বাংলা', 'name_ascii' => 'Bengali', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'bs-BA', 'language' => 'bs', 'country' => 'ba', 'name' => 'Bosanski', 'name_ascii' => 'Bosnian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'ca-ES', 'language' => 'ca', 'country' => 'es', 'name' => 'Català', 'name_ascii' => 'Catalan', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'cs-CZ', 'language' => 'cs', 'country' => 'cz', 'name' => 'Ceština', 'name_ascii' => 'Czech', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'cs-CZ', 'language' => 'cs', 'country' => 'cz', 'name' => 'Čeština', 'name_ascii' => 'Czech', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'cy-GB', 'language' => 'cy', 'country' => 'gb', 'name' => 'Cymraeg', 'name_ascii' => 'Welsh', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'da-DK', 'language' => 'da', 'country' => 'dk', 'name' => 'Dansk', 'name_ascii' => 'Danish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'de-DE', 'language' => 'de', 'country' => 'de', 'name' => 'Deutsch', 'name_ascii' => 'German', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'el-GR', 'language' => 'el', 'country' => 'gr', 'name' => '????????', 'name_ascii' => 'Greek', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'el-GR', 'language' => 'el', 'country' => 'gr', 'name' => 'Ελληνικά', 'name_ascii' => 'Greek', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'en-GB', 'language' => 'en', 'country' => 'gb', 'name' => 'English (UK)', 'name_ascii' => 'English (UK)', 'status' => '1']);
         $this->insert('{{%language}}', ['language_id' => 'en-PI', 'language' => 'en', 'country' => 'pi', 'name' => 'English (Pirate)', 'name_ascii' => 'English (Pirate)', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'en-UD', 'language' => 'en', 'country' => 'ud', 'name' => 'English (Upside Down)', 'name_ascii' => 'English (Upside Down)', 'status' => '0']);
@@ -823,7 +599,7 @@ class m160725_140527_create_all_tables extends Migration {
         $this->insert('{{%language}}', ['language_id' => 'es-LA', 'language' => 'es', 'country' => 'la', 'name' => 'Español', 'name_ascii' => 'Spanish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'et-EE', 'language' => 'et', 'country' => 'ee', 'name' => 'Eesti', 'name_ascii' => 'Estonian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'eu-ES', 'language' => 'eu', 'country' => 'es', 'name' => 'Euskara', 'name_ascii' => 'Basque', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'fa-IR', 'language' => 'fa', 'country' => 'ir', 'name' => '???????', 'name_ascii' => 'Persian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'fa-IR', 'language' => 'fa', 'country' => 'ir', 'name' => '‏فارسی‏', 'name_ascii' => 'Persian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'fb-LT', 'language' => 'fb', 'country' => 'lt', 'name' => 'Leet Speak', 'name_ascii' => 'Leet Speak', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'fi-FI', 'language' => 'fi', 'country' => 'fi', 'name' => 'Suomi', 'name_ascii' => 'Finnish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'fo-FO', 'language' => 'fo', 'country' => 'fo', 'name' => 'Føroyskt', 'name_ascii' => 'Faroese', 'status' => '0']);
@@ -832,53 +608,53 @@ class m160725_140527_create_all_tables extends Migration {
         $this->insert('{{%language}}', ['language_id' => 'fy-NL', 'language' => 'fy', 'country' => 'nl', 'name' => 'Frysk', 'name_ascii' => 'Frisian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'ga-IE', 'language' => 'ga', 'country' => 'ie', 'name' => 'Gaeilge', 'name_ascii' => 'Irish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'gl-ES', 'language' => 'gl', 'country' => 'es', 'name' => 'Galego', 'name_ascii' => 'Galician', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'he-IL', 'language' => 'he', 'country' => 'il', 'name' => '???????', 'name_ascii' => 'Hebrew', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'hi-IN', 'language' => 'hi', 'country' => 'in', 'name' => '??????', 'name_ascii' => 'Hindi', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'he-IL', 'language' => 'he', 'country' => 'il', 'name' => '‏עברית‏', 'name_ascii' => 'Hebrew', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'hi-IN', 'language' => 'hi', 'country' => 'in', 'name' => 'हिन्दी', 'name_ascii' => 'Hindi', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'hr-HR', 'language' => 'hr', 'country' => 'hr', 'name' => 'Hrvatski', 'name_ascii' => 'Croatian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'hu-HU', 'language' => 'hu', 'country' => 'hu', 'name' => 'Magyar', 'name_ascii' => 'Hungarian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'hy-AM', 'language' => 'hy', 'country' => 'am', 'name' => '???????', 'name_ascii' => 'Armenian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'hy-AM', 'language' => 'hy', 'country' => 'am', 'name' => 'Հայերեն', 'name_ascii' => 'Armenian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'id-ID', 'language' => 'id', 'country' => 'id', 'name' => 'Bahasa Indonesia', 'name_ascii' => 'Indonesian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'is-IS', 'language' => 'is', 'country' => 'is', 'name' => 'Íslenska', 'name_ascii' => 'Icelandic', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'it-IT', 'language' => 'it', 'country' => 'it', 'name' => 'Italiano', 'name_ascii' => 'Italian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ja-JP', 'language' => 'ja', 'country' => 'jp', 'name' => '???', 'name_ascii' => 'Japanese', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ka-GE', 'language' => 'ka', 'country' => 'ge', 'name' => '???????', 'name_ascii' => 'Georgian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'km-KH', 'language' => 'km', 'country' => 'kh', 'name' => '?????????', 'name_ascii' => 'Khmer', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ko-KR', 'language' => 'ko', 'country' => 'kr', 'name' => '???', 'name_ascii' => 'Korean', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ja-JP', 'language' => 'ja', 'country' => 'jp', 'name' => '日本語', 'name_ascii' => 'Japanese', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ka-GE', 'language' => 'ka', 'country' => 'ge', 'name' => 'ქართული', 'name_ascii' => 'Georgian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'km-KH', 'language' => 'km', 'country' => 'kh', 'name' => 'ភាសាខ្មែរ', 'name_ascii' => 'Khmer', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ko-KR', 'language' => 'ko', 'country' => 'kr', 'name' => '한국어', 'name_ascii' => 'Korean', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'ku-TR', 'language' => 'ku', 'country' => 'tr', 'name' => 'Kurdî', 'name_ascii' => 'Kurdish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'la-VA', 'language' => 'la', 'country' => 'va', 'name' => 'lingua latina', 'name_ascii' => 'Latin', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'lt-LT', 'language' => 'lt', 'country' => 'lt', 'name' => 'Lietuviu', 'name_ascii' => 'Lithuanian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'lt-LT', 'language' => 'lt', 'country' => 'lt', 'name' => 'Lietuvių', 'name_ascii' => 'Lithuanian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'lv-LV', 'language' => 'lv', 'country' => 'lv', 'name' => 'Latviešu', 'name_ascii' => 'Latvian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'mk-MK', 'language' => 'mk', 'country' => 'mk', 'name' => '??????????', 'name_ascii' => 'Macedonian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ml-IN', 'language' => 'ml', 'country' => 'in', 'name' => '??????', 'name_ascii' => 'Malayalam', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'mk-MK', 'language' => 'mk', 'country' => 'mk', 'name' => 'Македонски', 'name_ascii' => 'Macedonian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ml-IN', 'language' => 'ml', 'country' => 'in', 'name' => 'മലയാളം', 'name_ascii' => 'Malayalam', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'ms-MY', 'language' => 'ms', 'country' => 'my', 'name' => 'Bahasa Melayu', 'name_ascii' => 'Malay', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'nb-NO', 'language' => 'nb', 'country' => 'no', 'name' => 'Norsk (bokmål)', 'name_ascii' => 'Norwegian (bokmal)', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ne-NP', 'language' => 'ne', 'country' => 'np', 'name' => '??????', 'name_ascii' => 'Nepali', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ne-NP', 'language' => 'ne', 'country' => 'np', 'name' => 'नेपाली', 'name_ascii' => 'Nepali', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'nl-NL', 'language' => 'nl', 'country' => 'nl', 'name' => 'Nederlands', 'name_ascii' => 'Dutch', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'nn-NO', 'language' => 'nn', 'country' => 'no', 'name' => 'Norsk (nynorsk)', 'name_ascii' => 'Norwegian (nynorsk)', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'pa-IN', 'language' => 'pa', 'country' => 'in', 'name' => '??????', 'name_ascii' => 'Punjabi', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'pa-IN', 'language' => 'pa', 'country' => 'in', 'name' => 'ਪੰਜਾਬੀ', 'name_ascii' => 'Punjabi', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'pl-PL', 'language' => 'pl', 'country' => 'pl', 'name' => 'Polski', 'name_ascii' => 'Polish', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ps-AF', 'language' => 'ps', 'country' => 'af', 'name' => '??????', 'name_ascii' => 'Pashto', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ps-AF', 'language' => 'ps', 'country' => 'af', 'name' => '‏پښتو‏', 'name_ascii' => 'Pashto', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'pt-BR', 'language' => 'pt', 'country' => 'br', 'name' => 'Português (Brasil)', 'name_ascii' => 'Portuguese (Brazil)', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'pt-PT', 'language' => 'pt', 'country' => 'pt', 'name' => 'Português (Portugal)', 'name_ascii' => 'Portuguese (Portugal)', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ro-RO', 'language' => 'ro', 'country' => 'ro', 'name' => 'Româna', 'name_ascii' => 'Romanian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ru-RU', 'language' => 'ru', 'country' => 'ru', 'name' => '???????', 'name_ascii' => 'Russian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'sk-SK', 'language' => 'sk', 'country' => 'sk', 'name' => 'Slovencina', 'name_ascii' => 'Slovak', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'sl-SI', 'language' => 'sl', 'country' => 'si', 'name' => 'Slovenšcina', 'name_ascii' => 'Slovenian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ro-RO', 'language' => 'ro', 'country' => 'ro', 'name' => 'Română', 'name_ascii' => 'Romanian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ru-RU', 'language' => 'ru', 'country' => 'ru', 'name' => 'Русский', 'name_ascii' => 'Russian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'sk-SK', 'language' => 'sk', 'country' => 'sk', 'name' => 'Slovenčina', 'name_ascii' => 'Slovak', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'sl-SI', 'language' => 'sl', 'country' => 'si', 'name' => 'Slovenščina', 'name_ascii' => 'Slovenian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'sq-AL', 'language' => 'sq', 'country' => 'al', 'name' => 'Shqip', 'name_ascii' => 'Albanian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'sr-RS', 'language' => 'sr', 'country' => 'rs', 'name' => '??????', 'name_ascii' => 'Serbian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'sr-RS', 'language' => 'sr', 'country' => 'rs', 'name' => 'Српски', 'name_ascii' => 'Serbian', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'sv-SE', 'language' => 'sv', 'country' => 'se', 'name' => 'Svenska', 'name_ascii' => 'Swedish', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'sw-KE', 'language' => 'sw', 'country' => 'ke', 'name' => 'Kiswahili', 'name_ascii' => 'Swahili', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'ta-IN', 'language' => 'ta', 'country' => 'in', 'name' => '?????', 'name_ascii' => 'Tamil', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'te-IN', 'language' => 'te', 'country' => 'in', 'name' => '??????', 'name_ascii' => 'Telugu', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'th-TH', 'language' => 'th', 'country' => 'th', 'name' => '???????', 'name_ascii' => 'Thai', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'ta-IN', 'language' => 'ta', 'country' => 'in', 'name' => 'தமிழ்', 'name_ascii' => 'Tamil', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'te-IN', 'language' => 'te', 'country' => 'in', 'name' => 'తెలుగు', 'name_ascii' => 'Telugu', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'th-TH', 'language' => 'th', 'country' => 'th', 'name' => 'ภาษาไทย', 'name_ascii' => 'Thai', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'tl-PH', 'language' => 'tl', 'country' => 'ph', 'name' => 'Filipino', 'name_ascii' => 'Filipino', 'status' => '0']);
         $this->insert('{{%language}}', ['language_id' => 'tr-TR', 'language' => 'tr', 'country' => 'tr', 'name' => 'Türkçe', 'name_ascii' => 'Turkish', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'uk-UA', 'language' => 'uk', 'country' => 'ua', 'name' => '??????????', 'name_ascii' => 'Ukrainian', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'vi-VN', 'language' => 'vi', 'country' => 'vn', 'name' => 'Ti?ng Vi?t', 'name_ascii' => 'Vietnamese', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'xx-XX', 'language' => 'xx', 'country' => 'xx', 'name' => 'Fejleszto', 'name_ascii' => 'Developer', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'zh-CN', 'language' => 'zh', 'country' => 'cn', 'name' => '??(??)', 'name_ascii' => 'Simplified Chinese (China)', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'zh-HK', 'language' => 'zh', 'country' => 'hk', 'name' => '??(??)', 'name_ascii' => 'Traditional Chinese (Hong Kong)', 'status' => '0']);
-        $this->insert('{{%language}}', ['language_id' => 'zh-TW', 'language' => 'zh', 'country' => 'tw', 'name' => '??(??)', 'name_ascii' => 'Traditional Chinese (Taiwan)', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'uk-UA', 'language' => 'uk', 'country' => 'ua', 'name' => 'Українська', 'name_ascii' => 'Ukrainian', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'vi-VN', 'language' => 'vi', 'country' => 'vn', 'name' => 'Tiếng Việt', 'name_ascii' => 'Vietnamese', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'xx-XX', 'language' => 'xx', 'country' => 'xx', 'name' => 'Fejlesztő', 'name_ascii' => 'Developer', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'zh-CN', 'language' => 'zh', 'country' => 'cn', 'name' => '中文(简体)', 'name_ascii' => 'Simplified Chinese (China)', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'zh-HK', 'language' => 'zh', 'country' => 'hk', 'name' => '中文(香港)', 'name_ascii' => 'Traditional Chinese (Hong Kong)', 'status' => '0']);
+        $this->insert('{{%language}}', ['language_id' => 'zh-TW', 'language' => 'zh', 'country' => 'tw', 'name' => '中文(台灣)', 'name_ascii' => 'Traditional Chinese (Taiwan)', 'status' => '0']);
         $this->insert('{{%languages}}', ['id' => '1', 'language' => 'English', 'short_name' => 'en']);
         $this->insert('{{%languages}}', ['id' => '2', 'language' => 'German', 'short_name' => 'de']);
         $this->insert('{{%languages}}', ['id' => '3', 'language' => 'French', 'short_name' => 'fr']);
@@ -1049,33 +825,11 @@ class m160725_140527_create_all_tables extends Migration {
         $this->insert('{{%severity}}', ['id' => '3', 'severity' => 'Severity 2', 'sla' => 'about severity 2']);
         $this->insert('{{%text_template}}', ['id' => '1', 'name' => '001 generic helper answering', 'message' => 'This is an authomatic response from NNLS. We will contact you as soon we can.']);
         $this->insert('{{%text_template}}', ['id' => '2', 'name' => '002 generic helper not-answering', 'message' => 'This is an authomatic response from NNLS. We will contact you as soon a helper is available.']);
-        $this->insert('{{%token}}', ['user_id' => '3', 'code' => 'rW55xKLmOt3tD4z3KAqN6F-iI_Ez-Bd4', 'created_at' => '1466680022', 'type' => '0']);
-        $this->insert('{{%token}}', ['user_id' => '8', 'code' => 'bvTbd9Fy1m7Lkr7VLdq6As2HK5uNPdm6', 'created_at' => '1467980967', 'type' => '0']);
-        $this->insert('{{%user}}', ['id' => '1', 'username' => 'admin', 'email' => 'info@open-ecommerce.org', 'password_hash' => '$2y$10$pF12T5IRobdd/OevEABPxOnWhCq0/sOZaHQosPlE9IKIaAqT8wbfG', 'auth_key' => 'L4DEoxYf4R9C3ZvHP8uBzwcSbq5vo5mP', 'confirmed_at' => '1466528922', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '', 'created_at' => '1425651628', 'updated_at' => '1466588159', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '2', 'username' => 'helper', 'email' => 'eduardo@open-ecommerce.org', 'password_hash' => '$2y$10$qLQCwG1K1zMvEUJjMhhKwOhigP6WH4qjhZsf/EMJc4OtR/7b.0DQ2', 'auth_key' => 'uqe7SH5MKQYWpHUe7Mn42svnEmWkuVCI', 'confirmed_at' => '1425651715', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '192.168.1.74', 'created_at' => '1425651715', 'updated_at' => '1468426763', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '3', 'username' => 'Tester1', 'email' => 'tester1@open-ecommerce.org', 'password_hash' => '$2y$10$Z7bPvb4BRJf6CQJ/tL8vOOJssrJLlcFyLF9ZkC.74LXq6Tj5NGZji', 'auth_key' => 'zlUuQlMHPdSM-wTTlPkzhe3jvnoFJkBX', 'confirmed_at' => '1466680707', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '127.0.0.1', 'created_at' => '1466680022', 'updated_at' => '1466680022', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '4', 'username' => 'mariano', 'email' => 'mariano@open-ecommerce.org', 'password_hash' => '$2y$10$lxmIAPinglkzrcFfyj/DQ.l5JbfXphXb44YelwqSkiTLeKOBdiKEW', 'auth_key' => 'YZ0hyKV6Je2_2DO3mp-JeUFMO5WI-hZN', 'confirmed_at' => '1466680738', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '192.168.1.74', 'created_at' => '1466680738', 'updated_at' => '1466680738', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '5', 'username' => 'aguien', 'email' => 'tester2@algo.com', 'password_hash' => '$2y$10$Sla0IaYXAHdyrY.mLE1xfufgO7frV6U.Rodw1o5/XgBab4pdP6Kva', 'auth_key' => 'DG1ZZKMgydtwVXMjYrMXKFkV7ne-SJw_', 'confirmed_at' => '1466695513', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '192.168.1.74', 'created_at' => '1466695513', 'updated_at' => '1466695513', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '6', 'username' => 'cacho1', 'email' => 'cacho@cacho.com', 'password_hash' => '$2y$10$hmbMzLJsgA1DhkbSQyOuj.HZcEqWGrKYq0y8ohpUNt7AegY8YIc32', 'auth_key' => 'RoqqXH4h5NUYSXlXJZRqBK6gB3MGgG7_', 'confirmed_at' => '1466758216', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '192.168.1.74', 'created_at' => '1466758216', 'updated_at' => '1466758216', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '7', 'username' => 'tester3@open-ecommerce.org', 'email' => 'tester3@open-ecommerce.org', 'password_hash' => '$2y$10$Zl7xEiSCYBeDa4kRn1ldWeKpyV0HMWl93IRQd9hWsaLdPRzUuMaDu', 'auth_key' => 'Q_Rn636doTi3ue2-dMFuJ2coLfqlR4CG', 'confirmed_at' => '1467980744', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '127.0.0.1', 'created_at' => '1467980720', 'updated_at' => '1467980720', 'flags' => '0']);
-        $this->insert('{{%user}}', ['id' => '8', 'username' => 'tester4', 'email' => 'tester4@open-ecommerce.org', 'password_hash' => '$2y$10$11fIiKaiQqp/thlCNmKXv.hd9NX4p6/eIisTotolxH1QmAT.BoJAq', 'auth_key' => 'XZNX5JKdcV6RZElK0DMsODjBQeexYnDf', 'confirmed_at' => '', 'unconfirmed_email' => '', 'blocked_at' => '', 'registration_ip' => '192.168.1.74', 'created_at' => '1467980966', 'updated_at' => '1467980966', 'flags' => '0']);
         $this->execute('SET foreign_key_checks = 1;');
     }
 
     public function down() {
 
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `auth_assignment`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `auth_item`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `auth_item_child`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `auth_rule`');
-        $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `case_category`');
         $this->execute('SET foreign_key_checks = 1;');
@@ -1092,25 +846,13 @@ class m160725_140527_create_all_tables extends Migration {
         $this->execute('DROP TABLE IF EXISTS `country`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `dmstr_page`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `html`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `language`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `language_source`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `language_translate`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `languages`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `less`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `message`');
@@ -1140,21 +882,9 @@ class m160725_140527_create_all_tables extends Migration {
         $this->execute('DROP TABLE IF EXISTS `severity`');
         $this->execute('SET foreign_key_checks = 1;');
         $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `social_account`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `text_template`');
         $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `token`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `twig`');
-        $this->execute('SET foreign_key_checks = 1;');
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `user`');
-        $this->execute('SET foreign_key_checks = 1;');
-
+        
         echo "m160725_140527_create_all_tables cannot be reverted.\n";
 
         return false;
