@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use \yii\filters\AccessControl;
 /**
 * This is the class for controller "ContactController".
 */

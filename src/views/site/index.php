@@ -5,7 +5,11 @@ use yii\helpers\Html;
 
 $this->title = 'TextHelp+ for NNLS Drop-in';
 ?>
+
 <div class="site-index ">
+    
     <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['enableFlash' => true]) ?>
+
+
 </div>    
     

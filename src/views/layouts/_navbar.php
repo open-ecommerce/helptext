@@ -1,8 +1,6 @@
 <?php
 // OE using the https://github.com/dmstr/yii2-pages-module to build the menu from the admin
 
-
-
 namespace app\views\layouts;
 
 use yii\bootstrap\Nav;
@@ -16,7 +14,7 @@ if (\Yii::$app->hasModule('user')) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
     } else {
         $menuItems[] = [
-            'label' => '<i class="glyphicon glyphicon-user"></i> '.\Yii::$app->user->identity->username,
+            'label' => '<i class="glyphicon glyphicon-user"></i> ' . \Yii::$app->user->identity->username,
             'options' => ['id' => 'link-user-menu'],
             'items' => [
 //                [
@@ -44,27 +42,25 @@ if (\Yii::$app->hasModule('user')) {
 }
 
 NavBar::begin(
-    [
-        'brandLabel' => getenv('APP_TITLE'),
-        'brandUrl' => \Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-inverse navbar-fixed-top',
-        ],
-    ]
+        [
+            'brandLabel' => getenv('APP_TITLE'),
+            'brandUrl' => \Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar navbar-inverse navbar-fixed-top',
+            ],
+        ]
 );
 
 $menuBeforeItems = [
-    ['label' => 'Clients List', 'url' => ['/contact']],
-    ['label' => 'Cases List', 'url' => ['/cases']],
+    ['label' => 'Clients', 'url' => ['/contact']],
+    ['label' => 'Cases', 'url' => ['/cases']],
     ['label' => 'Reports',
         'items' => [
             ['label' => 'Cases', 'url' => ['#']],
             ['label' => 'Cases by Helpers', 'url' => ['#']],
         ],
-        //'visible' => !\Yii::$app->user->isGuest && \Yii::$app->user->identity->user_type == 'Helper',
-        'visible' => \Yii::$app->user->can('backend_default_index', ['route' => true]),
-        //'visible' => FALSE,
-        ],    
+        'visible' => \Yii::$app->user->can('view_mnu_reports', ['route' => true]),
+    ],
     ['label' => 'Utilities', 'items' => [
             ['label' => 'Case Categories', 'url' => ['/case-category']],
             ['label' => 'Case Severities', 'url' => ['/severity']],
@@ -75,24 +71,25 @@ $menuBeforeItems = [
             ['label' => 'Configuration', 'url' => ['/configuration']],
             '<li class="divider"></li>',
             ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
-        ]],    
- ];
+        ],
+        'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),
+        ],
+];
 
 echo Nav::widget(
-    [
-        'options' => ['class' => 'navbar-nav'],
-        'encodeLabels' => false,
-        'items' => $menuBeforeItems,
-    ]
+        [
+            'options' => ['class' => 'navbar-nav'],
+            'encodeLabels' => false,
+            'items' => $menuBeforeItems,
+        ]
 );
 echo Nav::widget(
-    [
-        'options' => ['class' => 'navbar-nav'],
-        'encodeLabels' => false,
-        'items' => \dmstr\modules\pages\models\Tree::getMenuItems('root'),
-    ]
+        [
+            'options' => ['class' => 'navbar-nav'],
+            'encodeLabels' => false,
+            'items' => \dmstr\modules\pages\models\Tree::getMenuItems('root'),
+        ]
 );
-
 ?>
 <!--    <ul class="nav navbar-nav pull-right">
         <li class="dropdown" id="menuLogin">
@@ -108,11 +105,11 @@ echo Nav::widget(
     </ul>-->
 <?php
 echo Nav::widget(
-    [
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'encodeLabels' => false,
-        'items' => $menuItems,
-    ]
+        [
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'encodeLabels' => false,
+            'items' => $menuItems,
+        ]
 );
 
 
