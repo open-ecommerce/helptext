@@ -19,9 +19,13 @@ if (\Yii::$app->hasModule('user')) {
             'label' => '<i class="glyphicon glyphicon-user"></i> '.\Yii::$app->user->identity->username,
             'options' => ['id' => 'link-user-menu'],
             'items' => [
+//                [
+//                    'label' => '<i class="glyphicon glyphicon-user"></i>View Profile',
+//                    'url' => ['/user/profile/show', 'id' => \Yii::$app->user->id],
+//                ],
                 [
                     'label' => '<i class="glyphicon glyphicon-user"></i> Profile',
-                    'url' => ['/user/profile/show', 'id' => \Yii::$app->user->id],
+                    'url' => ['/user/settings/profile/', 'id' => \Yii::$app->user->id],
                 ],
                 '<li class="divider"></li>',
                 [
@@ -44,32 +48,34 @@ NavBar::begin(
         'brandLabel' => getenv('APP_TITLE'),
         'brandUrl' => \Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-default navbar-top',
+            'class' => 'navbar navbar-inverse navbar-fixed-top',
         ],
     ]
 );
 
 $menuBeforeItems = [
-    ['label' => 'Clients', 'items' => [
-            ['label' => 'Clients List', 'url' => ['/contact']],
-            ['label' => 'Create New Client', 'url' => ['/contact/create']],
-        ]],    
-    ['label' => 'Cases', 'items' => [
-            ['label' => 'Cases List', 'url' => ['/cases']],
-        ]],    
-    ['label' => 'Reports', 'items' => [
+    ['label' => 'Clients List', 'url' => ['/contact']],
+    ['label' => 'Cases List', 'url' => ['/cases']],
+    ['label' => 'Reports',
+        'items' => [
             ['label' => 'Cases', 'url' => ['#']],
             ['label' => 'Cases by Helpers', 'url' => ['#']],
-        ]],    
+        ],
+        //'visible' => !\Yii::$app->user->isGuest && \Yii::$app->user->identity->user_type == 'Helper',
+        'visible' => \Yii::$app->user->can('backend_default_index', ['route' => true]),
+        //'visible' => FALSE,
+        ],    
     ['label' => 'Utilities', 'items' => [
-            ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
             ['label' => 'Case Categories', 'url' => ['/case-category']],
             ['label' => 'Case Severities', 'url' => ['/severity']],
             ['label' => 'Outcome categories', 'url' => ['/outcome-category']],
+            '<li class="divider"></li>',
             ['label' => 'Messages', 'url' => ['/message']],
+            '<li class="divider"></li>',
+            ['label' => 'Configuration', 'url' => ['/configuration']],
+            '<li class="divider"></li>',
+            ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
         ]],    
-    ['label' => 'Contact Us', 'url' => ['/site/contact']],
-//    ['label' => 'Testing', 'url' => ['/site/testing']],
  ];
 
 echo Nav::widget(

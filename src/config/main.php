@@ -98,6 +98,7 @@ $common = [
                 'pathMap' => [
                     //'@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/phundament/app',
                     '@vendor/dektrium/yii2-user/views/admin' => '@app/views/user/admin',
+                    '@vendor/dektrium/yii2-user/views/settings' => '@app/views/user/settings',
                     '@yii/gii/views/layouts' => '@admin-views/layouts',
                 ],
             ],

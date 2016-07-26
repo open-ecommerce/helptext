@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Gogodigital Srls
- * @company Gogodigital Srls - Wide ICT Solutions
- * @website http://www.gogodigital.it
- * @github https://github.com/cinghie/yii2-user-extended
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-user-extended
  * @version 0.5.8
@@ -70,7 +66,7 @@ class Profile extends BaseProfile {
             'lastname' => Yii::t('userextended', 'Surname'),
             'phone' => Yii::t('userextended', 'Phone'),
             'birthday' => Yii::t('userextended', 'Birthday'),
-            'availability' => Yii::t('userextended', 'Availability'),
+            'availability' => Yii::t('userextended', 'Availability to take calls ?'),
             'skills' => Yii::t('userextended', 'Skills'),
             'id_country' => Yii::t('userextended', 'Nationality'),
         ];

@@ -27,6 +27,7 @@ use kartik\helpers\Html;
    
     <?= $form->field($profile, 'firstname') ?>
     <?= $form->field($profile, 'lastname') ?>
+    <?= $form->field($profile, 'availability')->dropDownList([1 => 'Yes', 0 => 'No'], ['prompt' => '- Choose if you can take calls']) ?>
     <?= $form->field($profile, 'phone') ?>
     <?= $form->field($profile, 'public_email') ?>
     <?= $form->field($profile, 'website') ?>
@@ -42,7 +43,6 @@ use kartik\helpers\Html;
         'saveFormat' => 'php:Y-m-d',
     ]);
     ?>            
-    <?= $form->field($profile, 'availability')->dropDownList([1 => 'Yes', 0 => 'No'], ['prompt' => '- Choose']) ?>
 
 
     <?= $form->field($profile, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>    
