@@ -7,5 +7,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="site-about">
-    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['enableFlash' => true]) ?>
+    
+        
+    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'about-us']) ?>
+                
+
 </div>

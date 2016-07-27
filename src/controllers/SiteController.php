@@ -115,6 +115,36 @@ class SiteController extends Controller
         return $this->render('testing');
     } 
 
+    /**
+     * Renders the testing page
+     * @return string
+     */
+    public function actionAbout()
+    {
+    
+        // SEO meta tags
+        $this->view->registerMetaTag(
+            [
+                'name'    => 'keywords',
+                'content' => 'HelpText+, Open-ecommerce.org, software, charities, social project, london'
+            ],
+            'keywords'
+        );
+        $this->view->registerMetaTag(
+            [
+                'name'    => 'description',
+                'content' => 'HelpText+ Text Managment system for the Destitute Asylum Seekers Drop-In.'
+            ],
+            'description'
+        );
+
+        $this->layout = 'container';
+
+        return $this->render('about');
+    
+    
+    } 
+
     
     
 }

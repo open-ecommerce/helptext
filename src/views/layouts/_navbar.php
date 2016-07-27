@@ -74,6 +74,8 @@ $menuBeforeItems = [
         ],
         'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),
         ],
+        ['label' => 'About Us', 'url' => ['/site/about']],
+
 ];
 
 echo Nav::widget(
@@ -83,13 +85,7 @@ echo Nav::widget(
             'items' => $menuBeforeItems,
         ]
 );
-echo Nav::widget(
-        [
-            'options' => ['class' => 'navbar-nav'],
-            'encodeLabels' => false,
-            'items' => \dmstr\modules\pages\models\Tree::getMenuItems('root'),
-        ]
-);
+
 ?>
 <!--    <ul class="nav navbar-nav pull-right">
         <li class="dropdown" id="menuLogin">
