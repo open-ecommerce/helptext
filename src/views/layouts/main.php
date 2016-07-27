@@ -50,7 +50,6 @@ $imgPath = $bundle->baseUrl;
     <meta name="theme-color" content="#ffffff">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'head']) ?>
 
     <?php $this->head() ?>    
     
@@ -69,7 +68,6 @@ $imgPath = $bundle->baseUrl;
 </div>
 
 <footer class="footer">
-    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'footer']) ?>
     <div class="container">
         <p class="pull-right">
             <span class="label label-default"><?= YII_ENV ?></span>

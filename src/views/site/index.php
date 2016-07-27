@@ -8,8 +8,21 @@ $this->title = 'TextHelp+ for NNLS Drop-in';
 
 <div class="site-index ">
        
-    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'index']) ?>
-
+<br>    
+       
+<br>         
+<br>         
+<br>         
+<br>         
+<br>         
+<br>         
+<br>         
+<br>      
+    
+    
+    aca estamos en el index
+    
+    
 
 </div>    
     

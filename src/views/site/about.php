@@ -8,11 +8,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="site-about">
     
-    esto seria esto   
+    esto seria esto  el about us 
     
-    
-        
-    <?= \dmstr\modules\prototype\widgets\HtmlWidget::widget(['key' => 'about-us']) ?>
+   
                 
 
 </div>
