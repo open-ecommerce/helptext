@@ -96,7 +96,7 @@ class MessageController extends \app\controllers\base\MessageController {
             if ($parents != null) {
                 $id_sender_type = $parents[0];
 //if the sender is a user
-                if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
+                if ($id_sender_type === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
                     $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {
                                 return $name->firstname . " " . $name->lastname;
                             });
@@ -123,7 +123,7 @@ class MessageController extends \app\controllers\base\MessageController {
                 $id_sender_type = $parents[0];
                 $id_sender = $parents[1];
 //if the sender is a user
-                if ($id_sender_type === \Yii::$app->params['senderTypeIdUser']) {
+                if ($id_sender_type === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
                     $profile = Profile::findOne(['user_id' => $id_sender]);
                     if ($profile->phone === NULL) {
                         $phoneValue = "No phone added to the profile.";

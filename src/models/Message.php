@@ -39,8 +39,8 @@ class Message extends BaseMessage {
 
         OeHelpers::logger('receving sms from:' . $this->source, 'sms');
 
-        $this->anonymize = \Yii::$app->params['anonymize'];
-        $this->automaticResponse = \Yii::$app->params['smsAutomaticResponse'];
+        $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
+        $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
 
 
         if ($this->source === "twilio") {
@@ -69,7 +69,7 @@ class Message extends BaseMessage {
         //check if is the phone of an existing user
         if ($profile === NULL) { //is a client
             $isUser = FALSE;
-            $this->id_sender_type = \Yii::$app->params['senderTypeIdContact'];
+            $this->id_sender_type = \Yii::$app->settings->get('helptext.type_id_contact');
 
             //check if the phone exist in any contact
             $phone = Phone::findOne(['id' => $this->id_phone]);
@@ -160,7 +160,7 @@ class Message extends BaseMessage {
         } else {
             $isUser = TRUE;
             $userId = $profile->user_id;
-            $this->id_sender_type = \Yii::$app->params['senderTypeIdUser'];
+            $this->id_sender_type = \Yii::$app->settings->get('helptext.sender_type_id_user');
 
             if ($this->currentIdCase === 0) {
                 $this->response = "Your last message:\r\n";
@@ -239,7 +239,7 @@ class Message extends BaseMessage {
      */
     public function sendSMS($msg, $toPhone) {
 
-        switch (\Yii::$app->params['smsProvider']) {
+        switch (\Yii::$app->settings->get('helptext.sms_provider')) {
             case 'twilio':
                 $response = $this->twilioSMS($msg, $toPhone);
                 break;

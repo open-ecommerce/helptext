@@ -108,6 +108,9 @@ $common = [
             'account_sid' => 'AC53f6315a0310cea60b88107e78ad80cb',
             'auth_key' => '910a762c709348ade494146e3050705d',
         ),
+        'settings' => [
+            'class' => 'pheme\settings\components\Settings'
+        ],
     ],
     'modules' => [
         'backend' => [
@@ -143,6 +146,7 @@ $common = [
         'settings' => [
             'class' => 'pheme\settings\Module',
             'layout' => '@admin-views/layouts/box',
+            'sourceLanguage' => 'en',
             'accessRoles' => ['settings-module'],
         ],
         'translatemanager' => [
@@ -185,15 +189,16 @@ $common = [
             '@vendor/pheme/yii2-settings/migrations',
             '@vendor/dmstr/yii2-prototype-module/src/migrations',
         ],
-        'contactLabel' => 'Client', //contact table
-        'senderTypeIdContact' => '2', //id from sender_type table
-        'userLabel' => 'Helper', //user table
-        'senderTypeIdUser' => '3', //id from sender_type table
-        'countryUkId' => '229', //id of uk from country table
-        'languagesEnId' => '1', //id of the english from languages table
-        'smsProvider' => 'twilio', //sms provider
-        'anonymize' => TRUE, //remove all clients personal data from the system
-        'smsAutomaticResponse' => FALSE, //remove all clients personal data from the system
+        //added to settings
+        //'contactLabel' => 'Client', //contact table
+        //'senderTypeIdContact' => '2', //id from sender_type table
+        //'userLabel' => 'Helper', //user table
+        //'senderTypeIdUser' => '3', //id from sender_type table
+        //'countryUkId' => '229', //id of uk from country table
+        //'languagesEnId' => '1', //id of the english from languages table
+        //'smsProvider' => 'twilio', //sms provider
+        //'anonymize' => TRUE, //remove all clients personal data from the system
+        //'smsAutomaticResponse' => FALSE, //remove all clients personal data from the system
     ],
 ];
 
