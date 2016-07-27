@@ -24,7 +24,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(less, plainscript, fonts, images)));
+ gulp.series(clean, gulp.parallel(less, lessbackend, plainscript, fonts, images)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -75,6 +75,23 @@ function less() {
   .pipe($.if(PRODUCTION, $.cssnano()))
   .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
   .pipe(gulp.dest(PATHS.dist + '/css'))
+  .pipe(browser.reload({ stream: true }));
+}
+
+
+// Compile the backend Less into CSS
+// In production, the CSS is compressed
+function lessbackend() {
+  return gulp.src(PATHS.lessstartbackend)
+  .pipe($.less())
+  .pipe(gulp.dest(PATHS.distbackend + '/css'))
+  .pipe($.autoprefixer({
+    browsers: COMPATIBILITY
+  }))
+  .pipe($.if(PRODUCTION, $.rename({ suffix: '.min' })))
+  .pipe($.if(PRODUCTION, $.cssnano()))
+  .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+  .pipe(gulp.dest(PATHS.distbackend + '/css'))
   .pipe(browser.reload({ stream: true }));
 }
 

@@ -14,6 +14,9 @@ PATHS:
 
   # Path to dist folder
   dist: "src/assets/web/dist"
+  distbackend: "src/modules/backend/assets/web/dist"
+  
+  
   # Paths to fonts
   fonts:
     - "vendor/bower/font-awesome/fonts/**/*"
@@ -23,8 +26,11 @@ PATHS:
 
   # Paths to Less libraries, which can then be loaded with @import
   lessstart: "src/assets/web/less/app.less"
+  lessstartbackend: "src/modules/backend/assets/web/less/backend.less"
+
     
   lesswatch: "src/assets/web/less/**/*.less"
+  lesswatchbackend: "src/modules/backend/assets/web/less/**/*.less"
 
   # Paths to JavaScript libraries, which are compined into one file
   # babelscript:

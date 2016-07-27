@@ -19,10 +19,10 @@ use yii\web\AssetBundle;
  */
 class AdminAsset extends AssetBundle
 {
-    public $sourcePath = '@app/modules/backend/assets/web';
+    public $sourcePath = '@app/modules/backend/assets/web/dist';
 
     public $css = [
-        'less/site.less',
+        'css/backend.css',
     ];
     public $js = [
     ];
