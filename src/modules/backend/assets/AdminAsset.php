@@ -22,7 +22,8 @@ class AdminAsset extends AssetBundle
     public $sourcePath = '@app/modules/backend/assets/web/dist';
 
     public $css = [
-        'css/backend.css',
+        //local 'css/backend.css',
+        'css/backend.min.css', //production
     ];
     public $js = [
     ];

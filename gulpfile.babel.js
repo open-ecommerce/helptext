@@ -44,6 +44,7 @@ gulp.task('watch',
 // This happens every time a build starts
 function clean(done) {
   rimraf(PATHS.dist, done);
+  rimraf(PATHS.distbackend, done);
 }
 
 

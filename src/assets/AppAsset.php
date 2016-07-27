@@ -26,10 +26,8 @@ class AppAsset extends AssetBundle
     ];
 
     public $css = [
-        // Note: we are using gulp to compile and generate the app.less in the dist folder
-        // use .css alternatively
-        // 'less/app.less',
-       'css/app.css',
+       // local 'css/app.css',
+       'css/app.min.css', // production
     ];
 
     public $depends = [
