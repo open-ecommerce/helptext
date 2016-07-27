@@ -41,9 +41,12 @@ $formater = \yii::$app->formatter;
                 <div class="panel-body">
                     <ul>
                         <?php
+                        $text = "";
+                        
                         foreach ($dataProvider->models as $text) {
 
-                            switch ($text->id_sender_type) {
+                            $sender = "";
+                            switch ($text['id_sender_type']) {
                                 case 1: //automatic response
                                     $sender = $text->id_phone . "<br>Automatic response";
                                     break;

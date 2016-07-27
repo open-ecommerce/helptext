@@ -95,7 +95,7 @@ class MessageController extends \app\controllers\base\MessageController {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
                 $id_sender_type = $parents[0];
-//if the sender is a user
+                //if the sender is a user
                 if ($id_sender_type === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
                     $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {
                                 return $name->firstname . " " . $name->lastname;

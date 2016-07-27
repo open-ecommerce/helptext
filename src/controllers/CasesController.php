@@ -9,6 +9,25 @@ use \yii\filters\AccessControl;
 class CasesController extends \app\controllers\base\CasesController
 {
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view', 'update', 'create', 'detail'],
+                        'roles' => ['Helper', 'Supervisor'],
+                    ],
+                ],
+            ],
+        ];
+    }        
+    
 
     
     

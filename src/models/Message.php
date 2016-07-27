@@ -31,6 +31,7 @@ class Message extends BaseMessage {
     var $phoneToSend;
     var $anonymize;
     var $automaticResponse;
+    var $id_sender_type;
 
     /**
      * @return multiple
@@ -69,7 +70,7 @@ class Message extends BaseMessage {
         //check if is the phone of an existing user
         if ($profile === NULL) { //is a client
             $isUser = FALSE;
-            $this->id_sender_type = \Yii::$app->settings->get('helptext.type_id_contact');
+            $this->id_sender_type = \Yii::$app->settings->get('helptext.sender_type_id_contact');
 
             //check if the phone exist in any contact
             $phone = Phone::findOne(['id' => $this->id_phone]);
@@ -133,10 +134,10 @@ class Message extends BaseMessage {
 
                 $this->setLastCaseByPhone();
 
-                if (!$this->isCurrentIdCaseOpen) {
-                    $this->response = "This is an automatic response,\r\n";
-                    $this->response .= "We will contact you as soon as possible.\r\n";
-                    $this->response .= "Your Case number is:" . $this->currentIdCase;
+                if ((!$this->isCurrentIdCaseOpen) && ($this->automaticResponse)) {
+                        $this->response = "This is an automatic response,\r\n";
+                        $this->response .= "We will contact you as soon as possible.\r\n";
+                        $this->response .= "Your Case number is:" . $this->currentIdCase;
                 } else {
                     // send the text to the helper
                     $this->messageToSend = "From Case#" . $this->currentIdCase . "# \r\n";

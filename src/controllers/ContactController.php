@@ -9,6 +9,26 @@ use \yii\filters\AccessControl;
 class ContactController extends \app\controllers\base\ContactController
 {
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index','create','update'],
+                        'roles' => ['Helper', 'Supervisor'],
+                    ],
+                ],
+            ],
+        ];
+    }        
+    
     
        
     

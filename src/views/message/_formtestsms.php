@@ -31,18 +31,18 @@ use yii\helpers\url;
     echo $form->field($modelContact, 'first_name')->widget(DepDrop::classname(), [
         'options' => ['id' => 'id_contacts'],
         'pluginOptions' => [
-            'depends' => ['text-id_sender_type'],
+            'depends' => ['message-id_sender_type'],
             'placeholder' => 'Select sender from the system',
-            'url' => Url::to(['/text/contacts'])
+            'url' => Url::to(['/message/contacts'])
         ]
     ]);
 
 //// Child # 2
     echo $form->field($model, 'id_phone')->widget(DepDrop::classname(), [
         'pluginOptions'=>[
-            'depends'=>['text-id_sender_type', 'id_contacts'],
+            'depends'=>['message-id_sender_type', 'id_contacts'],
             'placeholder'=>'Select phone number',
-            'url'=>Url::to(['/text/phones'])
+            'url'=>Url::to(['/message/phones'])
         ]
     ]);
     ?>
@@ -56,7 +56,7 @@ use yii\helpers\url;
 
     <div class="form-group">
 <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>        
-<?= Html::submitButton($model->isNewRecord ? 'Send SMS to helptext' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-success pull-right']) ?>
+<?= Html::submitButton($model->isNewRecord ? 'Send SMS' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-success pull-right']) ?>
     </div>
 <?php ActiveForm::end(); ?>
 

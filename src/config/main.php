@@ -189,16 +189,6 @@ $common = [
             '@vendor/pheme/yii2-settings/migrations',
             '@vendor/dmstr/yii2-prototype-module/src/migrations',
         ],
-        //added to settings
-        //'contactLabel' => 'Client', //contact table
-        //'senderTypeIdContact' => '2', //id from sender_type table
-        //'userLabel' => 'Helper', //user table
-        //'senderTypeIdUser' => '3', //id from sender_type table
-        //'countryUkId' => '229', //id of uk from country table
-        //'languagesEnId' => '1', //id of the english from languages table
-        //'smsProvider' => 'twilio', //sms provider
-        //'anonymize' => TRUE, //remove all clients personal data from the system
-        //'smsAutomaticResponse' => FALSE, //remove all clients personal data from the system
     ],
 ];
 
@@ -242,18 +232,7 @@ $web = [
         //'admins' => ['admin'],
         ],
     ],
-    'as AccessBehavior' => [
-        'class' => 'app\components\AccessBehavior',
-        'allowedRoutes' => [
-            '/',
-            ['/user/registration/register'],
-            ['/user/registration/resend'],
-            ['/user/registration/confirm'],
-            ['/user/recovery/request'],
-            ['/user/recovery/reset']
-        ],
-    //'redirectUri' => '/'
-    ],
+
 ];
 
 $console = [

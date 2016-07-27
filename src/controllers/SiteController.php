@@ -33,6 +33,14 @@ class SiteController extends Controller
                     ],
                     [
                         'allow' => true,
+                        'actions' => ['index'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['about'],
+                    ],
+                    [
+                        'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                             return \Yii::$app->user->can(
                                 $this->module->id.'_'.$this->id.'_'.$action->id,
