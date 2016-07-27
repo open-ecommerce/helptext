@@ -195,18 +195,6 @@ $common = [
         'anonymize' => TRUE, //remove all clients personal data from the system
         'smsAutomaticResponse' => FALSE, //remove all clients personal data from the system
     ],
-    'as AccessBehavior' => [
-        'class' => 'app\components\AccessBehavior',
-        'allowedRoutes' => [
-            '/',
-            ['/user/registration/register'],
-            ['/user/registration/resend'],
-            ['/user/registration/confirm'],
-            ['/user/recovery/request'],
-            ['/user/recovery/reset']
-        ],
-    //'redirectUri' => '/'
-    ],
 ];
 
 $web = [
@@ -248,6 +236,18 @@ $web = [
             'identityClass' => 'dektrium\user\models\User',
         //'admins' => ['admin'],
         ],
+    ],
+    'as AccessBehavior' => [
+        'class' => 'app\components\AccessBehavior',
+        'allowedRoutes' => [
+            '/',
+            ['/user/registration/register'],
+            ['/user/registration/resend'],
+            ['/user/registration/confirm'],
+            ['/user/recovery/request'],
+            ['/user/recovery/reset']
+        ],
+    //'redirectUri' => '/'
     ],
 ];
 
