@@ -243,12 +243,14 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionCall() {
+
+        $this->enableCsrfValidation = false;
         
         
-//        OeHelpers::logger('receving call from twilio now', 'call');
-//        foreach ($_POST as $key => $value) {
-//            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
-//        }
+        OeHelpers::logger('receving call from twilio now', 'call');
+        foreach ($_POST as $key => $value) {
+            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
+        }
         
         
         
@@ -260,6 +262,7 @@ class MessageController extends \app\controllers\base\MessageController {
         
         //return $this->renderPartial('twilio-response');        
         
+        $this->enableCsrfValidation = true;
         
 
 
