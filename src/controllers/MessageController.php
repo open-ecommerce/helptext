@@ -242,23 +242,26 @@ class MessageController extends \app\controllers\base\MessageController {
         $this->enableCsrfValidation = false;
 
 
-        OeHelpers::logger('receving call from twilio now', 'call');
+        OeHelpers::logger(str_repeat("=-", 20), 'call');
+        OeHelpers::logger('receving call', 'call');
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'call');
         }
+        OeHelpers::logger(str_repeat("=-", 20), 'call');
 
+        
         $accountSid = $request->post('AccountSid');
 
         if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
-
-
-            //       \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
-
+            OeHelpers::logger('passed authentication', 'call');
             return $this->renderPartial('twilio-response');
         } else {
+            OeHelpers::logger('NOT passed authentication', 'call');
             return "We are very sorry but you are at the wrong time, in the wrong place";
         }
 
+        OeHelpers::logger(str_repeat("=-", 20), 'call');
+        
 
         $this->enableCsrfValidation = true;
     }

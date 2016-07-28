@@ -9,8 +9,10 @@ class OeHelpers
 {
     public static function logger($msg, $where='generic')
     {
-        \Yii::info($msg, $where);
-        
+
+        if (\Yii::$app->settings->get('helptext.generate_logs')) {
+            \Yii::info(date(DATE_RFC2822) . ": " . $msg, $where);
+        }
     }
     
     

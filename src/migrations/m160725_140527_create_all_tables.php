@@ -24,6 +24,57 @@ use yii\db\Migration;
 class m160725_140527_create_all_tables extends Migration {
 
     public function up() {
+
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `case_category`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `cases`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `contact`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `contact_phone`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `country`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `language_source`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `languages`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `message`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `message_type`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `outcome_category`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `phone`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `profile`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `qry_next_available_user`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `sender_type`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `severity`');
+        $this->execute('SET foreign_key_checks = 1;');
+        $this->execute('SET foreign_key_checks = 0');
+        $this->execute('DROP TABLE IF EXISTS `text_template`');
+        $this->execute('SET foreign_key_checks = 1;');
+
+
         $tables = Yii::$app->db->schema->getTableNames();
         $dbType = $this->db->driverName;
         $tableOptions_mysql = "CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB";
@@ -661,6 +712,10 @@ class m160725_140527_create_all_tables extends Migration {
         $this->execute('SET foreign_key_checks = 0');
         $this->execute('DROP TABLE IF EXISTS `text_template`');
         $this->execute('SET foreign_key_checks = 1;');
+
+
+
+
 
         echo "m160725_140527_create_all_tables cannot be reverted.\n";
 
