@@ -210,6 +210,8 @@ class MessageController extends \app\controllers\base\MessageController {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewMessage->addError('_exception', $response);
             }
+            OeHelpers::logger('ERROR: '. $response , 'sms');
+
         } else {
             $current_case_id = $_GET['1']['id'];
             $response = "";

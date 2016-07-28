@@ -31,7 +31,7 @@ class Message extends BaseMessage {
     var $phoneToSend;
     var $anonymize;
     var $automaticResponse;
-    var $id_sender_type;
+    var $idSenderType;
 
     /**
      * @return multiple
@@ -70,7 +70,7 @@ class Message extends BaseMessage {
         //check if is the phone of an existing user
         if ($profile === NULL) { //is a client
             $isUser = FALSE;
-            $this->id_sender_type = \Yii::$app->settings->get('helptext.sender_type_id_contact');
+            $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_contact');
 
             //check if the phone exist in any contact
             $phone = Phone::findOne(['id' => $this->id_phone]);
@@ -112,7 +112,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
-                $text->id_sender_type = $this->id_sender_type;
+                $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
                     $text->message = constant("ANONYMIZE_TEXT");
                 } else {
@@ -148,7 +148,7 @@ class Message extends BaseMessage {
                     $text = new Message();
                     $text->id_phone = $this->id_phone;
                     $text->id_case = $this->currentIdCase;
-                    $text->id_sender_type = $this->id_sender_type;
+                    $text->id_sender_type = $this->idSenderType;
                     if ($this->anonymize) {
                         $text->message = constant("ANONYMIZE_TEXT");
                     } else {
@@ -161,7 +161,7 @@ class Message extends BaseMessage {
         } else {
             $isUser = TRUE;
             $userId = $profile->user_id;
-            $this->id_sender_type = \Yii::$app->settings->get('helptext.sender_type_id_user');
+            $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_user');
 
             if ($this->currentIdCase === 0) {
                 $this->response = "Your last message:\r\n";
@@ -175,7 +175,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
-                $text->id_sender_type = $this->id_sender_type;
+                $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
                     $text->message = constant("ANONYMIZE_TEXT");
                 } else {

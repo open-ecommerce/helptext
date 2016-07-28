@@ -121,11 +121,14 @@ You don't need them to yii2 run or even create the assets folder, but you want b
 ###Troubleshooting on deploying
 
 ##env PROD
-#First of all if there are errors then change .env to dev and set debug mode
+#First of all if there are errors then change .env to dev and set debug mode to see errors
 
 #Error "An internal server error occurred."
 - the app is running check db credentials in .env
 
+#Error seeing images
+- have you run gulp localy?
+- delete the assets in production to force to regenerate
 
 ###Some other documentation
 - [Create new migrations](docs/migrations.md)
