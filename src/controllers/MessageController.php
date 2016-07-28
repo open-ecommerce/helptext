@@ -26,7 +26,7 @@ use app\helpers\OeHelpers;
  */
 class MessageController extends \app\controllers\base\MessageController {
 
-        //public $enableCsrfValidation = false;
+        public $enableCsrfValidation = false;
     
     
     
@@ -244,7 +244,7 @@ class MessageController extends \app\controllers\base\MessageController {
      */
     public function actionCall() {
 
-        $this->enableCsrfValidation = false;
+        //$this->enableCsrfValidation = false;
         
         
         OeHelpers::logger('receving call from twilio now', 'call');
@@ -262,7 +262,7 @@ class MessageController extends \app\controllers\base\MessageController {
         
         //return $this->renderPartial('twilio-response');        
         
-        $this->enableCsrfValidation = true;
+        //$this->enableCsrfValidation = true;
         
 
 
