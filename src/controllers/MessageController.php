@@ -26,6 +26,10 @@ use app\helpers\OeHelpers;
  */
 class MessageController extends \app\controllers\base\MessageController {
 
+        public $enableCsrfValidation = false;
+    
+    
+    
     /**
      * main entrance by twilio or other providers
      * @param $ph
@@ -239,7 +243,8 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionCall() {
-
+        
+        
         OeHelpers::logger('receving call from twilio now', 'call');
 
 //        foreach ($_POST as $key => $value) {
