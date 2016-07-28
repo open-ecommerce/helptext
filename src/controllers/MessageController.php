@@ -256,8 +256,8 @@ class MessageController extends \app\controllers\base\MessageController {
         
         \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
         return [
-            'dial' => '+447551524625',
-            'say' => 'Sorry I cant take this call right now',
+            'Dial' => '+447551524625',
+            'Say' => 'Sorry I cant take this call right now',
         ];
         
         //return $this->renderPartial('twilio-response');        
@@ -265,8 +265,13 @@ class MessageController extends \app\controllers\base\MessageController {
         //$this->enableCsrfValidation = true;
         
 
+        //<Response>
+        //    <Dial>+447551524625</Dial>
+        //    <Say>something it is going very wrong.</Say>
+        //</Response>
 
-       
+        
+        
     }    
     
     
