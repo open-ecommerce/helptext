@@ -242,14 +242,14 @@ class MessageController extends \app\controllers\base\MessageController {
      *
      * @return mixed
      */
-    public function actionCall() {
+    public function actionCall1() {
         
         
         OeHelpers::logger('receving call from twilio now', 'call');
 
-//        foreach ($_POST as $key => $value) {
-//            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
-//        }
+        foreach ($_POST as $key => $value) {
+            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
+        }
 
         return $this->renderPartial('twilio-response');        
         
