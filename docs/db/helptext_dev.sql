@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.6.30-0ubuntu0.15.10.1 - (Ubuntu)
+-- Server version:               5.6.31-0ubuntu0.15.10.1 - (Ubuntu)
 -- Server OS:                    debian-linux-gnu
 -- HeidiSQL Version:             8.1.0.4571
 -- --------------------------------------------------------
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
   CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.auth_assignment: ~1 rows (approximately)
+-- Dumping data for table helptext_dev.auth_assignment: ~2 rows (approximately)
 DELETE FROM `auth_assignment`;
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
   CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.auth_item: ~7 rows (approximately)
+-- Dumping data for table helptext_dev.auth_item: ~10 rows (approximately)
 DELETE FROM `auth_item`;
 /*!40000 ALTER TABLE `auth_item` DISABLE KEYS */;
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
   CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.auth_item_child: ~3 rows (approximately)
+-- Dumping data for table helptext_dev.auth_item_child: ~9 rows (approximately)
 DELETE FROM `auth_item_child`;
 /*!40000 ALTER TABLE `auth_item_child` DISABLE KEYS */;
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `cases` (
   CONSTRAINT `fk_user_9119_04` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.cases: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.cases: ~1 rows (approximately)
 DELETE FROM `cases`;
 /*!40000 ALTER TABLE `cases` DISABLE KEYS */;
 INSERT INTO `cases` (`id`, `id_contact`, `id_phone`, `id_user`, `id_category`, `id_outcome`, `id_severity`, `start_date`, `close_date`, `state`, `comments`) VALUES
@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `contact_phone` (
   CONSTRAINT `fk_phone_9194_08` FOREIGN KEY (`id_phone`) REFERENCES `phone` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.contact_phone: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.contact_phone: ~1 rows (approximately)
 DELETE FROM `contact_phone`;
 /*!40000 ALTER TABLE `contact_phone` DISABLE KEYS */;
 INSERT INTO `contact_phone` (`id`, `id_contact`, `id_phone`) VALUES
@@ -541,12 +541,9 @@ CREATE TABLE IF NOT EXISTS `dmstr_page` (
   KEY `tbl_tree_NK5` (`active`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.dmstr_page: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.dmstr_page: ~0 rows (approximately)
 DELETE FROM `dmstr_page`;
 /*!40000 ALTER TABLE `dmstr_page` DISABLE KEYS */;
-INSERT INTO `dmstr_page` (`id`, `root`, `lft`, `rgt`, `lvl`, `page_title`, `name`, `domain_id`, `slug`, `route`, `view`, `default_meta_keywords`, `default_meta_description`, `request_params`, `owner`, `access_owner`, `access_domain`, `access_read`, `access_update`, `access_delete`, `icon`, `icon_type`, `active`, `selected`, `disabled`, `readonly`, `visible`, `collapsed`, `movable_u`, `movable_d`, `movable_l`, `movable_r`, `removable`, `removable_all`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, 4, 0, '', 'root_en', 'root', NULL, '/site/index', '', '', '', '{}', NULL, NULL, 'en', NULL, NULL, NULL, 'fa fa-angellist', 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, '2016-06-23 14:58:09', '2016-06-22 12:39:46'),
-	(2, 1, 2, 3, 1, '', 'About Us', 'about-us', NULL, '/site/index', '', '', '', '{}', NULL, NULL, '*', NULL, NULL, NULL, 'fa fa-bed', 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, '2016-06-22 12:41:01', '2016-06-22 12:41:01');
 /*!40000 ALTER TABLE `dmstr_page` ENABLE KEYS */;
 
 
@@ -558,15 +555,11 @@ CREATE TABLE IF NOT EXISTS `html` (
   `value` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `html_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumping data for table helptext_dev.html: ~4 rows (approximately)
+-- Dumping data for table helptext_dev.html: ~0 rows (approximately)
 DELETE FROM `html`;
 /*!40000 ALTER TABLE `html` DISABLE KEYS */;
-INSERT INTO `html` (`id`, `key`, `value`) VALUES
-	(2, 'footer', '<p>.</p>\r\n'),
-	(4, 'about-us', '<p>esta seria about us</p>\r\n'),
-	(6, 'en/site/index', '\r\nviva peron');
 /*!40000 ALTER TABLE `html` ENABLE KEYS */;
 
 
@@ -858,20 +851,16 @@ CREATE TABLE IF NOT EXISTS `message` (
   CONSTRAINT `fk_cases_9396_09` FOREIGN KEY (`id_case`) REFERENCES `cases` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_message_type_9396_010` FOREIGN KEY (`id_message_type`) REFERENCES `message_type` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_sender_type_9397_011` FOREIGN KEY (`id_sender_type`) REFERENCES `sender_type` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table helptext_dev.message: ~7 rows (approximately)
+-- Dumping data for table helptext_dev.message: ~4 rows (approximately)
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 INSERT INTO `message` (`id`, `id_phone`, `id_case`, `id_sender_type`, `id_message_type`, `message`, `sent`) VALUES
 	(1, '+447551524625', 1, 2, 2, 'Please Help me i am in trouble', '2016-06-01 01:01:01'),
 	(2, '+447551524625', 1, 2, 2, 'Hurry up i am in danger', '2016-06-01 01:10:01'),
 	(5, '+447551524625', 1, 1, 2, 'We will call you as soon as possible', '2016-06-01 01:21:01'),
-	(10, '+447551524625', 1, 3, 2, 'case#1# we are going there to help you', '2016-07-19 17:35:15'),
-	(40, '+4475515246251', 1, 3, NULL, 'case#1# y otro mas', '2016-07-25 16:10:48'),
-	(41, '+4475515246251', 1, 3, NULL, 'case#1# a ver ahora que onda', '2016-07-25 17:10:23'),
-	(42, '+4475515246251', 1, 3, NULL, 'case#1# claro que si', '2016-07-25 17:12:24'),
-	(43, '+4475515246251', 1, 3, NULL, 'Anonymized message', '2016-07-25 17:23:56');
+	(10, '+447551524625', 1, 3, 2, 'case#1# we are going there to help you', '2016-07-19 17:35:15');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 
@@ -901,7 +890,7 @@ CREATE TABLE IF NOT EXISTS `migration` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table helptext_dev.migration: ~23 rows (approximately)
+-- Dumping data for table helptext_dev.migration: ~22 rows (approximately)
 DELETE FROM `migration`;
 /*!40000 ALTER TABLE `migration` DISABLE KEYS */;
 INSERT INTO `migration` (`version`, `alias`, `apply_time`) VALUES
@@ -1042,7 +1031,7 @@ CREATE TABLE IF NOT EXISTS `sender_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table helptext_dev.sender_type: ~2 rows (approximately)
+-- Dumping data for table helptext_dev.sender_type: ~3 rows (approximately)
 DELETE FROM `sender_type`;
 /*!40000 ALTER TABLE `sender_type` DISABLE KEYS */;
 INSERT INTO `sender_type` (`id`, `sender_type`) VALUES
@@ -1065,13 +1054,23 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_unique_key_section` (`section`,`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Dumping data for table helptext_dev.settings: ~0 rows (approximately)
+-- Dumping data for table helptext_dev.settings: ~11 rows (approximately)
 DELETE FROM `settings`;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `type`, `section`, `key`, `value`, `active`, `created`, `modified`) VALUES
-	(1, 'boolean', 'app.assets', 'registerPrototypeAsset', '1', 0, '2016-06-22 09:34:27', '2016-06-22 09:34:27');
+	(1, 'boolean', 'app.assets', 'registerPrototypeAsset', '1', 0, '2016-06-22 09:34:27', '2016-06-22 09:34:27'),
+	(2, 'string', 'helptext', 'contact_label', 'Client', 1, '2016-07-27 13:40:27', '2016-07-27 13:59:52'),
+	(3, 'integer', 'helptext', 'sender_type_id_contact', '2', 1, '2016-07-27 13:58:13', '2016-07-27 14:00:59'),
+	(4, 'string', 'helptext', 'user_label', 'Helper', 1, '2016-07-27 14:01:30', NULL),
+	(5, 'integer', 'helptext', 'sender_type_id_user', '3', 1, '2016-07-27 14:01:59', NULL),
+	(6, 'integer', 'helptext', 'country_uk_id', '229', 1, '2016-07-27 14:02:34', NULL),
+	(7, 'integer', 'helptext', 'languages_en_id', '1', 1, '2016-07-27 14:03:21', NULL),
+	(8, 'string', 'helptext', 'sms_provider', 'twilio', 1, '2016-07-27 14:03:45', '2016-07-27 14:23:30'),
+	(9, 'boolean', 'helptext', 'anonymize', '1', 1, '2016-07-27 14:04:19', NULL),
+	(10, 'boolean', 'helptext', 'sms_automatic_response', '0', 1, '2016-07-27 14:04:59', NULL),
+	(11, 'boolean', 'helptext', 'generate_logs', '1', 1, '2016-07-27 14:16:44', NULL);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 
@@ -1141,7 +1140,7 @@ CREATE TABLE IF NOT EXISTS `token` (
   CONSTRAINT `fk_user_token` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table helptext_dev.token: ~1 rows (approximately)
+-- Dumping data for table helptext_dev.token: ~2 rows (approximately)
 DELETE FROM `token`;
 /*!40000 ALTER TABLE `token` DISABLE KEYS */;
 INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
