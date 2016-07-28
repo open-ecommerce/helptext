@@ -20,7 +20,7 @@ class MessageController extends \yii\rest\ActiveController
      *
      * @return mixed
      */
-    public function actionCall() {
+    public function actionCallapi() {
         
         
         OeHelpers::logger('receving call from twilio now', 'call');

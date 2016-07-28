@@ -26,7 +26,7 @@ use app\helpers\OeHelpers;
  */
 class MessageController extends \app\controllers\base\MessageController {
 
-        public $enableCsrfValidation = false;
+        //public $enableCsrfValidation = false;
     
     
     
@@ -242,28 +242,26 @@ class MessageController extends \app\controllers\base\MessageController {
      *
      * @return mixed
      */
-    public function actionCall1() {
+    public function actionCall() {
         
         
         OeHelpers::logger('receving call from twilio now', 'call');
-
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
         }
+        
+        
+        
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        return [
+            'dial' => '+447551524625',
+            'say' => 'Sorry I cant take this call right now',
+        ];
+        
+        //return $this->renderPartial('twilio-response');        
+        
+        
 
-        return $this->renderPartial('twilio-response');        
-        
-        
-        
-//        $model = new Message;
-//        $model->source = "twilio";
-//
-//        try {
-//            $model->receiveSMS();
-//        } catch (\Exception $e) {
-//            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-//            $model->addError('_exception', $msg);
-//        }
 
        
     }    
