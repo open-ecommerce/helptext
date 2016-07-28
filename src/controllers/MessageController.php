@@ -26,7 +26,7 @@ use app\helpers\OeHelpers;
  */
 class MessageController extends \app\controllers\base\MessageController {
 
-        public $enableCsrfValidation = false;
+        //public $enableCsrfValidation = false;
     
     
     
@@ -244,7 +244,7 @@ class MessageController extends \app\controllers\base\MessageController {
      */
     public function actionCall() {
 
-        //$this->enableCsrfValidation = false;
+        $this->enableCsrfValidation = false;
         
         
         OeHelpers::logger('receving call from twilio now', 'call');
@@ -253,24 +253,13 @@ class MessageController extends \app\controllers\base\MessageController {
         }
         
         
+ //       \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
         
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
-        return [
-            'Dial' => '+447551524625',
-            'Say' => 'Sorry I cant take this call right now',
-        ];
+        return $this->renderPartial('twilio-response');        
         
-        //return $this->renderPartial('twilio-response');        
+        $this->enableCsrfValidation = true;
         
-        //$this->enableCsrfValidation = true;
-        
-
-        //<Response>
-        //    <Dial>+447551524625</Dial>
-        //    <Say>something it is going very wrong.</Say>
-        //</Response>
-
-        
+       
         
     }    
     
