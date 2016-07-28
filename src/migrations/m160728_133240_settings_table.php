@@ -5,37 +5,6 @@ use yii\db\Migration;
 class m160728_133240_settings_table extends Migration {
 
     public function up() {
-        
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `settings`');
-        $this->execute('SET foreign_key_checks = 1;');        
-        
-        $tables = Yii::$app->db->schema->getTableNames();
-        $dbType = $this->db->driverName;
-        $tableOptions_mysql = "CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB";
-        $tableOptions_mssql = "";
-        $tableOptions_pgsql = "";
-        $tableOptions_sqlite = "";
-        /* MYSQL */
-        if (!in_array('settings', $tables)) {
-            if ($dbType == "mysql") {
-                $this->createTable('{{%settings}}', [
-                    'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
-                    0 => 'PRIMARY KEY (`id`)',
-                    'type' => 'VARCHAR(255) NOT NULL',
-                    'section' => 'VARCHAR(255) NOT NULL',
-                    'key' => 'VARCHAR(255) NOT NULL',
-                    'value' => 'TEXT NULL',
-                    'active' => 'TINYINT(1) NULL',
-                    'created' => 'DATETIME NULL',
-                    'modified' => 'DATETIME NULL',
-                        ], $tableOptions_mysql);
-            }
-        }
-
-
-        $this->createIndex('idx_UNIQUE_section_2474_05', 'settings', 'section', 1);
-
         $this->execute('SET foreign_key_checks = 0');
         $this->insert('{{%settings}}', ['id' => '1', 'type' => 'boolean', 'section' => 'app.assets', 'key' => 'registerPrototypeAsset', 'value' => '1', 'active' => '0', 'created' => '2016-06-22 09:34:27', 'modified' => '2016-06-22 09:34:27']);
         $this->insert('{{%settings}}', ['id' => '2', 'type' => 'string', 'section' => 'helptext', 'key' => 'contact_label', 'value' => 'Client', 'active' => '1', 'created' => '2016-07-27 13:40:27', 'modified' => '2016-07-27 13:59:52']);
@@ -52,13 +21,7 @@ class m160728_133240_settings_table extends Migration {
     }
 
     public function down() {
-
-        $this->execute('SET foreign_key_checks = 0');
-        $this->execute('DROP TABLE IF EXISTS `settings`');
-        $this->execute('SET foreign_key_checks = 1;');
-
         echo "m160728_133240_settings_table cannot be reverted.\n";
-
         return false;
     }
 
