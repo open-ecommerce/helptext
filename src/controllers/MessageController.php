@@ -245,10 +245,10 @@ class MessageController extends \app\controllers\base\MessageController {
     public function actionCall() {
         
         
-        OeHelpers::logger('receving call from twilio now', 'call');
-        foreach ($_POST as $key => $value) {
-            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
-        }
+//        OeHelpers::logger('receving call from twilio now', 'call');
+//        foreach ($_POST as $key => $value) {
+//            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
+//        }
         
         
         
