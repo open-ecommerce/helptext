@@ -34,7 +34,7 @@ class m160728_133240_settings_table extends Migration {
         }
 
 
-        $this->createIndex('idx_UNIQUE_section_2474_00', 'settings', 'section', 1);
+        $this->createIndex('idx_UNIQUE_section_2474_05', 'settings', 'section', 1);
 
         $this->execute('SET foreign_key_checks = 0');
         $this->insert('{{%settings}}', ['id' => '1', 'type' => 'boolean', 'section' => 'app.assets', 'key' => 'registerPrototypeAsset', 'value' => '1', 'active' => '0', 'created' => '2016-06-22 09:34:27', 'modified' => '2016-06-22 09:34:27']);
