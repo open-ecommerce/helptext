@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $css = [
-       // local 'css/app.css',
+       //'css/app.css', //dev
        'css/app.min.css', // production
     ];
 

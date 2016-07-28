@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
  * @var dektrium\user\models\Account $account
  */
 
-$this->title = Yii::t('user', 'Sign in');
+$this->title = Yii::t('user', 'Sign in con peron');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">

@@ -121,6 +121,8 @@ You don't need them to yii2 run or even create the assets folder, but you want b
 ###Troubleshooting on deploying
 
 ##env PROD
+#First of all if there are errors then change .env to dev and set debug mode
+
 #Error "An internal server error occurred."
 - the app is running check db credentials in .env
 
