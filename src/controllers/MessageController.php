@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-
 use app\models\Message;
 use app\models\MessageSearch;
 use app\models\Contact;
@@ -20,15 +19,13 @@ use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 use app\helpers\OeHelpers;
 
-
 /**
  * This is the class for controller "MessageController".
  */
 class MessageController extends \app\controllers\base\MessageController {
 
     public $enableCsrfValidation;
-        
-    
+
     /**
      * main entrance by twilio or other providers
      * @param $ph
@@ -40,7 +37,7 @@ class MessageController extends \app\controllers\base\MessageController {
         OeHelpers::logger('receving sms from twilio', 'sms');
 
         foreach ($_POST as $key => $value) {
-            OeHelpers::logger('key: '.$key.' - value: '.$value , 'sms');            
+            OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
         }
 
         $model = new Message;
@@ -63,7 +60,6 @@ class MessageController extends \app\controllers\base\MessageController {
 //            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
 //            $model->addError('_exception', $msg);
 //        }
-       
     }
 
 //    
@@ -79,7 +75,7 @@ class MessageController extends \app\controllers\base\MessageController {
         try {
             $model->source = "system-test";
             if ($model->load($_POST)) {
-                $model->source = 'from system phone tester';                
+                $model->source = 'from system phone tester';
                 $model->receiveSMS();
                 return $this->redirect(['view', 'id' => $model->id]);
             } elseif (!\Yii::$app->request->isPost) {
@@ -193,14 +189,14 @@ class MessageController extends \app\controllers\base\MessageController {
 
         $msg = '';
         $modelNewMessage = new Message();
-        
+
         if (isset($_POST['case_id'])) {
             $current_case_id = $_POST['case_id'];
 
             //$msg = $_POST['Message']['message'];
             $modelNewMessage->load($_POST);
 
-            
+
             $value = $modelNewMessage->message;
             $modelNewMessage->message = "case#" . $current_case_id . "# " . $value;
             $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
@@ -208,19 +204,18 @@ class MessageController extends \app\controllers\base\MessageController {
             $modelNewMessage->source = "helper from system";
 
             try {
-                
+
                 $response = $modelNewMessage->receiveSMS('from system');
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewMessage->addError('_exception', $response);
             }
-            
-        } else {            
+        } else {
             $current_case_id = $_GET['1']['id'];
-            $response = "";            
+            $response = "";
         }
 
-        
+
         $dataProvider = new ActiveDataProvider([
             'query' => Message::find()->where(['id_case' => $current_case_id]),
         ]);
@@ -234,7 +229,6 @@ class MessageController extends \app\controllers\base\MessageController {
         ]);
     }
 
-    
     /**
      * main entrance by twilio calls
      * @param $ph
@@ -243,25 +237,30 @@ class MessageController extends \app\controllers\base\MessageController {
      */
     public function actionCall() {
 
-        $this->enableCsrfValidation = false;
-        
-        
-        OeHelpers::logger('receving call from twilio now', 'call');
+        $request = \Yii::$app->request;
 
+        $this->enableCsrfValidation = false;
+
+
+        OeHelpers::logger('receving call from twilio now', 'call');
         foreach ($_POST as $key => $value) {
-            OeHelpers::logger('key: '.$key.' - value: '.$value , 'call');            
+            OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'call');
         }
-        
-        
- //       \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
-        
-        return $this->renderPartial('twilio-response');        
-        
+
+        $accountSid = $request->post('AccountSid');
+
+        if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
+
+
+            //       \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+
+            return $this->renderPartial('twilio-response');
+        } else {
+            return "We are very sorry but you are at the wrong time, in the wrong place";
+        }
+
+
         $this->enableCsrfValidation = true;
-        
-       
-        
-    }    
-    
-    
+    }
+
 }
