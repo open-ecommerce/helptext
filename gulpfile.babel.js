@@ -24,7 +24,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(less, lessbackend, plainscript, fonts, images)));
+ gulp.series(clean, gulp.parallel(less, lessbackend, plainscript, fonts, fontsbackend, images)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -94,6 +94,12 @@ function lessbackend() {
   .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
   .pipe(gulp.dest(PATHS.distbackend + '/css'))
   .pipe(browser.reload({ stream: true }));
+}
+
+// Copy fonts
+function fontsbackend() {
+  return gulp.src(PATHS.fonts)
+    .pipe(gulp.dest(PATHS.distbackend + '/fonts'));
 }
 
 

@@ -242,12 +242,12 @@ class MessageController extends \app\controllers\base\MessageController {
         $this->enableCsrfValidation = false;
 
 
-        OeHelpers::logger(str_repeat("=-", 20), 'call');
+        OeHelpers::logger(str_repeat("=-", 25), 'call');
         OeHelpers::logger('receving call', 'call');
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'call');
         }
-        OeHelpers::logger(str_repeat("=-", 20), 'call');
+        OeHelpers::logger(str_repeat("=-", 25), 'call');
 
         
         $accountSid = $request->post('AccountSid');
@@ -260,7 +260,7 @@ class MessageController extends \app\controllers\base\MessageController {
             return "We are very sorry but you are at the wrong time, in the wrong place";
         }
 
-        OeHelpers::logger(str_repeat("=-", 20), 'call');
+        OeHelpers::logger(str_repeat("=-", 25), 'call');
         
 
         $this->enableCsrfValidation = true;

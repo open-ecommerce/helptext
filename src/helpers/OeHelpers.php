@@ -11,7 +11,7 @@ class OeHelpers
     {
 
         if (\Yii::$app->settings->get('helptext.generate_logs')) {
-            \Yii::info(date(DATE_RFC2822) . ": " . $msg, $where);
+            \Yii::info($msg, $where);
         }
     }
     
