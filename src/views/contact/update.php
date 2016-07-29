@@ -23,9 +23,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
             </div>
 
             <div class="panel-body">
-                <div class="crud-navigation">
-                    <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-                </div>
 
                 <?=
                 $this->render('_form', [

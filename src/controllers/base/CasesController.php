@@ -114,8 +114,15 @@ class CasesController extends Controller {
             $this->findModel($id)->delete();
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-            \Yii::$app->getSession()->addFlash('error', $msg);
-            return $this->redirect(Url::previous());
+            \Yii::$app->getSession()->setFlash('danger', [
+                'type' => 'danger',
+                'duration' => 22000,
+                'icon' => 'fa fa-users',
+                'message' => \Yii::t('app', Html::encode($msg)),
+                'title' => \Yii::t('app', Html::encode('Error checking message system')),
+                'positonY' => 'top',
+                'positonX' => 'right'
+            ]);            return $this->redirect(Url::previous());
         }
 
 // TODO: improve detection

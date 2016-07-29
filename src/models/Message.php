@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
 use \app\models\base\Message as BaseMessage;
 use app\models\Phone;
 use app\models\ContactPhone;
@@ -23,6 +24,7 @@ class Message extends BaseMessage {
     var $isCurrentIdCaseOpen = FALSE;
     var $assignedUser;
     var $assignedUserPhone;
+    var $assignedUserName;
     var $caseContactPhone;
     var $currentIdCase;
     var $accountSid;
@@ -32,28 +34,27 @@ class Message extends BaseMessage {
     var $anonymize;
     var $automaticResponse;
     var $idSenderType;
+    var $flashResponse;
+    var $idMessageType;
 
     /**
      * @return multiple
      */
     public function receiveSMS() {
-
         OeHelpers::logger('receving sms from:' . $this->source, 'sms');
 
         $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
         $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
+        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');      
 
 
         if ($this->source === "twilio") {
             // real sms from twilio
-            $this->accountSid = $_REQUEST['AccountSid'];
-            //if ($this->accountSid != 'AC53f6315a0310cea60b88107e78ad80cb') {
-            $this->id_phone = $_REQUEST['From'];
-            $this->message = $_REQUEST['Body'];
-            $this->messageSid = $_REQUEST['MessageSid'];
-            //} else {
-            //    return "is not a valid Twilio request";
-            //}
+            $request = \Yii::$app->request;
+            $this->accountSid = $request->post('AccountSid');
+            $this->id_phone = $request->post('From');
+            $this->message = $request->post('Body');
+            $this->messageSid = $request->post('MessageSid');
         } else {
             // is comming from the system as a test or as a new text from helper
             if (empty($this->id_phone)) {
@@ -77,7 +78,7 @@ class Message extends BaseMessage {
             if ($phone === NULL) { //the phone is not in the system
                 //create new contact
                 $contact = new Contact();
-                //$contact->first_name = "no name yet";                
+                $contact->first_name = "no name asigned";
                 $contact->save();
                 $callerId = $contact->id;
 
@@ -112,6 +113,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
+                $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
                     $text->message = constant("ANONYMIZE_TEXT");
@@ -135,9 +137,9 @@ class Message extends BaseMessage {
                 $this->setLastCaseByPhone();
 
                 if ((!$this->isCurrentIdCaseOpen) && ($this->automaticResponse)) {
-                        $this->response = "This is an automatic response,\r\n";
-                        $this->response .= "We will contact you as soon as possible.\r\n";
-                        $this->response .= "Your Case number is:" . $this->currentIdCase;
+                    $this->response = "This is an automatic response,\r\n";
+                    $this->response .= "We will contact you as soon as possible.\r\n";
+                    $this->response .= "Your Case number is:" . $this->currentIdCase;
                 } else {
                     // send the text to the helper
                     $this->messageToSend = "From Case#" . $this->currentIdCase . "# \r\n";
@@ -175,6 +177,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
+                $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
                     $text->message = constant("ANONYMIZE_TEXT");
@@ -196,43 +199,135 @@ class Message extends BaseMessage {
             $this->output = $this->sendSMS($this->messageToSend, $this->phoneToSend);
         }
 
-
-
-
-        // Step 4: make an array of people we know, to send them a message.
-        // Feel free to change/add your own phone number and name here.
-//        $volunteers = array(
-//            "+447551524625" => "Eledu-volunteer",
-//            "+447879387106" => "Manu-volunteer",
-//        );
-//
-//        // Step 5: Loop over all our friends. $number is a phone number above, and
-//        // $name is the name next to it
-//        foreach ($volunteers as $number => $name) {
-//            $sms = $client->account->messages->sendMessage(
-//                    // Step 6: Change the 'From' number below to be a valid Twilio number
-//                    // that you've purchased, or the (deprecated) Sandbox number
-//                    "+441789532039",
-//                    // the number we are sending to - Any phone number
-//                    $number,
-//                    // the sms body
-//                    "Hey $name, $callerPhone said: $message"
-//            );
-//        }
-//
-//        // make an associative array of senders we know, indexed by phone number
-//        $people = array(
-//            "+447551524625" => "Eduardito",
-//            "+447775964180" => "Alessia Cogo",
-//            "+447879387106" => "Manuela",
-//        );
-//
-//        // if the sender is known, then greet them by name
-//        // otherwise, consider them just another monkey
-//        if (!$name = $people[$_REQUEST['From']]) {
-//            $name = "Amigo";
-//        }
         return $this->output;
+    }
+
+    public function receiveCall() {
+        $this->flashResponse = "";
+
+        if ($this->source != "twilio") {
+            // is comming from the system as a test or as a new text from helper
+            if (empty($this->id_phone)) {
+                $this->id_phone = "+" . rand(1111111111, 9999999999);
+                $this->flashResponse .= "Not phone selected we use the fake random number: " . $this->id_phone . ". ";
+            }
+        }
+        
+        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_call');      
+        
+        //try to get profile data from phone (also will check if it is a user)
+        $profile = Profile::findOne(['phone' => $this->id_phone]);
+
+        //check if is the phone of an existing user
+        if ($profile === NULL) { //is a client because dosn't have profile
+            $isUser = FALSE;
+            $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_contact');
+
+            $this->flashResponse .= "Helper not found with this number so it is a Client\r\n";
+
+
+            //check if the phone exist in any contact
+            $phone = Phone::findOne(['id' => $this->id_phone]);
+            if ($phone === NULL) { //the phone is not in the system
+                $this->flashResponse .= "The phone is not in the system so we will create a contact entry. ";
+
+                //create new contact
+                $contact = new Contact();
+                $contact->first_name = "no name asigned";
+                $contact->save();
+                $callerId = $contact->id;
+
+                //create new phone
+                $phone = new Phone();
+                $phone->id = $this->id_phone;
+                $phone->comment = "added by system";
+                $phone->save();
+
+                //add phone to contact_phone
+                $contactPhone = new ContactPhone();
+                $contactPhone->id_contact = $callerId;
+                $contactPhone->id_phone = $this->id_phone;
+                $contactPhone->save();
+
+                $profile = new Profile();
+                $nextUserId = $profile->NextUser;
+                $toPhone = $profile->phone;
+
+                // create new case       
+                $case = new Cases();
+                $case->id_contact = $callerId;
+                $case->id_phone = $this->id_phone;
+                $case->id_user = $nextUserId;
+                $case->start_date = date("Y-m-d H:i:s");
+                $case->state = 1;
+                $case->comments = "New case to review";
+                $case->save();
+                $this->currentIdCase = $case->id;
+
+                $this->flashResponse .= "A new case number: " . $this->currentIdCase . " was created. ";
+
+                $this->flashResponse .= "The case was asigned to: " . $this->assignedUserName . " was created. ";
+
+
+                // save the text in the db       
+                $call = new Message();
+                $call->id_phone = $this->id_phone;
+                $call->id_case = $this->currentIdCase;
+                $call->id_sender_type = $this->idSenderType;
+                $call->id_message_type = $this->idMessageType;
+                $call->message = "phone conversation";
+                $call->sent = date("Y-m-d H:i:s");
+                $call->save();
+
+                $this->phoneToSend = $this->caseContactPhone;
+            } else {
+
+                $this->setLastCaseByPhone();
+
+                $this->phoneToSend = $this->assignedUserPhone;
+
+                // save the text in the db       
+                $call = new Message();
+                $call->id_phone = $this->id_phone;
+                $call->id_case = $this->currentIdCase;
+                $call->id_sender_type = $this->idSenderType;
+                $call->id_message_type = $this->idMessageType;
+                $call->message = "phone conversation";
+                $call->sent = date("Y-m-d H:i:s");
+                $call->save();
+
+                $this->flashResponse .= "The case number: " . $call->id_case . " was asigned to: " . $this->assignedUserName . "\r\n";
+            }
+        } else {
+            $isUser = TRUE;
+            $userId = $profile->user_id;
+            $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_user');
+
+            // save the text in the db       
+            $call = new Message();
+            $call->id_phone = $this->id_phone;
+            $call->id_message_type = $this->idMessageType;
+            $call->id_sender_type = $this->idSenderType;
+            $call->message = "helper called helpline number...";
+            $call->sent = date("Y-m-d H:i:s");
+
+            $this->flashResponse .= "The user: " . $this->assignedUserName . " it is trying to call the helpline\r\n";
+        }
+
+        //\Yii::$app->session->setFlash('success', $this->flashResponse);
+
+
+        \Yii::$app->getSession()->setFlash('info', [
+            'type' => 'info',
+            'title' => Yii::t('app', Html::encode('Checking message system')),
+            'duration' => 22000,
+            'icon' => 'glyphicon glyphicon-ok-sign',
+            'message' => Yii::t('app', Html::encode($this->flashResponse)),
+            'positonY' => 'top',
+            'positonX' => 'right'
+        ]);
+
+        return $call;
     }
 
     /**
@@ -258,7 +353,7 @@ class Message extends BaseMessage {
 
         try {
             $newsms = $twilioService->account->messages->create(array(
-                "From" => "+441234480212", // From a valid Twilio number
+                "From" => getenv('TWILIO_NUMBER'), // From a valid Twilio number
                 "To" => $toPhone, // Message this number
                 "Body" => $msg,
             ));
@@ -266,7 +361,6 @@ class Message extends BaseMessage {
         } catch (\Services_Twilio_RestException $e) {
             $response = $e->getMessage();
         }
-
 
         return $response;
     }
@@ -289,7 +383,6 @@ class Message extends BaseMessage {
             $this->currentIdCase = $this->id_case;
         }
 
-
         if ($this->currentIdCase != 0) {
             $case = Cases::findOne(['id' => $this->currentIdCase]);
             if ($case != NULL) { //case not found
@@ -310,6 +403,7 @@ class Message extends BaseMessage {
             $this->assignedUser = $case->id_user;
             $user = Profile::findOne(['user_id' => $this->assignedUser]);
             $this->assignedUserPhone = $user->phone;
+            $this->assignedUserName = $user->firstname . " " . $user->lastname;
             $this->caseContactPhone = $case->id_phone;
             $this->currentIdCase = $case->id;
         } else {

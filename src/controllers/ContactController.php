@@ -20,9 +20,14 @@ class ContactController extends \app\controllers\base\ContactController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index'],
                         'allow' => true,
-                        'actions' => ['index','create','update'],
-                        'roles' => ['Helper', 'Supervisor'],
+                        'roles' => ['Helper','Supervisor'],
+                    ],
+                    [
+                        'actions' => ['create','update','delete'],
+                        'allow' => true,
+                        'roles' => ['Supervisor'],
                     ],
                 ],
             ],

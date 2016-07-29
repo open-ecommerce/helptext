@@ -66,7 +66,7 @@ abstract class MessageType extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new MessageTypeQuery(get_called_class());
+        return new \app\models\MessageTypeQuery(get_called_class());
     }
 
 

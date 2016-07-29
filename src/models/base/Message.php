@@ -43,7 +43,7 @@ abstract class Message extends \yii\db\ActiveRecord
     {
         return [
             [['id_case', 'id_sender_type', 'id_message_type'], 'integer'],
-            [['sent'], 'safe'],
+            [['sent', 'sid'], 'safe'],
             [['id_phone'], 'string', 'max' => 15],
             [['message'], 'string', 'max' => 50],
             [['id_case'], 'exist', 'skipOnError' => true, 'targetClass' => Cases::className(), 'targetAttribute' => ['id_case' => 'id']],
@@ -64,6 +64,7 @@ abstract class Message extends \yii\db\ActiveRecord
             'id_sender_type' => Yii::t('app', 'Id Sender Type'),
             'id_message_type' => Yii::t('app', 'Id Message Type'),
             'message' => Yii::t('app', 'Message'),
+            'sid' => Yii::t('app', 'Message sid'),
             'sent' => Yii::t('app', 'Sent'),
         ];
     }

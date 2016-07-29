@@ -878,16 +878,16 @@
         },
         {
             "name": "bower-asset/sass-rem",
-            "version": "v1.2.2",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pierreburel/sass-rem.git",
-                "reference": "54664553a81f9144c83932d15fb6073e7c31c539"
+                "reference": "4c21bbd200b4de56a4782f2df5f5ad5810bf4d60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pierreburel/sass-rem/zipball/54664553a81f9144c83932d15fb6073e7c31c539",
-                "reference": "54664553a81f9144c83932d15fb6073e7c31c539",
+                "url": "https://api.github.com/repos/pierreburel/sass-rem/zipball/4c21bbd200b4de56a4782f2df5f5ad5810bf4d60",
+                "reference": "4c21bbd200b4de56a4782f2df5f5ad5810bf4d60",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -1562,16 +1562,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.3.2",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "38a42688b836e256285765a7fd2f1cbe739d40d2"
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/38a42688b836e256285765a7fd2f1cbe739d40d2",
-                "reference": "38a42688b836e256285765a7fd2f1cbe739d40d2",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
                 "shasum": ""
             },
             "require": {
@@ -1606,13 +1606,19 @@
                     "email": "et.coder@gmail.com"
                 }
             ],
-            "description": "Backend theme for Yii2 Framework",
+            "description": "AdminLTE backend theme asset bundle for Yii 2.0 Framework",
             "keywords": [
                 "AdminLTE",
+                "admin",
+                "asset",
+                "backend",
+                "css",
                 "extension",
+                "less",
+                "theme",
                 "yii2"
             ],
-            "time": "2016-07-13 07:44:30"
+            "time": "2016-07-28 03:57:05"
         },
         {
             "name": "dmstr/yii2-backend-module",
@@ -5360,6 +5366,64 @@
             "time": "2016-07-22 06:46:28"
         },
         {
+            "name": "friendsofphp/php-cs-fixer",
+            "version": "v1.11.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "41dc93abd2937a85a3889e28765231d574d2bac8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/41dc93abd2937a85a3889e28765231d574d2bac8",
+                "reference": "41dc93abd2937a85a3889e28765231d574d2bac8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.3.6",
+                "sebastian/diff": "~1.1",
+                "symfony/console": "~2.3|~3.0",
+                "symfony/event-dispatcher": "~2.1|~3.0",
+                "symfony/filesystem": "~2.1|~3.0",
+                "symfony/finder": "~2.1|~3.0",
+                "symfony/process": "~2.3|~3.0",
+                "symfony/stopwatch": "~2.5|~3.0"
+            },
+            "conflict": {
+                "hhvm": "<3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.5|^5",
+                "satooshi/php-coveralls": "^0.7.1"
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\CS\\": "Symfony/CS/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "time": "2016-07-22 06:46:28"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.6.0",
             "source": {
@@ -5672,16 +5736,16 @@
         },
         {
             "name": "schmunk42/yii2-giiant",
-            "version": "0.8.3",
+            "version": "0.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmunk42/yii2-giiant.git",
-                "reference": "83b1d37664f7d5d4427cd799cb374ff958217fea"
+                "reference": "24b3d1c2035287741cb93a9420e1efdfb382c008"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/83b1d37664f7d5d4427cd799cb374ff958217fea",
-                "reference": "83b1d37664f7d5d4427cd799cb374ff958217fea",
+                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/24b3d1c2035287741cb93a9420e1efdfb382c008",
+                "reference": "24b3d1c2035287741cb93a9420e1efdfb382c008",
                 "shasum": ""
             },
             "require": {
@@ -5689,7 +5753,7 @@
                 "dmstr/yii2-bootstrap": "^0.1.2 || ~0.2",
                 "dmstr/yii2-db": "*",
                 "dmstr/yii2-helpers": "*",
-                "fabpot/php-cs-fixer": "1.* || 2.*",
+                "friendsofphp/php-cs-fixer": "1.* || 2.*",
                 "yiisoft/yii2": "~2.0.4",
                 "yiisoft/yii2-gii": "~2.0.4"
             },
@@ -5724,7 +5788,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-06-02 08:13:46"
+            "time": "2016-07-29 09:54:41"
         },
         {
             "name": "schmunk42/yii2-markdocs-module",

@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>
-                    <?= Yii::t('app', 'Testing SMS functionality') ?>        <small>
-                        <?= $model->id ?>        </small>
+                    <?= Yii::t('app', 'Testing Calls and SMS functionality') ?>
+                    <small><?= $model->id ?></small>
                 </h3>
             </div>
 

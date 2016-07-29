@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['class' => 'skip-export'] // remove this col-md-12 from export
                     ]
                 ],
-                'pjax' => true, // pjax is set to always true for this demo
+                'pjax' => true, 
                 'pjaxSettings' => [
                     'neverTimeout' => true,
                 ],

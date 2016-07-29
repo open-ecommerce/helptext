@@ -18,6 +18,8 @@ use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 use app\helpers\OeHelpers;
+use yii\helpers\Html;
+
 
 /**
  * This is the class for controller "MessageController".
@@ -33,36 +35,27 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionSms() {
+        OeHelpers::logger(str_repeat("=-", 25), 'sms');
+        if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
+            OeHelpers::logger('passed authentication', 'sms');
+            foreach ($_POST as $key => $value) {
+                OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
+            }
 
-        OeHelpers::logger('receving sms from twilio', 'sms');
+            $model = new Message;
+            $model->source = "twilio";
 
-        foreach ($_POST as $key => $value) {
-            OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
+            try {
+                $model->receiveSMS();
+            } catch (\Exception $e) {
+                $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+                $model->addError('_exception', $msg);
+            }
+        } else {
+            OeHelpers::logger('NOT passed authentication', 'sms');
         }
-
-        $model = new Message;
-        $model->source = "twilio";
-
-        try {
-            $model->receiveSMS();
-        } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-            $model->addError('_exception', $msg);
-        }
-
-//        try {
-//            if ($model->load($_POST) && $model->save()) {
-//                return $this->redirect(['view', 'id' => $model->id]);
-//            } elseif (!\Yii::$app->request->isPost) {
-//                $model->load($_GET);
-//            }
-//        } catch (\Exception $e) {
-//            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-//            $model->addError('_exception', $msg);
-//        }
+        OeHelpers::logger(str_repeat("=-", 25), 'sms');
     }
-
-//    
 
     /**
      * Creates a new Message model.
@@ -76,14 +69,33 @@ class MessageController extends \app\controllers\base\MessageController {
             $model->source = "system-test";
             if ($model->load($_POST)) {
                 $model->source = 'from system phone tester';
-                $model->receiveSMS();
-                return $this->redirect(['view', 'id' => $model->id]);
+                // sms pushed in the tester
+                if (isset($_POST['sms'])) {
+                    $model->receiveSMS();
+                }
+                // call pushed in the tester
+                if (isset($_POST['call'])) {
+                    $model->receiveCall();
+                }
+
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
+             
+            \Yii::$app->getSession()->setFlash('danger', [
+                'type' => 'danger',
+                'duration' => 22000,
+                'icon' => 'fa fa-users',
+                'message' => \Yii::t('app', Html::encode($msg)),
+                'title' => \Yii::t('app', Html::encode('Error checking message system')),
+                'positonY' => 'top',
+                'positonX' => 'right'
+            ]);
+             
+             
         }
         return $this->render('testsms', ['modelContact' => $modelContact, 'model' => $model]);
     }
@@ -93,9 +105,9 @@ class MessageController extends \app\controllers\base\MessageController {
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
-                $id_sender_type = $parents[0];
+                $idSenderType = intval($parents[0]);
                 //if the sender is a user
-                if ($id_sender_type === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
+                if ($idSenderType === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
                     $senders = ArrayHelper::map(Profile::find()->orderBy('lastname')->all(), 'user_id', function($name) {
                                 return $name->firstname . " " . $name->lastname;
                             });
@@ -119,11 +131,11 @@ class MessageController extends \app\controllers\base\MessageController {
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
-                $id_sender_type = $parents[0];
-                $id_sender = $parents[1];
-//if the sender is a user
-                if ($id_sender_type === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
-                    $profile = Profile::findOne(['user_id' => $id_sender]);
+                $idSenderType = intval($parents[0]);
+                $idSender = intval($parents[1]);
+                //if the sender is a user
+                if ($idSenderType === \Yii::$app->settings->get('helptext.sender_type_id_user')) {
+                    $profile = Profile::findOne(['user_id' => $idSender]);
                     if ($profile->phone === NULL) {
                         $phoneValue = "No phone added to the profile.";
                     } else {
@@ -133,7 +145,7 @@ class MessageController extends \app\controllers\base\MessageController {
                 } else {
                     $senders = ArrayHelper::map(
                                     ContactPhone::find()
-                                            ->where(['id_contact' => $id_sender])
+                                            ->where(['id_contact' => $idSender])
                                             ->orderBy('id')
                                             ->all(), 'id', 'id_phone');
                     foreach ($senders as $id => $value) {
@@ -200,7 +212,7 @@ class MessageController extends \app\controllers\base\MessageController {
             $value = $modelNewMessage->message;
             $modelNewMessage->message = "case#" . $current_case_id . "# " . $value;
             $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
-            $modelNewMessage->id_case = $current_case_id;
+            $modelNewMessage->id_sender_type = 0;
             $modelNewMessage->source = "helper from system";
 
             try {
@@ -210,8 +222,7 @@ class MessageController extends \app\controllers\base\MessageController {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewMessage->addError('_exception', $response);
             }
-            OeHelpers::logger('ERROR: '. $response , 'sms');
-
+            OeHelpers::logger('ERROR: ' . $response, 'sms');
         } else {
             $current_case_id = $_GET['1']['id'];
             $response = "";
@@ -251,19 +262,34 @@ class MessageController extends \app\controllers\base\MessageController {
         }
         OeHelpers::logger(str_repeat("=-", 25), 'call');
 
-        
         $accountSid = $request->post('AccountSid');
 
         if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
             OeHelpers::logger('passed authentication', 'call');
-            return $this->renderPartial('twilio-response');
+
+            $model = new Message;
+            $model->sid = $request->post('CallSid');
+            $model->id_phone = $request->post('From');
+            $model->id_message_type = \Yii::$app->settings->get('helptext.message_type_id_call');
+
+            try {
+                $numberToCall = $model->receiveCall();
+            } catch (\Exception $e) {
+                $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
+                $model->addError('_exception', $msg);
+            }
+            
+            return $this->render('twilio-response', [
+                        'response' => '1234'
+            ]);            
+            
         } else {
             OeHelpers::logger('NOT passed authentication', 'call');
             return "We are very sorry but you are at the wrong time, in the wrong place";
         }
 
         OeHelpers::logger(str_repeat("=-", 25), 'call');
-        
+
 
         $this->enableCsrfValidation = true;
     }

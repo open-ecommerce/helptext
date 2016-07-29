@@ -22,9 +22,6 @@ $formater = \yii::$app->formatter;
     $this->params['breadcrumbs'][] = $this->title;
     ?>
 
-
-
-
     <div class="container">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -44,7 +41,14 @@ $formater = \yii::$app->formatter;
                         $text = "";
                         
                         foreach ($dataProvider->models as $text) {
-
+                            
+                            if ($text->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
+                                $messageIcon = '<span class="glyphicon glyphicon-earphone"></span>';
+                            } else {
+                                $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';                                
+                            }
+                            
+                            
                             $sender = "";
                             switch ($text['id_sender_type']) {
                                 case 1: //automatic response
@@ -59,6 +63,7 @@ $formater = \yii::$app->formatter;
                             }
                             echo '<li>';
                             echo '<div class="bubble-' . $text->id_sender_type . '">';
+                            echo '<span class="messageType">' . $messageIcon . '</span>';
                             echo '<span class="personName-' . $text->id_sender_type . '">' . $sender . '</span><hr>';
                             echo '<span class="personSay-' . $text->id_sender_type . '">' . $text->message . '</span><br>';
                             echo '<br>';

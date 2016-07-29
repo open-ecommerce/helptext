@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
+
 
 /**
 * @var yii\web\View $this
@@ -38,28 +40,7 @@ $actionColumnTemplate = implode(' ', $actionColumnTemplates);
             <?= Html::a('<span class="glyphicon glyphicon-phone"></span> ' . Yii::t('app', 'Test SMS'), ['testsms'], ['class' => 'btn btn-success']) ?>
         </div>
 
-        <div class="pull-right">
 
-
-            <?=
-            \yii\bootstrap\ButtonDropdown::widget(
-            [
-            'id' => 'giiant-relations',
-            'encodeLabel' => false,
-            'label' => '<span class="glyphicon glyphicon-paperclip"></span> ' . Yii::t('app', 'Relations'),
-            'dropdown' => [
-            'options' => [
-            'class' => 'dropdown-menu-right'
-            ],
-            'encodeLabels' => false,
-            'items' => []
-            ],
-            'options' => [
-            'class' => 'btn-default'
-            ]
-            ]
-            );
-            ?>        </div>
     </div>
 </div>
 </div>

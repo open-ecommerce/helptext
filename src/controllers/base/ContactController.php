@@ -19,11 +19,23 @@ use dmstr\bootstrap\Tabs;
 class ContactController extends Controller {
 
     /**
-     * @var boolean whether to enable CSRF validation for the actions in this controller.
-     * CSRF validation is enabled only when both this property and [[Request::enableCsrfValidation]] are true.
+     * @inheritdoc
      */
-    public $enableCsrfValidation = false;
-
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+    
+    
+    
+    
     /**
      * Lists all Contact models.
      * @return mixed
@@ -32,17 +44,14 @@ class ContactController extends Controller {
         $searchModel = new ContactSearch;
         $dataProvider = $searchModel->search($_GET);
 
-        Tabs::clearLocalStorage();
-
-        Url::remember();
-        \Yii::$app->session['__crudReturnUrl'] = null;
-
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
                     'searchModel' => $searchModel,
         ]);
     }
 
+    
+    
     /**
      * Displays a single Contact model.
      * @param integer $id
@@ -104,28 +113,11 @@ class ContactController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
-        try {
-            $this->findModel($id)->delete();
-        } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-            \Yii::$app->getSession()->addFlash('error', $msg);
-            return $this->redirect(Url::previous());
-        }
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
 
-// TODO: improve detection
-        $isPivot = strstr('$id', ',');
-        if ($isPivot == true) {
-            return $this->redirect(Url::previous());
-        } elseif (isset(\Yii::$app->session['__crudReturnUrl']) && \Yii::$app->session['__crudReturnUrl'] != '/') {
-            Url::remember(null);
-            $url = \Yii::$app->session['__crudReturnUrl'];
-            \Yii::$app->session['__crudReturnUrl'] = null;
-
-            return $this->redirect($url);
-        } else {
-            return $this->redirect(['index']);
-        }
+        return $this->redirect(['index']);
     }
 
     /**

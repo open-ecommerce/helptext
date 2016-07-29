@@ -77,6 +77,14 @@ abstract class Contact extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     * @return ContactQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\ContactQuery(get_called_class());
+    }
 
 
 

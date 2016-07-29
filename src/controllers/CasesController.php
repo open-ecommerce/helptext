@@ -19,9 +19,14 @@ class CasesController extends \app\controllers\base\CasesController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index'],
                         'allow' => true,
-                        'actions' => ['index', 'view', 'update', 'create', 'detail'],
-                        'roles' => ['Helper', 'Supervisor'],
+                        'roles' => ['Helper','Supervisor'],
+                    ],
+                    [
+                        'actions' => ['create','update','delete'],
+                        'allow' => true,
+                        'roles' => ['Supervisor'],
                     ],
                 ],
             ],
