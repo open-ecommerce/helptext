@@ -20,49 +20,22 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 }
 ?>
 
-<div class="giiant-crud case-category-index">
-
-    <?php //             echo $this->render('_search', ['model' =>$searchModel]);
-        ?>
-
+<div class="col-md-12 case-index">
 
     <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
-    <h1>
-        <?= Yii::t('app', 'CaseCategories') ?>        <small>
-            List
-        </small>
-    </h1>
+    <div class="panel panel-default">
+    <div class="panel-heading">    <h3>
+        <?= Yii::t('app', 'CaseCategories') ?>
+    </h3>
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
-
-        <div class="pull-right">
-
-
-            <?=
-            \yii\bootstrap\ButtonDropdown::widget(
-            [
-            'id' => 'giiant-relations',
-            'encodeLabel' => false,
-            'label' => '<span class="glyphicon glyphicon-paperclip"></span> ' . Yii::t('app', 'Relations'),
-            'dropdown' => [
-            'options' => [
-            'class' => 'dropdown-menu-right'
-            ],
-            'encodeLabels' => false,
-            'items' => []
-            ],
-            'options' => [
-            'class' => 'btn-default'
-            ]
-            ]
-            );
-            ?>        </div>
     </div>
-
-    <hr />
+</div>
+</div>
+</div>
 
     <div class="table-responsive">
         <?= GridView::widget([

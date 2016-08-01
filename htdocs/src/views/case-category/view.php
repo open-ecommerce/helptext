@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
     <?php $this->beginBlock('app\models\CaseCategory'); ?>
 
-    
+
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     ],
     ]); ?>
 
-    
+
     <hr/>
 
     <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id],
@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     <?php $this->endBlock(); ?>
 
 
-    
+
     <?= Tabs::widget(
                  [
                      'id' => 'relation-tabs',
