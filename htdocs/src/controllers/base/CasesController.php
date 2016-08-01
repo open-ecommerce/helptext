@@ -155,26 +155,6 @@ class CasesController extends Controller {
         }
     }
     
-    /**
-     * Url action - /clients/cases-detail
-     */
-    public function actionDetail() {
-        if (isset($_POST['expandRowKey'])) {
-           
-            $model = Cases::find()->where(['id_contact' => $_POST['expandRowKey']])->orderBy('start_date desc');
-
-            $dataProvider = new ActiveDataProvider([
-                'query' => $model,
-                'pagination' => ['pageSize' => 20,],
-            ]);
-            $this->layout = '_only-content';
-            return $this->render('_grid_cases-details', [
-                        'dataProvider' => $dataProvider,
-            ]);
-        } else {
-            return '<div class="alert alert-danger">No data found</div>';
-        }
-    }
         
 
 }
