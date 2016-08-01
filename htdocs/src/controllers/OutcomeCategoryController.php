@@ -22,7 +22,7 @@ class OutcomeCategoryController extends \app\controllers\base\OutcomeCategoryCon
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'create','update','delete', 'view'],
                         'roles' => ['Supervisor'],
                     ],
                 ],

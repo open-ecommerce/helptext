@@ -22,7 +22,7 @@ class LanguagesController extends \app\controllers\base\LanguagesController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'create','update','delete', 'view'],
                         'roles' => ['Supervisor'],
                     ],
                 ],

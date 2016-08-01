@@ -68,8 +68,6 @@ $menuBeforeItems = [
             '<li class="divider"></li>',
             ['label' => 'Messages', 'url' => ['/message']],
             '<li class="divider"></li>',
-            ['label' => 'Configuration', 'url' => ['/configuration']],
-            '<li class="divider"></li>',
             ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
         ],
         'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),

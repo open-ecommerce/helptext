@@ -21,7 +21,7 @@ class SeverityController extends \app\controllers\base\SeverityController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'create','update','delete', 'view'],
                         'roles' => ['Supervisor'],
                     ],
                 ],

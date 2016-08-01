@@ -20,7 +20,6 @@ $this->title = date('l jS \of F Y');
 $deleteTip = Yii::t('app', 'Delete this client with all the cases and messages.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all the cases and messages?');
 
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customers-index col-md-12">
 <?php //echo $this->render('_search', ['model' => $searchModel]);  ?>

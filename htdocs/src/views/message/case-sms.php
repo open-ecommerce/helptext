@@ -15,11 +15,14 @@ use yii\widgets\Pjax;
 $formater = \yii::$app->formatter;
 ?>
 
+
 <div class="container" id="sms-texts">
+
+
     <?php
     $this->title = Yii::t('app', 'View Case conversations');
-    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
-    $this->params['breadcrumbs'][] = $this->title;
+    //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
+    //$this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <div class="container">
@@ -28,27 +31,40 @@ $formater = \yii::$app->formatter;
 
 
                 <div class="panel-heading">
-                    <h4>
-                        <?= Yii::t('app', 'Case Number: ') . $modelCases->id ?>
-                    </h4>
-                    <h5>
-                        <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
-                    </h5>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>
+                                <?= Yii::t('app', 'Case Number: ') . $modelCases->id ?>
+                            </h4>
+                            <h5>
+                                <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
+                            </h5>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <?= Html::a('<span class="glyphicon glyphicon-folder-open"></span>&nbsp;  View all Cases', ['/cases'], ['class' => 'btn btn-success pull-right']) ?>
+                                <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right','style' => 'margin-right: 5px;']) ?>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
                 <div class="panel-body">
                     <ul>
                         <?php
                         $text = "";
-                        
+
                         foreach ($dataProvider->models as $text) {
-                            
+
                             if ($text->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
                                 $messageIcon = '<span class="glyphicon glyphicon-earphone"></span>';
                             } else {
-                                $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';                                
+                                $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';
                             }
-                            
-                            
+
+
                             $sender = "";
                             switch ($text['id_sender_type']) {
                                 case 1: //automatic response
@@ -77,33 +93,30 @@ $formater = \yii::$app->formatter;
                 </div>
                 <div class="panel-footer">
                     <?php
-
-                    Pjax::begin(); 
+                    Pjax::begin();
 
                     $form = ActiveForm::begin([
-                        'id' => 'sms-form', 
-                        'type' => ActiveForm::TYPE_HORIZONTAL,
-                        'formConfig' => ['showLabels'=>false]
-                    ]);                     
+                                'id' => 'sms-form',
+                                'type' => ActiveForm::TYPE_HORIZONTAL,
+                                'formConfig' => ['showLabels' => false]
+                    ]);
 
                     echo Html::hiddenInput('case_id', $modelCases->id);
-                    echo "<h5>".$response."</h5>";
-                    echo $form->field($modelNewMessage, 'message', 
-                    [
+                    echo "<h5>" . $response . "</h5>";
+                    echo $form->field($modelNewMessage, 'message', [
                         'addon' => [
-                            'prepend' => ['content'=>'<i class="glyphicon glyphicon-comment"></i>'],
+                            'prepend' => ['content' => '<i class="glyphicon glyphicon-comment"></i>'],
                             'append' => [
-                                'content' => Html::submitButton('Send SMS', ['class'=>'btn btn-primary'], ['name' => 'send-button']), 
+                                'content' => Html::submitButton('Send SMS', ['class' => 'btn btn-primary'], ['name' => 'send-button']),
                                 'asButton' => true
                             ]
                         ]
                     ]);
-                                        
 
-                    ActiveForm::end();                    
 
-                    Pjax::end(); 
-                    
+                    ActiveForm::end();
+
+                    Pjax::end();
                     ?>
 
                 </div>

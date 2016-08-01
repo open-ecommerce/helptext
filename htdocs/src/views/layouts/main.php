@@ -52,9 +52,6 @@ $imgPath = $bundle->baseUrl;
 
         <?php $this->head() ?>    
 
-
-
-
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -87,6 +84,7 @@ $imgPath = $bundle->baseUrl;
                     ?>
             </div>        
 
+            
             <?= $content ?>
         </div>
 
