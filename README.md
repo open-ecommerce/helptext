@@ -77,9 +77,9 @@ gulp --production
 etc/apache2/sites-available configuration
 <VirtualHost *:80>
     ServerName helptext.dev
-    DocumentRoot "/var/www/helptext/web"
+    DocumentRoot "/var/www/helptext/htdocs/web"
     ServerAlias www.helptext.dev
-    <Directory /var/www/helptext/web>
+    <Directory /var/www/helptext/htdocs/web>
             Options +FollowSymlinks
             AllowOverride All
             Order allow,deny
@@ -88,6 +88,11 @@ etc/apache2/sites-available configuration
     ErrorLog ${APACHE_LOG_DIR}/helptext.log
 </VirtualHost>
 ```
+
+## you will have this 
+ln -s ../local/.env .env
+
+
 
 you will need swiftmailer in order to work the email
 ```

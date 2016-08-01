@@ -10,7 +10,7 @@ local
 
 /_html
 /tmp
-/htdocs/.env
+.env
 .htaccess
 # phpstorm project files
 .idea
