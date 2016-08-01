@@ -1,0 +1,33 @@
+{
+    "name": "dmstr/yii2-pages-module",
+    "description": "Application sitemap and navigation manager module for Yii 2.0 Framework",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","sitemap","navigation"],
+    "license": "BSD-3-Clause",
+    "authors": [
+      {
+        "name": "Tobias Munk",
+        "email": "tobias@diemeisterei.de"
+      },
+      {
+        "name": "Christopher Stebe",
+        "email": "c.stebe@herzogkommunikation.de"
+      }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0.6",
+        "kartik-v/yii2-tree-manager": "~1.0.3",
+        "kartik-v/yii2-widget-select2": "^2.0.1",
+        "rmrevin/yii2-fontawesome": "~2.9",
+        "devgroup/yii2-jsoneditor": "1.0.*",
+        "dmstr/yii2-web": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "dmstr\\modules\\pages\\": ""
+        }
+    },
+    "extra": {
+        "bootstrap": "dmstr\\modules\\pages\\Bootstrap"
+    }
+}
