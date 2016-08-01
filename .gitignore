@@ -1,5 +1,12 @@
 #resellers
-
+.pki
+.ssh
+.composer
+.bash_history
+.bash_profile
+.bash_logout
+.bashhrc
+.kshrc
 cgi-bin
 logs
 oe-access
