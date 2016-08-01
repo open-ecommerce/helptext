@@ -72,6 +72,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
+                    'header' => 'View',
+                    'template' => '{view}',
+                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
+                ],
+                    
+                [
+                    'class' => 'kartik\grid\ActionColumn',
                     'header' => 'Update',
                     'template' => '{update}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],

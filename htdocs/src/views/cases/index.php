@@ -109,6 +109,12 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
+                    'header' => 'View',
+                    'template' => '{view}',
+                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
+                ],
+                [
+                    'class' => 'kartik\grid\ActionColumn',
                     'header' => 'Update',
                     'template' => '{update}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
