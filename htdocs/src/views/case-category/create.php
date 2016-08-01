@@ -11,13 +11,15 @@ $this->title = Yii::t('app', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CaseCategories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giiant-crud case-category-create">
-
-    <h1>
+<div class="container case-category-create">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+    <h3>
         <?= Yii::t('app', 'CaseCategory') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
-
+    </h3>
+</div>
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?=             Html::a(
@@ -26,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'btn btn-default']) ?>
         </div>
     </div>
-
-    <hr />
-
+</div>
+</div>
+</div>
     <?= $this->render('_form', [
     'model' => $model,
     ]); ?>

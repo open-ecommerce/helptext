@@ -37,33 +37,9 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
-
-        <div class="pull-right">
-
-
-            <?=
-            \yii\bootstrap\ButtonDropdown::widget(
-            [
-            'id' => 'giiant-relations',
-            'encodeLabel' => false,
-            'label' => '<span class="glyphicon glyphicon-paperclip"></span> ' . Yii::t('app', 'Relations'),
-            'dropdown' => [
-            'options' => [
-            'class' => 'dropdown-menu-right'
-            ],
-            'encodeLabels' => false,
-            'items' => []
-            ],
-            'options' => [
-            'class' => 'btn-default'
-            ]
-            ]
-            );
-            ?>        </div>
     </div>
 </div>
 </div>
-
     <div class="table-responsive">
         <?= GridView::widget([
         'layout' => '{summary}{pager}{items}{pager}',
