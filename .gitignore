@@ -1,6 +1,4 @@
 #resellers
-.*
-!.gitignore
 
 cgi-bin
 logs
@@ -10,7 +8,6 @@ local
 
 /_html
 /tmp
-.env
 .htaccess
 # phpstorm project files
 .idea
