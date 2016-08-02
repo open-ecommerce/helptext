@@ -6,9 +6,12 @@ use yii\jui\DatePicker;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
-use dektrium\user\models\Profile;
+use yii\models\Profile;
 use dektrium\user\models\User;
 use app\models\Severity;
+use app\models\Contact;
+use app\models\CaseCategory;
+use app\models\OutcomeCategory;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -29,37 +32,60 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         [
             'attribute' => 'id',
             'label' => 'Case #',
-            'width' => '30px',
+            'width' => '70px',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'id_contact',
-            'value' => function($model) { return $model->contact->first_name . " " . $model->contact->last_name ; },
+            'attribute' => 'fullName',
+            'value' => 'contact.fullName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'id_user',
-            'value' => function($model) { return $model->profile->firstname . " " . $model->profile->lastname ; },
+            'attribute' => 'userName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'category.case_category',
+            'attribute' => 'caseCategory',
+            'value' => 'category.case_category',
             'hAlign' => 'center',
             'vAlign' => 'middle',
+            'filterType'=>GridView::FILTER_SELECT2,
+            'filter'=>ArrayHelper::map(CaseCategory::find()->orderBy('case_category')->asArray()->all(), 'id', 'case_category'), 
+            'filterWidgetOptions'=>[
+                'pluginOptions'=>['allowClear'=>true],
+            ],
+            'filterInputOptions'=>['placeholder'=>'Any Category'],
+            'format'=>'raw'
         ],
         [
+            'attribute' => 'caseSeverity',
+            'value' => 'severity.severity',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'attribute' => 'severity.severity',
+            'filterType'=>GridView::FILTER_SELECT2,
+            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
+            'filterWidgetOptions'=>[
+                'pluginOptions'=>['allowClear'=>true],
+            ],
+            'filterInputOptions'=>['placeholder'=>'Any Severity'],
+            'format'=>'raw'
         ],
         [
+            'attribute' => 'caseOutcome',
+            'value' => 'outcome.outcome',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'attribute' => 'outcome.outcome',
             'hAlign' => 'center',
+            'filterType'=>GridView::FILTER_SELECT2,
+            'filter'=>ArrayHelper::map(OutcomeCategory::find()->orderBy('outcome')->asArray()->all(), 'id', 'outcome'), 
+            'filterWidgetOptions'=>[
+                'pluginOptions'=>['allowClear'=>true],
+            ],
+            'filterInputOptions'=>['placeholder'=>'Any Outcome'],
+            'format'=>'raw'
         ],
         [
             'attribute' => 'start_date',
@@ -71,7 +97,8 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
             'filter' => false,
         ],
         [
-            'attribute' => 'State',
+            'attribute' => 'caseState',
+            'width' => '130px',
             'class' => 'kartik\grid\BooleanColumn',
             'vAlign' => 'middle',
             'value' => 'state',
@@ -131,6 +158,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
 
             <?=
             GridView::widget([
+                'id' => 'grid-cases',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'resizableColumns' => false,
@@ -151,7 +179,9 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
                 'columns' => $gridColumns,
                 // set export properties
                 'export' => [
-                    'fontAwesome' => true
+                    'fontAwesome' => true,
+                    'showConfirmAlert'=>false,
+                    'target'=>GridView::TARGET_BLANK                    
                 ],
                 // set your toolbar
                 'toolbar' => [

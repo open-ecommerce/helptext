@@ -6,6 +6,7 @@ namespace app\models\base;
 
 use Yii;
 
+//use dektrium\user\models\Profile;
 use dektrium\user\models\Profile;
 use dektrium\user\models\User;
 
@@ -47,7 +48,7 @@ abstract class Cases extends \yii\db\ActiveRecord
     {
         return [
             [['id_contact', 'id_user', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
-            [['start_date', 'close_date'], 'safe'],
+            [['start_date', 'close_date', 'userName'], 'safe'],
             [['state'], 'boolean'],
             [['comments', 'id_phone'], 'string'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => \dektrium\user\models\Profile::className(), 'targetAttribute' => ['id_user' => 'user_id']],
@@ -69,6 +70,7 @@ abstract class Cases extends \yii\db\ActiveRecord
             'id_contact' => Yii::t('app', 'Client'),
             'id_phone' => Yii::t('app', 'Active Client Phone'),
             'id_user' => Yii::t('app', 'Helper'),
+            'userName' => Yii::t('app', 'Helper'),
             'id_category' => Yii::t('app', 'Category'),
             'id_outcome' => Yii::t('app', 'Outcome'),
             'id_severity' => Yii::t('app', 'Severity'),
@@ -150,4 +152,9 @@ abstract class Cases extends \yii\db\ActiveRecord
     }
 
 
+    public function getUserName() {
+        return $this->profile->firstname . " " . $this->profile->lastname;
+    }    
+    
+    
 }

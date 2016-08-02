@@ -12,13 +12,29 @@ use app\models\Cases;
  */
 class CasesSearch extends Cases {
 
+    public $userName;
+    public $fullName;
+    public $caseCategory;
+    public $caseOutcome;
+    public $caseSeverity;
+    public $caseState;
+
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
             [['id', 'id_contact', 'id_category', 'id_severity', 'id_outcome'], 'integer'],
-            [['start_date', 'close_date', 'state', 'comments'], 'safe'],
+            [['start_date',
+            'close_date',
+            'caseState',
+            'comments',
+            'fullName',
+            'userName',
+            'caseCategory',
+            'caseOutcome',
+            'caseSeverity'
+                ], 'safe'],
         ];
     }
 
@@ -38,32 +54,86 @@ class CasesSearch extends Cases {
      * @return ActiveDataProvider
      */
     public function search($params) {
+
         $query = Cases::find();
+
+        $query->joinWith(['contact', 'category', 'severity', 'outcome', 'profile']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'fullName' => [
+                    'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC],
+                    'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC],
+                    'label' => 'Full Name',
+                    'default' => SORT_ASC
+                ],
+                'userName' => [
+                    'asc' => ['firstname' => SORT_ASC, 'lastname' => SORT_ASC],
+                    'desc' => ['firstname' => SORT_DESC, 'lastname' => SORT_DESC],
+                    'label' => 'User Name',
+                    'default' => SORT_ASC
+                ],
+                'caseCategory' => [
+                    'asc' => ['case_category' => SORT_ASC, 'case_category' => SORT_ASC],
+                    'desc' => ['case_category' => SORT_DESC, 'case_category' => SORT_DESC],
+                    'label' => 'Category',
+                    'default' => SORT_ASC
+                ],
+                'caseSeverity' => [
+                    'asc' => ['severity' => SORT_ASC, 'severity' => SORT_ASC],
+                    'desc' => ['severity' => SORT_DESC, 'severity' => SORT_DESC],
+                    'label' => 'Severity',
+                    'default' => SORT_ASC
+                ],
+                'caseOutcome' => [
+                    'asc' => ['outcome' => SORT_ASC, 'outcome' => SORT_ASC],
+                    'desc' => ['outcome' => SORT_DESC, 'outcome' => SORT_DESC],
+                    'label' => 'Outcome',
+                    'default' => SORT_ASC
+                ],
+                'caseState' => [
+                    'asc' => ['state' => SORT_ASC, 'state' => SORT_ASC],
+                    'desc' => ['state' => SORT_DESC, 'state' => SORT_DESC],
+                    'label' => 'State',
+                    'default' => SORT_ASC
+                ]
+            ]
+        ]);
+
+
         $this->load($params);
 
-        if (!$this->validate()) {
-// uncomment the following line if you do not want to any records when validation fails
-// $query->where('0=1');
+
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_contact' => $this->id_contact,
-            'id_category' => $this->id_category,
-            'id_severity' => $this->id_severity,
-            'id_outcome' => $this->id_outcome,
-            'start_date' => $this->start_date,
-            'close_date' => $this->close_date,
+            'id_category' => $this->caseCategory,
+            'id_severity' => $this->caseSeverity,
+            'id_outcome' => $this->caseOutcome,
+            'cases.state' => $this->caseState,
         ]);
 
-        $query->andFilterWhere(['like', 'state', $this->state])
-                ->andFilterWhere(['like', 'comments', $this->comments]);
+
+        // filter by contact full name
+        $query->andWhere('first_name LIKE "%' . $this->fullName . '%" ' .
+                'OR last_name LIKE "%' . $this->fullName . '%"'
+        );
+
+        // filter by contact full name
+        $query->andWhere('firstname LIKE "%' . $this->userName . '%" ' .
+                'OR lastname LIKE "%' . $this->userName . '%"'
+        );
+        
+
 
         return $dataProvider;
     }

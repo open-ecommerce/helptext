@@ -93,9 +93,6 @@ class ContactSearch extends Contact {
             'OR last_name LIKE "%' . $this->fullName . '%"'
         );
 
-        return $dataProvider;
-
-
         $query->andFilterWhere(['like', 'gender', $this->gender])
                 ->andFilterWhere(['like', 'comments', $this->comments])
                 ->andFilterWhere(['like', 'id', $this->id]);
