@@ -72,7 +72,7 @@ $model = new Severity;
 
 try {
 if ($model->load($_POST) && $model->save()) {
-return $this->redirect(['view', 'id' => $model->id]);
+return $this->redirect(['index']);
 } elseif (!\Yii::$app->request->isPost) {
 $model->load($_GET);
 }

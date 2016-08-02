@@ -44,7 +44,7 @@ abstract class OutcomeCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'outcome' => Yii::t('app', 'Outcome'),
+            'outcome' => Yii::t('app', 'Outcome Category'),
         ];
     }
 

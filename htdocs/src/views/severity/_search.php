@@ -5,12 +5,12 @@ use yii\widgets\ActiveForm;
 
 /**
 * @var yii\web\View $this
-* @var app\models\SeveritySearch $model
+* @var app\models\CaseCategorySearch $model
 * @var yii\widgets\ActiveForm $form
 */
 ?>
 
-<div class="severity-search">
+<div class="case-category-search">
 
     <?php $form = ActiveForm::begin([
     'action' => ['index'],
@@ -19,9 +19,7 @@ use yii\widgets\ActiveForm;
 
     		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'severity') ?>
-
-		<?= $form->field($model, 'sla') ?>
+		<?= $form->field($model, 'case_category') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

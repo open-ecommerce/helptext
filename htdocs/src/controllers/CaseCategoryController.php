@@ -22,7 +22,7 @@ class CaseCategoryController extends \app\controllers\base\CaseCategoryControlle
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'update','view','detail','create'],
+                        'actions' => ['index', 'update','view','detail','create','delete'],
                         'roles' => ['Supervisor'],
                     ],
                 ],

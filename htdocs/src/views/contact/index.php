@@ -14,14 +14,14 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = date('l jS \of F Y');
+$this->title = "List of clients and cases";
 
 $deleteTip = "Delete this client detail and all the attendances records.";
 $deleteMsg = "Are you sure you want to delete this client detail and all the attendances records?";
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-12 text-index">
+  <div class="col-md-10 col-md-offset-1">
 <div class="customers-index">
 
 <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'id',
             'label' => 'Client #',
-            'width' => '10px',
+            'width' => '30px',
             'hAlign' => 'center',
         ],
         [
@@ -103,22 +103,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
                 'filterRowOptions' => ['class' => 'kartik-sheet-style'],
                 'responsive' => true,
-                'beforeHeader' => [
-                    [
-                        'columns' => [
-                            ['content' => 'Clients\'s Details', 'options' => ['colspan' => 6, 'class' => 'text-center warning']],
-                            ['content' => 'Editing Clients\'s', 'options' => ['colspan' => 2, 'class' => 'text-center warning']],
-                        ],
-                        'options' => ['class' => 'skip-export'] // remove this col-md-12 from export
-                    ]
-                ],
                 'pjax' => true, 
                 'pjaxSettings' => [
                     'neverTimeout' => true,
                 ],
                 'hover' => true,
                 'panel' => [
-                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> List of clients - ' . $this->title . '</h3>',
+                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> ' . $this->title . '</h3>',
                     'type' => 'primary',
                     'showFooter' => false
                 ],

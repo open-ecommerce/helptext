@@ -22,7 +22,7 @@ class CountryController extends \app\controllers\base\CountryController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'update','view','detail','create','delete'],
                         'roles' => ['Supervisor'],
                     ],
                 ],

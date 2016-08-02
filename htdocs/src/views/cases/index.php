@@ -21,7 +21,7 @@ $deleteTip = Yii::t('app', 'Delete this client with all the cases and messages.'
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all the cases and messages?');
 
 ?>
-<div class="customers-index col-md-12">
+  <div class="col-md-10 col-md-offset-1">
 <?php //echo $this->render('_search', ['model' => $searchModel]);  ?>
     <?php
 
@@ -29,7 +29,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         [
             'attribute' => 'id',
             'label' => 'Case #',
-            'width' => '10px',
+            'width' => '30px',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
@@ -42,7 +42,6 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         [
             'attribute' => 'id_user',
             'value' => function($model) { return $model->profile->firstname . " " . $model->profile->lastname ; },
-            'width' => '50px',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],

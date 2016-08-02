@@ -1,38 +1,31 @@
+
 <?php
 
 use yii\helpers\Html;
 
 /**
 * @var yii\web\View $this
-* @var app\models\CaseCategory $model
+* @var app\models\Contact $model
 */
 
-$this->title = Yii::t('app', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CaseCategories'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Create New Case Category');
+
 ?>
-<div class="container case-category-create">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-    <h3>
-        <?= Yii::t('app', 'CaseCategory') ?>        <small>
+<div class="container contact-create">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>
+                    <?= Yii::t('app', 'Create New Case Category') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h3>
-</div>
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?=             Html::a(
-            Yii::t('app', 'Cancel'),
-            \yii\helpers\Url::previous(),
-            ['class' => 'btn btn-default']) ?>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <?=
+                $this->render('_form', [
+                    'model' => $model,
+                ]);?>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-    <?= $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>
