@@ -1,11 +1,18 @@
 <?php
 use dmstr\widgets\Alert;
 use yii\helpers\Html;
+use app\assets\AppAsset;
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-$this->title = $this->title.' [Backend]';
+$this->title = $this->title.' [HelpText Backend]';
 \app\modules\backend\assets\AdminAsset::register($this);
+
+$bundle = AppAsset::register($this);
+$imgPath = $bundle->baseUrl;
+
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -13,6 +20,24 @@ $this->title = $this->title.' [Backend]';
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $imgPath; ?>/img/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $imgPath; ?>/img/icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<?php echo $imgPath; ?>/img/icons/manifest.json">
+    <link rel="mask-icon" href="<?php echo $imgPath; ?>/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -47,48 +72,6 @@ $this->title = $this->title.' [Backend]';
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <?php if (!\Yii::$app->user->isGuest): ?>
-                        <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">1</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 1 notification(s)</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-people info"></i> Welcome to Phundament 4!
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag"></i>
-                                <span class="label label-default"><?= count(Yii::$app->urlManager->languages) ?></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">Languages</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <?php foreach (Yii::$app->urlManager->languages as $language): ?>
-                                            <li>
-                                                <?= Html::a(
-                                                    $language,
-                                                    ['', Yii::$app->urlManager->languageParam => $language]
-                                                ) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -411,4 +411,21 @@ class Message extends BaseMessage {
         }
     }
 
+    public function getMessagesByMonth() {
+        
+        $sql =  "SELECT DATE_FORMAT(sent, '%Y') as 'year', ";
+        $sql .= "DATE_FORMAT(sent, '%M') as 'month', ";
+        $sql .= "COUNT(id) as 'total' ";
+        $sql .= "FROM message ";
+        $sql .= "GROUP BY DATE_FORMAT(sent, '%Y%m')";
+        
+        $messages = Yii::$app->db->createCommand($sql)
+            ->queryAll();
+        return $messages;
+    }
+
+
+    
+    
+
 }
