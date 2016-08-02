@@ -8,9 +8,7 @@ use yii\helpers\Html;
 */
 
 $this->title = Yii::t('app', 'Contact') . $model->id . ', ' . Yii::t('app', 'Edit');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Contacts'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
+
 ?>
 <div class="container contact-update">
     <div class="col-md-10 col-md-offset-1">

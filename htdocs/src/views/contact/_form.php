@@ -21,13 +21,7 @@ use kartik\helpers\Html;
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'gender')->dropDownList(['M' => 'Male', 'F' => 'Female', 'O' => 'Other'], ['prompt' => '- Choose Gender']) ?>
         <?= $form->field($model, 'marital_status')->dropDownList(['Maried' => 'Maried', 'Single' => 'Single'], ['prompt' => '- Choose Status']) ?>
-        <?php
-        echo $form->field($model, 'birthday')->widget(DateControl::classname(), [
-            'type' => DateControl::FORMAT_DATE,
-            'displayFormat' => 'php:d M Y',
-            'saveFormat' => 'php:Y-m-d',
-        ]);
-        ?>
+        <?= $form->field($model, 'birthday')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
         <?= $form->field($model, 'id_country')->dropDownList(ArrayHelper::map(Country::find()->orderBy('country_name')->all(), 'id', 'country_name')) ?>
     </div>
     <div class="col-md-6">

@@ -1,5 +1,6 @@
 <?php
 
+
 use yii\helpers\Html;
 
 /**
@@ -8,26 +9,26 @@ use yii\helpers\Html;
 */
 
 $this->title = Yii::t('app', 'Cases') . $model->id . ', ' . Yii::t('app', 'Edit');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cases'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
+
 ?>
-<div class="col-md-12 cases-update">
-
-    <h1>
-        <?= Yii::t('app', 'Cases') ?>
-        <small>
+<div class="container contact-update">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>
+                    <?= Yii::t('app', 'Update cases') ?>        <small>
                         <?= $model->id ?>        </small>
-    </h1>
+                </h3>
+            </div>
 
-    <div class="crud-navigation">
-        <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+            <div class="panel-body">
+
+                <?=
+                $this->render('_form', [
+                    'model' => $model,
+                ]);
+                ?>
+            </div>
+        </div>
     </div>
-
-    <hr />
-
-    <?php echo $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>

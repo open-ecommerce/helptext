@@ -72,7 +72,7 @@ abstract class Message extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCase()
+    public function getCase()
     {
         return $this->hasOne(\app\models\Cases::className(), ['id' => 'id_case']);
     }
@@ -80,7 +80,7 @@ abstract class Message extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdMessageType()
+    public function getMessageType()
     {
         return $this->hasOne(\app\models\MessageType::className(), ['id' => 'id_message_type']);
     }
@@ -88,7 +88,7 @@ abstract class Message extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdSenderType()
+    public function getSenderType()
     {
         return $this->hasOne(\app\models\SenderType::className(), ['id' => 'id_sender_type']);
     }

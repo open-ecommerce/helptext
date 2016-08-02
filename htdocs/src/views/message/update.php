@@ -3,31 +3,28 @@
 use yii\helpers\Html;
 
 /**
-* @var yii\web\View $this
-* @var app\models\Message $model
-*/
-
+ * @var yii\web\View $this
+ * @var app\models\Cases $model
+ */
 $this->title = Yii::t('app', 'Message') . $model->id . ', ' . Yii::t('app', 'Edit');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Edit');
+
 ?>
-<div class="col-md-12 text-update">
-
-    <h1>
-        <?= Yii::t('app', 'Message') ?>
-        <small>
-                        <?= $model->id ?>        </small>
-    </h1>
-
-    <div class="crud-navigation">
-        <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+<div class="container contact-create">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>
+                    <?= Yii::t('app', 'Update Message') ?>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <?=
+                $this->render('_form', [
+                    'model' => $model,
+                ]);?>
+            </div>
+        </div>
     </div>
-
-    <hr />
-
-    <?php echo $this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
 </div>
+
+

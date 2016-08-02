@@ -22,21 +22,9 @@ use kartik\helpers\Html;
                 function($model, $defaultValue) { return $model['first_name'].' '.$model['last_name']; })
                 , ['prompt' => '- Select Client']) ?>
         <?= $form->field($model, 'state')->dropDownList(['0' => 'Close', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
-        <?php
-        echo $form->field($model, 'start_date')->widget(DateControl::classname(), [
-            'type' => DateControl::FORMAT_DATE,
-            'displayFormat' => 'php:d M Y',
-            'saveFormat' => 'php:Y-m-d',
-        ]);
-        ?>
+        <?= $form->field($model, 'start_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
+        <?= $form->field($model, 'close_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
 
-        <?php
-        echo $form->field($model, 'close_date')->widget(DateControl::classname(), [
-            'type' => DateControl::FORMAT_DATE,
-            'displayFormat' => 'php:d M Y',
-            'saveFormat' => 'php:Y-m-d',
-        ]);
-        ?>
     </div>
 
     <div class="col-md-6">
