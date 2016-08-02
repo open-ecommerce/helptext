@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = "List of Messages";
+$this->title = "List of Messages (sms and calls)";
 
 $deleteTip = Yii::t('app', 'Delete this Message.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this message?');
@@ -93,7 +93,7 @@ GridView::widget([
     ],
     'hover' => true,
     'panel' => [
-        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> '. $this->title .'</h3>',        
+        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-comment"></i> '. $this->title .'</h3>',        
         'type' => 'primary',
         'showFooter' => false
     ],

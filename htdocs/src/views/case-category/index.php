@@ -63,7 +63,7 @@ GridView::widget([
     ],
     'hover' => true,
     'panel' => [
-        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> '. $this->title .'</h3>',
+        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-tags"></i> '. $this->title .'</h3>',
         'type' => 'primary',
         'showFooter' => false
     ],

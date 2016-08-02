@@ -6867,6 +6867,10 @@ h1 small,
 .site-index {
   margin: 100px 0 50px 0;
 }
+.footer-buttons {
+  padding: 15px;
+  margin-top: 7px;
+}
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates

@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'id',
             'label' => 'Client #',
-            'width' => '30px',
+            'width' => '100px',
             'hAlign' => 'center',
         ],
         [
@@ -50,15 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'collapseIcon' => '<span class="glyphicon glyphicon-minus"></span>',
         ],        
         [
-            'attribute' => 'last_name',
+            'attribute' => 'fullName',
             'vAlign' => 'middle',
-            'label' => 'Surname',
-            'format' => 'html',
-        ],
-        [
-            'attribute' => 'first_name',
-            'vAlign' => 'middle',
-            'label' => 'First Name',
+            'label' => 'Name',
             'format' => 'html',
         ],
         [

@@ -29,9 +29,10 @@ use app\models\MessageType;
     </div>
 </div>
 
-<div class="form-group">
+<div class="col-md-12 footer-buttons">
     <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
-    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-success pull-right']) ?>
 </div>
+
 <?php ActiveForm::end(); ?>
 

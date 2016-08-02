@@ -15,7 +15,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = date('l jS \of F Y');
+$this->title = " List of Cases";
 
 $deleteTip = Yii::t('app', 'Delete this client with all the cases and messages.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all the cases and messages?');
@@ -144,7 +144,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
                 ],
                 'hover' => true,
                 'panel' => [
-                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> List of cases - ' . $this->title . '</h3>',
+                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i>       ' . $this->title . '</h3>',
                     'type' => 'primary',
                     'showFooter' => false
                 ],

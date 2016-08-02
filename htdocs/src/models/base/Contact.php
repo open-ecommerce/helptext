@@ -74,6 +74,7 @@ abstract class Contact extends \yii\db\ActiveRecord
             'state' => Yii::t('app', 'County'),
             'postal_code' => Yii::t('app', 'Postcode'),
             'comments' => Yii::t('app', 'Comments'),
+            'fullName' => Yii::t('app', 'Full Name'),
         ];
     }
 
@@ -86,7 +87,7 @@ abstract class Contact extends \yii\db\ActiveRecord
         return new \app\models\ContactQuery(get_called_class());
     }
 
-
-
-
+    public function getFullName() {
+        return $this->first_name . " " . $this->last_name;
+    }
 }

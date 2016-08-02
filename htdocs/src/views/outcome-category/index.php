@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = "List of Outcomes";
+$this->title = "List of Cases Outcomes Categories";
 
 $deleteTip = Yii::t('app', 'Delete this Outcome Categories.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this outcome category?');
@@ -63,7 +63,7 @@ GridView::widget([
     ],
     'hover' => true,
     'panel' => [
-        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> '. $this->title .'</h3>',
+        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-hand-right"></i> '. $this->title .'</h3>',
         'type' => 'primary',
         'showFooter' => false
     ],

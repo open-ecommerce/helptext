@@ -48,9 +48,14 @@ $this->title = Yii::t('app', 'Cases');
                         'severity.severity',
                         'start_date',
                         'close_date',
-                        'state',
+                        [
+                            'attribute'=>'state', 
+                            'label'=>'State',
+                            'format'=>'raw',
+                            'value'=>$model->state ? '<span class="label label-success">Open</span>' : '<span class="label label-danger">Close</span>',
+                        ],                        
+                        'outcome.outcome',                        
                         'comments',
-                        'outcome',
                     ],
                 ]);
                 ?>

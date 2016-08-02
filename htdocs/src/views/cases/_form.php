@@ -22,8 +22,8 @@ use kartik\helpers\Html;
                 function($model, $defaultValue) { return $model['first_name'].' '.$model['last_name']; })
                 , ['prompt' => '- Select Client']) ?>
         <?= $form->field($model, 'state')->dropDownList(['0' => 'Close', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
-        <?= $form->field($model, 'start_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
-        <?= $form->field($model, 'close_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
+        <?= $form->field($model, 'start_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATETIME]); ?>
+        <?= $form->field($model, 'close_date')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATETIME]); ?>
 
     </div>
 
@@ -38,11 +38,10 @@ use kartik\helpers\Html;
     </div>
 </div>
 <div class="col-md-12">
-        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
+        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12' => 10, 'placeholder' => 'Generic comments about this case.')); ?>
 </div>
-
-<div class="form-group">
+<div class="col-md-12 footer-buttons">
     <?= Html::a('Cancel', ['index'], ['class' => 'btn btn-warning']) ?>
-    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-success pull-right']) ?>
 </div>
 <?php ActiveForm::end(); ?>
