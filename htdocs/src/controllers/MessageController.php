@@ -279,14 +279,17 @@ class MessageController extends \app\controllers\base\MessageController {
 
             try {
                 $numberToCall = $model->receiveCall();
+                OeHelpers::logger('helper to call: ' . $numberToCall, 'call');
+                OeHelpers::logger('rendering response...', 'call');
+                return $this->renderPartial('twilio-response', [
+                            'numberToCall' => $numberToCall,
+                ]);
+                OeHelpers::logger('finished', 'call');
             } catch (\Exception $e) {
                 $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $model->addError('_exception', $msg);
+                OeHelpers::logger('Error: '.$msg, 'call');
             }
-            $numberToCall = $model->receiveCall();
-            return $this->renderPartial('twilio-response', [
-                        'numberToCall' => $numberToCall,
-            ]);
             
         } else {
             OeHelpers::logger('NOT passed authentication', 'call');
