@@ -225,30 +225,35 @@ class Message extends BaseMessage {
             $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_contact');
 
             $this->flashResponse .= "Helper not found with this number so it is a Client\r\n";
+            OeHelpers::logger('No helper found with this number should be a client', 'call');
 
 
             //check if the phone exist in any contact
             $phone = Phone::findOne(['id' => $this->id_phone]);
             if ($phone === NULL) { //the phone is not in the system
                 $this->flashResponse .= "The phone is not in the system so we will create a contact entry. ";
+                OeHelpers::logger('The phone is not in the system so we will create a contact entry.', 'call');
 
                 //create new contact
                 $contact = new Contact();
                 $contact->first_name = "no name asigned";
                 $contact->save();
                 $callerId = $contact->id;
+                OeHelpers::logger('Contact created.', 'call');
 
                 //create new phone
                 $phone = new Phone();
                 $phone->id = $this->id_phone;
                 $phone->comment = "added by system";
                 $phone->save();
+                OeHelpers::logger('Phone created: ' . $this->id_phone, 'call');
 
                 //add phone to contact_phone
                 $contactPhone = new ContactPhone();
                 $contactPhone->id_contact = $callerId;
                 $contactPhone->id_phone = $this->id_phone;
                 $contactPhone->save();
+                OeHelpers::logger('Phone added to contact_phone table', 'call');
 
                 $profile = new Profile();
                 $nextUserId = $profile->NextUser;
@@ -256,8 +261,10 @@ class Message extends BaseMessage {
                 $profile = Profile::findOne(['user_id' => $nextUserId]);
                 if ($profile != NULL) { //case not found
                     $this->phoneToCall = $profile->phone;
+                    OeHelpers::logger('Next helper available: ' . $this->phoneToCall , 'call');
                 } else {
                     $this->phoneToCall = "no phone set in profile";
+                    OeHelpers::logger('No phone set in helper profile' , 'call');
                 }
 
                 // create new case       
@@ -272,9 +279,12 @@ class Message extends BaseMessage {
                 $this->currentIdCase = $case->id;
 
                 $this->flashResponse .= "A new case number: " . $this->currentIdCase . " was created. ";
-
                 $this->flashResponse .= "The case was asigned to: " . $this->assignedUserName . " was created. ";
 
+                OeHelpers::logger("A new case number: " . $this->currentIdCase . " was created. " , 'call');
+                OeHelpers::logger("The case was asigned to: " . $this->assignedUserName . " was created. " , 'call');
+                
+                
 
                 // save the text in the db       
                 $call = new Message();
@@ -285,7 +295,9 @@ class Message extends BaseMessage {
                 $call->message = "phone conversation";
                 $call->sent = date("Y-m-d H:i:s");
                 $call->save();
+                OeHelpers::logger('The message was saved' , 'call');
 
+                
             } else {
 
                 $this->setLastCaseByPhone();
@@ -302,8 +314,10 @@ class Message extends BaseMessage {
                 $call->sent = date("Y-m-d H:i:s");
                 $call->save();
 
-                $this->flashResponse .= "The case number: " . $call->id_case . " was asigned to: " . $this->assignedUserName . "\r\n";
-            }
+                $this->flashResponse .= "The case number: " . $call->id_case . " was asigned to: " . $this->assignedUserName;
+                OeHelpers::logger("The case number: " . $call->id_case . " was asigned to: " . $this->assignedUserName , 'call');
+
+                }
         } else {
             $isUser = TRUE;
             $userId = $profile->user_id;
@@ -317,7 +331,9 @@ class Message extends BaseMessage {
             $call->message = "helper called helpline number...";
             $call->sent = date("Y-m-d H:i:s");
 
-            $this->flashResponse .= "The user: " . $this->assignedUserName . " it is trying to call the helpline\r\n";
+            $this->flashResponse .= "The user: " . $this->assignedUserName . " it is trying to call the helpline";
+            OeHelpers::logger("The user: " . $this->assignedUserName . " it is trying to call the helpline" , 'call');
+            
         }
 
         //\Yii::$app->session->setFlash('success', $this->flashResponse);

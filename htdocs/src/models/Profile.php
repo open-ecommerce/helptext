@@ -124,7 +124,9 @@ class Profile extends BaseProfile {
 
     
     public function getUserName() {
-        return $this->firstname . " " . $this->lastname;
+        if (isset($this->firstname)) {
+            return $this->firstname . " " . $this->lastname;
+        }
     }    
     
     

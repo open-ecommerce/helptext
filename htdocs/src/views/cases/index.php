@@ -37,6 +37,12 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
             'vAlign' => 'middle',
         ],
         [
+            'attribute' => 'phone',
+            'value' => 'profile.phone',
+            'hAlign' => 'center',
+            'vAlign' => 'middle',
+        ],
+        [
             'attribute' => 'fullName',
             'value' => 'contact.fullName',
             'hAlign' => 'center',
@@ -60,19 +66,19 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
             'filterInputOptions'=>['placeholder'=>'Any Category'],
             'format'=>'raw'
         ],
-        [
-            'attribute' => 'caseSeverity',
-            'value' => 'severity.severity',
-            'hAlign' => 'center',
-            'vAlign' => 'middle',
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
-            ],
-            'filterInputOptions'=>['placeholder'=>'Any Severity'],
-            'format'=>'raw'
-        ],
+//        [
+//            'attribute' => 'caseSeverity',
+//            'value' => 'severity.severity',
+//            'hAlign' => 'center',
+//            'vAlign' => 'middle',
+//            'filterType'=>GridView::FILTER_SELECT2,
+//            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
+//            'filterWidgetOptions'=>[
+//                'pluginOptions'=>['allowClear'=>true],
+//            ],
+//            'filterInputOptions'=>['placeholder'=>'Any Severity'],
+//            'format'=>'raw'
+//        ],
         [
             'attribute' => 'caseOutcome',
             'value' => 'outcome.outcome',
