@@ -102,13 +102,14 @@ class Profile extends BaseProfile {
         
         $query = new Query;
         
-        $query->select('id, name')
-                ->from('qry_next_available_user')
+        $query->select('user_id')
+                ->from('profile')
+                ->where('availability = 1')
                 ->limit(1);        
         
         $result = $query->all();
         
-        return $result[0]['id'];
+        return $result[0]['user_id'];
         
     }
     
