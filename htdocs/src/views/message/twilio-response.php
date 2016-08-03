@@ -4,5 +4,5 @@
 ?>
 <Response>
     <Dial><?= $numberToCall; ?>></Dial>
-    <Say>something it is going very wrong.</Say>
+    <Say>Please try to call again.</Say>
 </Response>

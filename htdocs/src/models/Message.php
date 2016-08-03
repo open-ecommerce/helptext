@@ -303,6 +303,7 @@ class Message extends BaseMessage {
                 $this->setLastCaseByPhone();
 
                 $this->phoneToCall = $this->assignedUserPhone;
+                    
 
                 // save the text in the db       
                 $call = new Message();
@@ -424,10 +425,28 @@ class Message extends BaseMessage {
             $this->isCurrentIdCaseOpen = $case->state;
             $this->assignedUser = $case->id_user;
             $user = Profile::findOne(['user_id' => $this->assignedUser]);
-            $this->assignedUserPhone = $user->phone;
-            $this->assignedUserName = $user->firstname . " " . $user->lastname;
-            $this->caseContactPhone = $case->id_phone;
-            $this->currentIdCase = $case->id;
+
+            if ($user->availability === 1) {
+                $this->assignedUserPhone = $user->phone;
+                $this->assignedUserName = $user->firstname . " " . $user->lastname;
+                $this->caseContactPhone = $case->id_phone;
+                $this->currentIdCase = $case->id;
+            } else {
+                $nextUserId = $profile->NextUser;
+                $user = Profile::findOne(['user_id' => $nextUserId]);
+                if ($user != NULL) { //case not found
+                    $this->phoneToCall = $user->phone;
+                    $this->assignedUserPhone = $user->phone;
+                    $this->assignedUserName = $user->firstname . " " . $user->lastname;
+                    $this->caseContactPhone = $user->phone;
+                    $this->currentIdCase = $case->id;
+
+                    OeHelpers::logger('Next helper available: ' . $this->phoneToCall , 'call');
+                } else {
+                    $this->phoneToCall = "no phone set in profile";
+                    OeHelpers::logger('No phone set in helper profile' , 'call');
+                }
+            }
         } else {
             $this->isCurrentIdCaseOpen = FALSE;
         }
