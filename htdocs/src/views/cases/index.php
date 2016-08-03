@@ -23,6 +23,7 @@ $this->title = " List of Cases";
 $deleteTip = Yii::t('app', 'Delete this client with all the cases and messages.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all the cases and messages?');
 
+
 ?>
   <div class="col-md-10 col-md-offset-1">
 <?php //echo $this->render('_search', ['model' => $searchModel]);  ?>
@@ -39,7 +40,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         [
             'attribute' => 'id_phone',
             'hAlign' => 'center',
-            'vAlign' => 'middle',
+            'vAlign' => 'middle',            
         ],
         [
             'attribute' => 'fullName',
