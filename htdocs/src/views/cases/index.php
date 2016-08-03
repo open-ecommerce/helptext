@@ -1,6 +1,6 @@
 <?php
 
-//to do some work y desde aca tambien
+//cases
 
 use yii\jui\DatePicker;
 use yii\helpers\Html;
