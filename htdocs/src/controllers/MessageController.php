@@ -20,7 +20,6 @@ use yii\data\ActiveDataProvider;
 use app\helpers\OeHelpers;
 use yii\helpers\Html;
 
-
 /**
  * This is the class for controller "MessageController".
  */
@@ -35,6 +34,8 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionSms() {
+        $this->enableCsrfValidation = false;
+
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
         if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
             OeHelpers::logger('passed authentication', 'sms');
@@ -55,6 +56,7 @@ class MessageController extends \app\controllers\base\MessageController {
             OeHelpers::logger('NOT passed authentication', 'sms');
         }
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
+        $this->enableCsrfValidation = true;
     }
 
     /**
@@ -76,20 +78,18 @@ class MessageController extends \app\controllers\base\MessageController {
                 // call pushed in the tester
                 if (isset($_POST['call'])) {
                     $numberToCall = $model->receiveCall();
-                    
+
                     return $this->renderPartial('twilio-response', [
                                 'numberToCall' => $numberToCall,
-                    ]);                      
-                    
+                    ]);
                 }
-
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
-             
+
             \Yii::$app->getSession()->setFlash('danger', [
                 'type' => 'danger',
                 'duration' => 22000,
@@ -99,8 +99,6 @@ class MessageController extends \app\controllers\base\MessageController {
                 'positonY' => 'top',
                 'positonX' => 'right'
             ]);
-             
-             
         }
         return $this->render('testsms', ['modelContact' => $modelContact, 'model' => $model]);
     }
@@ -288,9 +286,8 @@ class MessageController extends \app\controllers\base\MessageController {
             } catch (\Exception $e) {
                 $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $model->addError('_exception', $msg);
-                OeHelpers::logger('Error: '.$msg, 'call');
+                OeHelpers::logger('Error: ' . $msg, 'call');
             }
-            
         } else {
             OeHelpers::logger('NOT passed authentication', 'call');
             return "We are very sorry but you are at the wrong time, in the wrong place";
