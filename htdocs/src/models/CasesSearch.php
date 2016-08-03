@@ -31,6 +31,7 @@ class CasesSearch extends Cases {
             'comments',
             'fullName',
             'userName',
+            'id_phone',
             'caseCategory',
             'caseOutcome',
             'caseSeverity'
@@ -57,7 +58,7 @@ class CasesSearch extends Cases {
 
         $query = Cases::find();
 
-        $query->joinWith(['contact', 'category', 'severity', 'outcome', 'profile']);
+        $query->joinWith(['contact', 'category', 'severity', 'outcome', 'profile', 'phone']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -101,6 +102,12 @@ class CasesSearch extends Cases {
                     'desc' => ['state' => SORT_DESC, 'state' => SORT_DESC],
                     'label' => 'State',
                     'default' => SORT_ASC
+                ],
+                'id_phone' => [
+                    'asc' => ['id_phone' => SORT_ASC, 'id_phone' => SORT_ASC],
+                    'desc' => ['id_phone' => SORT_DESC, 'id_phone' => SORT_DESC],
+                    'label' => 'Phone',
+                    'default' => SORT_ASC
                 ]
             ]
         ]);
@@ -120,6 +127,7 @@ class CasesSearch extends Cases {
             'id_severity' => $this->caseSeverity,
             'id_outcome' => $this->caseOutcome,
             'cases.state' => $this->caseState,
+            'phone.id' => $this->id_phone,
         ]);
 
 
