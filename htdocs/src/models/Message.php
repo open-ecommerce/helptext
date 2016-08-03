@@ -292,13 +292,13 @@ class Message extends BaseMessage {
                 $call->id_case = $this->currentIdCase;
                 $call->id_sender_type = $this->idSenderType;
                 $call->id_message_type = $this->idMessageType;
-                $call->message = "phone conversation";
+                $call->message = "talked with " . $this->assignedUserName;
                 $call->sent = date("Y-m-d H:i:s");
                 $call->save();
                 OeHelpers::logger('The message was saved' , 'call');
 
                 
-            } else {
+            } else { //the phone exist in the system and has a case
 
                 $this->setLastCaseByPhone();
 
@@ -311,7 +311,7 @@ class Message extends BaseMessage {
                 $call->id_case = $this->currentIdCase;
                 $call->id_sender_type = $this->idSenderType;
                 $call->id_message_type = $this->idMessageType;
-                $call->message = "phone conversation";
+                $call->message = "talked with " . $this->assignedUserName;
                 $call->sent = date("Y-m-d H:i:s");
                 $call->save();
 
