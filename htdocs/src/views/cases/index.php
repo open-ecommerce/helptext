@@ -37,8 +37,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'phone',
-            'value' => 'profile.phone',
+            'attribute' => 'id_phone',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
