@@ -79,7 +79,7 @@ class Message extends BaseMessage {
             if ($phone === NULL) { //the phone is not in the system
                 //create new contact
                 $contact = new Contact();
-                $contact->first_name = "no name asigned";
+                $contact->first_name = "no name asigned - ".$this->id_phone;
                 $contact->save();
                 $callerId = $contact->id;
 
@@ -236,7 +236,7 @@ class Message extends BaseMessage {
 
                 //create new contact
                 $contact = new Contact();
-                $contact->first_name = "no name asigned";
+                $contact->first_name = "no name asigned" . $this->id_phone;
                 $contact->save();
                 $callerId = $contact->id;
                 OeHelpers::logger('Contact created.', 'call');
