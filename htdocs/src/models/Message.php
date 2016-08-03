@@ -42,7 +42,7 @@ class Message extends BaseMessage {
      * @return multiple
      */
     public function receiveSMS() {
-        OeHelpers::logger('receving sms from:' . $this->source, 'sms');
+        OeHelpers::logger('receving sms from: ' . $this->source, 'sms');
 
         $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
         $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
@@ -97,7 +97,7 @@ class Message extends BaseMessage {
 
                 $profile = new Profile();
                 $nextUserId = $profile->NextUser;
-                $toPhone = $profile->Phone;
+                $toPhone = $profile->phone;
 
                 // create new case       
                 $case = new Cases();
