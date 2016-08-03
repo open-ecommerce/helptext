@@ -19,6 +19,8 @@ local
 # phpstorm project files
 .idea
 
+htdocs/.env
+
 
 # netbeans project files
 nbproject

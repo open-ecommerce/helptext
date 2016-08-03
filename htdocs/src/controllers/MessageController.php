@@ -75,7 +75,12 @@ class MessageController extends \app\controllers\base\MessageController {
                 }
                 // call pushed in the tester
                 if (isset($_POST['call'])) {
-                    $model->receiveCall();
+                    $numberToCall = $model->receiveCall();
+                    
+                    return $this->renderPartial('twilio-response', [
+                                'response' => $numberToCall,
+                    ]);                      
+                    
                 }
 
             } elseif (!\Yii::$app->request->isPost) {
@@ -278,9 +283,9 @@ class MessageController extends \app\controllers\base\MessageController {
                 $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $model->addError('_exception', $msg);
             }
-            
+
             return $this->render('twilio-response', [
-                        'response' => '1234'
+                        'response' => $numberToCall,
             ]);            
             
         } else {

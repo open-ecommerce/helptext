@@ -31,6 +31,7 @@ class Message extends BaseMessage {
     var $messageSid;
     var $output;
     var $phoneToSend;
+    var $phoneToCall;
     var $anonymize;
     var $automaticResponse;
     var $idSenderType;
@@ -251,7 +252,13 @@ class Message extends BaseMessage {
 
                 $profile = new Profile();
                 $nextUserId = $profile->NextUser;
-                $toPhone = $profile->phone;
+                
+                $profile = Profile::findOne(['user_id' => $nextUserId]);
+                if ($profile != NULL) { //case not found
+                    $this->phoneToCall = $profile->phone;
+                } else {
+                    $this->phoneToCall = "no phone set in profile";
+                }
 
                 // create new case       
                 $case = new Cases();
@@ -279,12 +286,11 @@ class Message extends BaseMessage {
                 $call->sent = date("Y-m-d H:i:s");
                 $call->save();
 
-                $this->phoneToSend = $this->caseContactPhone;
             } else {
 
                 $this->setLastCaseByPhone();
 
-                $this->phoneToSend = $this->assignedUserPhone;
+                $this->phoneToCall = $this->assignedUserPhone;
 
                 // save the text in the db       
                 $call = new Message();
@@ -327,7 +333,7 @@ class Message extends BaseMessage {
             'positonX' => 'right'
         ]);
 
-        return $call;
+        return $this->phoneToCall;
     }
 
     /**

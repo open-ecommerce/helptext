@@ -32,7 +32,7 @@ class CasesController extends \app\controllers\base\CasesController
                     [
                         'actions' => ['index', 'detail','view'],
                         'allow' => true,
-                        'roles' => ['Helper','Supervisor'],
+                        'roles' => ['Helper'],
                     ],
                     [
                         'actions' => ['create','update','delete', 'detail', 'view'],
