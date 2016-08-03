@@ -432,7 +432,7 @@ class Message extends BaseMessage {
                 $this->caseContactPhone = $case->id_phone;
                 $this->currentIdCase = $case->id;
             } else {
-                $nextUserId = $profile->NextUser;
+                $nextUserId = $user->NextUser;
                 $user = Profile::findOne(['user_id' => $nextUserId]);
                 if ($user != NULL) { //case not found
                     $this->phoneToCall = $user->phone;
