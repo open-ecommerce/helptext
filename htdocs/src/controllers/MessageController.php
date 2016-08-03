@@ -34,11 +34,15 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionSms() {
+        
         $this->enableCsrfValidation = false;
 
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
+        
         if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
+
             OeHelpers::logger('passed authentication', 'sms');
+
             foreach ($_POST as $key => $value) {
                 OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
             }
@@ -51,11 +55,13 @@ class MessageController extends \app\controllers\base\MessageController {
             } catch (\Exception $e) {
                 $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $model->addError('_exception', $msg);
+                OeHelpers::logger($msg, 'sms');
             }
         } else {
             OeHelpers::logger('NOT passed authentication', 'sms');
         }
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
+        
         $this->enableCsrfValidation = true;
     }
 
