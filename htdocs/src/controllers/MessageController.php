@@ -34,18 +34,23 @@ class MessageController extends \app\controllers\base\MessageController {
      * @return mixed
      */
     public function actionSms() {
-        
+
+        $request = \Yii::$app->request;
+
         $this->enableCsrfValidation = false;
 
+
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
-        
+        OeHelpers::logger('receving sms', 'sms');
+        foreach ($_POST as $key => $value) {
+            OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
+        }
+        OeHelpers::logger(str_repeat("=-", 25), 'sms');
+
+        $accountSid = $request->post('AccountSid');
+
         if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
-
             OeHelpers::logger('passed authentication', 'sms');
-
-            foreach ($_POST as $key => $value) {
-                OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
-            }
 
             $model = new Message;
             $model->source = "twilio";
