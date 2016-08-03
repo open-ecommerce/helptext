@@ -3,6 +3,6 @@
     echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
 <Response>
-    <Dial><?= $response; ?>></Dial>
+    <Dial><?= $numberToCall; ?>></Dial>
     <Say>something it is going very wrong.</Say>
 </Response>

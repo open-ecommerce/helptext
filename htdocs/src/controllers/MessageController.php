@@ -78,7 +78,7 @@ class MessageController extends \app\controllers\base\MessageController {
                     $numberToCall = $model->receiveCall();
                     
                     return $this->renderPartial('twilio-response', [
-                                'response' => $numberToCall,
+                                'numberToCall' => $numberToCall,
                     ]);                      
                     
                 }
