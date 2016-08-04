@@ -132,6 +132,7 @@ class Message extends BaseMessage {
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->assignedUserPhone;
             } else {
+                
 
                 $this->setLastCaseByPhone();
 
