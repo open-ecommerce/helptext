@@ -22,7 +22,7 @@ class Message extends BaseMessage {
     var $messageToSend;
     var $source;
     var $isCurrentIdCaseOpen = FALSE;
-    var $assignedUser;
+    var $assignedUserId;
     var $assignedUserPhone;
     var $assignedUserName;
     var $caseContactPhone;
@@ -95,15 +95,13 @@ class Message extends BaseMessage {
                 $contactPhone->id_phone = $this->id_phone;
                 $contactPhone->save();
 
-                $profile = new Profile();
-                $nextUserId = $profile->NextUser;
-                $toPhone = $profile->phone;
+                $this->setNextAvailableUser();
 
                 // create new case       
                 $case = new Cases();
                 $case->id_contact = $callerId;
                 $case->id_phone = $this->id_phone;
-                $case->id_user = $nextUserId;
+                $case->id_user = $this->assignedUserId;
                 $case->start_date = date("Y-m-d H:i:s");
                 $case->state = 1;
                 $case->comments = "New case to review";
@@ -132,7 +130,7 @@ class Message extends BaseMessage {
                 }
                 $this->messageToSend = "From Case#" . $this->currentIdCase . "# \r\n";
                 $this->messageToSend .= $this->message;
-                $this->phoneToSend = $this->caseContactPhone;
+                $this->phoneToSend = $this->assignedUserPhone;
             } else {
 
                 $this->setLastCaseByPhone();
@@ -255,17 +253,8 @@ class Message extends BaseMessage {
                 $contactPhone->save();
                 OeHelpers::logger('Phone added to contact_phone table', 'call');
 
-                $profile = new Profile();
-                $nextUserId = $profile->NextUser;
-                
-                $profile = Profile::findOne(['user_id' => $nextUserId]);
-                if ($profile != NULL) { //case not found
-                    $this->phoneToCall = $profile->phone;
-                    OeHelpers::logger('Next helper available: ' . $this->phoneToCall , 'call');
-                } else {
-                    $this->phoneToCall = "no phone set in profile";
-                    OeHelpers::logger('No phone set in helper profile' , 'call');
-                }
+                 $this->setNextAvailableUser();
+
 
                 // create new case       
                 $case = new Cases();
@@ -410,7 +399,7 @@ class Message extends BaseMessage {
             $case = Cases::findOne(['id' => $this->currentIdCase]);
             if ($case != NULL) { //case not found
                 $this->isCurrentIdCaseOpen = $case->state;
-                $this->assignedUser = $case->id_user;
+                $this->assignedUserId = $case->id_user;
                 $this->caseContactPhone = $case->id_phone;
             }
         }
@@ -423,29 +412,16 @@ class Message extends BaseMessage {
                 ->one();
         if ($case != NULL) { //case not found
             $this->isCurrentIdCaseOpen = $case->state;
-            $this->assignedUser = $case->id_user;
-            $user = Profile::findOne(['user_id' => $this->assignedUser]);
+            $this->assignedUserId = $case->id_user;
+            $user = Profile::findOne(['user_id' => $this->assignedUserId]);
+            $this->currentIdCase = $case->id;
 
             if ($user->availability === 1) {
                 $this->assignedUserPhone = $user->phone;
                 $this->assignedUserName = $user->firstname . " " . $user->lastname;
                 $this->caseContactPhone = $case->id_phone;
-                $this->currentIdCase = $case->id;
             } else {
-                $nextUserId = $user->NextUser;
-                $user = Profile::findOne(['user_id' => $nextUserId]);
-                if ($user != NULL) { //case not found
-                    $this->phoneToCall = $user->phone;
-                    $this->assignedUserPhone = $user->phone;
-                    $this->assignedUserName = $user->firstname . " " . $user->lastname;
-                    $this->caseContactPhone = $user->phone;
-                    $this->currentIdCase = $case->id;
-
-                    OeHelpers::logger('Next helper available: ' . $this->phoneToCall , 'call');
-                } else {
-                    $this->phoneToCall = "no phone set in profile";
-                    OeHelpers::logger('No phone set in helper profile' , 'call');
-                }
+                $this->setNextAvailableUser();
             }
         } else {
             $this->isCurrentIdCaseOpen = FALSE;
@@ -465,6 +441,29 @@ class Message extends BaseMessage {
         return $messages;
     }
 
+    /**
+     * @return string
+     */
+    public function setNextAvailableUser() {
+
+        $profile = new Profile();
+        $nextUserId = $profile->NextUser;
+
+        $profile = Profile::findOne(['user_id' => $nextUserId]);
+        if ($profile != NULL) { //case not found
+            $this->phoneToCall = $profile->phone;
+            $this->assignedUserId = $profile->user_id;
+            $this->assignedUserPhone = $profile->phone;
+            $this->assignedUserName = $profile->UserName;
+            OeHelpers::logger('Next helper available: ' . $this->assignedUserName . " number: " . $this->phoneToCall , 'call');
+        } else {
+            $this->phoneToCall = "no phone set in profile";
+            $this->assignedUserId = "";
+            $this->assignedUserPhone = "";
+            $this->assignedUserName = "";
+            OeHelpers::logger('No phone set in helper profile' , 'call');
+        }
+    }    
 
     
     

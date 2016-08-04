@@ -98,19 +98,14 @@ class Profile extends BaseProfile {
      * @return user_id
      */
     public function getNextUser() {
-        
-        
         $query = new Query;
-        
         $query->select('user_id')
                 ->from('profile')
                 ->where('availability = 1')
                 ->limit(1);        
-        
         $result = $query->all();
-        
         return $result[0]['user_id'];
-        
+
     }
     
     
