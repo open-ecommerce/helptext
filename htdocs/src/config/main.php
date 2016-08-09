@@ -292,7 +292,7 @@ if (YII_ENV_DEV || YII_ENV_TEST) {
 
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => ['127.0.0.1'],
+        'allowedIPs' => ['127.0.0.1','192.168.2.107'],
         'generators' => [
             // generator name
             'giiant-model' => [

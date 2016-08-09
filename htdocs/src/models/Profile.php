@@ -15,6 +15,7 @@ use yii\db\Query;
 class Profile extends BaseProfile {
     
     public $userName;
+    public $canEditAvailability;
 
     public function scenarios() {
         $scenarios = parent::scenarios();
@@ -47,6 +48,9 @@ class Profile extends BaseProfile {
 
         // add full name
         $rules['userName'] = ['userName', 'safe'];
+
+        // add to validate if can edit availability
+        $rules['canEditAvailability'] = ['canEditAvailability', 'safe'];
         
         
         // add firstname rules
@@ -124,5 +128,10 @@ class Profile extends BaseProfile {
         }
     }    
     
+    public function getCanEditAvailability() {
+            return TRUE;
+    }    
+    
+
     
 }
