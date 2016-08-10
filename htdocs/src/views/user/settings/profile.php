@@ -46,7 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'validateOnBlur'         => false,
                 ]); ?>
                 
-                <?= $form->field($model, 'name') ?>
+                <?= $form->field($model, 'firstname') ?>
+
+                <?= $form->field($model, 'lastname') ?>
 
                 <?= $form->field($model, 'availability')->dropDownList([1 => 'Yes', 0 => 'No'], ['prompt' => '- Choose if you can take calls']) ?>
                 
