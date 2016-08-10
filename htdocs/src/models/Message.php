@@ -83,6 +83,9 @@ class Message extends BaseMessage {
                 $contact->save();
                 $callerId = $contact->id;
 
+                $this->flashResponse .= "The phone is not in the system so we will create a contact entry. ";
+                OeHelpers::logger('The phone is not in the system so we will create a contact entry.', 'sms');
+                
                 //create new phone
                 $phone = new Phone();
                 $phone->id = $this->id_phone;
@@ -94,8 +97,13 @@ class Message extends BaseMessage {
                 $contactPhone->id_contact = $callerId;
                 $contactPhone->id_phone = $this->id_phone;
                 $contactPhone->save();
-
-                $this->setNextAvailableUser();
+                
+                if ($this->setNextAvailableUser()  === NULL) {
+                    $this->flashResponse .= "Not available user to take the sms.";
+                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+                    
+                    return "Not available user to take the sms";
+                }
 
                 // create new case       
                 $case = new Cases();
@@ -108,6 +116,13 @@ class Message extends BaseMessage {
                 $case->save();
                 $this->currentIdCase = $case->id;
 
+                $this->flashResponse .= "A new case number: " . $this->currentIdCase . " was created. ";
+                $this->flashResponse .= "The case was asigned to: " . $this->assignedUserName . " was created. ";
+
+                OeHelpers::logger("A new case number: " . $this->currentIdCase . " was created. " , 'sms');
+                OeHelpers::logger("The case was asigned to: " . $this->assignedUserName . " was created. " , 'sms');
+                
+                
                 // save the text in the db       
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
@@ -455,6 +470,11 @@ class Message extends BaseMessage {
         $profile = new Profile();
         $nextUserId = $profile->NextUser;
 
+        if ($nextUserId === NULL) {
+            return NULL;
+        }
+        
+        
         $profile = Profile::findOne(['user_id' => $nextUserId]);
         if ($profile != NULL) { //case not found
             $this->phoneToCall = $profile->phone;

@@ -104,7 +104,12 @@ class Profile extends BaseProfile {
                 ->where('availability = 1')
                 ->limit(1);        
         $result = $query->all();
-        return $result[0]['user_id'];
+        
+        if (!empty($result)) {
+            return $result[0]['user_id'];        
+        } else {
+            return NULL;
+        }
 
     }
     
