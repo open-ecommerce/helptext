@@ -143,7 +143,7 @@ class Message extends BaseMessage {
                 } else {
                     // send the text to the helper
                     $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
-                    $this->messageToSend .= "from: " . $this->id_phone . "\r\n ------------- \r\n";
+                    $this->messageToSend .= "from: " . $this->id_phone . "\r\n ------------------------- \r\n";
                     $this->messageToSend .= $this->message;
                     $this->phoneToSend = $this->assignedUserPhone;
 
