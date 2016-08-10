@@ -12,6 +12,8 @@ use app\models\Message;
  */
 class MessageSearch extends Message
 {
+    
+    
     /**
      * @inheritdoc
      */

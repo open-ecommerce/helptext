@@ -39,9 +39,8 @@ class MessageController extends \app\controllers\base\MessageController {
 
         $this->enableCsrfValidation = false;
 
-
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
-        OeHelpers::logger('receving sms', 'sms');
+        OeHelpers::logger('receiving sms', 'sms');
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
         }
@@ -268,9 +267,8 @@ class MessageController extends \app\controllers\base\MessageController {
 
         $this->enableCsrfValidation = false;
 
-
         OeHelpers::logger(str_repeat("=-", 25), 'call');
-        OeHelpers::logger('receving call', 'call');
+        OeHelpers::logger('receiving call', 'call');
         foreach ($_POST as $key => $value) {
             OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'call');
         }

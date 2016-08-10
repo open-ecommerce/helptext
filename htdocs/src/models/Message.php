@@ -112,6 +112,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
+                $text->id_user = $this->assignedUserId;
                 $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
@@ -152,6 +153,7 @@ class Message extends BaseMessage {
                     $text->id_phone = $this->id_phone;
                     $text->id_case = $this->currentIdCase;
                     $text->id_sender_type = $this->idSenderType;
+                    $text->id_user = $this->assignedUserId;
                     if ($this->anonymize) {
                         $text->message = constant("ANONYMIZE_TEXT");
                     } else {
@@ -178,6 +180,7 @@ class Message extends BaseMessage {
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
+                $text->id_user = $userId;                
                 $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
@@ -300,6 +303,7 @@ class Message extends BaseMessage {
                 $call = new Message();
                 $call->id_phone = $this->id_phone;
                 $call->id_case = $this->currentIdCase;
+                $call->id_user = $this->assignedUserId;
                 $call->id_sender_type = $this->idSenderType;
                 $call->id_message_type = $this->idMessageType;
                 $call->message = "talked with " . $this->assignedUserName;

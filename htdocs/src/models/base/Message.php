@@ -5,6 +5,8 @@
 namespace app\models\base;
 
 use Yii;
+use app\models\Profile;
+
 
 /**
  * This is the base-model class for table "message".
@@ -12,6 +14,7 @@ use Yii;
  * @property integer $id
  * @property string $id_phone
  * @property integer $id_case
+ * @property integer $id_user
  * @property integer $id_sender_type
  * @property integer $id_message_type
  * @property string $message
@@ -25,7 +28,7 @@ use Yii;
 abstract class Message extends \yii\db\ActiveRecord
 {
 
-
+    //public $userName;
 
     /**
      * @inheritdoc
@@ -43,12 +46,13 @@ abstract class Message extends \yii\db\ActiveRecord
     {
         return [
             [['id_case', 'id_sender_type', 'id_message_type'], 'integer'],
-            [['sent', 'sid'], 'safe'],
+            [['sent', 'sid', 'userName'], 'safe'],
             [['id_phone'], 'string', 'max' => 15],
             [['message'], 'string', 'max' => 50],
             [['id_case'], 'exist', 'skipOnError' => true, 'targetClass' => Cases::className(), 'targetAttribute' => ['id_case' => 'id']],
             [['id_message_type'], 'exist', 'skipOnError' => true, 'targetClass' => MessageType::className(), 'targetAttribute' => ['id_message_type' => 'id']],
-            [['id_sender_type'], 'exist', 'skipOnError' => true, 'targetClass' => SenderType::className(), 'targetAttribute' => ['id_sender_type' => 'id']]
+            [['id_sender_type'], 'exist', 'skipOnError' => true, 'targetClass' => SenderType::className(), 'targetAttribute' => ['id_sender_type' => 'id']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_user' => 'user_id']]
         ];
     }
 
@@ -61,6 +65,7 @@ abstract class Message extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'id_phone' => Yii::t('app', 'Id Phone'),
             'id_case' => Yii::t('app', 'Id Case'),
+            'user_id' => Yii::t('app', 'Id User'),
             'id_sender_type' => Yii::t('app', 'Id Sender Type'),
             'id_message_type' => Yii::t('app', 'Id Message Type'),
             'message' => Yii::t('app', 'Message'),
@@ -93,6 +98,14 @@ abstract class Message extends \yii\db\ActiveRecord
         return $this->hasOne(\app\models\SenderType::className(), ['id' => 'id_sender_type']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id_user']);
+    }
+    
 
 
     /**
@@ -104,5 +117,11 @@ abstract class Message extends \yii\db\ActiveRecord
         return new \app\models\MessageQuery(get_called_class());
     }
 
+    
+    public function getUserName() {
+        if (isset($this->profile->firstname)) {
+            return $this->profile->firstname . " " . $this->profile->lastname;
+        }
+    }    
 
 }
