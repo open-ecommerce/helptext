@@ -11,16 +11,17 @@ use app\models\Profile;
  * ProfileSearch represents the model behind the search form about `app\models\Profile`.
  */
 class ProfileSearch extends Profile {
+    
+    
 
     /**
      * @inheritdoc
      */
-    public $canEditAvailability;
 
     public function rules() {
         return [
             [['user_id', 'id_country', 'availability', 'terms'], 'integer'],
-            [['name', 'public_email', 'gravatar_email', 'gravatar_id', 'location', 'website', 'bio', 'skills', 'firstname', 'lastname', 'birthday', 'avatar', 'phone', 'canEditAvailability'], 'safe'],
+            [['name', 'public_email', 'gravatar_email', 'gravatar_id', 'location', 'website', 'bio', 'skills', 'firstname', 'lastname', 'birthday', 'avatar', 'phone'], 'safe'],
         ];
     }
 
@@ -41,6 +42,7 @@ class ProfileSearch extends Profile {
      */
     public function search($params) {
         $query = Profile::find();
+        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -63,23 +65,17 @@ class ProfileSearch extends Profile {
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-                ->andFilterWhere(['like', 'public_email', $this->public_email])
-                ->andFilterWhere(['like', 'gravatar_email', $this->gravatar_email])
-                ->andFilterWhere(['like', 'gravatar_id', $this->gravatar_id])
                 ->andFilterWhere(['like', 'location', $this->location])
-                ->andFilterWhere(['like', 'website', $this->website])
-                ->andFilterWhere(['like', 'bio', $this->bio])
-                ->andFilterWhere(['like', 'skills', $this->skills])
                 ->andFilterWhere(['like', 'firstname', $this->firstname])
                 ->andFilterWhere(['like', 'lastname', $this->lastname])
-                ->andFilterWhere(['like', 'avatar', $this->avatar])
                 ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }
 
-    public function getCanEditAvailability() {
-        return TRUE;
-    }
+
+    
+    
+    
 
 }

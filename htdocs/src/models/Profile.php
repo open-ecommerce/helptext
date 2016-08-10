@@ -14,8 +14,6 @@ use yii\db\Query;
 
 class Profile extends BaseProfile {
     
-    public $userName;
-    public $canEditAvailability;
 
     public function scenarios() {
         $scenarios = parent::scenarios();
@@ -49,9 +47,6 @@ class Profile extends BaseProfile {
         // add full name
         $rules['userName'] = ['userName', 'safe'];
 
-        // add to validate if can edit availability
-        $rules['canEditAvailability'] = ['canEditAvailability', 'safe'];
-        
         
         // add firstname rules
         $rules['phone'] = ['phone', 'required'];
@@ -77,7 +72,8 @@ class Profile extends BaseProfile {
             'userName' => Yii::t('userextended', 'Full Name'),
             'phone' => Yii::t('userextended', 'Phone'),
             'birthday' => Yii::t('userextended', 'Birthday'),
-            'availability' => Yii::t('userextended', 'Availability to take calls ?'),
+            'availability' => Yii::t('userextended', 'Taking calls ?'),
+            'userRole' => Yii::t('userextended', 'userRole'),
             'skills' => Yii::t('userextended', 'Skills'),
             'id_country' => Yii::t('userextended', 'Nationality'),
         ];
@@ -128,10 +124,28 @@ class Profile extends BaseProfile {
         }
     }    
     
-    public function getCanEditAvailability() {
-            return TRUE;
-    }    
-    
 
     
+/**
+ * Returns user role name according to RBAC
+ * @return string
+ */
+public function getRoleName($userId)
+{
+    
+    $roles = Yii::$app->authManager->getRolesByUser($userId);
+    if (!$roles) {
+        return null;
+    }
+
+    reset($roles);
+    /* @var $role \yii\rbac\Role */
+    $role = current($roles);
+
+    return $role->name;
+}   
+
+    
+
+
 }

@@ -54,6 +54,7 @@ NavBar::begin(
 $menuBeforeItems = [
     ['label' => 'Clients', 'url' => ['/contact']],
     ['label' => 'Cases', 'url' => ['/cases']],
+    ['label' => 'Helpers', 'url' => ['/profile']],
     ['label' => 'Reports',
         'items' => [
             ['label' => 'Cases', 'url' => ['#']],

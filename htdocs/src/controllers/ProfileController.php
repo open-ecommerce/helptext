@@ -11,6 +11,8 @@ use yii\helpers\Json;
 
 use kartik\grid\EditableColumnAction;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
+
 
 
 /**
@@ -19,6 +21,23 @@ use yii\helpers\ArrayHelper;
 class ProfileController extends \app\controllers\base\ProfileController
 {
 
- 
+     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['Helper','Supervisor'],
+                    ],
+                ],
+            ],
+        ];
+    }     
     
 }

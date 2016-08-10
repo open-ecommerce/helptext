@@ -181,6 +181,9 @@ $common = [
     ],
     'params' => [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
+        'helper' => 'helper',
+        'supervisor' => 'supervisor',
+        'admin' => 'admin',
         'yii.migrations' => [
             getenv('APP_MIGRATION_LOOKUP'),
             '@yii/rbac/migrations',
