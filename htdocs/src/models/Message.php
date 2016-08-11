@@ -144,7 +144,9 @@ class Message extends BaseMessage {
                     $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
                     $this->response .= "We will contact you as soon as possible.\r\n";
                 }
-                $this->messageToSend = "From Case#" . $this->currentIdCase . "# \r\n";
+                //send the text to the the helper
+                $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
+                $this->messageToSend .= "from: " . $this->id_phone . "\r\n ------------------------- \r\n";
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->assignedUserPhone;
             } else {
