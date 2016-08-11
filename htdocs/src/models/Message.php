@@ -100,7 +100,10 @@ class Message extends BaseMessage {
                 
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
-                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+                    
+                    $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    OeHelpers::logger($msgtolog, 'tomail');
                     
                     return "Not available users to take the sms";
                 }
@@ -277,7 +280,9 @@ class Message extends BaseMessage {
 
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
-                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+                    $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    OeHelpers::logger($msgtolog, 'tomail');
                     
                     return "Not available users to take the sms";
                 }
@@ -451,7 +456,9 @@ class Message extends BaseMessage {
             } else {
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
-                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+                    $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    OeHelpers::logger($msgtolog, 'tomail');
 
                     return "Not available users to take the sms";
                 }                
