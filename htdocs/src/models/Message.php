@@ -411,7 +411,7 @@ class Message extends BaseMessage {
 
     private function getCaseFromMessage($text) {
         $caseNumber = 0;
-        if (preg_match("/case#(.*)#/", $text, $output)) {
+        if (preg_match("/case#(.*)#/", strtolower($text), $output)) {
             $caseNumber = $output[1];
         }
         return $caseNumber;
@@ -512,6 +512,16 @@ class Message extends BaseMessage {
     }    
 
     
-    
+    public function checkIfMobile ($number){
+        $telno = "07712345678";
+
+        preg_match("^07[5789]{1}[0-9]{8}^", $telno, $matches);
+
+        if (count($matches) > 0 && $matches[0] == $telno) {
+            echo "valid tel no.";
+        } else {
+            echo "invalid no.";
+        }
+    }
 
 }
