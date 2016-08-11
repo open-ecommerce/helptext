@@ -512,17 +512,6 @@ class Message extends BaseMessage {
         }
     }    
 
-    
-    public function checkIfMobile ($number){
-        $telno = "07712345678";
-
-        preg_match("^07[5789]{1}[0-9]{8}^", $telno, $matches);
-
-        if (count($matches) > 0 && $matches[0] == $telno) {
-            echo "valid tel no.";
-        } else {
-            echo "invalid no.";
-        }
-    }
+  
 
 }

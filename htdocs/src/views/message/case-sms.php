@@ -11,6 +11,8 @@ use app\models\Contact;
 use dektrium\user\models\User;
 use kartik\form\ActiveForm;
 use yii\widgets\Pjax;
+use app\helpers\OeHelpers;
+
 
 $formater = \yii::$app->formatter;
 ?>
@@ -71,10 +73,12 @@ $formater = \yii::$app->formatter;
                                     $sender = $text->id_phone . "<br>Automatic response<hr>";
                                     break;
                                 case 2: //contact
-                                    $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone . "<br>to: ". $text->userName . "<hr>";
+                                    $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone;
+                                    $sender .= "<br>".OeHelpers::isMobileNumber($text->id_phone)."<br>to: ". $text->userName . "<hr>";
                                     break;
                                 case 3:
-                                    $sender = $modelCases->profile->firstname . "<br>" . $text->id_phone . "<hr>";
+                                    $sender = $modelCases->profile->firstname . "<br>" . $text->id_phone;
+                                    $sender .= "<br>".OeHelpers::isMobileNumber($text->id_phone)."<br>to: ". $text->userName . "<hr>";
                                     break;
                             }
                             echo '<li>';
