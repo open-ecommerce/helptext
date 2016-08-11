@@ -13,7 +13,7 @@ class OeHelpers {
                     ->setFrom('webmaster@nnls-helptext.ml')
                     ->setTo(['eduardo@open-ecommerce.org', 'mariano@open-ecommerce.org'])
                     ->setSubject('Alert from NNLS HelpText')
-                    ->setTextBody($msg)
+                    ->setHtmlBody($msg)
                     ->send();
         } else {
             if (\Yii::$app->settings->get('helptext.generate_logs')) {
