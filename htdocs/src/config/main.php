@@ -234,7 +234,7 @@ $web = [
                 [
                  'class' => 'yii\log\EmailTarget',
                  'mailer' => 'mailer',
-                 'levels' => ['info', 'trace', 'error', 'warning'],
+                 'levels' => ['info'],
                  'categories' => ['tomail'],
                  'message' => [
                      'from' => ['webmaster@nnls-helptext.ml'],
