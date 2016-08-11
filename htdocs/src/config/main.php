@@ -231,17 +231,7 @@ $web = [
                     'logVars' => [],
                     'logFile' => '@runtime/logs/call/requests.log',
                 ],
-                [
-                 'class' => 'yii\log\EmailTarget',
-                 'mailer' => 'mailer',
-                 'levels' => ['info'],
-                 'categories' => ['tomail'],
-                 'message' => [
-                     'from' => ['webmaster@nnls-helptext.ml'],
-                     'to' => ['eduardo@open-ecommerce.org', 'mariano@open-ecommerce.org'],
-                     'subject' => 'NNLS - HelpText System',
-                 ],
-                ],
+
             ],
         ],
         'request' => [
