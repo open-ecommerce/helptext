@@ -99,10 +99,10 @@ class Message extends BaseMessage {
                 $contactPhone->save();
                 
                 if ($this->setNextAvailableUser()  === NULL) {
-                    $this->flashResponse .= "Not available user to take the sms.";
+                    $this->flashResponse .= "Not available users to take the sms.";
                     OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
                     
-                    return "Not available user to take the sms";
+                    return "Not available users to take the sms";
                 }
 
                 // create new case       
@@ -275,7 +275,12 @@ class Message extends BaseMessage {
                 $contactPhone->save();
                 OeHelpers::logger('Phone added to contact_phone table', 'call');
 
-                 $this->setNextAvailableUser();
+                if ($this->setNextAvailableUser()  === NULL) {
+                    $this->flashResponse .= "Not available users to take the sms.";
+                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+                    
+                    return "Not available users to take the sms";
+                }
 
 
                 // create new case       
@@ -444,7 +449,12 @@ class Message extends BaseMessage {
                 $this->assignedUserName = $user->firstname . " " . $user->lastname;
                 $this->caseContactPhone = $case->id_phone;
             } else {
-                $this->setNextAvailableUser();
+                if ($this->setNextAvailableUser()  === NULL) {
+                    $this->flashResponse .= "Not available users to take the sms.";
+                    OeHelpers::logger("Not available user to take the sms./r/n Please setup helper to take calls." , 'tomail');
+
+                    return "Not available users to take the sms";
+                }                
             }
         } else {
             $this->isCurrentIdCaseOpen = FALSE;
