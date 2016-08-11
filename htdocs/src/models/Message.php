@@ -292,7 +292,7 @@ class Message extends BaseMessage {
                 $case = new Cases();
                 $case->id_contact = $callerId;
                 $case->id_phone = $this->id_phone;
-                $case->id_user = $nextUserId;
+                $case->id_user = $this->assignedUserId;
                 $case->start_date = date("Y-m-d H:i:s");
                 $case->state = 1;
                 $case->comments = "New case to review";
