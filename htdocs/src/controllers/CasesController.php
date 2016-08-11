@@ -30,7 +30,7 @@ class CasesController extends \app\controllers\base\CasesController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'detail','view'],
+                        'actions' => ['index', 'detail','view', 'update'],
                         'allow' => true,
                         'roles' => ['Helper'],
                     ],

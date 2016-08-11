@@ -121,7 +121,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         [
             'class' => 'kartik\grid\ActionColumn',
             'template' => '{view_conversation}',
-            'header' => 'Edit',
+            'header' => 'View Messages',
             'buttons' => [
                 'view_conversation' => function ($url, $model) {
                     return Html::a('<i class="glyphicon glyphicon-comment"></i>', $url, ['class' => 'btn btn-success'], [
