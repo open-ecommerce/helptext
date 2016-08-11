@@ -55,13 +55,13 @@ $menuBeforeItems = [
     ['label' => 'Clients', 'url' => ['/contact']],
     ['label' => 'Cases', 'url' => ['/cases']],
     ['label' => 'Helpers', 'url' => ['/profile']],
-    ['label' => 'Reports',
-        'items' => [
-            ['label' => 'Cases', 'url' => ['#']],
-            ['label' => 'Cases by Helpers', 'url' => ['#']],
-        ],
-        'visible' => \Yii::$app->user->can('view_mnu_reports', ['route' => true]),
-    ],
+//    ['label' => 'Reports',
+//        'items' => [
+//            ['label' => 'Cases', 'url' => ['#']],
+//            ['label' => 'Cases by Helpers', 'url' => ['#']],
+//        ],
+//        'visible' => \Yii::$app->user->can('view_mnu_reports', ['route' => true]),
+//    ],
     ['label' => 'Utilities', 'items' => [
             ['label' => 'Case Categories', 'url' => ['/case-category']],
             ['label' => 'Case Severities', 'url' => ['/severity']],
