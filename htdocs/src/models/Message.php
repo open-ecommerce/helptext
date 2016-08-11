@@ -310,6 +310,7 @@ class Message extends BaseMessage {
                 $call = new Message();
                 $call->id_phone = $this->id_phone;
                 $call->id_case = $this->currentIdCase;
+                $call->id_user = $this->assignedUserId;
                 $call->id_sender_type = $this->idSenderType;
                 $call->id_message_type = $this->idMessageType;
                 $call->message = "talked with " . $this->assignedUserName;
