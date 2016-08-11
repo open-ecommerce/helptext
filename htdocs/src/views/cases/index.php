@@ -25,7 +25,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
 
 
 ?>
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-12">
 <?php //echo $this->render('_search', ['model' => $searchModel]);  ?>
     <?php
 
