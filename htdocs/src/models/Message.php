@@ -79,7 +79,7 @@ class Message extends BaseMessage {
             if ($phone === NULL) { //the phone is not in the system
                 //create new contact
                 $contact = new Contact();
-                $contact->first_name = "no name asigned - ".$this->id_phone;
+                $contact->first_name = "no name from:".$this->id_phone;
                 $contact->save();
                 $callerId = $contact->id;
 
@@ -304,7 +304,6 @@ class Message extends BaseMessage {
 
                 OeHelpers::logger("A new case number: " . $this->currentIdCase . " was created. " , 'call');
                 OeHelpers::logger("The case was asigned to: " . $this->assignedUserName . " was created. " , 'call');
-                
                 
 
                 // save the text in the db       
