@@ -11,7 +11,7 @@ class OeHelpers {
         if ($where === "tomail") {
             \Yii::$app->mailer->compose()
                     ->setFrom('webmaster@nnls-helptext.ml')
-                    ->setTo('eduardo@open-ecommerce.org', 'mariano@open-ecommerce.org')
+                    ->setTo(['eduardo@open-ecommerce.org', 'mariano@open-ecommerce.org'])
                     ->setSubject('Alert from NNLS HelpText')
                     ->setTextBody($msg)
                     ->send();
