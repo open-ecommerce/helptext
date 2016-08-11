@@ -482,12 +482,14 @@ class Message extends BaseMessage {
             $this->assignedUserPhone = $profile->phone;
             $this->assignedUserName = $profile->UserName;
             OeHelpers::logger('Next helper available: ' . $this->assignedUserName . " number: " . $this->phoneToCall , 'call');
+            return TRUE;
         } else {
             $this->phoneToCall = "no phone set in profile";
             $this->assignedUserId = "";
             $this->assignedUserPhone = "";
             $this->assignedUserName = "";
             OeHelpers::logger('No phone set in helper profile' , 'call');
+            return NULL;
         }
     }    
 
