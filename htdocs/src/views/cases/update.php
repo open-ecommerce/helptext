@@ -8,7 +8,7 @@ use yii\helpers\Html;
 * @var app\models\Cases $model
 */
 
-$this->title = Yii::t('app', 'Cases') . $model->id . ', ' . Yii::t('app', 'Edit');
+$this->title = Yii::t('app', 'Updating Cases') . $model->id . ', ' . Yii::t('app', 'Edit');
 
 ?>
 <div class="container contact-update">
@@ -16,8 +16,7 @@ $this->title = Yii::t('app', 'Cases') . $model->id . ', ' . Yii::t('app', 'Edit'
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>
-                    <?= Yii::t('app', 'Update cases') ?>        <small>
-                        <?= $model->id ?>        </small>
+                    <?= Yii::t('app', 'Update case number: ') . $model->id; ?> 
                 </h3>
             </div>
 

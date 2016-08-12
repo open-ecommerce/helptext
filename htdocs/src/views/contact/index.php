@@ -52,7 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'fullName',
             'vAlign' => 'middle',
-            'label' => 'Name',
+            'label' => 'Client Name',
+            'format' => 'html',
+        ],
+        [
+            'attribute' => 'lastPhone',
+            'vAlign' => 'middle',
             'format' => 'html',
         ],
         [
@@ -66,20 +71,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'View',
+                    'header' => 'View Detail',
                     'template' => '{view}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
                 ],
                     
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Update',
+                    'header' => 'Update Client',
                     'template' => '{update}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Delete',
+                    'header' => 'Delete Client',
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
                     'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],

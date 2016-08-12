@@ -70,13 +70,13 @@ class CasesSearch extends Cases {
                 'fullName' => [
                     'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC],
                     'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC],
-                    'label' => 'Full Name',
+                    'label' => 'Client Name',
                     'default' => SORT_ASC
                 ],
                 'userName' => [
                     'asc' => ['firstname' => SORT_ASC, 'lastname' => SORT_ASC],
                     'desc' => ['firstname' => SORT_DESC, 'lastname' => SORT_DESC],
-                    'label' => 'User Name',
+                    'label' => 'Helper Name',
                     'default' => SORT_ASC
                 ],
                 'caseCategory' => [

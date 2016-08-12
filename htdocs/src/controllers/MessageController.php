@@ -229,8 +229,7 @@ class MessageController extends \app\controllers\base\MessageController {
             $modelNewMessage->source = "helper from system";
 
             try {
-
-                $response = $modelNewMessage->receiveSMS('from system');
+                $response = $modelNewMessage->receiveSMS();
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewMessage->addError('_exception', $response);

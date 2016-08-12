@@ -72,7 +72,7 @@ class ContactSearch extends Contact {
                 'fullName' => [
                     'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC],
                     'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC],
-                    'label' => 'Full Name',
+                    'label' => 'Client Name',
                     'default' => SORT_ASC
                 ],
                 'gender'

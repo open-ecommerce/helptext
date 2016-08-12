@@ -44,7 +44,7 @@ abstract class Cases extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['id_contact', 'id_user', 'id_category', 'id_outcome', 'id_severity'], 'integer'],
-            [['start_date', 'close_date', 'userName'], 'safe'],
+            [['start_date', 'close_date', 'userName', 'contactName'], 'safe'],
             [['state'], 'boolean'],
             [['comments', 'id_phone'], 'string'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => \dektrium\user\models\Profile::className(), 'targetAttribute' => ['id_user' => 'user_id']],
@@ -136,6 +136,12 @@ abstract class Cases extends \yii\db\ActiveRecord {
     public function getUserName() {
         if (isset($this->profile->firstname)) {
             return $this->profile->firstname . " " . $this->profile->lastname;
+        }
+    }
+
+    public function getContactName() {
+        if (isset($this->contact->first_name)) {
+            return $this->contact->first_name . " " . $this->contact->last_name;
         }
     }
 

@@ -4,6 +4,9 @@
 
 namespace app\models\base;
 
+use app\models\ContactPhone;
+
+
 use Yii;
 
 /**
@@ -47,7 +50,7 @@ abstract class Contact extends \yii\db\ActiveRecord
         return [
             [['first_name'], 'required'],
             [['id_country', 'id_language'], 'integer'],
-            [['birthday'], 'safe'],
+            [['birthday', 'lastPhone'], 'safe'],
             [['first_name', 'last_name', 'address_line1', 'address_line2', 'city', 'state'], 'string', 'max' => 50],
             [['gender', 'marital_status'], 'string', 'max' => 10],
             [['postal_code'], 'string', 'max' => 15],
@@ -74,7 +77,8 @@ abstract class Contact extends \yii\db\ActiveRecord
             'state' => Yii::t('app', 'County'),
             'postal_code' => Yii::t('app', 'Postcode'),
             'comments' => Yii::t('app', 'Comments'),
-            'fullName' => Yii::t('app', 'Full Name'),
+            'fullName' => Yii::t('app', 'Client Name'),
+            'lastPhone' => Yii::t('app', 'Last Used Phone'),
         ];
     }
 
@@ -90,4 +94,23 @@ abstract class Contact extends \yii\db\ActiveRecord
     public function getFullName() {
         return $this->first_name . " " . $this->last_name;
     }
+
+    public function getLastPhone() {
+
+        //$phone = new ContactPhone();
+        
+
+        
+        $phone = ContactPhone::find()
+                ->where(['id_contact' => $this->id])
+                ->orderBy(['id' => SORT_DESC])
+                ->one();        
+        
+        return $phone['id_phone'];
+        
+        
+        
+        
+    }
+    
 }

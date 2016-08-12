@@ -11,7 +11,7 @@ use app\models\Profile;
 use app\models\Cases;
 use app\helpers\OeHelpers;
 
-define('ANONYMIZE_TEXT', 'Anonymized message');
+define('ANONYMIZE_TEXT', 'Text deleted by the system.');
 
 /**
  * This is the model class for table "text".
@@ -49,18 +49,18 @@ class Message extends BaseMessage {
         $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');      
 
 
-        if ($this->source === "twilio") {
+        if ($this->source === "system-test") {
+            // is comming from the system as a test or as a new text from helper
+            if (empty($this->id_phone)) {
+                $this->id_phone = "+" . rand(1111111111, 9999999999);
+            }
+        } else {
             // real sms from twilio
             $request = \Yii::$app->request;
             $this->accountSid = $request->post('AccountSid');
             $this->id_phone = $request->post('From');
             $this->message = $request->post('Body');
             $this->messageSid = $request->post('MessageSid');
-        } else {
-            // is comming from the system as a test or as a new text from helper
-            if (empty($this->id_phone)) {
-                $this->id_phone = "+" . rand(1111111111, 9999999999);
-            }
         }
 
         //set current case id for this phone
@@ -189,9 +189,9 @@ class Message extends BaseMessage {
             $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_user');
 
             if ($this->currentIdCase === 0) {
-                $this->response = "Your last message:\r\n";
-                $this->response .= "\"" . $this->message . "\" don't have a case number.\r\n";
-                $this->response .= "We need the case number to deliver the message to the right person\r\n";
+                $this->response = "We couldn't deliver your last message because it didn't have a case number.\r\n";
+                $this->response .= "Please add the number and resend Case#__# ";
+                $this->response .=  $this->message;
             } else {
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->caseContactPhone;

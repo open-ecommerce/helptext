@@ -44,11 +44,13 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         ],
         [
             'attribute' => 'fullName',
+            'label' => 'Client Name',
             'value' => 'contact.fullName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
         [
+            'label' => 'Helper Name',
             'attribute' => 'userName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
@@ -141,19 +143,19 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'View',
+                    'header' => 'View Details',
                     'template' => '{view}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Update',
+                    'header' => 'Update Cases',
                     'template' => '{update}',
                     'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Delete',
+                    'header' => 'Delete Cases',
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
                     'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],

@@ -69,7 +69,7 @@ class Profile extends BaseProfile {
         return [
             'firstname' => Yii::t('userextended', 'First Name'),
             'lastname' => Yii::t('userextended', 'Surname'),
-            'userName' => Yii::t('userextended', 'Full Name'),
+            'userName' => Yii::t('userextended', 'Helper Name'),
             'phone' => Yii::t('userextended', 'Phone'),
             'birthday' => Yii::t('userextended', 'Birthday'),
             'availability' => Yii::t('userextended', 'Taking calls ?'),
