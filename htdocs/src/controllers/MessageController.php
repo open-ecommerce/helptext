@@ -80,7 +80,7 @@ class MessageController extends \app\controllers\base\MessageController {
         try {
             $model->source = "system-test";
             if ($model->load($_POST)) {
-                $model->source = 'from system phone tester';
+                $model->source = 'system-test';
                 // sms pushed in the tester
                 if (isset($_POST['sms'])) {
                     $model->receiveSMS();
@@ -189,8 +189,6 @@ class MessageController extends \app\controllers\base\MessageController {
 
                 $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
 
-
-
                 try {
                     $modelNewMessage->receiveSMS();
                 } catch (\Exception $e) {
@@ -198,12 +196,13 @@ class MessageController extends \app\controllers\base\MessageController {
                     $modelNewMessage->addError('_exception', $msg);
                 }
 
-// return JSON encoded output in the below format
-//return ['output'=>$value, 'message'=>''];
-// alternatively you can return a validation error
+                // return JSON encoded output in the below format
+                //return ['output'=>$value, 'message'=>''];
+                // alternatively you can return a validation error
                 return ['output' => '', 'message' => $msg];
+                
             }
-// else if nothing to do always return an empty JSON encoded output
+            // else if nothing to do always return an empty JSON encoded output
             else {
                 return ['output' => '', 'message' => ''];
             }
@@ -226,10 +225,12 @@ class MessageController extends \app\controllers\base\MessageController {
             $modelNewMessage->message = "case#" . $current_case_id . "# " . $value;
             $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
             $modelNewMessage->id_sender_type = 0;
-            $modelNewMessage->source = "helper from system";
+            $modelNewMessage->source = "system-test";
 
             try {
                 $response = $modelNewMessage->receiveSMS();
+                $modelNewMessage->message = "";
+                //$modelNewMessage->save();                
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
                 $modelNewMessage->addError('_exception', $response);
