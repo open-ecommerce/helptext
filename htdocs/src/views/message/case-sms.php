@@ -66,25 +66,28 @@ $formater = \yii::$app->formatter;
                                 $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';
                             }
 
-
                             $sender = "";
+                            $phoneType = "";
                             switch ($text['id_sender_type']) {
                                 case 1: //automatic response
                                     $sender = $text->id_phone . "<br>Automatic response<hr>";
                                     break;
                                 case 2: //contact
                                     $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone;
-                                    $sender .= "<br>".OeHelpers::isMobileNumber($text->id_phone)."<br>to: ". $text->userName . "<hr>";
+                                    $sender .= "<br>to: ". $text->userName . "<br>";
+                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone)."<hr>";
                                     break;
                                 case 3:
-                                    $sender = $modelCases->profile->firstname . "<br>" . $text->id_phone;
-                                    $sender .= "<br>".OeHelpers::isMobileNumber($text->id_phone)."<br>to: ". $text->userName . "<hr>";
+                                    $sender = $text->userName . "<br>" . $text->id_phone;
+                                    $sender .= "<br>to: ". $modelCases->contact->fullName . "<br>";
+                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone)."<hr>";
                                     break;
                             }
                             echo '<li>';
                             echo '<div class="bubble-' . $text->id_sender_type . '">';
                             echo '<span class="messageType">' . $messageIcon . '</span>';
                             echo '<span class="personName-' . $text->id_sender_type . '">' . $sender . '</span>';
+                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $phoneType . '</span>';
                             echo '<span class="personSay-' . $text->id_sender_type . '">' . $text->message . '</span><br>';
                             echo '<br>';
                             echo '<span class="sms-time">' . $formater->asDate($text->sent, 'php:d M Y h:i A') . '</span>';
