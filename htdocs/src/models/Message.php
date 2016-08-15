@@ -259,7 +259,7 @@ class Message extends BaseMessage {
 
                 //create new contact
                 $contact = new Contact();
-                $contact->first_name = "no name asigned" . $this->id_phone;
+                $contact->first_name = "Not Assigned (" . $this->id_phone . ")";
                 $contact->save();
                 $callerId = $contact->id;
                 OeHelpers::logger('Contact created.', 'call');
