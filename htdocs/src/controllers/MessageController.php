@@ -229,7 +229,7 @@ class MessageController extends \app\controllers\base\MessageController {
 
             try {
                 $response = $modelNewMessage->receiveSMS();
-                $modelNewMessage->message = "";
+                $modelNewMessage->message = ""; //avoid to have previous text in send sms
                 //$modelNewMessage->save();                
             } catch (\Exception $e) {
                 $response = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
