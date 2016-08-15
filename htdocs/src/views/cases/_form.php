@@ -19,7 +19,8 @@ use kartik\helpers\Html;
     <div class="col-md-6">
         <?php
             if (!$model->isNewRecord) {
-                echo $form->field($model, 'contactName')->textInput(['readonly' => TRUE]);
+                echo '<label class="control-label">Contact Name</label><br>';
+                echo Html::textInput("name", $model->contactName, ['readonly' => TRUE, 'class' => 'form-control'])."<br>";
             } else {
                 echo $form->field($model, 'id_contact')->dropDownList(ArrayHelper::map(\app\models\Contact::find()->orderBy('last_name')->all(), 'id', function($model, $defaultValue) {
                             return $model['first_name'] . ' ' . $model['last_name'];

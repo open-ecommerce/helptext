@@ -79,7 +79,7 @@ class Message extends BaseMessage {
             if ($phone === NULL) { //the phone is not in the system
                 //create new contact
                 $contact = new Contact();
-                $contact->first_name = "Name not set";
+                $contact->first_name = "Not Assigned (" . $this->id_phone . ")";
                 $contact->save();
                 $callerId = $contact->id;
 
