@@ -43,7 +43,7 @@ if (\Yii::$app->hasModule('user')) {
 
 NavBar::begin(
         [
-            'brandLabel' => getenv('APP_TITLE'),
+            'brandLabel' => getenv('APP_TITLE')." (".getenv('TWILIO_NUMBER').") ",
             'brandUrl' => \Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-inverse navbar-fixed-top',
