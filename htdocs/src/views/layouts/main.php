@@ -50,7 +50,7 @@ $imgPath = $bundle->baseUrl;
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
-        <?php $this->head() ?>    
+        <?php $this->head() ?>
 
     </head>
     <body>
@@ -82,9 +82,9 @@ $imgPath = $bundle->baseUrl;
                         ]);
                     endforeach;
                     ?>
-            </div>        
+            </div>
 
-            
+
             <?= $content ?>
         </div>
 
@@ -95,16 +95,19 @@ $imgPath = $bundle->baseUrl;
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-right">
-                    <span class="label label-default"><?= YII_ENV ?></span>
-                </p>
                 <p class="pull-left">
+
                     <?=
                     Html::a(
                             Html::img($imgPath . '/img/logos/powered-by-open-ecommerce-org-wite.png', ['alt' => 'Powered by Open-ecommerce.org']), '#', ['data-toggle' => 'modal', 'data-target' => '#infoModal']
                     )
                     ?>
+                    <span class="label label-default"><?= YII_ENV ?></span>
                 </p>
+                <p class="pull-right">
+                  <span class="alert alert-success"> Call us for a quote: 07879387106 </span>
+                </p>
+
             </div>
         </footer>
 

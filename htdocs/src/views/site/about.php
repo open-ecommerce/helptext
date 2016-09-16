@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <p>Send us an email to <a href="mailto:info@helptext.uk?Subject=Landing Page" target="_top">info@helptext.uk</a> or text us to 07879387106, and we will get back to you within 24 hours.</p>
     </br>
     </br>
-    <p>Sponsor by Fellow of the Outlandish Fellowship 2016</p>
+    <p>Sponsored by Outlandish Fellowship</p>
 
     <?=
     Html::a(
@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
     </div>
     <div class="col-md-6">
-      <?= Html::img($imgPath.'/img/helptext-offices_4.jpg', ['alt' => 'Open-ecommerce.org Office'])?>
+      <?= Html::img($imgPath.'/img/helptext-offices_4.jpg', ['alt' => 'open-ecommerce.org Office'])?>
+    </br>
+    </br>
     </div>
 </div>

@@ -12,21 +12,20 @@ $this->title = 'TextHelp+ for NNLS Drop-in';
 ?>
 <div class="site-index">
     <div class="col-md-12">
-        <h1 class="text-center">HELPText+ is a helpline platform.</h2>
-          <h2 class="text-center">Designed exclusively to empower non-profit helplines like yours.</h2>
-        <br>
+        <h1 class="text-center">HELPText+ Messaging Platform</h2>
+          <p class="text-center">Improved access to your service users, effective management of messages and clear reports on impact.</p>
+          <a class="btn btn-primary center-block" href="en/user/login" style="width:80px">Sign In</a>
         <div class="container">
             <div class="col-md-12 text-center">
                 <div>
                     <div id="hero">
                         <?= Html::img($imgPath . '/img/helptext-intro.png', ['alt' => 'Helptext Helpline Solution for helplines']) ?>
                     </div>
+                    <br>
+                    <br>
+
                 </div>
-                <br>
-                <p class="text-center"><i>Try our online demo</i></p>
             </div>
         </div>
     </div>
 </div>
-<br>
-<br>
