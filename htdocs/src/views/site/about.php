@@ -27,6 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
       <p> We will help you with our expertise and build a system to cater for your needs.</p>
       <p>Send us an email to <a href="mailto:info@helptext.uk?Subject=Landing Page" target="_top">info@helptext.uk</a> or text us to 07879387106, and we will get back to you within 24 hours.</p>
     </br>
+    </br>
+    <p>Sponsor by Fellow of the Outlandish Fellowship 2016</p>
+
+    <?=
+    Html::a(
+            Html::img($imgPath . '/img/outlandish-logo.png', ['alt' => 'Sponsor by outlandish']), 'http://outlandish.com/projects/outlandish-fellowship-2016/'
+    )
+    ?>
     </div>
     <div class="col-md-6">
       <?= Html::img($imgPath.'/img/helptext-offices_4.jpg', ['alt' => 'Open-ecommerce.org Office'])?>

@@ -99,6 +99,7 @@ $common = [
                     //'@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/phundament/app',
                     '@vendor/dektrium/yii2-user/views/admin' => '@app/views/user/admin',
                     '@vendor/dektrium/yii2-user/views/settings' => '@app/views/user/settings',
+                    '@vendor/dektrium/yii2-user/views/security' => '@app/views/user/security',
                     '@yii/gii/views/layouts' => '@admin-views/layouts',
                 ],
             ],
@@ -231,7 +232,6 @@ $web = [
                     'logVars' => [],
                     'logFile' => '@runtime/logs/call/requests.log',
                 ],
-
             ],
         ],
         'request' => [
