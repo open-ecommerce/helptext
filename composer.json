@@ -1,0 +1,82 @@
+{
+    "name": "helptext/app",
+    "description": "working pilot for a platform to empower existing non-profit helplines by providing access and management of mobile text",
+    "keywords": [
+        "helptext",
+        "organizations",
+        "application",
+        "charities",
+        "open-ecommerce",
+        "open-ecommerce.org",
+        "helpline"
+    ],
+    "homepage": "http://www.helptext.uk/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "open-ecommerce.org",
+            "email": "info@open-ecommerce.org",
+            "homepage": "http://www.open-ecommerce.org"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/open-ecommerce/helptext/issues",
+        "source": "https://github.com/open-ecommerce/helptext"
+    },
+    "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/open-ecommerce/yii2-backuprestore"
+            }
+    ],
+  "minimum-stability": "stable",
+  "require": {
+    "dmstr/yii2-cms-metapackage": "^4.2.0",
+    "vlucas/phpdotenv": "2.*",
+    "yiisoft/yii2": "^2.0.7",
+    "yiisoft/yii2-bootstrap": "*",
+    "yiisoft/yii2-swiftmailer": "2.*",
+    "kartik-v/yii2-widgets": "*",
+    "kartik-v/yii2-grid": "*",
+    "kartik-v/yii2-widget-select2": "*",
+    "kartik-v/yii2-mpdf": "*",
+    "kartik-v/yii2-helpers": "dev-master",
+    "kartik-v/yii2-datecontrol": "dev-master",
+    "kartik-v/yii2-export": "@dev",
+    "kartik-v/yii2-detail-view": "@dev",
+    "kartik-v/dependent-dropdown": "@dev",
+    "kartik-v/yii2-editable": "*",
+    "spanjeta/yii2-backup": "*",
+    "open-ecommerce/yii2-backuprestore": "dev-master",
+    "bower-asset/font-awesome": "^4.5",
+    "bower-asset/bootstrap-sass": "3.3.6",
+    "bower-asset/motion-ui": "^1.2.2",
+    "bower-asset/sass-rem": "^1.2",
+    "bower-asset/what-input": "^1.1",
+    "bower-asset/admin-lte": "*",
+    "cinghie/yii2-user-extended": "*",
+    "filipajdacic/yii2-twilio": "dev-master",
+    "twilio/sdk": "^4.10",
+    "dmstr/yii2-adminlte-asset": "2.*",
+    "borales/yii2-phone-input": "*",
+    "2amigos/yii2-chartjs-widget" : "~2.0",
+    "c006/yii2-migration-utility": "dev-master"
+  },
+  "require-dev": {
+    "dmstr/yii2-cms-dev-metapackage": "^1.1.0",
+    "yiisoft/yii2-codeception": "*",
+    "yiisoft/yii2-debug": "*",
+    "yiisoft/yii2-gii": "*",
+    "yiisoft/yii2-faker": "*"
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  },
+  "config": {
+    "process-timeout": 1800
+  }
+}
