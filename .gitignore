@@ -21,6 +21,8 @@ local
 
 htdocs/.env
 
+# client icons
+/htdocs/img/icons/client
 
 # netbeans project files
 nbproject

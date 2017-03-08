@@ -46,7 +46,7 @@ class Message extends BaseMessage {
 
         $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
         $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
-        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');      
+        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');
 
 
         if ($this->source === "system-test") {
@@ -85,7 +85,7 @@ class Message extends BaseMessage {
 
                 $this->flashResponse .= "The phone is not in the system so we will create a contact entry. ";
                 OeHelpers::logger('The phone is not in the system so we will create a contact entry.', 'sms');
-                
+
                 //create new phone
                 $phone = new Phone();
                 $phone->id = $this->id_phone;
@@ -97,18 +97,18 @@ class Message extends BaseMessage {
                 $contactPhone->id_contact = $callerId;
                 $contactPhone->id_phone = $this->id_phone;
                 $contactPhone->save();
-                
+
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
-                    
+
                     $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
-                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>";
                     OeHelpers::logger($msgtolog, 'tomail');
-                    
+
                     return "Not available users to take the sms";
                 }
 
-                // create new case       
+                // create new case
                 $case = new Cases();
                 $case->id_contact = $callerId;
                 $case->id_phone = $this->id_phone;
@@ -124,9 +124,9 @@ class Message extends BaseMessage {
 
                 OeHelpers::logger("A new case number: " . $this->currentIdCase . " was created. " , 'sms');
                 OeHelpers::logger("The case was asigned to: " . $this->assignedUserName . " was created. " , 'sms');
-                
-                
-                // save the text in the db       
+
+
+                // save the text in the db
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
@@ -153,7 +153,7 @@ class Message extends BaseMessage {
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->assignedUserPhone;
             } else {
-                
+
 
                 $this->setLastCaseByPhone();
 
@@ -168,7 +168,7 @@ class Message extends BaseMessage {
                     $this->messageToSend .= $this->message;
                     $this->phoneToSend = $this->assignedUserPhone;
 
-                    // save the text in the db       
+                    // save the text in the db
                     $text = new Message();
                     $text->id_phone = $this->id_phone;
                     $text->id_case = $this->currentIdCase;
@@ -196,11 +196,11 @@ class Message extends BaseMessage {
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->caseContactPhone;
 
-                // save the text in the db       
+                // save the text in the db
                 $text = new Message();
                 $text->id_phone = $this->id_phone;
                 $text->id_case = $this->currentIdCase;
-                $text->id_user = $userId;                
+                $text->id_user = $userId;
                 $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
@@ -213,12 +213,12 @@ class Message extends BaseMessage {
             }
         }
 
-        //autoresponse to caller        
+        //autoresponse to caller
         if (!empty($this->response)) {
             $this->output = $this->sendSMS($this->response, $this->id_phone);
         }
 
-        //sending message to destinatary        
+        //sending message to destinatary
         if (!empty($this->messageToSend)) {
             $this->output = $this->sendSMS($this->messageToSend, $this->phoneToSend);
         }
@@ -236,9 +236,9 @@ class Message extends BaseMessage {
                 $this->flashResponse .= "Not phone selected we use the fake random number: " . $this->id_phone . ". ";
             }
         }
-        
-        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_call');      
-        
+
+        $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_call');
+
         //try to get profile data from phone (also will check if it is a user)
         $profile = Profile::findOne(['phone' => $this->id_phone]);
 
@@ -281,14 +281,14 @@ class Message extends BaseMessage {
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
                     $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
-                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>";
                     OeHelpers::logger($msgtolog, 'tomail');
-                    
+
                     return "Not available users to take the sms";
                 }
 
 
-                // create new case       
+                // create new case
                 $case = new Cases();
                 $case->id_contact = $callerId;
                 $case->id_phone = $this->id_phone;
@@ -304,9 +304,9 @@ class Message extends BaseMessage {
 
                 OeHelpers::logger("A new case number: " . $this->currentIdCase . " was created. " , 'call');
                 OeHelpers::logger("The case was asigned to: " . $this->assignedUserName . " was created. " , 'call');
-                
 
-                // save the text in the db       
+
+                // save the text in the db
                 $call = new Message();
                 $call->id_phone = $this->id_phone;
                 $call->id_case = $this->currentIdCase;
@@ -318,15 +318,15 @@ class Message extends BaseMessage {
                 $call->save();
                 OeHelpers::logger('The message was saved' , 'call');
 
-                
+
             } else { //the phone exist in the system and has a case
 
                 $this->setLastCaseByPhone();
 
                 $this->phoneToCall = $this->assignedUserPhone;
-                    
 
-                // save the text in the db       
+
+                // save the text in the db
                 $call = new Message();
                 $call->id_phone = $this->id_phone;
                 $call->id_case = $this->currentIdCase;
@@ -346,7 +346,7 @@ class Message extends BaseMessage {
             $userId = $profile->user_id;
             $this->idSenderType = \Yii::$app->settings->get('helptext.sender_type_id_user');
 
-            // save the text in the db       
+            // save the text in the db
             $call = new Message();
             $call->id_phone = $this->id_phone;
             $call->id_message_type = $this->idMessageType;
@@ -356,7 +356,7 @@ class Message extends BaseMessage {
 
             $this->flashResponse .= "The user: " . $this->assignedUserName . " it is trying to call the helpline";
             OeHelpers::logger("The user: " . $this->assignedUserName . " it is trying to call the helpline" , 'call');
-            
+
         }
 
         //\Yii::$app->session->setFlash('success', $this->flashResponse);
@@ -457,11 +457,11 @@ class Message extends BaseMessage {
                 if ($this->setNextAvailableUser()  === NULL) {
                     $this->flashResponse .= "Not available users to take the sms.";
                     $msgtolog = \Yii::$app->settings->get('helptext.email_to_admin_no_helpers');
-                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>"; 
+                    $msgtolog .= "<hr><p>Details of the comunication:</p><br><p>from: </p>".$this->id_phone."<br>".$this->message."<br>";
                     OeHelpers::logger($msgtolog, 'tomail');
 
                     return "Not available users to take the sms";
-                }                
+                }
             }
         } else {
             $this->isCurrentIdCaseOpen = FALSE;
@@ -469,15 +469,19 @@ class Message extends BaseMessage {
     }
 
     public function getMessagesByMonth() {
-        
+
+        $messages = 0;
+
         $sql =  "SELECT DATE_FORMAT(sent, '%Y') as 'year', ";
         $sql .= "DATE_FORMAT(sent, '%M') as 'month', ";
         $sql .= "COUNT(id) as 'total' ";
         $sql .= "FROM message ";
         $sql .= "GROUP BY DATE_FORMAT(sent, '%Y%m')";
-        
-        $messages = Yii::$app->db->createCommand($sql)
-            ->queryAll();
+
+        // $messages = Yii::$app->db->createCommand($sql)
+        //     ->queryAll();
+
+
         return $messages;
     }
 
@@ -492,8 +496,8 @@ class Message extends BaseMessage {
         if ($nextUserId === NULL) {
             return NULL;
         }
-        
-        
+
+
         $profile = Profile::findOne(['user_id' => $nextUserId]);
         if ($profile != NULL) { //case not found
             $this->phoneToCall = $profile->phone;
@@ -510,8 +514,8 @@ class Message extends BaseMessage {
             OeHelpers::logger('No phone set in helper profile' , 'call');
             return NULL;
         }
-    }    
+    }
 
-  
+
 
 }

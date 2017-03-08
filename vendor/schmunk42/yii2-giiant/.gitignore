@@ -1,7 +1,0 @@
-tests/_output
-__tmp
-*.bak
-vendor
-.phptidy-cache
-docker-compose.override.yml
-_artifacts
