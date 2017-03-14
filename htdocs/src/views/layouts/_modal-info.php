@@ -5,7 +5,7 @@ use app\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
 $imgPath = $bundle->baseUrl;
-
+$imgClientPath = \Yii::$app->settings->get('design.icons_folder');
 
 ?>
 <div class="modal-dialog">
@@ -14,7 +14,7 @@ $imgPath = $bundle->baseUrl;
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                     class="sr-only">Close</span></button>
             <div class="text-center">
-                <?= Html::img($imgPath.'/img/icons/android-chrome-192x192.png', ['alt' => 'HelpText+']) ?>
+                <?= Html::img($imgPath . '/img/icons/' . $imgClientPath . '/android-chrome-192x192.png', ['alt' => 'helptext']) ?>
                 <h3><?= getenv('APP_NAME') ?></h3>
 
                 <p>
