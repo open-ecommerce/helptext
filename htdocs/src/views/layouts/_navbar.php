@@ -5,6 +5,13 @@ namespace app\views\layouts;
 
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use app\assets\AppAsset;
+use yii\helpers\Html;
+
+
+$bundle = AppAsset::register($this);
+$imgLogoPath = $bundle->baseUrl . "/img/icons/" . \Yii::$app->settings->get('design.icons_folder') . "/logo.png";
+$imgClientLogo = Html::img($imgLogoPath);
 
 $menuItems = [];
 
@@ -41,9 +48,12 @@ if (\Yii::$app->hasModule('user')) {
     }
 }
 
+
+//.getenv('TWILIO_NUMBER')
+
 NavBar::begin(
         [
-            'brandLabel' => getenv('APP_TITLE')." (".getenv('TWILIO_NUMBER').") ",
+            'brandLabel' => $imgClientLogo,
             'brandUrl' => \Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-inverse navbar-fixed-top',
@@ -52,8 +62,8 @@ NavBar::begin(
 );
 
 $menuBeforeItems = [
-    ['label' => 'Clients', 'url' => ['/contact']],
     ['label' => 'Cases', 'url' => ['/cases']],
+    ['label' => 'Clients', 'url' => ['/contact']],
     ['label' => 'Helpers', 'url' => ['/profile']],
 //    ['label' => 'Reports',
 //        'items' => [

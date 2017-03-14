@@ -6734,8 +6734,12 @@ h1 small,
 #top-menu {
   padding-bottom: 75px;
 }
+#top-menu a.navbar-brand img {
+  padding: 0;
+  margin-top: -6px;
+}
 .panel-body.sms-tester {
-  background-image: url(../img/mobile-mockup.png);
+  background-image: url("../img/mobile-mockup.png");
   background-position: 50% 25px;
   background-repeat: no-repeat;
 }
@@ -6760,7 +6764,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 18-Jul-2016, 11:59:42
     Author     : developer
 */
@@ -6821,7 +6825,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 250px;
+  min-width: 51%;
 }
 #sms-texts .bubble-1 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-1 span.glyphicon.glyphicon-earphone {
@@ -6857,7 +6861,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 250px;
+  min-width: 51%;
 }
 #sms-texts .bubble-3 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-3 span.glyphicon.glyphicon-earphone {
@@ -6895,7 +6899,7 @@ and open the template in the editor.
   border-color: #cdecb0;
   min-height: 55px;
   clear: right;
-  min-width: 250px;
+  min-width: 51%;
 }
 #sms-texts .bubble-2 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-2 span.glyphicon.glyphicon-earphone {

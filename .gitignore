@@ -60,10 +60,12 @@ nbproject
 .vagrant
 logs
 
-/htdocs/local.php
-/htdocs/docker-compose.override.yml
-/htdocs/version
-/htdocs/.phptidy-cache
-/htdocs/src/config/gen
+htdocs/local.php
+htdocs/docker-compose.override.yml
+htdocs/version
+htdocs/.phptidy-cache
+htdocs/src/config/gen
 
-/htdocs/node_modules
+htdocs/node_modules
+
+htdocs/web/assets
