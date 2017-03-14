@@ -14,7 +14,7 @@ $imgPath = $bundle->baseUrl;
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                     class="sr-only">Close</span></button>
             <div class="text-center">
-                <?= Html::img($imgPath.'/img/icons/android-chrome-72x72.png', ['alt' => 'HelpText+']) ?>
+                <?= Html::img($imgPath.'/img/icons/android-chrome-192x192.png', ['alt' => 'HelpText+']) ?>
                 <h3><?= getenv('APP_NAME') ?></h3>
 
                 <p>
