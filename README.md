@@ -145,6 +145,9 @@ You don't need them to yii2 run or even create the assets folder, but you want b
 #Error "An internal server error occurred."
 - the app is running check db credentials in .env
 
+#Error "The file or directory to be published does not exist: /home/oechitchat/BDP2F17M/htdocs/src/../vendor/bower/jquery/dist"
+- change the name of folder bower-asset to bower in the vendor folder
+
 #Error seeing images
 - have you run gulp localy?
 - delete the assets in production to force to regenerate
