@@ -1,1 +1,3 @@
-<?php $model->id_message_type; ?>
+<div id="posts">
+    <div class="post">esto es el post</div>
+</div>

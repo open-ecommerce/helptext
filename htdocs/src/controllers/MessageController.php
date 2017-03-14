@@ -65,7 +65,7 @@ class MessageController extends \app\controllers\base\MessageController {
             OeHelpers::logger('NOT passed authentication', 'sms');
         }
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
-        
+
         $this->enableCsrfValidation = true;
     }
 
@@ -200,7 +200,6 @@ class MessageController extends \app\controllers\base\MessageController {
                 //return ['output'=>$value, 'message'=>''];
                 // alternatively you can return a validation error
                 return ['output' => '', 'message' => $msg];
-                
             }
             // else if nothing to do always return an empty JSON encoded output
             else {
@@ -243,7 +242,10 @@ class MessageController extends \app\controllers\base\MessageController {
 
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Message::find()->where(['id_case' => $current_case_id]),
+            'query' => Message::find()
+                ->where(['id_case' => $current_case_id])
+                ->orderBy(['sent' => SORT_DESC]),
+            'pagination' => array('pageSize' => 10),
         ]);
         $modelCases = Cases::find()->where(['id' => $current_case_id])->one();
 

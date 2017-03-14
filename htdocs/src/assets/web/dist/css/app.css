@@ -6788,6 +6788,7 @@ and open the template in the editor.
 #sms-texts ul {
   margin: 0;
   padding: 10px 8%;
+  width: 100%;
 }
 #sms-texts .input-group.input-group-addon {
   border: 1px solid #c5c2c2;

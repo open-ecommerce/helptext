@@ -12,8 +12,8 @@ use dektrium\user\models\User;
 use kartik\form\ActiveForm;
 use yii\widgets\Pjax;
 use app\helpers\OeHelpers;
-use kop\y2sp\ScrollPager;
 use yii\widgets\ListView;
+use kop\y2sp\ScrollPager;
 
 $formater = \yii::$app->formatter;
 ?>
@@ -24,8 +24,8 @@ $formater = \yii::$app->formatter;
 
     <?php
     $this->title = Yii::t('app', 'View Case conversations');
-//$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+    //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
+    //$this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <div class="container">
@@ -55,69 +55,7 @@ $formater = \yii::$app->formatter;
 
                     </div>
                 </div>
-                <div class="panel-body">
 
-                    <?php
-                    echo ListView::widget([
-                        'dataProvider' => $DataProvider,
-                        'itemOptions' => ['class' => 'item'],
-                        'itemView' => '_item',
-                        'pager' => [
-                            'class' => \kop\y2sp\ScrollPager::className(),
-                            'negativeMargin' => '200',
-                            'triggerText' => 'Load More news',
-                            'triggerOffset' => 3,
-                            'noneLeftText' => '',
-                        ],
-                        'summary' => '',
-                    ]);
-                    ?>                    
-
-
-                    <ul>
-                        <?php
-                        $text = "";
-
-                        foreach ($dataProvider->models as $text) {
-
-                            if ($text->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
-                                $messageIcon = '<span class="glyphicon glyphicon-earphone"></span>';
-                            } else {
-                                $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';
-                            }
-
-                            $sender = "";
-                            $phoneType = "";
-                            switch ($text['id_sender_type']) {
-                                case 1: //automatic response
-                                    $sender = $text->id_phone . "<br>Automatic response<hr>";
-                                    break;
-                                case 2: //contact
-                                    $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone;
-                                    $sender .= "<br>to: " . $text->userName . "<br>";
-                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
-                                    break;
-                                case 3:
-                                    $sender = $text->userName . "<br>" . $text->id_phone;
-                                    $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
-                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
-                                    break;
-                            }
-                            echo '<li>';
-                            echo '<div class="bubble-' . $text->id_sender_type . '">';
-                            echo '<span class="messageType">' . $messageIcon . '</span>';
-                            echo '<span class="personName-' . $text->id_sender_type . '">' . $sender . '</span>';
-                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $phoneType . '</span>';
-                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $text->message . '</span><br>';
-                            echo '<br>';
-                            echo '<span class="sms-time">' . $formater->asDate($text->sent, 'php:d M Y h:i A') . '</span>';
-                            echo '</div><br>';
-                            echo '</li>';
-                        }
-                        ?>
-                    </ul>
-                    <br>
-                </div>
                 <div class="panel-footer">
                     <?php
                     Pjax::begin();
@@ -147,6 +85,112 @@ $formater = \yii::$app->formatter;
                     ?>
 
                 </div>
+                
+                
+                <?php
+//                echo ListView::widget([
+//                    'dataProvider' => $dataProvider,
+//                    'itemOptions' => ['class' => 'item'],
+//                    'itemView' => '_item',
+//                    'pager' => [
+//                        'class' => ScrollPager::class,
+//                        'enabledExtensions' => [
+//                            ScrollPager::EXTENSION_TRIGGER,
+//                            ScrollPager::EXTENSION_SPINNER,
+//                            ScrollPager::EXTENSION_NONE_LEFT,
+//                            ScrollPager::EXTENSION_PAGING,
+//                        ],
+//                    ],]);
+                ?> 
+                <div class="panel-body">
+                <?php
+                echo \yii\widgets\LinkPager::widget([
+                    'pagination' => $dataProvider->pagination,
+                ]);
+                ?>                    
+                    
+                    <ul>                
+                <?=
+                ListView::widget([
+                    'options' => [
+                        'tag' => 'div',
+                    ],
+                    'dataProvider' => $dataProvider,
+                    'itemView' => function ($model, $key, $index, $widget) {
+                        $itemContent = $this->render('_item_view', ['model' => $model]);
+                        return $itemContent;
+
+                        /* Or if you just want to display the list item only: */
+                        // return $this->render('_list_item',['model' => $model]);
+                    },
+                    'itemOptions' => [
+                        'tag' => false,
+                    ],
+                    'summary' => '',
+                    /* do not display {summary} */
+                    'layout' => '{items}',
+                    'pager' => [
+                        'firstPageLabel' => 'First',
+                        'lastPageLabel' => 'Last',
+                        'maxButtonCount' => 4,
+                        'options' => [
+                            'class' => 'pagination col-xs-12'
+                        ]
+                    ],
+                ]);
+                ?>
+                    </ul>
+                <?php
+                echo \yii\widgets\LinkPager::widget([
+                    'pagination' => $dataProvider->pagination,
+                ]);
+                ?>
+<!--
+                <div class="panel-body">
+                    <ul>-->
+                        <?php
+//                        $text = "";
+//
+//                        foreach ($dataProvider->models as $text) {
+//
+//                            if ($text->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
+//                                $messageIcon = '<span class="glyphicon glyphicon-earphone"></span>';
+//                            } else {
+//                                $messageIcon = '<span class="glyphicon glyphicon-comment"></span>';
+//                            }
+//
+//                            $sender = "";
+//                            $phoneType = "";
+//                            switch ($text['id_sender_type']) {
+//                                case 1: //automatic response
+//                                    $sender = $text->id_phone . "<br>Automatic response<hr>";
+//                                    break;
+//                                case 2: //contact
+//                                    $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone;
+//                                    $sender .= "<br>to: " . $text->userName . "<br>";
+//                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
+//                                    break;
+//                                case 3:
+//                                    $sender = $text->userName . "<br>" . $text->id_phone;
+//                                    $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
+//                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
+//                                    break;
+//                            }
+//                            echo '<li>';
+//                            echo '<div class="bubble-' . $text->id_sender_type . '">';
+//                            echo '<span class="messageType">' . $messageIcon . '</span>';
+//                            echo '<span class="personName-' . $text->id_sender_type . '">' . $sender . '</span>';
+//                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $phoneType . '</span>';
+//                            echo '<span class="personSay-' . $text->id_sender_type . '">' . $text->message . '</span><br>';
+//                            echo '<br>';
+//                            echo '<span class="sms-time">' . $formater->asDate($text->sent, 'php:d M Y h:i A') . '</span>';
+//                            echo '</div><br>';
+//                            echo '</li>';
+//                        }
+                        ?>
+<!--                    </ul>
+                    <br>
+                </div>-->
             </div>               
         </div>
     </div>

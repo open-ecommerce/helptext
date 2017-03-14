@@ -6,6 +6,9 @@ Yii::setAlias('@web', dirname(__DIR__) . '/../web');
 Yii::setAlias('@webroot', dirname(__DIR__) . '/web');
 Yii::setAlias('@root', '@app');
 
+use openecommerce\yiitwilio\YiiTwilio;
+
+
 $common = [
     'id' => 'app',
     'language' => '',
@@ -105,7 +108,7 @@ $common = [
             ],
         ],
         'Yii2Twilio' => array(
-            'class' => 'openecommerce\yiitwilio',
+            'class' => 'openecommerce\yiitwilio\YiiTwilio',
             'account_sid' => getenv('TWILIO_ACCOUNT_SID'),
             'auth_key' => getenv('TWILIO_AUTH_KEY'),
         ),
