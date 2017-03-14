@@ -63,10 +63,10 @@
     "dmstr/yii2-adminlte-asset": "2.*",
     "borales/yii2-phone-input": "*",
     "2amigos/yii2-chartjs-widget" : "~2.0",
+    "open-ecommerce/yii2-twilio": "dev-master",
     "c006/yii2-migration-utility": "dev-master"
   },
   "require-dev": {
-    "open-ecommerce/yii2-twilio": "*",
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",
     "yiisoft/yii2-codeception": "*",
     "yiisoft/yii2-debug": "*",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "336cda1569ce840c9274f7a280a98213",
-    "content-hash": "a51b0f8d33e8ab365ef27434c7c6caa7",
+    "hash": "ac0f125b728958c67a5dd09fd9146c8c",
+    "content-hash": "e2871135551647c0489c57084f37fd28",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -2114,51 +2114,6 @@
                 "html"
             ],
             "time": "2017-03-13 06:30:53"
-        },
-        {
-            "name": "filipajdacic/yii2-twilio",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filipajdacic/yii2-twilio.git",
-                "reference": "bbb3c1d5d22e415e51da994b4603e8ce71e54842"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filipajdacic/yii2-twilio/zipball/bbb3c1d5d22e415e51da994b4603e8ce71e54842",
-                "reference": "bbb3c1d5d22e415e51da994b4603e8ce71e54842",
-                "shasum": ""
-            },
-            "require": {
-                "twilio/sdk": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "filipajdacic\\yiitwilio\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filip Ajdacic",
-                    "email": "ajdasoft@gmail.com"
-                }
-            ],
-            "description": "This component is YII2 wrapper for Twilio PHP module",
-            "keywords": [
-                "extension",
-                "sms",
-                "twillio",
-                "video",
-                "voice",
-                "yii2"
-            ],
-            "time": "2016-12-14 09:06:42"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -4290,49 +4245,51 @@
             "time": "2016-12-12 10:42:18"
         },
         {
-            "name": "open-ecommerce/yii2-backuprestore",
+            "name": "open-ecommerce/yii2-twilio",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/open-ecommerce/yii2-backuprestore.git",
-                "reference": "59d99ac02d56cf798f831810384fa601b5525ca1"
+                "url": "https://github.com/open-ecommerce/yii2-twilio.git",
+                "reference": "6362aea7f28619fd60532d3cd5e3d1d1d1cce43b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-ecommerce/yii2-backuprestore/zipball/59d99ac02d56cf798f831810384fa601b5525ca1",
-                "reference": "59d99ac02d56cf798f831810384fa601b5525ca1",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-twilio/zipball/6362aea7f28619fd60532d3cd5e3d1d1d1cce43b",
+                "reference": "6362aea7f28619fd60532d3cd5e3d1d1d1cce43b",
                 "shasum": ""
             },
             "require": {
+                "twilio/sdk": "*",
                 "yiisoft/yii2": "*"
             },
-            "type": "yii2-extension",
+            "type": "library",
             "autoload": {
                 "psr-4": {
-                    "oe\\modules\\backuprestore\\": ""
+                    "openecommerce\\yiitwilio\\": ""
                 }
             },
             "license": [
-                "Apache-2.0"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "open-ecommerce.org",
-                    "email": "info@open-ecommerce.org"
+                    "name": "Filip Ajdacic",
+                    "email": "ajdasoft@gmail.com"
                 }
             ],
-            "description": "Database Backup and Restore functionality",
+            "description": "This component is YII2 wrapper for Twilio PHP module",
             "keywords": [
-                "Backup",
-                "Database",
-                "Restore",
+                "extension",
+                "sms",
+                "twillio",
+                "video",
+                "voice",
                 "yii2"
             ],
             "support": {
-                "source": "https://github.com/open-ecommerce/yii2-backuprestore/tree/v1.0",
-                "issues": "https://github.com/open-ecommerce/yii2-backuprestore/issues"
+                "source": "https://github.com/open-ecommerce/yii2-twilio/tree/master"
             },
-            "time": "2017-02-12 13:30:49"
+            "time": "2017-03-14 16:44:19"
         },
         {
             "name": "pheme/yii2-settings",
@@ -7217,8 +7174,7 @@
         "kartik-v/yii2-export": 20,
         "kartik-v/yii2-detail-view": 20,
         "kartik-v/dependent-dropdown": 20,
-        "open-ecommerce/yii2-backuprestore": 20,
-        "filipajdacic/yii2-twilio": 20,
+        "open-ecommerce/yii2-twilio": 20,
         "c006/yii2-migration-utility": 20
     },
     "prefer-stable": false,
