@@ -48,7 +48,7 @@ abstract class Message extends \yii\db\ActiveRecord
             [['id_case', 'id_sender_type', 'id_message_type'], 'integer'],
             [['sent', 'sid', 'userName'], 'safe'],
             [['id_phone'], 'string', 'max' => 15],
-            [['message'], 'string', 'max' => 50],
+            [['message'], 'string', 'max' => 160],
             [['id_case'], 'exist', 'skipOnError' => true, 'targetClass' => Cases::className(), 'targetAttribute' => ['id_case' => 'id']],
             [['id_message_type'], 'exist', 'skipOnError' => true, 'targetClass' => MessageType::className(), 'targetAttribute' => ['id_message_type' => 'id']],
             [['id_sender_type'], 'exist', 'skipOnError' => true, 'targetClass' => SenderType::className(), 'targetAttribute' => ['id_sender_type' => 'id']],
@@ -105,7 +105,7 @@ abstract class Message extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id_user']);
     }
-    
+
 
 
     /**
@@ -117,11 +117,11 @@ abstract class Message extends \yii\db\ActiveRecord
         return new \app\models\MessageQuery(get_called_class());
     }
 
-    
+
     public function getUserName() {
         if (isset($this->profile->firstname)) {
             return $this->profile->firstname . " " . $this->profile->lastname;
         }
-    }    
+    }
 
 }

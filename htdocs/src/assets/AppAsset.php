@@ -22,12 +22,12 @@ class AppAsset extends AssetBundle
     public $sourcePath = '@app/assets/web/dist';
 
     public $js = [
-        'js/app.min.js',
+        'js/app.js',
     ];
 
     public $css = [
-       //'css/app.css', //dev
-       'css/app.min.css', // production
+       'css/app.css', //dev
+       //'css/app.min.css', // production
     ];
 
     public $depends = [

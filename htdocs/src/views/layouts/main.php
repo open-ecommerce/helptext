@@ -22,7 +22,7 @@ switch (Yii::$app->settings->get('registerPrototypeAsset', 'app.assets')) {
 
 $bundle = AppAsset::register($this);
 $imgPath = $bundle->baseUrl;
-$imgClientPath = \Yii::$app->settings->get('helptext.icons_folder');
+$imgClientPath = \Yii::$app->settings->get('design.icons_folder');
 ?>
 
 <?php $this->beginPage() ?>

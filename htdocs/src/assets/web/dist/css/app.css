@@ -6734,8 +6734,12 @@ h1 small,
 #top-menu {
   padding-bottom: 75px;
 }
+#top-menu a.navbar-brand img {
+  padding: 0;
+  margin-top: -6px;
+}
 .panel-body.sms-tester {
-  background-image: url(../img/mobile-mockup.png);
+  background-image: url("../img/mobile-mockup.png");
   background-position: 50% 25px;
   background-repeat: no-repeat;
 }
