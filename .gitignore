@@ -22,7 +22,7 @@ local
 htdocs/.env
 
 # client icons
-/htdocs/img/icons/client
+htdocs/src/assets/web/img/icons/client
 
 # netbeans project files
 nbproject
