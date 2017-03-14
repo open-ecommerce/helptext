@@ -11,7 +11,7 @@ This project is intended as a live, working pilot for a platform to empower exis
 - Simplify configuration file by [Phundamental 4](https://github.com/phundament/app)
 - Dashboard theme based in [AdminLTE 2](http://almsaeedstudio.com/AdminLTE) for backend with extra plugins for chars.
 - User Managment with RDAC to use roles and permisions.
-- Migrations support with [yii2-migration-utility by Jon Chambers] (https://github.com/c006/yii2-migration-utility) 
+- Migrations support with [yii2-migration-utility by Jon Chambers] (https://github.com/c006/yii2-migration-utility)
 - Gulp configuration based in [Jacob Moen zurbified] (https://github.com/jacmoe/yii2-app-basic-zurbified) but with out foundation :)
 - Multi Phone Calls and SMS providers integration (ie. Twilio)
 
@@ -20,6 +20,10 @@ This project is intended as a live, working pilot for a platform to empower exis
 ## Prerequisites
 Before you start, make sure you have installed [composer](https://getcomposer.org/) and [Node.js](http://nodejs.org/).
 If you are on Debian or Ubuntu you might also want to install the [libnotify-bin](https://packages.debian.org/jessie/libnotify-bin) package, which is used by Gulp to inform you about its status.
+
+### Duplicate the .env-dist file
+add a key http://randomkeygen.com/
+
 
 ### Gulp
 install gulp globally if you haven't done so before
@@ -72,7 +76,7 @@ gulp --production
 ~~~
 
 
-### dev enviourment notes:
+### dev environment notes:
 ```
 etc/apache2/sites-available configuration
 <VirtualHost *:80>
@@ -89,7 +93,7 @@ etc/apache2/sites-available configuration
 </VirtualHost>
 ```
 
-## you will have this 
+## you will have this
 ln -s ../local/.env .env
 
 
@@ -101,11 +105,21 @@ sudo apt-get install libphp-swiftmailer
 ```
 
 ###In Production with a shared hosting
-- Probably you want have the chance to create your own apache configuration file but you can add this to the .htaccess fiel in the web folder
+- Probably you want have the chance to create your own apache configuration file but you can add this to the .htaccess field in the web folder
 
 ```
+#  Add directives
+RewriteEngine on
 
-AddType application/x-httpd-php55 .php
+#  Change root directory to "web" folder
+RewriteCond %{THE_REQUEST} ^GET\ /web/
+RewriteRule ^web/(.*) /$1 [L,R=301]
+RewriteRule !^web/ web%{REQUEST_URI} [L]
+```
+
+In the web folder then
+
+```
 
 allow from all
 
@@ -137,9 +151,3 @@ You don't need them to yii2 run or even create the assets folder, but you want b
 
 ###Some other documentation
 - [Create new migrations](docs/migrations.md)
-
-
-
-
-
-
