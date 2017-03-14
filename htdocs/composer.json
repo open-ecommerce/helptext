@@ -28,6 +28,10 @@
             {
                 "type": "vcs",
                 "url": "https://github.com/open-ecommerce/yii2-backuprestore"
+            },
+            {
+                "type": "vcs",
+                "url": "https://github.com/open-ecommerce/yii2-twilio"
             }
     ],
   "minimum-stability": "stable",
@@ -48,7 +52,6 @@
     "kartik-v/dependent-dropdown": "@dev",
     "kartik-v/yii2-editable": "*",
     "spanjeta/yii2-backup": "*",
-    "open-ecommerce/yii2-backuprestore": "dev-master",
     "bower-asset/font-awesome": "^4.5",
     "bower-asset/bootstrap-sass": "3.3.6",
     "bower-asset/motion-ui": "^1.2.2",
@@ -56,7 +59,7 @@
     "bower-asset/what-input": "^1.1",
     "bower-asset/admin-lte": "*",
     "cinghie/yii2-user-extended": "*",
-    "filipajdacic/yii2-twilio": "dev-master",
+    "open-ecommerce/yii2-twilio": "dev-master",
     "twilio/sdk": "^4.10",
     "dmstr/yii2-adminlte-asset": "2.*",
     "borales/yii2-phone-input": "*",
