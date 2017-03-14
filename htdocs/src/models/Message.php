@@ -143,7 +143,7 @@ class Message extends BaseMessage {
 
                 $this->response = '';
                 if ($this->automaticResponse) {
-                    $this->response = "This is an auhomatic response, we created a new case\r\n";
+                    $this->response = "This is an auhomatic response from Chit Chat, we created a new case\r\n";
                     $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
                     $this->response .= "We will contact you as soon as possible.\r\n";
                 }

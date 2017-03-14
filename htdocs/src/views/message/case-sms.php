@@ -52,7 +52,6 @@ $formater = \yii::$app->formatter;
                             </div>
                         </div>
 
-
                     </div>
                 </div>
 
