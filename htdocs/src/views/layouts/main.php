@@ -34,11 +34,9 @@ $imgClientPath = \Yii::$app->settings->get('helptext.icons_folder');
         <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/apple-touch-icon.png">
         <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="<?php echo $imgPath; ?>/img/icons/<?= $imgClientPath; ?>/manifest.json">
-        <link rel="mask-icon" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>favicon.ico">
-        <meta name="msapplication-config" content="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/browserconfig.xml">
+        <link rel="manifest" href="<?php echo $imgPath; ?>/img/icons/<?php echo $imgClientPath; ?>/manifest.json">
         <meta name="theme-color" content="#ffffff">
+
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
