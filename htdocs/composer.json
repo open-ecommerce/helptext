@@ -59,7 +59,6 @@
     "bower-asset/what-input": "^1.1",
     "bower-asset/admin-lte": "*",
     "cinghie/yii2-user-extended": "*",
-    "open-ecommerce/yii2-twilio": "dev-master",
     "twilio/sdk": "^4.10",
     "dmstr/yii2-adminlte-asset": "2.*",
     "borales/yii2-phone-input": "*",
@@ -67,6 +66,7 @@
     "c006/yii2-migration-utility": "dev-master"
   },
   "require-dev": {
+    "open-ecommerce/yii2-twilio": "*",
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",
     "yiisoft/yii2-codeception": "*",
     "yiisoft/yii2-debug": "*",
