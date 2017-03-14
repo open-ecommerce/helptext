@@ -105,7 +105,7 @@ $common = [
             ],
         ],
         'Yii2Twilio' => array(
-            'class' => 'filipajdacic\yiitwilio\YiiTwilio',
+            'class' => 'openecommerce\yiitwilio',
             'account_sid' => getenv('TWILIO_ACCOUNT_SID'),
             'auth_key' => getenv('TWILIO_AUTH_KEY'),
         ),

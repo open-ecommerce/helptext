@@ -12,8 +12,7 @@ use dektrium\user\models\User;
 use kartik\form\ActiveForm;
 use yii\widgets\Pjax;
 use app\helpers\OeHelpers;
-use kop\y2sp\ScrollPager;
-use yii\widgets\ListView;
+
 
 $formater = \yii::$app->formatter;
 ?>
@@ -24,8 +23,8 @@ $formater = \yii::$app->formatter;
 
     <?php
     $this->title = Yii::t('app', 'View Case conversations');
-//$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+    //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Messages'), 'url' => ['index']];
+    //$this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <div class="container">
@@ -37,7 +36,7 @@ $formater = \yii::$app->formatter;
                     <div class="row">
                         <div class="col-lg-6">
                             <h4>
-                                <?= Yii::t('app', 'Case Number: ') . $modelCases->id . " / " ?>
+                                <?= Yii::t('app', 'Case Number: ') . $modelCases->id . " / "?>
                                 <?= Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name ?>
                             </h4>
                             <h4>
@@ -48,7 +47,7 @@ $formater = \yii::$app->formatter;
 
                             <div class="form-group">
                                 <?= Html::a('<span class="glyphicon glyphicon-folder-open"></span>&nbsp;  View all Cases', ['/cases'], ['class' => 'btn btn-success pull-right']) ?>
-                                <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right', 'style' => 'margin-right: 5px;']) ?>
+                                <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right','style' => 'margin-right: 5px;']) ?>
                             </div>
                         </div>
 
@@ -56,24 +55,6 @@ $formater = \yii::$app->formatter;
                     </div>
                 </div>
                 <div class="panel-body">
-
-                    <?php
-                    echo ListView::widget([
-                        'dataProvider' => $DataProvider,
-                        'itemOptions' => ['class' => 'item'],
-                        'itemView' => '_item',
-                        'pager' => [
-                            'class' => \kop\y2sp\ScrollPager::className(),
-                            'negativeMargin' => '200',
-                            'triggerText' => 'Load More news',
-                            'triggerOffset' => 3,
-                            'noneLeftText' => '',
-                        ],
-                        'summary' => '',
-                    ]);
-                    ?>                    
-
-
                     <ul>
                         <?php
                         $text = "";
@@ -94,13 +75,13 @@ $formater = \yii::$app->formatter;
                                     break;
                                 case 2: //contact
                                     $sender = $modelCases->contact->first_name . "<br>" . $text->id_phone;
-                                    $sender .= "<br>to: " . $text->userName . "<br>";
-                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
+                                    $sender .= "<br>to: ". $text->userName . "<br>";
+                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone)."<hr>";
                                     break;
                                 case 3:
                                     $sender = $text->userName . "<br>" . $text->id_phone;
-                                    $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
-                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone) . "<hr>";
+                                    $sender .= "<br>to: ". $modelCases->contact->fullName . "<br>";
+                                    $phoneType = OeHelpers::isMobileNumber($text->id_phone)."<hr>";
                                     break;
                             }
                             echo '<li>';

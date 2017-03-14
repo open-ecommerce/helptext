@@ -64,7 +64,8 @@
     "borales/yii2-phone-input": "*",
     "2amigos/yii2-chartjs-widget" : "~2.0",
     "open-ecommerce/yii2-twilio": "dev-master",
-    "c006/yii2-migration-utility": "dev-master"
+    "c006/yii2-migration-utility": "dev-master",
+    "kop/yii2-scroll-pager": "dev-master"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",
