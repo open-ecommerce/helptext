@@ -6844,7 +6844,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-1 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-1 span.glyphicon.glyphicon-earphone {
@@ -6880,7 +6880,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-3 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-3 span.glyphicon.glyphicon-earphone {
@@ -6918,7 +6918,7 @@ and open the template in the editor.
   border-color: #cdecb0;
   min-height: 55px;
   clear: right;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-2 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-2 span.glyphicon.glyphicon-earphone {
