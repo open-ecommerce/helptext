@@ -19,8 +19,7 @@ $formater = \yii::$app->formatter;
 ?>
 
 
-<div class="container" id="sms-texts">
-
+<div class="container panel" id="sms-texts">
 
     <?php
     $this->title = Yii::t('app', 'View Case conversations');
@@ -28,88 +27,84 @@ $formater = \yii::$app->formatter;
     $this->params['breadcrumbs'][] = $this->title;
     ?>
 
-    <div class="container">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
+    <div class="panel-fix-heading container">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        <?= Yii::t('app', 'Case Number: ') . $modelCases->id . " / " ?>
+                        <?= Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name ?>
+                    </h4>
+                    <h4>
+                        <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
+                    </h4>
+                </div>
+                <div class="col-lg-6">
 
-
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h4>
-                                <?= Yii::t('app', 'Case Number: ') . $modelCases->id . " / " ?>
-                                <?= Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name ?>
-                            </h4>
-                            <h4>
-                                <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
-                            </h4>
-                        </div>
-                        <div class="col-lg-6">
-
-                            <div class="form-group">
-                                <?= Html::a('<span class="glyphicon glyphicon-folder-open"></span>&nbsp;  View all Cases', ['/cases'], ['class' => 'btn btn-success pull-right']) ?>
-                                <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right', 'style' => 'margin-right: 5px;']) ?>
-                            </div>
-                        </div>
-
+                    <div class="form-group">
+                        <?= Html::a('<span class="glyphicon glyphicon-folder-open"></span>&nbsp;  View all Cases', ['/cases'], ['class' => 'btn btn-success pull-right']) ?>
+                        <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right', 'style' => 'margin-right: 5px;']) ?>
                     </div>
                 </div>
 
-                <div class="panel-sender">
-                    <?php
-                    Pjax::begin();
+            </div>
+        </div>
 
-                    $form = ActiveForm::begin([
-                                'id' => 'sms-form',
-                                'type' => ActiveForm::TYPE_HORIZONTAL,
-                                'formConfig' => ['showLabels' => false]
-                    ]);
+        <div class="panel-sender">
+            <?php
+            Pjax::begin();
 
-                    echo Html::hiddenInput('case_id', $modelCases->id);
-                    echo "<h5>" . $response . "</h5>";
-                    echo $form->field($modelNewMessage, 'message', [
-                        'inputOptions' => ['id' => 'input-message', 'onkeyup' => 'textCounter(this,"counter",160)'],
-                        'addon' => [
-                            'prepend' => ['content' => '<i class="glyphicon glyphicon-comment"></i>'],
-                            'append' => [
-                                'content' => Html::submitButton('Send SMS', ['class' => 'btn btn-primary'], ['name' => 'send-button']),
-                                'asButton' => true
-                            ]
-                        ]
-                    ]);
-                    echo '<div id="counter-wrap"><input disabled  maxlength="160" size="5" value="160" id="counter"> characters reminding.</div>';
+            $form = ActiveForm::begin([
+                        'id' => 'sms-form',
+                        'type' => ActiveForm::TYPE_HORIZONTAL,
+                        'formConfig' => ['showLabels' => false]
+            ]);
 
-
-                    ActiveForm::end();
-
-                    Pjax::end();
-                    ?>
-
-                </div>
-                <div class="panel-body">
-
-                    <div id="list-messages">
-                        <?php
-                        echo ListView::widget([
-                            'dataProvider' => $dataProvider,
-                            'itemOptions' => ['class' => 'item'],
-                            'viewParams' => ['modelCases' => $modelCases],
-                            'itemView' => '_item_view',
-                            'pager' => [
-                                'class' => ScrollPager::class,
-                                'triggerText' => 'load previous messages',
-                                'noneLeftText' => 'no more messages',
-                                'enabledExtensions' => [
-                                    ScrollPager::EXTENSION_TRIGGER,
-                                    ScrollPager::EXTENSION_SPINNER,
-                                    ScrollPager::EXTENSION_NONE_LEFT,
-                                    ScrollPager::EXTENSION_PAGING,
-                                ],
-                            ],]);
-                        ?> 
+            echo Html::hiddenInput('case_id', $modelCases->id);
+            echo "<h5>" . $response . "</h5>";
+            echo $form->field($modelNewMessage, 'message', [
+                'inputOptions' => ['id' => 'input-message', 'onkeyup' => 'textCounter(this,"counter",160)'],
+                'addon' => [
+                    'prepend' => ['content' => '<i class="glyphicon glyphicon-comment"></i>'],
+                    'append' => [
+                        'content' => Html::submitButton('Send SMS', ['class' => 'btn btn-primary'], ['name' => 'send-button']),
+                        'asButton' => true
+                    ]
+                ]
+            ]);
+            echo '<div id="counter-wrap"><input disabled  maxlength="160" size="5" value="160" id="counter"> characters reminding.</div>';
 
 
-                        <?php
+            ActiveForm::end();
+
+            Pjax::end();
+            ?>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <div id="list-messages">
+            <?php
+            echo ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'viewParams' => ['modelCases' => $modelCases],
+                'itemView' => '_item_view',
+                'pager' => [
+                    'class' => ScrollPager::class,
+                    'triggerText' => 'load previous messages',
+                    'noneLeftText' => 'no more messages',
+                    'enabledExtensions' => [
+                        ScrollPager::EXTENSION_TRIGGER,
+                        ScrollPager::EXTENSION_SPINNER,
+                        ScrollPager::EXTENSION_NONE_LEFT,
+                        ScrollPager::EXTENSION_PAGING,
+                    ],
+                ],]);
+            ?> 
+
+
+            <?php
 // without loading                    
 //                   echo ListView::widget([
 //                        'options' => [
@@ -140,14 +135,11 @@ $formater = \yii::$app->formatter;
 //                            ]
 //                        ],
 //                    ]);
-                        ?>
+            ?>
 
 
 
-                    </div>               
-                </div>
-            </div>
-        </div>
+        </div>               
     </div>
 
     <?php

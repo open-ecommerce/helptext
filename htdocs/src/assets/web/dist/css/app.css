@@ -6773,6 +6773,24 @@ and open the template in the editor.
     Created on : 18-Jul-2016, 11:59:42
     Author     : developer
 */
+#sms-texts .panel-fix-heading {
+  position: fixed;
+  top: 50px;
+  background-color: #fff;
+  z-index: 100;
+  padding-top: 19px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: -15px;
+}
+#sms-texts .panel-fix-heading .panel-heading {
+  background: #f2f2f2;
+  border-bottom-color: rgba(119, 119, 119, 0.71);
+  border-top: 3px solid #008000;
+}
+#sms-texts .panel-body {
+  margin-top: 177px;
+}
 #sms-texts span.personName-1,
 #sms-texts span.personName-2 {
   font-style: italic;
@@ -6930,6 +6948,9 @@ and open the template in the editor.
 }
 #sms-texts .panel-sender {
   padding: 5px 12px;
+  background-color: rgba(242, 242, 242, 0.37);
+  border-bottom: 2px solid rgba(173, 164, 164, 0.55);
+  margin-bottom: 1px;
 }
 #sms-texts .panel-sender #message-message {
   width: 100%;
@@ -6937,12 +6958,13 @@ and open the template in the editor.
   font-size: 1.3em;
 }
 #sms-texts .panel-sender #counter-wrap {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0 auto;
   text-align: center;
   width: 100%;
   font-style: italic;
   color: #808080;
+  padding: 0px 0 7px 0;
 }
 #sms-texts .panel-sender #counter-wrap input#counter {
   border: none;
