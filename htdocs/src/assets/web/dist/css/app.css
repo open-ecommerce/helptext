@@ -6773,6 +6773,9 @@ and open the template in the editor.
     Created on : 18-Jul-2016, 11:59:42
     Author     : developer
 */
+#sms-texts {
+  background-color: rgba(0, 128, 0, 0.09);
+}
 #sms-texts .panel-fix-heading {
   position: fixed;
   top: 50px;
