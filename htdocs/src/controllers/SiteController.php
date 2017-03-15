@@ -16,13 +16,12 @@ use yii\filters\AccessControl;
 /**
  * Site controller.
  */
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -43,8 +42,7 @@ class SiteController extends Controller
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                             return \Yii::$app->user->can(
-                                $this->module->id.'_'.$this->id.'_'.$action->id,
-                                ['route' => true]
+                                            $this->module->id . '_' . $this->id . '_' . $action->id, ['route' => true]
                             );
                         },
                     ],
@@ -56,8 +54,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -73,86 +70,76 @@ class SiteController extends Controller
      * Renders the start page
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
+        //if (Yii::$app->user->isGuest)
+            //return Yii::$app->getResponse()->redirect(array(Url::to(['site/login'], 302)));
+
         // SEO meta tags
         $this->view->registerMetaTag(
-            [
-                'name'    => 'keywords',
-                'content' => 'HelpText+, Open-ecommerce.org, software, charities, social project, london'
-            ],
-            'keywords'
+                [
+            'name' => 'keywords',
+            'content' => 'HelpText+, Open-ecommerce.org, software, charities, social project, london'
+                ], 'keywords'
         );
         $this->view->registerMetaTag(
-            [
-                'name'    => 'description',
-                'content' => 'HelpText+ Text Managment system for the Destitute Asylum Seekers Drop-In.'
-            ],
-            'description'
+                [
+            'name' => 'description',
+            'content' => 'HelpText+ Text Managment system for the Destitute Asylum Seekers Drop-In.'
+                ], 'description'
         );
 
 
-        return $this->render('index');
+         $this->redirect(['/cases/index']);
     }
-    
-    
+
     /**
      * Renders the contact page
      * @return string
      */
-    public function actionContactus()
-    {
+    public function actionContactus() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->sendEmail(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
             return $this->refresh();
         } else {
             return $this->render('contactus', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
-    }    
+    }
 
     /**
      * Renders the testing page
      * @return string
      */
-    public function actionTesting()
-    {
+    public function actionTesting() {
         $this->layout = 'container';
         return $this->render('testing');
-    } 
+    }
 
     /**
      * Renders the testing page
      * @return string
      */
-    public function actionAbout()
-    {
-    
+    public function actionAbout() {
+
         // SEO meta tags
         $this->view->registerMetaTag(
-            [
-                'name'    => 'keywords',
-                'content' => 'HelpText+, Open-ecommerce.org, software, charities, social project, london'
-            ],
-            'keywords'
+                [
+            'name' => 'keywords',
+            'content' => 'HelpText+, Open-ecommerce.org, software, charities, social project, london'
+                ], 'keywords'
         );
         $this->view->registerMetaTag(
-            [
-                'name'    => 'description',
-                'content' => 'HelpText+ Text Managment system for the Destitute Asylum Seekers Drop-In.'
-            ],
-            'description'
+                [
+            'name' => 'description',
+            'content' => 'HelpText+ Text Managment system for the Destitute Asylum Seekers Drop-In.'
+                ], 'description'
         );
 
         $this->layout = 'container';
 
         return $this->render('about');
-    
-    
-    } 
+    }
 
-    
-    
 }

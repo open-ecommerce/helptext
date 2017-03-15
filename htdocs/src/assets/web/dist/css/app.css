@@ -6760,8 +6760,11 @@ h1 small,
   margin-top: 7px;
 }
 #grid-cases i.glyphicon.glyphicon-eye-open.edit-today,
+#grid-contacts i.glyphicon.glyphicon-eye-open.edit-today,
 #grid-cases span.glyphicon.glyphicon-pencil,
-#grid-cases span.glyphicon.glyphicon-trash {
+#grid-contacts span.glyphicon.glyphicon-pencil,
+#grid-cases span.glyphicon.glyphicon-trash,
+#grid-contacts span.glyphicon.glyphicon-trash {
   font-size: 2em;
 }
 /*

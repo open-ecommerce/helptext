@@ -3,12 +3,12 @@
 // You should not change it manually as it will be overwritten on next build
 
 namespace app\models\base;
-
 use app\models\ContactPhone;
-
-
 use Yii;
 
+
+
+ 
 /**
  * This is the base-model class for table "contact".
  *
@@ -30,8 +30,6 @@ use Yii;
  */
 abstract class Contact extends \yii\db\ActiveRecord
 {
-
-
 
     /**
      * @inheritdoc
@@ -62,9 +60,9 @@ abstract class Contact extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function attributeLabels()
-    {
+    {       
         return [
-            'id' => Yii::t('app', 'ID'),
+            'id' => '#',
             'id_country' => Yii::t('app', 'Nationality'),
             'id_language' => Yii::t('app', 'First Language'),
             'first_name' => Yii::t('app', 'Names'),
@@ -77,7 +75,7 @@ abstract class Contact extends \yii\db\ActiveRecord
             'state' => Yii::t('app', 'County'),
             'postal_code' => Yii::t('app', 'Postcode'),
             'comments' => Yii::t('app', 'Comments'),
-            'fullName' => Yii::t('app', 'Client Name'),
+            'fullName' => \Yii::$app->settings->get('helptext.contact_label') . ' Name',
             'lastPhone' => Yii::t('app', 'Last Used Phone'),
         ];
     }

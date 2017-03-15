@@ -10,14 +10,18 @@ use yii\helpers\Url;
 use app\models\Languages;
 use yii\helpers\ArrayHelper;
 
+
+$clientLabel = \Yii::$app->settings->get('helptext.contact_label');
+
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = "List of clients and cases";
+$this->title = "List of " . $clientLabel . "s and Cases";
 
-$deleteTip = "Delete this client detail and all the attendances records.";
-$deleteMsg = "Are you sure you want to delete this client detail and all the attendances records?";
+$deleteTip = "Delete this " .$clientLabel. " detail and all the attendances records.";
+$deleteMsg = "Are you sure you want to delete this ".$clientLabel." detail and all his/her messages?";
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumns = [
         [
             'attribute' => 'id',
-            'label' => 'Client #',
             'width' => '100px',
             'hAlign' => 'center',
         ],
@@ -52,7 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'fullName',
             'vAlign' => 'middle',
-            'label' => 'Client Name',
             'format' => 'html',
         ],
         [
@@ -62,7 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'gender',
-            'label' => 'Gender',
             'width' => '10px',
             'hAlign' => 'center',
         ],
@@ -73,18 +74,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'kartik\grid\ActionColumn',
                     'header' => 'View Detail',
                     'template' => '{view}',
-                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
+                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open"></i>'],
                 ],
                     
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Update Client',
+                    'header' => 'Update '.$clientLabel,
                     'template' => '{update}',
-                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
+                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil"></i>'],
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Delete Client',
+                    'header' => 'Delete '.$clientLabel,
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
                     'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],
@@ -95,6 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?=
             GridView::widget([
+                'id' => 'grid-contacts',                
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'resizableColumns' => true,
@@ -120,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // set your toolbar
                 'toolbar' => [
                     ['content' =>
-                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create new Client', ['create'], ['class' => 'btn btn-success']),
+                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create new ' . $clientLabel, ['create'], ['class' => 'btn btn-success']),
                     ],
                     '{export}',
                 ],

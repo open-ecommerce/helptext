@@ -34,6 +34,7 @@ class Message extends BaseMessage {
     var $phoneToCall;
     var $anonymize;
     var $automaticResponse;
+    var $automaticResponseText;
     var $idSenderType;
     var $flashResponse;
     var $idMessageType;
@@ -46,6 +47,7 @@ class Message extends BaseMessage {
 
         $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
         $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
+        $this->automaticResponseText = \Yii::$app->settings->get('helptext.sms_automatic_text');
         $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');
 
 
@@ -143,9 +145,9 @@ class Message extends BaseMessage {
 
                 $this->response = '';
                 if ($this->automaticResponse) {
-                    $this->response = "This is an auhomatic response from Chit Chat, we created a new case\r\n";
-                    $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
-                    $this->response .= "We will contact you as soon as possible.\r\n";
+                    //$this->response = "This is an auhomatic response from Chit Chat, we created a new case\r\n";
+                    //$this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
+                    $this->response = $this->automaticResponseText;
                 }
                 //send the text to the the helper
                 $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
@@ -158,9 +160,10 @@ class Message extends BaseMessage {
                 $this->setLastCaseByPhone();
 
                 if ((!$this->isCurrentIdCaseOpen) && ($this->automaticResponse)) {
-                    $this->response = "This is an automatic response,\r\n";
-                    $this->response .= "We will contact you as soon as possible.\r\n";
-                    $this->response .= "Your Case number is:" . $this->currentIdCase;
+                    //$this->response = "This is an automatic response,\r\n";
+                    //$this->response .= "We will contact you as soon as possible.\r\n";
+                    //$this->response .= "Your Case number is:" . $this->currentIdCase;
+                    $this->response = $this->automaticResponseText;
                 } else {
                     // send the text to the helper
                     $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";

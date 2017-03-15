@@ -11,7 +11,6 @@ use kartik\helpers\Html;
 /* @var $model app\models\Contacts */
 /* @var $form yii\widgets\ActiveForm */
 
-
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

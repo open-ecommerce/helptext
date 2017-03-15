@@ -18,10 +18,13 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$clientLabel = \Yii::$app->settings->get('helptext.contact_label');
+
+
 $this->title = " List of Cases";
 
-$deleteTip = Yii::t('app', 'Delete this client with all the cases and messages.');
-$deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all the cases and messages?');
+$deleteTip = Yii::t('app', 'Delete this' . $clientLabel .' with all the cases and messages.');
+$deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.' with all the cases and messages?');
 
 
 ?>
@@ -32,7 +35,6 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
     $gridColumns = [
         [
             'attribute' => 'id',
-            'label' => 'Case #',
             'width' => '70px',
             'hAlign' => 'center',
             'vAlign' => 'middle',
@@ -44,13 +46,11 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this client with all
         ],
         [
             'attribute' => 'fullName',
-            'label' => 'Client Name',
             'value' => 'contact.fullName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
         ],
         [
-            'label' => 'Helper Name',
             'attribute' => 'userName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
