@@ -85,6 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
+                    'visible' => (Yii::$app->user->can("administrator")),                    
                     'header' => 'Delete '.$clientLabel,
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],

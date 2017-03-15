@@ -155,6 +155,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.
                 ],
                 [
                     'class' => 'kartik\grid\ActionColumn',
+                    'visible' => (Yii::$app->user->can("administrator")),
                     'header' => 'Delete Cases',
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],

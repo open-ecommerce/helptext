@@ -8,8 +8,6 @@ use app\helpers\OeHelpers;
 $formater = \yii::$app->formatter;
 
 
-
-
 if ($model->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
     $messageIcon = '<span class="glyphicon glyphicon-earphone"></span>';
 } else {
@@ -18,6 +16,13 @@ if ($model->id_message_type === \Yii::$app->settings->get('helptext.message_type
 
 $sender = "";
 $phoneType = "";
+
+if ($formater->asDate($model->sent, 'php:Y-m-d') == date("Y-m-d")) {
+    $messageDate = 'Today at ' . $formater->asDate($model->sent, 'php:g:ia');    
+} else {
+    $messageDate = $formater->asDate($model->sent, 'php:l, jS F, g:ia');    
+}
+
 switch ($model['id_sender_type']) {
     case 1: //automatic response
         $sender = $model->id_phone . "<br>Automatic response<hr>";
@@ -35,6 +40,7 @@ switch ($model['id_sender_type']) {
         $phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
         break;
 }
+echo '<div class="message-date">' . $messageDate . '</div>';
 echo '<div class="bubble-' . $model->id_sender_type . '">';
 echo '<span class="messageType">' . $messageIcon . '</span>';
 echo '<span class="personName-' . $model->id_sender_type . '">' . $sender . '</span>';
