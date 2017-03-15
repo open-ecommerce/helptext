@@ -30,15 +30,34 @@ and open the template in the editor.
         border-top: 1px solid @brand-primary;
     }
 
-    li { list-style: none;}
-    ul {
-        margin: 0;
-        padding: 10px 8%;
-        width: 100%;
+    #list-messages {
+        .item {
+            width: 100%;
+            display: inline-block;
+        }
     }
-
     .input-group.input-group-addon {
         border: 1px solid #c5c2c2;
+    }
+
+    ul.pagination.messages {
+        float: right;
+    }    
+
+    .ias-trigger,
+    .ias-noneleft {
+        display: block;
+        width: 100%;
+        background: #f2f2f2;
+        height: 45px;
+        padding: 10px;
+        border: solid 1px rgba(204, 204, 204, 0.5);
+        margin-top: 12px;
+        font-size: 1.2em;
+    }
+    
+    .ias-trigger {
+       cursor: pointer;
     }
 
 
@@ -185,4 +204,29 @@ and open the template in the editor.
         float: right;
     }
 
+    .panel-sender {
+        padding: 5px 12px;
+
+        #message-message {
+            width: 100%;
+            padding: 4px;
+            font-size: 1.3em;
+        }
+        #counter-wrap {
+            font-size: 1.2em;
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            font-style: italic;
+            color: #808080;
+            input#counter {
+                border: none;
+                background: none;
+                text-align: right;
+            }        
+        }
+    }
+
 }
+
+

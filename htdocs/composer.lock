@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "627cd2fb869c76d4f33d6b1270094632",
-    "content-hash": "07debbd5f21955f371246242e3073a62",
+    "hash": "85ef5c4ba2091ebdc431c83010baf999",
+    "content-hash": "e6b91c9c2d3b2bec9401cae99996b1f3",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -631,6 +631,47 @@
                     "Gruntfile.js"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/jquery-remaining-characters",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlorente/jquery-remaining-characters.git",
+                "reference": "dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlorente/jquery-remaining-characters/zipball/dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee",
+                "reference": "dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "remaining_characters.min.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Jquery plugin that adds a remaining character counter to text inputs and textareas",
+            "keywords": [
+                "[remaining",
+                "characters",
+                "counter",
+                "input",
+                "text",
+                "textarea]"
+            ]
         },
         {
             "name": "bower-asset/jquery-ui",
@@ -2315,6 +2356,52 @@
                 "yii2"
             ],
             "time": "2016-06-02 20:58:50"
+        },
+        {
+            "name": "jlorente/yii2-widget-remainingcharacters",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlorente/yii2-widget-remainingcharacters.git",
+                "reference": "e8c37b57793f79daab561c94077316c4658fd320"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlorente/yii2-widget-remainingcharacters/zipball/e8c37b57793f79daab561c94077316c4658fd320",
+                "reference": "e8c37b57793f79daab561c94077316c4658fd320",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-remaining-characters": "~1.0.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "jlorente\\remainingcharacters\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Lorente Martin",
+                    "email": "jose.lorente.martin@gmail.com"
+                }
+            ],
+            "description": "Widget to add a remaining character counter to text inputs and textareas",
+            "homepage": "https://github.com/jlorente/yii2-widget-remainingcharacters",
+            "keywords": [
+                "characters",
+                "counter",
+                "input",
+                "remaining",
+                "text",
+                "textarea"
+            ],
+            "time": "2015-03-17 14:50:10"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -4298,12 +4385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/open-ecommerce/yii2-twilio.git",
-                "reference": "6362aea7f28619fd60532d3cd5e3d1d1d1cce43b"
+                "reference": "c609759f47b94dc8b5319c5ec689be87f77bdc94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-ecommerce/yii2-twilio/zipball/6362aea7f28619fd60532d3cd5e3d1d1d1cce43b",
-                "reference": "6362aea7f28619fd60532d3cd5e3d1d1d1cce43b",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-twilio/zipball/c609759f47b94dc8b5319c5ec689be87f77bdc94",
+                "reference": "c609759f47b94dc8b5319c5ec689be87f77bdc94",
                 "shasum": ""
             },
             "require": {
@@ -4337,7 +4424,7 @@
             "support": {
                 "source": "https://github.com/open-ecommerce/yii2-twilio/tree/master"
             },
-            "time": "2017-03-14 16:44:19"
+            "time": "2017-03-14 19:45:21"
         },
         {
             "name": "pheme/yii2-settings",

@@ -6787,16 +6787,29 @@ and open the template in the editor.
   margin-bottom: 9px;
   border-top: 1px solid #4F7033;
 }
-#sms-texts li {
-  list-style: none;
-}
-#sms-texts ul {
-  margin: 0;
-  padding: 10px 8%;
+#sms-texts #list-messages .item {
   width: 100%;
+  display: inline-block;
 }
 #sms-texts .input-group.input-group-addon {
   border: 1px solid #c5c2c2;
+}
+#sms-texts ul.pagination.messages {
+  float: right;
+}
+#sms-texts .ias-trigger,
+#sms-texts .ias-noneleft {
+  display: block;
+  width: 100%;
+  background: #f2f2f2;
+  height: 45px;
+  padding: 10px;
+  border: solid 1px rgba(204, 204, 204, 0.5);
+  margin-top: 12px;
+  font-size: 1.2em;
+}
+#sms-texts .ias-trigger {
+  cursor: pointer;
 }
 #sms-texts span.sms-time {
   float: right;
@@ -6914,4 +6927,25 @@ and open the template in the editor.
 }
 #sms-texts span.messageType {
   float: right;
+}
+#sms-texts .panel-sender {
+  padding: 5px 12px;
+}
+#sms-texts .panel-sender #message-message {
+  width: 100%;
+  padding: 4px;
+  font-size: 1.3em;
+}
+#sms-texts .panel-sender #counter-wrap {
+  font-size: 1.2em;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+  color: #808080;
+}
+#sms-texts .panel-sender #counter-wrap input#counter {
+  border: none;
+  background: none;
+  text-align: right;
 }
