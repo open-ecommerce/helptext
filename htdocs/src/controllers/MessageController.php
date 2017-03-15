@@ -245,7 +245,7 @@ class MessageController extends \app\controllers\base\MessageController {
             'query' => Message::find()
                 ->where(['id_case' => $current_case_id])
                 ->orderBy(['sent' => SORT_DESC]),
-            'pagination' => array('pageSize' => 5),
+            'pagination' => array('pageSize' => 30),
         ]);
         $modelCases = Cases::find()->where(['id' => $current_case_id])->one();
 
