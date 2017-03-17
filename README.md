@@ -97,6 +97,13 @@ etc/apache2/sites-available configuration
 ln -s ../local/.env .env
 
 
+## you will need to configure the sms provider in your .env
+
+
+## configure the sms provider http post request url
+http://www.yourdomain.com/en/message/call
+http://www.yourdomain.com/en/message/sms
+
 
 you will need swiftmailer in order to work the email
 ```

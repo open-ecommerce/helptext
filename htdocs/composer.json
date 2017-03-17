@@ -27,11 +27,15 @@
     "repositories": [
             {
                 "type": "vcs",
-                "url": "https://github.com/open-ecommerce/yii2-backuprestore"
+                "url": "https://github.com/open-ecommerce/yii2-telerivet"
             },
             {
                 "type": "vcs",
                 "url": "https://github.com/open-ecommerce/yii2-twilio"
+            },
+            {
+                "type": "vcs",
+                "url": "https://github.com/Telerivet/telerivet-php-client"
             }
     ],
   "minimum-stability": "stable",
@@ -63,10 +67,12 @@
     "dmstr/yii2-adminlte-asset": "2.*",
     "borales/yii2-phone-input": "*",
     "2amigos/yii2-chartjs-widget" : "~2.0",
+    "telerivet/telerivet-php-client": "dev-master",
     "open-ecommerce/yii2-twilio": "dev-master",
+    "open-ecommerce/yii2-telerivet": "dev-master",
     "c006/yii2-migration-utility": "dev-master",
     "kop/yii2-scroll-pager": "dev-master",
-    "jlorente/yii2-widget-remainingcharacters": "*"        
+    "jlorente/yii2-widget-remainingcharacters": "*"
   },
   "require-dev": {
     "dmstr/yii2-cms-dev-metapackage": "^1.1.0",

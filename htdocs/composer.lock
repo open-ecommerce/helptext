@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "85ef5c4ba2091ebdc431c83010baf999",
-    "content-hash": "e6b91c9c2d3b2bec9401cae99996b1f3",
+    "hash": "5def6da647a2d7c73c4e3ad310a17d55",
+    "content-hash": "30fec79b1037e996131031b9049fef65",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -1335,16 +1335,16 @@
         },
         {
             "name": "codemix/yii2-localeurls",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemix/yii2-localeurls.git",
-                "reference": "785769af625d69430a11ec167b56eef47f933baf"
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/785769af625d69430a11ec167b56eef47f933baf",
-                "reference": "785769af625d69430a11ec167b56eef47f933baf",
+                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
                 "shasum": ""
             },
             "require": {
@@ -1372,7 +1372,7 @@
                 "locale",
                 "yii2"
             ],
-            "time": "2017-02-24 10:38:34"
+            "time": "2017-03-07 18:41:22"
         },
         {
             "name": "codemix/yii2-streamlog",
@@ -1802,16 +1802,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.8.3",
+            "version": "0.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "fd8a84648435165d464af45e631c7bb4a9c5ba1f"
+                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/fd8a84648435165d464af45e631c7bb4a9c5ba1f",
-                "reference": "fd8a84648435165d464af45e631c7bb4a9c5ba1f",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/52c8c49b7f36a16272881134a21e6f36c635f16a",
+                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a",
                 "shasum": ""
             },
             "require": {
@@ -1844,7 +1844,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2017-03-14 06:12:52"
+            "time": "2017-03-15 18:24:50"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -2698,12 +2698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e"
+                "reference": "70612993c68d8d2a936980357a34984d518ad052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e",
-                "reference": "d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/70612993c68d8d2a936980357a34984d518ad052",
+                "reference": "70612993c68d8d2a936980357a34984d518ad052",
                 "shasum": ""
             },
             "require": {
@@ -2744,7 +2744,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-12-14 16:38:38"
+            "time": "2017-03-16 05:23:54"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -4380,6 +4380,54 @@
             "time": "2016-12-12 10:42:18"
         },
         {
+            "name": "open-ecommerce/yii2-telerivet",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/open-ecommerce/yii2-telerivet.git",
+                "reference": "bca50b775567c5a5948a2bac3500188023b16920"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/bca50b775567c5a5948a2bac3500188023b16920",
+                "reference": "bca50b775567c5a5948a2bac3500188023b16920",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "openecommerce\\yiitelerivet\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Silva",
+                    "email": "eduardo@open-ecommerce.org"
+                }
+            ],
+            "description": "This component is YII2 wrapper for Telerivet PHP module",
+            "keywords": [
+                "extension",
+                "programable number",
+                "sms",
+                "telerivet",
+                "virtual number",
+                "voice",
+                "yii2"
+            ],
+            "support": {
+                "source": "https://github.com/open-ecommerce/yii2-telerivet/tree/master",
+                "issues": "https://github.com/open-ecommerce/yii2-telerivet/issues"
+            },
+            "time": "2017-03-16 12:50:09"
+        },
+        {
             "name": "open-ecommerce/yii2-twilio",
             "version": "dev-master",
             "source": {
@@ -4810,6 +4858,35 @@
                 "mailer"
             ],
             "time": "2017-02-13 07:52:53"
+        },
+        {
+            "name": "telerivet/telerivet-php-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Telerivet/telerivet-php-client.git",
+                "reference": "0953544ae4e028206531081b4e0eb18ab2b82383"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Telerivet/telerivet-php-client/zipball/0953544ae4e028206531081b4e0eb18ab2b82383",
+                "reference": "0953544ae4e028206531081b4e0eb18ab2b82383",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP client library for Telerivet REST API",
+            "homepage": "https://telerivet.com/api",
+            "support": {
+                "source": "https://github.com/Telerivet/telerivet-php-client/tree/master",
+                "issues": "https://github.com/Telerivet/telerivet-php-client/issues"
+            },
+            "time": "2016-12-19 23:13:19"
         },
         {
             "name": "trntv/yii2-aceeditor",
@@ -5720,16 +5797,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "e0e33ce4eaf59ba77ead9ce45256692aa29ecb38"
+                "reference": "c7de769d7b44f2c9de68e1f678b65efd8126f60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/e0e33ce4eaf59ba77ead9ce45256692aa29ecb38",
-                "reference": "e0e33ce4eaf59ba77ead9ce45256692aa29ecb38",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c7de769d7b44f2c9de68e1f678b65efd8126f60b",
+                "reference": "c7de769d7b44f2c9de68e1f678b65efd8126f60b",
                 "shasum": ""
             },
             "require": {
@@ -5752,7 +5829,7 @@
             "require-dev": {
                 "gecko-packages/gecko-php-unit": "^2.0",
                 "justinrainbow/json-schema": "^5.0",
-                "phpunit/phpunit": "^4.5|^5",
+                "phpunit/phpunit": "^4.5 || ^5.0",
                 "satooshi/php-coveralls": "^1.0",
                 "symfony/phpunit-bridge": "^3.2"
             },
@@ -5783,7 +5860,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-03-03 08:03:57"
+            "time": "2017-03-15 17:13:07"
         },
         {
             "name": "fzaninotto/faker",
@@ -7349,7 +7426,9 @@
         "kartik-v/yii2-export": 20,
         "kartik-v/yii2-detail-view": 20,
         "kartik-v/dependent-dropdown": 20,
+        "telerivet/telerivet-php-client": 20,
         "open-ecommerce/yii2-twilio": 20,
+        "open-ecommerce/yii2-telerivet": 20,
         "c006/yii2-migration-utility": 20,
         "kop/yii2-scroll-pager": 20
     },

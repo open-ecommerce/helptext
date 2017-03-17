@@ -9,7 +9,7 @@ $dotenv->required(['YII_TRACE_LEVEL']);
 $dotenv->required(['APP_NAME', 'APP_ADMIN_EMAIL']);
 $dotenv->required(['APP_LANGUAGES']);
 $dotenv->required(['DATABASE_DSN', 'DATABASE_USER', 'DATABASE_PASSWORD']);
-$dotenv->required(['TWILIO_NUMBER','TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_KEY']);
+$dotenv->required(['API_NUMBER','API_ACCOUNT_SID', 'API_AUTH_KEY']);
 
 if (!preg_match('/^[a-z0-9_-]{3,16}$/', getenv('APP_NAME'))) {
     throw new \Dotenv\Exception\ValidationException(
