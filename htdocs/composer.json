@@ -69,7 +69,7 @@
     "2amigos/yii2-chartjs-widget" : "~2.0",
     "telerivet/telerivet-php-client": "dev-master",
     "open-ecommerce/yii2-twilio": "dev-master",
-    "open-ecommerce/yii2-telerivet": "1.0",
+    "open-ecommerce/yii2-telerivet": "1.1",
     "c006/yii2-migration-utility": "dev-master",
     "kop/yii2-scroll-pager": "dev-master",
     "jlorente/yii2-widget-remainingcharacters": "*"
