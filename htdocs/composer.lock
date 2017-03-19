@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5def6da647a2d7c73c4e3ad310a17d55",
-    "content-hash": "30fec79b1037e996131031b9049fef65",
+    "hash": "053d12bd71dde00d420c6016b5bc811d",
+    "content-hash": "cbc7eba9a7881a58645b97dfb26992f7",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -546,16 +546,16 @@
         },
         {
             "name": "bower-asset/intl-tel-input",
-            "version": "v11.0.7",
+            "version": "v11.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jackocnr/intl-tel-input.git",
-                "reference": "f825545d7587413fbdf6855811006e71f069a73f"
+                "reference": "723641f69663c79cc0df77af2e65edaab3edac9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackocnr/intl-tel-input/zipball/f825545d7587413fbdf6855811006e71f069a73f",
-                "reference": "f825545d7587413fbdf6855811006e71f069a73f",
+                "url": "https://api.github.com/repos/jackocnr/intl-tel-input/zipball/723641f69663c79cc0df77af2e65edaab3edac9b",
+                "reference": "723641f69663c79cc0df77af2e65edaab3edac9b",
                 "shasum": ""
             },
             "require": {
@@ -1802,16 +1802,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.8.4",
+            "version": "0.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a"
+                "reference": "695bb59fbd21efb0555259ecaa419e3aafbc90ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/52c8c49b7f36a16272881134a21e6f36c635f16a",
-                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/695bb59fbd21efb0555259ecaa419e3aafbc90ff",
+                "reference": "695bb59fbd21efb0555259ecaa419e3aafbc90ff",
                 "shasum": ""
             },
             "require": {
@@ -1844,7 +1844,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2017-03-15 18:24:50"
+            "time": "2017-03-16 16:50:34"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -4385,15 +4385,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/open-ecommerce/yii2-telerivet.git",
-                "reference": "bca50b775567c5a5948a2bac3500188023b16920"
+                "reference": "59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/bca50b775567c5a5948a2bac3500188023b16920",
-                "reference": "bca50b775567c5a5948a2bac3500188023b16920",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7",
+                "reference": "59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7",
                 "shasum": ""
             },
             "require": {
+                "telerivet/telerivet-php-client": "*",
                 "yiisoft/yii2": "*"
             },
             "type": "library",
@@ -4425,7 +4426,7 @@
                 "source": "https://github.com/open-ecommerce/yii2-telerivet/tree/master",
                 "issues": "https://github.com/open-ecommerce/yii2-telerivet/issues"
             },
-            "time": "2017-03-16 12:50:09"
+            "time": "2017-03-19 14:02:58"
         },
         {
             "name": "open-ecommerce/yii2-twilio",

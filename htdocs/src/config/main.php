@@ -112,7 +112,7 @@ $common = [
         ),
         'Yii2Telerivet' => array(
             'class' => 'openecommerce\yiitelerivet\YiiTelerivet',
-            'api_key' => getenv('API_SMS_SECRET'),
+            'auth_key' => getenv('API_AUTH_KEY'),
         ),
         'settings' => [
             'class' => 'pheme\settings\components\Settings'

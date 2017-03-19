@@ -455,6 +455,7 @@ class Message extends BaseMessage {
         //$telerivetService = YiiTelerivet;
         $telerivetService = Yii::$app->Yii2Telerivet->initTelerivet();
         
+        
         $project = $telerivetService->initProjectById($this->projectKey);
 
         try {

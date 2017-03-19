@@ -69,7 +69,7 @@
     "2amigos/yii2-chartjs-widget" : "~2.0",
     "telerivet/telerivet-php-client": "dev-master",
     "open-ecommerce/yii2-twilio": "dev-master",
-    "open-ecommerce/yii2-telerivet": "dev-master",
+    "open-ecommerce/yii2-telerivet": "1.0",
     "c006/yii2-migration-utility": "dev-master",
     "kop/yii2-scroll-pager": "dev-master",
     "jlorente/yii2-widget-remainingcharacters": "*"
@@ -84,7 +84,8 @@
   "extra": {
     "asset-installer-paths": {
       "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
+      "bower-asset-library": "vendor/bower",
+      "telerivet-library": "vendor/telerivet"
     }
   },
   "config": {
