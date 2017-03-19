@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "336cda1569ce840c9274f7a280a98213",
-    "content-hash": "a51b0f8d33e8ab365ef27434c7c6caa7",
+    "hash": "5def6da647a2d7c73c4e3ad310a17d55",
+    "content-hash": "30fec79b1037e996131031b9049fef65",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -631,6 +631,47 @@
                     "Gruntfile.js"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/jquery-remaining-characters",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlorente/jquery-remaining-characters.git",
+                "reference": "dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlorente/jquery-remaining-characters/zipball/dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee",
+                "reference": "dd3d3b82b544ca29412c4dfacfd3033ad3cf3cee",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "remaining_characters.min.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Jquery plugin that adds a remaining character counter to text inputs and textareas",
+            "keywords": [
+                "[remaining",
+                "characters",
+                "counter",
+                "input",
+                "text",
+                "textarea]"
+            ]
         },
         {
             "name": "bower-asset/jquery-ui",
@@ -1294,16 +1335,16 @@
         },
         {
             "name": "codemix/yii2-localeurls",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemix/yii2-localeurls.git",
-                "reference": "785769af625d69430a11ec167b56eef47f933baf"
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/785769af625d69430a11ec167b56eef47f933baf",
-                "reference": "785769af625d69430a11ec167b56eef47f933baf",
+                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
                 "shasum": ""
             },
             "require": {
@@ -1331,7 +1372,7 @@
                 "locale",
                 "yii2"
             ],
-            "time": "2017-02-24 10:38:34"
+            "time": "2017-03-07 18:41:22"
         },
         {
             "name": "codemix/yii2-streamlog",
@@ -1761,16 +1802,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.8.1",
+            "version": "0.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "058c456934f5ea21c4a2b6dae267a8ad81d277d9"
+                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/058c456934f5ea21c4a2b6dae267a8ad81d277d9",
-                "reference": "058c456934f5ea21c4a2b6dae267a8ad81d277d9",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/52c8c49b7f36a16272881134a21e6f36c635f16a",
+                "reference": "52c8c49b7f36a16272881134a21e6f36c635f16a",
                 "shasum": ""
             },
             "require": {
@@ -1803,7 +1844,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2017-03-08 09:09:29"
+            "time": "2017-03-15 18:24:50"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -2070,16 +2111,16 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.9.1",
+            "version": "v4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6"
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/de82f9845f2a0f9f27abec67d6a4958427e6f5d6",
-                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
                 "shasum": ""
             },
             "require": {
@@ -2113,52 +2154,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-03-08 08:22:36"
-        },
-        {
-            "name": "filipajdacic/yii2-twilio",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filipajdacic/yii2-twilio.git",
-                "reference": "bbb3c1d5d22e415e51da994b4603e8ce71e54842"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filipajdacic/yii2-twilio/zipball/bbb3c1d5d22e415e51da994b4603e8ce71e54842",
-                "reference": "bbb3c1d5d22e415e51da994b4603e8ce71e54842",
-                "shasum": ""
-            },
-            "require": {
-                "twilio/sdk": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "filipajdacic\\yiitwilio\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filip Ajdacic",
-                    "email": "ajdasoft@gmail.com"
-                }
-            ],
-            "description": "This component is YII2 wrapper for Twilio PHP module",
-            "keywords": [
-                "extension",
-                "sms",
-                "twillio",
-                "video",
-                "voice",
-                "yii2"
-            ],
-            "time": "2016-12-14 09:06:42"
+            "time": "2017-03-13 06:30:53"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -2360,6 +2356,52 @@
                 "yii2"
             ],
             "time": "2016-06-02 20:58:50"
+        },
+        {
+            "name": "jlorente/yii2-widget-remainingcharacters",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlorente/yii2-widget-remainingcharacters.git",
+                "reference": "e8c37b57793f79daab561c94077316c4658fd320"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlorente/yii2-widget-remainingcharacters/zipball/e8c37b57793f79daab561c94077316c4658fd320",
+                "reference": "e8c37b57793f79daab561c94077316c4658fd320",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-remaining-characters": "~1.0.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "jlorente\\remainingcharacters\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Lorente Martin",
+                    "email": "jose.lorente.martin@gmail.com"
+                }
+            ],
+            "description": "Widget to add a remaining character counter to text inputs and textareas",
+            "homepage": "https://github.com/jlorente/yii2-widget-remainingcharacters",
+            "keywords": [
+                "characters",
+                "counter",
+                "input",
+                "remaining",
+                "text",
+                "textarea"
+            ],
+            "time": "2015-03-17 14:50:10"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -2656,12 +2698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e"
+                "reference": "70612993c68d8d2a936980357a34984d518ad052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e",
-                "reference": "d5856b55e0bb6b3a21fb66fb12b194519f5d6b7e",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/70612993c68d8d2a936980357a34984d518ad052",
+                "reference": "70612993c68d8d2a936980357a34984d518ad052",
                 "shasum": ""
             },
             "require": {
@@ -2702,7 +2744,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-12-14 16:38:38"
+            "time": "2017-03-16 05:23:54"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -4158,6 +4200,54 @@
             "time": "2014-11-09 19:54:17"
         },
         {
+            "name": "kop/yii2-scroll-pager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kop/yii2-scroll-pager.git",
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/9b9727ce441fbfc487044535ab6ce0b7694d810b",
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "webcreate/jquery-ias": "^2.2.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kop\\y2sp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Koptiev",
+                    "email": "ivan.koptiev@codex.systems",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Infinite AJAX scrolling for Yii2 ListView widget",
+            "homepage": "http://kop.github.io/yii2-scroll-pager/",
+            "keywords": [
+                "pager",
+                "pagination",
+                "scroll",
+                "scrolling",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-07-06 19:56:33"
+        },
+        {
             "name": "lajax/yii2-translate-manager",
             "version": "1.6.0",
             "source": {
@@ -4290,49 +4380,99 @@
             "time": "2016-12-12 10:42:18"
         },
         {
-            "name": "open-ecommerce/yii2-backuprestore",
+            "name": "open-ecommerce/yii2-telerivet",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/open-ecommerce/yii2-backuprestore.git",
-                "reference": "59d99ac02d56cf798f831810384fa601b5525ca1"
+                "url": "https://github.com/open-ecommerce/yii2-telerivet.git",
+                "reference": "bca50b775567c5a5948a2bac3500188023b16920"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-ecommerce/yii2-backuprestore/zipball/59d99ac02d56cf798f831810384fa601b5525ca1",
-                "reference": "59d99ac02d56cf798f831810384fa601b5525ca1",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/bca50b775567c5a5948a2bac3500188023b16920",
+                "reference": "bca50b775567c5a5948a2bac3500188023b16920",
                 "shasum": ""
             },
             "require": {
                 "yiisoft/yii2": "*"
             },
-            "type": "yii2-extension",
+            "type": "library",
             "autoload": {
                 "psr-4": {
-                    "oe\\modules\\backuprestore\\": ""
+                    "openecommerce\\yiitelerivet\\": ""
                 }
             },
             "license": [
-                "Apache-2.0"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "open-ecommerce.org",
-                    "email": "info@open-ecommerce.org"
+                    "name": "Eduardo Silva",
+                    "email": "eduardo@open-ecommerce.org"
                 }
             ],
-            "description": "Database Backup and Restore functionality",
+            "description": "This component is YII2 wrapper for Telerivet PHP module",
             "keywords": [
-                "Backup",
-                "Database",
-                "Restore",
+                "extension",
+                "programable number",
+                "sms",
+                "telerivet",
+                "virtual number",
+                "voice",
                 "yii2"
             ],
             "support": {
-                "source": "https://github.com/open-ecommerce/yii2-backuprestore/tree/v1.0",
-                "issues": "https://github.com/open-ecommerce/yii2-backuprestore/issues"
+                "source": "https://github.com/open-ecommerce/yii2-telerivet/tree/master",
+                "issues": "https://github.com/open-ecommerce/yii2-telerivet/issues"
             },
-            "time": "2017-02-12 13:30:49"
+            "time": "2017-03-16 12:50:09"
+        },
+        {
+            "name": "open-ecommerce/yii2-twilio",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/open-ecommerce/yii2-twilio.git",
+                "reference": "c609759f47b94dc8b5319c5ec689be87f77bdc94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-twilio/zipball/c609759f47b94dc8b5319c5ec689be87f77bdc94",
+                "reference": "c609759f47b94dc8b5319c5ec689be87f77bdc94",
+                "shasum": ""
+            },
+            "require": {
+                "twilio/sdk": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "openecommerce\\yiitwilio\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filip Ajdacic",
+                    "email": "ajdasoft@gmail.com"
+                }
+            ],
+            "description": "This component is YII2 wrapper for Twilio PHP module",
+            "keywords": [
+                "extension",
+                "sms",
+                "twillio",
+                "video",
+                "voice",
+                "yii2"
+            ],
+            "support": {
+                "source": "https://github.com/open-ecommerce/yii2-twilio/tree/master"
+            },
+            "time": "2017-03-14 19:45:21"
         },
         {
             "name": "pheme/yii2-settings",
@@ -4720,6 +4860,35 @@
             "time": "2017-02-13 07:52:53"
         },
         {
+            "name": "telerivet/telerivet-php-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Telerivet/telerivet-php-client.git",
+                "reference": "0953544ae4e028206531081b4e0eb18ab2b82383"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Telerivet/telerivet-php-client/zipball/0953544ae4e028206531081b4e0eb18ab2b82383",
+                "reference": "0953544ae4e028206531081b4e0eb18ab2b82383",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP client library for Telerivet REST API",
+            "homepage": "https://telerivet.com/api",
+            "support": {
+                "source": "https://github.com/Telerivet/telerivet-php-client/tree/master",
+                "issues": "https://github.com/Telerivet/telerivet-php-client/issues"
+            },
+            "time": "2016-12-19 23:13:19"
+        },
+        {
             "name": "trntv/yii2-aceeditor",
             "version": "2.0.2",
             "source": {
@@ -4922,6 +5091,46 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "webcreate/jquery-ias",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webcreate/infinite-ajax-scroll.git",
+                "reference": "1549e76b810a3a7dc7f5e259bbca30290ba5b554"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webcreate/infinite-ajax-scroll/zipball/1549e76b810a3a7dc7f5e259bbca30290ba5b554",
+                "reference": "1549e76b810a3a7dc7f5e259bbca30290ba5b554",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fieg",
+                    "email": "jeroen@fieg.nl",
+                    "homepage": "http://webcreate.nl"
+                }
+            ],
+            "description": "Infinite AJAX Scroll: A jQuery plugin that turns your server-side pagination into an infinite scrolling one using AJAX",
+            "homepage": "http://infiniteajaxscroll.com",
+            "keywords": [
+                "ajax",
+                "ias",
+                "infinite",
+                "jquery",
+                "pagination",
+                "scroll",
+                "scrolling"
+            ],
+            "time": "2016-08-26 10:37:37"
         },
         {
             "name": "yiisoft/yii2",
@@ -5588,16 +5797,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "e0e33ce4eaf59ba77ead9ce45256692aa29ecb38"
+                "reference": "c7de769d7b44f2c9de68e1f678b65efd8126f60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/e0e33ce4eaf59ba77ead9ce45256692aa29ecb38",
-                "reference": "e0e33ce4eaf59ba77ead9ce45256692aa29ecb38",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c7de769d7b44f2c9de68e1f678b65efd8126f60b",
+                "reference": "c7de769d7b44f2c9de68e1f678b65efd8126f60b",
                 "shasum": ""
             },
             "require": {
@@ -5620,7 +5829,7 @@
             "require-dev": {
                 "gecko-packages/gecko-php-unit": "^2.0",
                 "justinrainbow/json-schema": "^5.0",
-                "phpunit/phpunit": "^4.5|^5",
+                "phpunit/phpunit": "^4.5 || ^5.0",
                 "satooshi/php-coveralls": "^1.0",
                 "symfony/phpunit-bridge": "^3.2"
             },
@@ -5651,7 +5860,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-03-03 08:03:57"
+            "time": "2017-03-15 17:13:07"
         },
         {
             "name": "fzaninotto/faker",
@@ -6278,16 +6487,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "0e5e6899f82230fcb1153bcaf0e106ffaa44b870"
+                "reference": "28fb243a2b5727774ca309ec2d92da240f1af0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/0e5e6899f82230fcb1153bcaf0e106ffaa44b870",
-                "reference": "0e5e6899f82230fcb1153bcaf0e106ffaa44b870",
+                "url": "https://api.github.com/repos/symfony/console/zipball/28fb243a2b5727774ca309ec2d92da240f1af0dd",
+                "reference": "28fb243a2b5727774ca309ec2d92da240f1af0dd",
                 "shasum": ""
             },
             "require": {
@@ -6337,20 +6546,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16 14:07:22"
+            "time": "2017-03-06 19:30:27"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "9b98854cb45bc59d100b7d4cc4cf9e05f21026b9"
+                "reference": "b90c9f91ad8ac37d9f114e369042d3226b34dc1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
-                "reference": "9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
+                "reference": "b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
                 "shasum": ""
             },
             "require": {
@@ -6394,20 +6603,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16 16:34:18"
+            "time": "2017-02-18 17:28:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "9137eb3a3328e413212826d63eeeb0217836e2b6"
+                "reference": "b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9137eb3a3328e413212826d63eeeb0217836e2b6",
-                "reference": "9137eb3a3328e413212826d63eeeb0217836e2b6",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
+                "reference": "b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
                 "shasum": ""
             },
             "require": {
@@ -6454,20 +6663,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:32:22"
+            "time": "2017-02-21 09:12:04"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a0c6ef2dc78d33b58d91d3a49f49797a184d06f4"
+                "reference": "bc0f17bed914df2cceb989972c3b996043c4da4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a0c6ef2dc78d33b58d91d3a49f49797a184d06f4",
-                "reference": "a0c6ef2dc78d33b58d91d3a49f49797a184d06f4",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/bc0f17bed914df2cceb989972c3b996043c4da4a",
+                "reference": "bc0f17bed914df2cceb989972c3b996043c4da4a",
                 "shasum": ""
             },
             "require": {
@@ -6503,20 +6712,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-08 20:47:33"
+            "time": "2017-03-06 19:30:27"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "8c71141cae8e2957946b403cc71a67213c0380d6"
+                "reference": "92d7476d2df60cd851a3e13e078664b1deb8ce10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/8c71141cae8e2957946b403cc71a67213c0380d6",
-                "reference": "8c71141cae8e2957946b403cc71a67213c0380d6",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/92d7476d2df60cd851a3e13e078664b1deb8ce10",
+                "reference": "92d7476d2df60cd851a3e13e078664b1deb8ce10",
                 "shasum": ""
             },
             "require": {
@@ -6552,7 +6761,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:32:22"
+            "time": "2017-02-21 09:12:04"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -6787,16 +6996,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "0ab87c1e7570b3534a6e51eb4ca8e9f6d7327856"
+                "reference": "68bfa8c83f24c0ac04ea7193bcdcda4519f41892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/0ab87c1e7570b3534a6e51eb4ca8e9f6d7327856",
-                "reference": "0ab87c1e7570b3534a6e51eb4ca8e9f6d7327856",
+                "url": "https://api.github.com/repos/symfony/process/zipball/68bfa8c83f24c0ac04ea7193bcdcda4519f41892",
+                "reference": "68bfa8c83f24c0ac04ea7193bcdcda4519f41892",
                 "shasum": ""
             },
             "require": {
@@ -6832,20 +7041,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16 14:07:22"
+            "time": "2017-03-04 12:23:14"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "9aa0b51889c01bca474853ef76e9394b02264464"
+                "reference": "c5ee0f8650c84b4d36a5f76b3b504233feaabf75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/9aa0b51889c01bca474853ef76e9394b02264464",
-                "reference": "9aa0b51889c01bca474853ef76e9394b02264464",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/c5ee0f8650c84b4d36a5f76b3b504233feaabf75",
+                "reference": "c5ee0f8650c84b4d36a5f76b3b504233feaabf75",
                 "shasum": ""
             },
             "require": {
@@ -6881,7 +7090,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:32:22"
+            "time": "2017-02-18 17:28:00"
         },
         {
             "name": "yiisoft/yii2-apidoc",
@@ -7217,9 +7426,11 @@
         "kartik-v/yii2-export": 20,
         "kartik-v/yii2-detail-view": 20,
         "kartik-v/dependent-dropdown": 20,
-        "open-ecommerce/yii2-backuprestore": 20,
-        "filipajdacic/yii2-twilio": 20,
-        "c006/yii2-migration-utility": 20
+        "telerivet/telerivet-php-client": 20,
+        "open-ecommerce/yii2-twilio": 20,
+        "open-ecommerce/yii2-telerivet": 20,
+        "c006/yii2-migration-utility": 20,
+        "kop/yii2-scroll-pager": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

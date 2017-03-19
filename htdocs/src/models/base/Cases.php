@@ -61,11 +61,11 @@ abstract class Cases extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'id_contact' => Yii::t('app', 'Client'),
-            'id_phone' => Yii::t('app', 'Active Client Phone'),
-            'id_user' => Yii::t('app', 'Helper'),
-            'userName' => Yii::t('app', 'Helper'),
+            'id' => Yii::t('app', '#'),
+            'id_contact' => \Yii::$app->settings->get('helptext.contact_label') . ' Name',
+            'id_phone' => 'Active '.\Yii::$app->settings->get('helptext.contact_label') . ' Phone',
+            'id_user' => \Yii::$app->settings->get('helptext.user_label'),
+            'userName' => \Yii::$app->settings->get('helptext.user_label'),
             'id_category' => Yii::t('app', 'Category'),
             'id_outcome' => Yii::t('app', 'Outcome'),
             'id_severity' => Yii::t('app', 'Severity'),

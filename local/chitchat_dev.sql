@@ -131,15 +131,13 @@ CREATE TABLE IF NOT EXISTS `cases` (
   CONSTRAINT `fk_contact` FOREIGN KEY (`id_contact`) REFERENCES `contact` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table chitchat_dev.cases: ~5 rows (approximately)
+-- Dumping data for table chitchat_dev.cases: ~3 rows (approximately)
 DELETE FROM `cases`;
 /*!40000 ALTER TABLE `cases` DISABLE KEYS */;
 INSERT INTO `cases` (`id`, `id_contact`, `id_phone`, `id_user`, `id_category`, `id_outcome`, `id_severity`, `start_date`, `close_date`, `state`, `comments`) VALUES
-	(3, 3, '+447775964180', 11, 3, 1, 2, '2016-12-05 12:20:35', '2016-12-05 13:00:35', NULL, '13 years old child. Mum suspected he was smoking.\r\nSignposted to website'),
 	(5, 5, '+442082025907', 9, 5, 2, 1, '2016-08-15 17:16:29', NULL, b'1', '15 years old boy. Suspected depression. \r\nReferred to counsellor'),
-	(9, 9, '+447399992578', 9, 6, 3, 3, '2016-12-10 10:35:12', NULL, b'1', 'Child 12 years old not opening up to parent'),
-	(10, 11, '+6827705175', 9, NULL, NULL, NULL, '2017-02-27 15:49:36', NULL, b'1', 'New case to review'),
-	(11, 12, '+3088707158', 9, NULL, NULL, NULL, '2017-02-27 16:04:31', NULL, b'1', 'New case to review');
+	(9, 9, '+447399992578', 2, 6, 3, NULL, '2016-12-10 10:35:12', NULL, b'1', 'Child 12 years old not opening up to parent'),
+	(10, 11, '+6827705175', 9, NULL, NULL, NULL, '2017-02-27 15:49:36', NULL, b'1', 'New case to review');
 /*!40000 ALTER TABLE `cases` ENABLE KEYS */;
 
 
@@ -860,8 +858,8 @@ CREATE TABLE IF NOT EXISTS `message` (
   `id_user` int(11) DEFAULT NULL,
   `id_sender_type` int(11) DEFAULT '0',
   `id_message_type` int(11) DEFAULT NULL,
-  `message` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `sent` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `message` varchar(160) COLLATE utf8_unicode_ci DEFAULT '0',
+  `sent` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `sid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_id_phone_9401_10` (`id_phone`),
@@ -869,13 +867,13 @@ CREATE TABLE IF NOT EXISTS `message` (
   KEY `idx_id_message_type_9401_13` (`id_message_type`),
   KEY `id_sender_type` (`id_sender_type`),
   KEY `id_user` (`id_user`),
-  CONSTRAINT `fk_cases_9396_09` FOREIGN KEY (`id_case`) REFERENCES `cases` (`id`) ON DELETE NO ACTION,
+  CONSTRAINT `fk_cases_9396_09` FOREIGN KEY (`id_case`) REFERENCES `cases` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `profile` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_message_type_9396_010` FOREIGN KEY (`id_message_type`) REFERENCES `message_type` (`id`) ON DELETE NO ACTION,
   CONSTRAINT `fk_sender_type` FOREIGN KEY (`id_sender_type`) REFERENCES `sender_type` (`id`) ON DELETE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table chitchat_dev.message: ~24 rows (approximately)
+-- Dumping data for table chitchat_dev.message: ~22 rows (approximately)
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 INSERT INTO `message` (`id`, `id_phone`, `id_case`, `id_user`, `id_sender_type`, `id_message_type`, `message`, `sent`, `sid`) VALUES
@@ -884,25 +882,23 @@ INSERT INTO `message` (`id`, `id_phone`, `id_case`, `id_user`, `id_sender_type`,
 	(44, '+447399992578', 9, 9, 2, NULL, 'He is 10 and some kids are picking on him ', '2016-12-12 11:47:53', NULL),
 	(47, '+447399992578', 9, 9, 2, NULL, 'Yes', '2016-12-12 11:51:45', NULL),
 	(52, '+6827705175', 10, 9, 2, 2, 'Por favor ayuda', '2017-02-27 15:49:36', NULL),
-	(53, '+3088707158', 11, 9, 2, 2, 'case#9# Hola que paso', '2017-02-27 16:04:31', NULL),
 	(54, '+447399992578', 9, 9, 2, NULL, 'Ayuda por ravor', '2017-02-28 08:33:11', NULL),
 	(55, '+447399992578', 9, 9, 2, NULL, 'Necesito condoms', '2017-02-28 08:33:53', NULL),
 	(56, '+447399992578', 9, 9, 2, NULL, 'Hay alguien ahi?', '2017-02-28 08:54:56', NULL),
 	(57, '+447399992578', 9, 9, 2, NULL, 'Hi there where do i get condoms', '2017-02-28 09:11:58', NULL),
-	(58, '+3088707158', 11, 9, 2, NULL, 'URGENT! I Need condoms!!', '2017-02-28 09:32:45', NULL),
-	(59, '+447879387106', 11, 9, 3, 2, 'case#11# hi there, you need to go to a hospital', '2017-02-28 09:49:36', NULL),
-	(61, '+447879387106', 11, 9, 3, 2, 'Case#11#How are you today?', '2017-02-28 11:56:43', NULL),
 	(62, '+447399992578', 9, 4, 2, NULL, 'Hi is there somebody there?', '2017-02-28 14:28:30', NULL),
 	(63, '+447904591137', 9, 4, 3, 2, 'Case#9# hola manu', '2017-02-28 14:30:50', NULL),
 	(64, '+447399992578', 9, 4, 2, NULL, 'Can you help?', '2017-02-28 14:38:09', NULL),
 	(65, '+447904591137', 9, 4, 3, 2, 'Case#9# im here with the helping hand', '2017-02-28 14:39:16', NULL),
-	(66, '+3088707158', 11, 9, 2, NULL, 'Hi I need some help', '2017-02-28 14:54:47', NULL),
-	(67, '+3088707158', 11, 9, 2, NULL, 'Can you help?', '2017-02-28 15:03:40', NULL),
-	(68, '+4475515246251', 11, 1, 3, 2, 'case#11# Hi, I am here to help you', '2017-02-28 15:05:17', NULL),
-	(69, '+3088707158', 11, 9, 2, NULL, 'Is that Manuela? I want to speak to Manuela', '2017-02-28 15:06:28', NULL),
-	(70, '+447879387106', 11, 9, 3, 2, 'case#11# Yes, this is manuela', '2017-02-28 15:13:30', NULL),
 	(71, '+447399992578', 9, 9, 2, NULL, 'Hi there, i am still waiting!', '2017-03-01 11:01:39', NULL),
-	(72, '+4475515246251', 9, 1, 3, 2, 'case#9# Here is a list of hospitals', '2017-03-01 11:03:09', NULL);
+	(72, '+4475515246251', 9, 1, 3, 2, 'case#9# Here is a list of hospitals', '2017-03-01 11:03:09', NULL),
+	(76, '+4475515246251', 9, 1, 3, 2, 'case#9# Estamos en camino', '2017-03-14 19:33:04', NULL),
+	(77, '+4475515246251', 9, 1, 3, 2, 'case#9# Estamos en camino', '2017-03-14 19:34:00', NULL),
+	(78, '+4475515246251', 9, 1, 3, 2, 'case#9# ya mismo', '2017-03-14 19:34:38', NULL),
+	(79, '+4475515246251', 9, 1, 3, 2, 'case#9# ya mismo', '2017-03-14 19:37:45', NULL),
+	(80, '+4475515246251', 9, 1, 3, 2, 'case#9# a ver papa si me ayudas', '2017-03-14 19:55:32', NULL),
+	(81, '+4475515246251', 9, 1, 3, 2, 'case#9# vamos macalla', '2017-03-15 12:38:38', NULL),
+	(82, '+4475515246251', 9, 1, 3, 2, 'case#9# vamos macalla', '2017-03-15 12:41:20', NULL);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 
@@ -1023,9 +1019,9 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `skills` text COLLATE utf8_unicode_ci,
   `firstname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `birthday` date NOT NULL,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `terms` tinyint(1) NOT NULL DEFAULT '0',
+  `birthday` date DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `terms` tinyint(1) DEFAULT '0',
   `phone` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
@@ -1076,9 +1072,9 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_unique_key_section` (`section`,`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
--- Dumping data for table chitchat_dev.settings: ~14 rows (approximately)
+-- Dumping data for table chitchat_dev.settings: ~15 rows (approximately)
 DELETE FROM `settings`;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `type`, `section`, `key`, `value`, `active`, `created`, `modified`) VALUES
@@ -1089,14 +1085,15 @@ INSERT INTO `settings` (`id`, `type`, `section`, `key`, `value`, `active`, `crea
 	(5, 'integer', 'helptext', 'sender_type_id_user', '3', 1, '2016-07-27 14:01:59', NULL),
 	(6, 'integer', 'helptext', 'country_uk_id', '229', 1, '2016-07-27 14:02:34', NULL),
 	(7, 'integer', 'helptext', 'languages_en_id', '1', 1, '2016-07-27 14:03:21', NULL),
-	(8, 'string', 'helptext', 'sms_provider', 'twilio', 1, '2016-07-27 14:03:45', '2016-07-27 14:23:30'),
+	(8, 'string', 'helptext', 'sms_provider', 'telerivet', 1, '2016-07-27 14:03:45', '2016-07-27 14:23:30'),
 	(9, 'boolean', 'helptext', 'anonymize', '0', 1, '2016-07-27 14:04:19', '2016-12-10 10:10:41'),
 	(10, 'boolean', 'helptext', 'sms_automatic_response', '1', 1, '2016-07-27 14:04:59', '2017-02-28 09:05:35'),
 	(11, 'boolean', 'helptext', 'generate_logs', '1', 1, '2016-07-27 14:16:44', NULL),
 	(12, 'integer', 'helptext', 'message_type_id_sms', '2', 1, '2016-07-29 10:01:00', '2016-07-29 10:01:01'),
 	(13, 'integer', 'helptext', 'message_type_id_call', '1', 1, '2016-07-29 10:01:41', '2016-07-29 10:01:41'),
 	(14, 'string', 'helptext', 'email_to_admin_no_helpers', '<p>There are not Volunteers available in the system to receive sms or calls.</p><br>\r\n<p>Please got to the helpers area to set up at least one available helper</p><br><br>\r\n<a href="http://www.nnls-helptext.ml/en/profile">Click to set Helpers</a><br>\r\n<p>Thanks</b>', 1, '2016-08-11 11:30:34', '2017-02-28 09:05:07'),
-	(15, 'string', 'helptext', 'icons_folder', 'client', 1, NULL, NULL);
+	(15, 'string', 'design', 'icons_folder', 'client', 1, NULL, '2017-03-14 11:46:15'),
+	(16, 'string', 'helptext', 'sms_automatic_response_text', 'This is an auhomatic response from Chit Chat, we created a new case\\r\\nWe will contact you as soon as possible.\\r\\n', 1, '2017-03-15 17:59:35', '2017-03-15 18:04:18');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 
@@ -1148,7 +1145,7 @@ DROP TABLE IF EXISTS `text_template`;
 CREATE TABLE IF NOT EXISTS `text_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `message` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `message` varchar(160) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1212,14 +1209,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_email` (`email`),
   UNIQUE KEY `user_unique_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table chitchat_dev.user: ~6 rows (approximately)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`) VALUES
-	(1, 'admin', 'info@open-ecommerce.org', '$2y$10$N4jEgbyysxNAHf8Pb8RFaetY07tPWMZL5qOCBUhGhM46yyNIBI3am', 'L4DEoxYf4R9C3ZvHP8uBzwcSbq5vo5mP', 1466528922, NULL, NULL, NULL, 1425651628, 1470164156, 0, 1489488327),
-	(2, 'helper-eduardo', 'eduardo@open-ecommerce.org', '$2y$10$ZA61Lh75MrG.cpYd1q63SuvDtZXiOPldHf6GTks.3z01o2u9O4lHS', 'uqe7SH5MKQYWpHUe7Mn42svnEmWkuVCI', 1425651715, NULL, NULL, '192.168.1.74', 1425651715, 1470213413, 0, NULL),
+	(1, 'admin', 'info@open-ecommerce.org', '$2y$10$N4jEgbyysxNAHf8Pb8RFaetY07tPWMZL5qOCBUhGhM46yyNIBI3am', 'L4DEoxYf4R9C3ZvHP8uBzwcSbq5vo5mP', 1466528922, NULL, NULL, NULL, 1425651628, 1470164156, 0, 1489774771),
+	(2, 'helper-eduardo', 'eduardo@open-ecommerce.org', '$2y$10$ZA61Lh75MrG.cpYd1q63SuvDtZXiOPldHf6GTks.3z01o2u9O4lHS', 'uqe7SH5MKQYWpHUe7Mn42svnEmWkuVCI', 1425651715, NULL, NULL, '192.168.1.74', 1425651715, 1470213413, 0, 1489602350),
 	(3, 'supervisor', 'tester1@open-ecommerce.org', '$2y$10$kMa.WHn.1y7BvN2nSsiqN.jvpBEJ4GH/obAbKZM4ct8iHrmo0rTXq', 'zlUuQlMHPdSM-wTTlPkzhe3jvnoFJkBX', 1466680707, NULL, NULL, '127.0.0.1', 1466680022, 1470212945, 0, NULL),
 	(4, 'helper-mariano', 'mariano@open-ecommerce.org', '$2y$10$LrG45CQrIiOJhVLx3eFfruR6M1rpM5i9o24eHW4YJFnAaf6MJ2cU6', 'YZ0hyKV6Je2_2DO3mp-JeUFMO5WI-hZN', 1466680738, NULL, NULL, '192.168.1.74', 1466680738, 1470212969, 0, NULL),
 	(9, 'helper-manuela', 'manuela@open-ecommerce.org', '$2y$10$o3M29K2W0vhi49m4u9j8bu.wKDEiJouRs7s66hz9X/sxQ34JGyGjW', 'zEvmDjrqvS8rHT7NSgWoKDXFaLFThQSN', 1470213040, NULL, NULL, '217.138.44.117', 1470213040, 1470213040, 0, NULL),

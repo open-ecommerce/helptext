@@ -6,6 +6,7 @@ Yii::setAlias('@web', dirname(__DIR__) . '/../web');
 Yii::setAlias('@webroot', dirname(__DIR__) . '/web');
 Yii::setAlias('@root', '@app');
 
+
 $common = [
     'id' => 'app',
     'language' => '',
@@ -105,9 +106,13 @@ $common = [
             ],
         ],
         'Yii2Twilio' => array(
-            'class' => 'filipajdacic\yiitwilio\YiiTwilio',
-            'account_sid' => getenv('TWILIO_ACCOUNT_SID'),
-            'auth_key' => getenv('TWILIO_AUTH_KEY'),
+            'class' => 'openecommerce\yiitwilio\YiiTwilio',
+            'account_sid' => getenv('API_ACCOUNT_SID'),
+            'auth_key' => getenv('API_AUTH_KEY'),
+        ),
+        'Yii2Telerivet' => array(
+            'class' => 'openecommerce\yiitelerivet\YiiTelerivet',
+            'api_key' => getenv('API_SMS_SECRET'),
         ),
         'settings' => [
             'class' => 'pheme\settings\components\Settings'

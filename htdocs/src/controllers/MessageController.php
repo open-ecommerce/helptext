@@ -28,10 +28,7 @@ class MessageController extends \app\controllers\base\MessageController {
     public $enableCsrfValidation;
 
     /**
-     * main entrance by twilio or other providers
-     * @param $ph
-     *
-     * @return mixed
+     * main entrance by twilio, telerivet or other providers to push the sms
      */
     public function actionSms() {
 
@@ -45,15 +42,11 @@ class MessageController extends \app\controllers\base\MessageController {
             OeHelpers::logger('key: ' . $key . ' - value: ' . $value, 'sms');
         }
         OeHelpers::logger(str_repeat("=-", 25), 'sms');
+        
+        $model = new Message;
 
-        $accountSid = $request->post('AccountSid');
-
-        if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
-            OeHelpers::logger('passed authentication', 'sms');
-
-            $model = new Message;
-            $model->source = "twilio";
-
+        if ($this->validateSource) {
+            OeHelpers::logger('passed authentication'.$model->source, 'sms');            
             try {
                 $model->receiveSMS();
             } catch (\Exception $e) {
@@ -64,8 +57,10 @@ class MessageController extends \app\controllers\base\MessageController {
         } else {
             OeHelpers::logger('NOT passed authentication', 'sms');
         }
-        OeHelpers::logger(str_repeat("=-", 25), 'sms');
         
+        
+        OeHelpers::logger(str_repeat("=-", 25), 'sms');
+
         $this->enableCsrfValidation = true;
     }
 
@@ -200,7 +195,6 @@ class MessageController extends \app\controllers\base\MessageController {
                 //return ['output'=>$value, 'message'=>''];
                 // alternatively you can return a validation error
                 return ['output' => '', 'message' => $msg];
-                
             }
             // else if nothing to do always return an empty JSON encoded output
             else {
@@ -243,7 +237,10 @@ class MessageController extends \app\controllers\base\MessageController {
 
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Message::find()->where(['id_case' => $current_case_id]),
+            'query' => Message::find()
+                    ->where(['id_case' => $current_case_id])
+                    ->orderBy(['sent' => SORT_DESC]),
+            'pagination' => array('pageSize' => 30),
         ]);
         $modelCases = Cases::find()->where(['id' => $current_case_id])->one();
 
@@ -276,7 +273,7 @@ class MessageController extends \app\controllers\base\MessageController {
 
         $accountSid = $request->post('AccountSid');
 
-        if ($request->post('AccountSid') === getenv('TWILIO_ACCOUNT_SID')) {
+        if ($request->post('AccountSid') === getenv('API_ACCOUNT_SID')) {
             OeHelpers::logger('passed authentication', 'call');
 
             $model = new Message;

@@ -10,14 +10,19 @@ use app\models\ContactPhone;
 use app\models\Profile;
 use app\models\Cases;
 use app\helpers\OeHelpers;
+use openecommerce\yiitelerivet\YiiTelerivet;
 
-define('ANONYMIZE_TEXT', 'Text deleted by the system.');
 
 /**
  * This is the model class for table "text".
  */
 class Message extends BaseMessage {
 
+    const ANONYMIZE_TEXT = 'Text deleted by the system.';
+    const PROVIDER_TWILIO = 'twilio';
+    const PROVIDER_TELERIVET = 'telerivet';
+    
+    
     var $response;
     var $messageToSend;
     var $source;
@@ -34,10 +39,38 @@ class Message extends BaseMessage {
     var $phoneToCall;
     var $anonymize;
     var $automaticResponse;
+    var $automaticResponseText;
     var $idSenderType;
     var $flashResponse;
     var $idMessageType;
+    var $idProviderValidated = FALSE;
+    var $apiKey;
+    var $projectKey;
 
+    
+    /**
+     * @return bolean
+     */
+    //check if it is a valid provider
+    public function validateSource() {
+        //twilio
+        if ($request->post('AccountSid')) {
+            if ($request->post('AccountSid') === getenv('API_ACCOUNT_SID')) {
+                $this->source = self::PROVIDER_TWILIO;
+                return TRUE;
+            }
+        //telerivet    
+        } elseif ($request->post('secret')) {
+            if ($request->post('secret') === getenv('API_SMS_SECRET')) {
+                $this->source = self::PROVIDER_TELERIVET;
+                return TRUE;
+            }            
+        } else {
+            return FALSE;
+        }
+    }    
+    
+    
     /**
      * @return multiple
      */
@@ -46,6 +79,7 @@ class Message extends BaseMessage {
 
         $this->anonymize = \Yii::$app->settings->get('helptext.anonymize');
         $this->automaticResponse = \Yii::$app->settings->get('helptext.sms_automatic_response');
+        $this->automaticResponseText = \Yii::$app->settings->get('helptext.sms_automatic_response_text');
         $this->idMessageType = \Yii::$app->settings->get('helptext.message_type_id_sms');
 
 
@@ -53,14 +87,12 @@ class Message extends BaseMessage {
             // is comming from the system as a test or as a new text from helper
             if (empty($this->id_phone)) {
                 $this->id_phone = "+" . rand(1111111111, 9999999999);
+                OeHelpers::logger('added new fone number: ' . $this->id_phone, 'sms');
             }
         } else {
-            // real sms from twilio
-            $request = \Yii::$app->request;
-            $this->accountSid = $request->post('AccountSid');
-            $this->id_phone = $request->post('From');
-            $this->message = $request->post('Body');
-            $this->messageSid = $request->post('MessageSid');
+            // real sms from any sms provider
+            $this->setRequestVariables();
+            
         }
 
         //set current case id for this phone
@@ -134,7 +166,7 @@ class Message extends BaseMessage {
                 $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
-                    $text->message = constant("ANONYMIZE_TEXT");
+                    $text->message = self::ANONYMIZE_TEXT;
                 } else {
                     $text->message = $this->message;
                 }
@@ -143,9 +175,9 @@ class Message extends BaseMessage {
 
                 $this->response = '';
                 if ($this->automaticResponse) {
-                    $this->response = "This is an auhomatic response, we created a new case\r\n";
-                    $this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
-                    $this->response .= "We will contact you as soon as possible.\r\n";
+                    //$this->response = "This is an auhomatic response from Chit Chat, we created a new case\r\n";
+                    //$this->response .= "Your Case number is:" . $this->currentIdCase . "\r\n";
+                    $this->response = $this->automaticResponseText;
                 }
                 //send the text to the the helper
                 $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
@@ -158,9 +190,10 @@ class Message extends BaseMessage {
                 $this->setLastCaseByPhone();
 
                 if ((!$this->isCurrentIdCaseOpen) && ($this->automaticResponse)) {
-                    $this->response = "This is an automatic response,\r\n";
-                    $this->response .= "We will contact you as soon as possible.\r\n";
-                    $this->response .= "Your Case number is:" . $this->currentIdCase;
+                    //$this->response = "This is an automatic response,\r\n";
+                    //$this->response .= "We will contact you as soon as possible.\r\n";
+                    //$this->response .= "Your Case number is:" . $this->currentIdCase;
+                    $this->response = $this->automaticResponseText;
                 } else {
                     // send the text to the helper
                     $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
@@ -175,7 +208,7 @@ class Message extends BaseMessage {
                     $text->id_sender_type = $this->idSenderType;
                     $text->id_user = $this->assignedUserId;
                     if ($this->anonymize) {
-                        $text->message = constant("ANONYMIZE_TEXT");
+                        $text->message = self::ANONYMIZE_TEXT;
                     } else {
                         $text->message = $this->message;
                     }
@@ -204,7 +237,7 @@ class Message extends BaseMessage {
                 $text->id_message_type = $this->idMessageType;
                 $text->id_sender_type = $this->idSenderType;
                 if ($this->anonymize) {
-                    $text->message = constant("ANONYMIZE_TEXT");
+                    $text->message = self::ANONYMIZE_TEXT;
                 } else {
                     $text->message = $this->message;
                 }
@@ -381,11 +414,13 @@ class Message extends BaseMessage {
     public function sendSMS($msg, $toPhone) {
 
         switch (\Yii::$app->settings->get('helptext.sms_provider')) {
-            case 'twilio':
+            case self::PROVIDER_TWILIO :
                 $response = $this->twilioSMS($msg, $toPhone);
                 break;
+            case self::PROVIDER_TELERIVET :
+                $response = $this->telerivetSMS($msg, $toPhone);
+                break;
         }
-
         return $response;
     }
 
@@ -398,7 +433,7 @@ class Message extends BaseMessage {
 
         try {
             $newsms = $twilioService->account->messages->create(array(
-                "From" => getenv('TWILIO_NUMBER'), // From a valid Twilio number
+                "From" => getenv('API_NUMBER'), // From a valid Twilio number
                 "To" => $toPhone, // Message this number
                 "Body" => $msg,
             ));
@@ -410,6 +445,32 @@ class Message extends BaseMessage {
         return $response;
     }
 
+    /**
+     * @return string
+     */
+    public function telerivetSMS($msg, $toPhone) {
+
+        
+        $this->projectKey = getenv('API_PROJECT_ID');
+        //$telerivetService = YiiTelerivet;
+        $telerivetService = Yii::$app->Yii2Telerivet->initTelerivet();
+        
+        $project = $telerivetService->initProjectById($this->projectKey);
+
+        try {
+            $newsms = $project->sendMessage(array(
+                'to_number' => $toPhone, // Message this number
+                'content' => $msg,
+            ));
+            $response = "sms sent to client: " . $toPhone;
+        } catch (\Telerivet_Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }    
+    
+    
     private function getCaseFromMessage($text) {
         $caseNumber = 0;
         if (preg_match("/case#(.*)#/", strtolower($text), $output)) {
@@ -514,6 +575,35 @@ class Message extends BaseMessage {
             OeHelpers::logger('No phone set in helper profile' , 'call');
             return NULL;
         }
+    }
+    
+    
+    private function setRequestVariables() {
+        $request = \Yii::$app->request;           
+        switch ($this->source) {
+            case self::PROVIDER_TWILIO:
+                $this->accountSid = $request->post('AccountSid');
+                $this->id_phone = $request->post('From');
+                $this->message = $request->post('Body');
+                $this->messageSid = $request->post('MessageSid');        
+                break;
+            case self::PROVIDER_TELERIVET:
+                $this->accountSid = $request->post('secret');
+                $this->id_phone = $request->post('from_number');
+                $this->message = $request->post('content');
+                $this->messageSid = '';
+                   if ($_POST['secret'] === getenv('API_SMS_SECRET')) {
+                       $this->$idProviderValidated = TRUE;
+                   }
+                break;
+            default:
+                $this->accountSid = '';
+                $this->id_phone = '';
+                $this->message = '';
+                $this->messageSid = '';        
+                break;
+        }
+        
     }
 
 

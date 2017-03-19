@@ -49,12 +49,12 @@ if (\Yii::$app->hasModule('user')) {
 }
 
 
-//.getenv('TWILIO_NUMBER')
+//.getenv('API_NUMBER')
 
 NavBar::begin(
         [
             'brandLabel' => $imgClientLogo,
-            'brandUrl' => \Yii::$app->homeUrl,
+            'brandUrl' => '/cases',
             'options' => [
                 'class' => 'navbar navbar-inverse navbar-fixed-top',
             ],
@@ -63,8 +63,8 @@ NavBar::begin(
 
 $menuBeforeItems = [
     ['label' => 'Cases', 'url' => ['/cases']],
-    ['label' => 'Clients', 'url' => ['/contact']],
-    ['label' => 'Helpers', 'url' => ['/profile']],
+    ['label' => \Yii::$app->settings->get('helptext.contact_label').'s', 'url' => ['/contact']],
+    ['label' => \Yii::$app->settings->get('helptext.user_label').'s', 'url' => ['/profile']],
 //    ['label' => 'Reports',
 //        'items' => [
 //            ['label' => 'Cases', 'url' => ['#']],
@@ -83,7 +83,7 @@ $menuBeforeItems = [
         ],
         'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),
         ],
-        ['label' => 'About Us', 'url' => ['/site/about']],
+        //['label' => 'About Us', 'url' => ['/site/about']],
 
 ];
 

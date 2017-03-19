@@ -6759,6 +6759,14 @@ h1 small,
   padding: 15px;
   margin-top: 7px;
 }
+#grid-cases i.glyphicon.glyphicon-eye-open.edit-today,
+#grid-contacts i.glyphicon.glyphicon-eye-open.edit-today,
+#grid-cases span.glyphicon.glyphicon-pencil,
+#grid-contacts span.glyphicon.glyphicon-pencil,
+#grid-cases span.glyphicon.glyphicon-trash,
+#grid-contacts span.glyphicon.glyphicon-trash {
+  font-size: 2em;
+}
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -6768,6 +6776,32 @@ and open the template in the editor.
     Created on : 18-Jul-2016, 11:59:42
     Author     : developer
 */
+#sms-texts {
+  background-color: rgba(0, 128, 0, 0.09);
+}
+#sms-texts .panel-fix-heading {
+  position: fixed;
+  top: 50px;
+  background-color: #fff;
+  z-index: 100;
+  padding-top: 19px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: -15px;
+}
+#sms-texts .panel-fix-heading .panel-heading {
+  background: #f2f2f2;
+  border-bottom-color: rgba(119, 119, 119, 0.71);
+  border-top: 3px solid #008000;
+}
+#sms-texts .message-date {
+  text-align: center;
+  color: #808080;
+  font-size: 1.1em;
+}
+#sms-texts .panel-body {
+  margin-top: 177px;
+}
 #sms-texts span.personName-1,
 #sms-texts span.personName-2 {
   font-style: italic;
@@ -6782,15 +6816,29 @@ and open the template in the editor.
   margin-bottom: 9px;
   border-top: 1px solid #4F7033;
 }
-#sms-texts li {
-  list-style: none;
-}
-#sms-texts ul {
-  margin: 0;
-  padding: 10px 8%;
+#sms-texts #list-messages .item {
+  width: 100%;
+  display: inline-block;
 }
 #sms-texts .input-group.input-group-addon {
   border: 1px solid #c5c2c2;
+}
+#sms-texts ul.pagination.messages {
+  float: right;
+}
+#sms-texts .ias-trigger,
+#sms-texts .ias-noneleft {
+  display: block;
+  width: 100%;
+  background: #f2f2f2;
+  height: 45px;
+  padding: 10px;
+  border: solid 1px rgba(204, 204, 204, 0.5);
+  margin-top: 12px;
+  font-size: 1.2em;
+}
+#sms-texts .ias-trigger {
+  cursor: pointer;
 }
 #sms-texts span.sms-time {
   float: right;
@@ -6825,7 +6873,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-1 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-1 span.glyphicon.glyphicon-earphone {
@@ -6861,7 +6909,7 @@ and open the template in the editor.
   /* width: 60%;*/
   min-height: 55px;
   clear: left;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-3 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-3 span.glyphicon.glyphicon-earphone {
@@ -6899,7 +6947,7 @@ and open the template in the editor.
   border-color: #cdecb0;
   min-height: 55px;
   clear: right;
-  min-width: 51%;
+  width: 70%;
 }
 #sms-texts .bubble-2 span.glyphicon.glyphicon-comment,
 #sms-texts .bubble-2 span.glyphicon.glyphicon-earphone {
@@ -6908,4 +6956,29 @@ and open the template in the editor.
 }
 #sms-texts span.messageType {
   float: right;
+}
+#sms-texts .panel-sender {
+  padding: 5px 12px;
+  background-color: rgba(242, 242, 242, 0.37);
+  border-bottom: 2px solid rgba(173, 164, 164, 0.55);
+  margin-bottom: 1px;
+}
+#sms-texts .panel-sender #message-message {
+  width: 100%;
+  padding: 4px;
+  font-size: 1.3em;
+}
+#sms-texts .panel-sender #counter-wrap {
+  font-size: 1.1em;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+  color: #808080;
+  padding: 0px 0 7px 0;
+}
+#sms-texts .panel-sender #counter-wrap input#counter {
+  border: none;
+  background: none;
+  text-align: right;
 }
