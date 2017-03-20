@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5b48553f8bf5525a2b8d0fc85b6d3455",
-    "content-hash": "f3bc6ba55fc34b41c7048021bddd325f",
+    "hash": "c073e83ce9a012e2c5e4b75c7a42f16b",
+    "content-hash": "7c945ef1054e80ad22e608f0a9cad2dd",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -4381,16 +4381,16 @@
         },
         {
             "name": "open-ecommerce/yii2-telerivet",
-            "version": "v1.0",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/open-ecommerce/yii2-telerivet.git",
-                "reference": "59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7"
+                "reference": "77b1537e7a8e541544dd763d6081a2c64d1759e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7",
-                "reference": "59fda2dfd67fc35b6a56e6ca5693d4086d7f55d7",
+                "url": "https://api.github.com/repos/open-ecommerce/yii2-telerivet/zipball/77b1537e7a8e541544dd763d6081a2c64d1759e8",
+                "reference": "77b1537e7a8e541544dd763d6081a2c64d1759e8",
                 "shasum": ""
             },
             "require": {
@@ -4423,10 +4423,10 @@
                 "yii2"
             ],
             "support": {
-                "source": "https://github.com/open-ecommerce/yii2-telerivet/tree/master",
+                "source": "https://github.com/open-ecommerce/yii2-telerivet/tree/v1.1",
                 "issues": "https://github.com/open-ecommerce/yii2-telerivet/issues"
             },
-            "time": "2017-03-19 14:02:58"
+            "time": "2017-03-19 15:05:22"
         },
         {
             "name": "open-ecommerce/yii2-twilio",
