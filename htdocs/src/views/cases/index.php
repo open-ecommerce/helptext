@@ -23,8 +23,8 @@ $clientLabel = \Yii::$app->settings->get('helptext.contact_label');
 
 $this->title = " List of Cases";
 
-$deleteTip = Yii::t('app', 'Delete this' . $clientLabel .' with all the cases and messages.');
-$deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.' with all the cases and messages?');
+$deleteTip = Yii::t('app', 'Delete this ' . $clientLabel .' with all the cases, phone numbers and messages.');
+$deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.' with all the cases, phone numbers and messages?');
 
 
 ?>

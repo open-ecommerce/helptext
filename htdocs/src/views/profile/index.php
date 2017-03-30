@@ -13,7 +13,9 @@ use app\models\Profile;
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var app\models\ProfileSearch $searchModel
  */
-$this->title = "List of Availables Helpers";
+
+$userLabel = \Yii::$app->settings->get('helptext.user_label');
+$this->title = "List of Availables " . $userLabel;
 
 $profile = new Profile();
 

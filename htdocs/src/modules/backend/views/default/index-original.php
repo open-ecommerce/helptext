@@ -1,9 +1,6 @@
 <?php
 use dosamigos\chartjs\ChartJs;
 use app\models\Message;
-
-$userLabel = \Yii::$app->settings->get('helptext.user_label');
-$this->title = "Adminstrator Dashboard";
 ?>
 
 <!-- check documentation https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#introduction -->
@@ -17,7 +14,7 @@ $this->title = "Adminstrator Dashboard";
                 </h3>
 
                 <p>
-                    <?= getenv('APP_NAME') ?> Frontend
+                    <?= getenv('APP_NAME') ?>
                 </p>
             </div>
             <div class="icon">
@@ -31,6 +28,7 @@ $this->title = "Adminstrator Dashboard";
     <!-- ./col -->
 
     <?php if (Yii::$app->user->identity->isAdmin): ?>
+
         <div class="col-md-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-aqua">
@@ -40,43 +38,65 @@ $this->title = "Adminstrator Dashboard";
                     </h3>
 
                     <p>
-                        System Users (<?= $userLabel ?>s)
+                        System Users (Helpers)
                     </p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-android-contacts"></i>
+                    <i class="ion ion-person"></i>
                 </div>
                 <a href="<?= \yii\helpers\Url::to(['/user/admin']) ?>" class="small-box-footer">
-                    Manage System <?= $userLabel ?>s <i class="fa fa-arrow-circle-right"></i>
+                    Manage System Users <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
-    <?php endif; ?>
+        <!-- ./col -->
 
-    <?php if (Yii::$app->user->identity->isAdmin): ?>
         <div class="col-md-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-orange">
                 <div class="inner">
                     <h3>
-                        <?= \dektrium\user\models\User::find()->count() ?>
+                        <?= count(\Yii::$app->getModules()) ?>
                     </h3>
 
                     <p>
-                        System Settings
+                        Modules
                     </p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-clipboard"></i>
+                    <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="<?= \yii\helpers\Url::to(['/settings']) ?>" class="small-box-footer">
-                    Manage System Users <i class="fa fa-arrow-circle-right"></i>
+                <a href="<?= \yii\helpers\Url::to(['/backend/default/view-config']) ?>" class="small-box-footer">
+                    Configuration <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+
+        </div>
+        <!-- ./col -->
+
+        <div class="col-md-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>
+                        <?= YII_ENV ?>
+                    </h3>
+
+                    <p>
+                        <?= APP_VERSION ?>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-grid"></i>
+                </div>
+                <a href="<?= \yii\helpers\Url::to(['/debug']) ?>" class="small-box-footer">
+                    Debug <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
+        <!-- ./col -->
     <?php endif; ?>
-    
-    
+
 </div>
 
 
