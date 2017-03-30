@@ -60,10 +60,13 @@ $formater = \yii::$app->formatter;
                         'formConfig' => ['showLabels' => false]
             ]);
 
+
+            //, 'onkeyup' => 'textCounter(this,"counter",160)';
+
             echo Html::hiddenInput('case_id', $modelCases->id);
             echo "<h5>" . $response . "</h5>";
             echo $form->field($modelNewMessage, 'message', [
-                'inputOptions' => ['id' => 'input-message', 'onkeyup' => 'textCounter(this,"counter",160)'],
+                'inputOptions' => ['id' => 'input-message'],
                 'addon' => [
                     'prepend' => ['content' => '<i class="glyphicon glyphicon-comment"></i>'],
                     'append' => [
@@ -72,7 +75,7 @@ $formater = \yii::$app->formatter;
                     ]
                 ]
             ]);
-            echo '<div id="counter-wrap"><input disabled  maxlength="160" size="5" value="160" id="counter"> characters reminding.</div>';
+            echo '<div id="counter-wrap"><input disabled  maxlength="160" size="5" value="160" id="counter"> characters remaining</div>';
 
 
             ActiveForm::end();
@@ -144,16 +147,16 @@ $formater = \yii::$app->formatter;
 
     <?php
     $script = <<< JS
-function textCounter(field,field2,maxlimit)
-{
- var countfield = document.getElementById(field2);
- if ( field.value.length > maxlimit ) {
-  field.value = field.value.substring( 0, maxlimit );
-  return false;
- } else {
-  countfield.value = maxlimit - field.value.length;
- }
-}
+        //get the click event for the view publisher agents
+        $('#input-message').keyup(function() {
+         var value = $('#input-message').val();
+         if ( value.length > 160 ) {
+          //field.value = field.val.substring( 0, 160 );
+          return false;
+         } else {
+          $('#counter').val(160 - value.length);
+         }
+    });
 JS;
     $this->registerJs($script);
     ?>
