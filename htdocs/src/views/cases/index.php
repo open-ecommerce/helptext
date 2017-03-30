@@ -24,7 +24,7 @@ $clientLabel = \Yii::$app->settings->get('helptext.contact_label');
 $this->title = " List of Cases";
 
 $deleteTip = Yii::t('app', 'Delete this ' . $clientLabel .' with all the cases, phone numbers and messages.');
-$deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.' with all the cases, phone numbers and messages?');
+$deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the related messages?');
 
 
 ?>
@@ -159,7 +159,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.
                     'header' => 'Delete Cases',
                     'template' => '{delete}',
                     'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
-                    'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],
+                    'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'message' => $deleteMsg],
                 ],
             ];
             ?>

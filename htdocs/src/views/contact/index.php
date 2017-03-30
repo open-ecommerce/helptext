@@ -11,7 +11,7 @@ use app\models\Languages;
 use yii\helpers\ArrayHelper;
 
 
-$clientLabel = \Yii::$app->settings->get('helptext.contact_label');
+$clientLabel = strtolower(\Yii::$app->settings->get('helptext.contact_label'));
 
 
 /* @var $this yii\web\View */
@@ -20,8 +20,9 @@ $clientLabel = \Yii::$app->settings->get('helptext.contact_label');
 
 $this->title = "List of " . $clientLabel . "s and Cases";
 
-$deleteTip = "Delete this " .$clientLabel. " detail and all the attendances records.";
-$deleteMsg = "Are you sure you want to delete this ".$clientLabel." detail and all his/her messages?";
+$deleteTip = Yii::t('app', 'Delete this ' . $clientLabel .' with all the cases, phone numbers and messages.');
+$deleteMsg = Yii::t('app', 'Are you sure you want to delete this '.$clientLabel.' with all the cases, phone numbers and messages?');
+
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -88,8 +89,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'visible' => (Yii::$app->user->can("administrator")),                    
                     'header' => 'Delete '.$clientLabel,
                     'template' => '{delete}',
-                    'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
-                    'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'data-confirm' => $deleteMsg],
+                    
+    'deleteOptions'=>['role'=>'modal-remote',
+                      'title'=>'Delete current user', 
+                      'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                      'data-toggle'=>'tooltip',
+                      'message' => $deleteMsg],                     
                 ],
             ];
             ?>
