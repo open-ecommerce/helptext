@@ -594,7 +594,7 @@ class Message extends BaseMessage {
                 $this->message = $request->post('content');
                 $this->messageSid = '';
                    if ($_POST['secret'] === getenv('API_SMS_SECRET')) {
-                       $this->$idProviderValidated = TRUE;
+                       $this->idProviderValidated = TRUE;
                    }
                 break;
             default:
