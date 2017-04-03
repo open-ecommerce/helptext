@@ -45,7 +45,7 @@ class MessageController extends \app\controllers\base\MessageController {
         
         $model = new Message;
 
-        if ($this->validateSource) {
+        if ($model->validateSource($request)) {
             OeHelpers::logger('passed authentication'.$model->source, 'sms');            
             try {
                 $model->receiveSMS();

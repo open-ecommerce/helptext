@@ -52,7 +52,7 @@ class Message extends BaseMessage {
      * @return bolean
      */
     //check if it is a valid provider
-    public function validateSource() {
+    public function validateSource($request) {
         //twilio
         if ($request->post('AccountSid')) {
             if ($request->post('AccountSid') === getenv('API_ACCOUNT_SID')) {
