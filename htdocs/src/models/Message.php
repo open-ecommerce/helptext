@@ -452,12 +452,13 @@ class Message extends BaseMessage {
 
         
         $this->projectKey = getenv('API_PROJECT_ID');
-        //$telerivetService = YiiTelerivet;
         $telerivetService = Yii::$app->Yii2Telerivet->initTelerivet();
         
         
         $project = $telerivetService->initProjectById($this->projectKey);
 
+        $project->debug = TRUE;        
+        
         try {
             $newsms = $project->sendMessage(array(
                 'to_number' => $toPhone, // Message this number
