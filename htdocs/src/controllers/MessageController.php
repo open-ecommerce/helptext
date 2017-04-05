@@ -180,7 +180,7 @@ class MessageController extends \app\controllers\base\MessageController {
             if ($modelNewMessage->load($_POST)) {
 // read or convert your posted information
                 $value = $modelNewMessage->message;
-                $modelNewMessage->message = "case#" . $current_id . "# " . $value;
+                $modelNewMessage->message = "chat#" . $current_id . "# " . $value;
 
                 $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
 
@@ -216,7 +216,7 @@ class MessageController extends \app\controllers\base\MessageController {
 
 
             $value = $modelNewMessage->message;
-            $modelNewMessage->message = "case#" . $current_case_id . "# " . $value;
+            $modelNewMessage->message = "chat#" . $current_case_id . "# " . $value;
             $modelNewMessage->id_phone = \app\models\Profile::getUserProfile()->phone;
             $modelNewMessage->id_sender_type = 0;
             $modelNewMessage->source = "system-test";

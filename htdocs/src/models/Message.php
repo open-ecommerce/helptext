@@ -180,7 +180,7 @@ class Message extends BaseMessage {
                     $this->response = $this->automaticResponseText;
                 }
                 //send the text to the the helper
-                $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
+                $this->messageToSend = "chat#" . $this->currentIdCase . "# \r\n";
                 $this->messageToSend .= "from: " . $this->id_phone . "\r\n ------------------------- \r\n";
                 $this->messageToSend .= $this->message;
                 $this->phoneToSend = $this->assignedUserPhone;
@@ -196,7 +196,7 @@ class Message extends BaseMessage {
                     $this->response = $this->automaticResponseText;
                 } else {
                     // send the text to the helper
-                    $this->messageToSend = "Case#" . $this->currentIdCase . "# \r\n";
+                    $this->messageToSend = "chat#" . $this->currentIdCase . "# \r\n";
                     $this->messageToSend .= "from: " . $this->id_phone . "\r\n ------------------------- \r\n";
                     $this->messageToSend .= $this->message;
                     $this->phoneToSend = $this->assignedUserPhone;
@@ -223,7 +223,7 @@ class Message extends BaseMessage {
 
             if ($this->currentIdCase === 0) {
                 $this->response = "We couldn't deliver your last message because it didn't have a case number.\r\n";
-                $this->response .= "Please add the number and resend Case#__# ";
+                $this->response .= "Please add the number and resend chat#__# ";
                 $this->response .=  $this->message;
             } else {
                 $this->messageToSend .= $this->message;
@@ -412,7 +412,6 @@ class Message extends BaseMessage {
      * @return string
      */
     public function sendSMS($msg, $toPhone) {
-
         switch (\Yii::$app->settings->get('helptext.sms_provider')) {
             case self::PROVIDER_TWILIO :
                 $response = $this->twilioSMS($msg, $toPhone);
@@ -428,6 +427,8 @@ class Message extends BaseMessage {
      * @return string
      */
     public function twilioSMS($msg, $toPhone) {
+
+        OeHelpers::logger("Using twilio to send sms" , 'sms');
 
         $twilioService = Yii::$app->Yii2Twilio->initTwilio();
 
@@ -449,7 +450,7 @@ class Message extends BaseMessage {
      * @return string
      */
     public function telerivetSMS($msg, $toPhone) {
-
+        OeHelpers::logger("Using telerivet to send sms" , 'sms');
         
         $this->projectKey = getenv('API_PROJECT_ID');
         $telerivetService = Yii::$app->Yii2Telerivet->initTelerivet();
@@ -474,7 +475,7 @@ class Message extends BaseMessage {
     
     private function getCaseFromMessage($text) {
         $caseNumber = 0;
-        if (preg_match("/case#(.*)#/", strtolower($text), $output)) {
+        if (preg_match("/chat#(.*)#/", strtolower($text), $output)) {
             $caseNumber = $output[1];
         }
         return $caseNumber;

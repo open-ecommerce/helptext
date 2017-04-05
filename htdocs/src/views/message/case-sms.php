@@ -147,7 +147,6 @@ $formater = \yii::$app->formatter;
 
     <?php
     $script = <<< JS
-        //get the click event for the view publisher agents
         $('#input-message').keyup(function() {
          var value = $('#input-message').val();
          if ( value.length > 160 ) {

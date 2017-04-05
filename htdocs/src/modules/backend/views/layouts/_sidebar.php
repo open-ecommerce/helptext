@@ -32,6 +32,7 @@ use Yii;
 
 <?php
 $userMenuItems = [];
+
 // create user menu, when user is admin
 if (Yii::$app->user->identity && Yii::$app->user->identity->isAdmin) {
 
@@ -64,8 +65,6 @@ if (Yii::$app->user->identity && Yii::$app->user->identity->isAdmin) {
         'options' => ['class' => 'treeview'],
         'visible' => Yii::$app->user->identity->isAdmin,
     ];
-}
-
 
 // prepare menu items, get all modules
 $developerMenuItems = [];
@@ -86,22 +85,15 @@ foreach (\dmstr\helpers\Metadata::getModules() as $name => $module) {
     $developerMenuItems[] = $defaultItem;
 }
 
-
 // create developer menu, when user is admin
-if (Yii::$app->user->identity && Yii::$app->user->identity->isAdmin) {
-    $adminMenuItems[] = [
-        'url' => '#',
-        'icon' => 'fa fa-bomb',
-        'label' => 'Dev Modules',
-        'items' => $developerMenuItems,
-        'options' => ['class' => 'treeview'],
-        'visible' => Yii::$app->user->identity->isAdmin,
-    ];
-}
-
-
-
-
+$adminMenuItems[] = [
+    'url' => '#',
+    'icon' => 'fa fa-bomb',
+    'label' => 'Dev Modules',
+    'items' => $developerMenuItems,
+    'options' => ['class' => 'treeview'],
+    'visible' => Yii::$app->user->identity->isAdmin,
+];
 echo \dmstr\widgets\Menu::widget(
         [
             'options' => ['class' => 'sidebar-menu'],
@@ -110,4 +102,6 @@ echo \dmstr\widgets\Menu::widget(
             ),
         ]
 );
+}
+
 ?>
