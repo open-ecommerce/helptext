@@ -50,11 +50,12 @@ class CasesController extends \app\controllers\base\CasesController
     public function actionDetail() {
         if (isset($_POST['expandRowKey'])) {
            
-            $model = Cases::find()->where(['id_contact' => $_POST['expandRowKey']])->orderBy('start_date desc');
+            $model = Cases::find()->where(['id_contact' => $_POST['expandRowKey']])
+                    ->orderBy(['start_date'=>SORT_DESC])->all();
 
             $dataProvider = new ActiveDataProvider([
                 'query' => $model,
-                'pagination' => ['pageSize' => 20,],
+                'pagination' => ['pageSize' => 40,],
             ]);
             $this->layout = '_only-content';
             return $this->render('_grid_cases-details', [

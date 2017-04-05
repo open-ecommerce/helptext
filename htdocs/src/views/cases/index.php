@@ -49,6 +49,7 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the r
             'value' => 'contact.fullName',
             'hAlign' => 'center',
             'vAlign' => 'middle',
+            'visible' => (Yii::$app->user->can("administrator")),
         ],
         [
             'attribute' => 'userName',
@@ -68,40 +69,40 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the r
             'filterInputOptions'=>['placeholder'=>'Any Category'],
             'format'=>'raw'
         ],
-//        [
-//            'attribute' => 'caseSeverity',
-//            'value' => 'severity.severity',
-//            'hAlign' => 'center',
-//            'vAlign' => 'middle',
-//            'filterType'=>GridView::FILTER_SELECT2,
-//            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
-//            'filterWidgetOptions'=>[
-//                'pluginOptions'=>['allowClear'=>true],
-//            ],
-//            'filterInputOptions'=>['placeholder'=>'Any Severity'],
-//            'format'=>'raw'
-//        ],
         [
-            'attribute' => 'caseOutcome',
-            'value' => 'outcome.outcome',
+            'attribute' => 'caseSeverity',
+            'value' => 'severity.severity',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'hAlign' => 'center',
             'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>ArrayHelper::map(OutcomeCategory::find()->orderBy('outcome')->asArray()->all(), 'id', 'outcome'), 
+            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
             'filterWidgetOptions'=>[
                 'pluginOptions'=>['allowClear'=>true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Any Outcome'],
+            'filterInputOptions'=>['placeholder'=>'Any Severity'],
             'format'=>'raw'
         ],
+//        [
+//            'attribute' => 'caseOutcome',
+//            'value' => 'outcome.outcome',
+//            'hAlign' => 'center',
+//            'vAlign' => 'middle',
+//            'hAlign' => 'center',
+//            'filterType'=>GridView::FILTER_SELECT2,
+//            'filter'=>ArrayHelper::map(OutcomeCategory::find()->orderBy('outcome')->asArray()->all(), 'id', 'outcome'), 
+//            'filterWidgetOptions'=>[
+//                'pluginOptions'=>['allowClear'=>true],
+//            ],
+//            'filterInputOptions'=>['placeholder'=>'Any Outcome'],
+//            'format'=>'raw'
+//        ],
         [
             'attribute' => 'start_date',
             'value' => 'start_date',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'width' => '10px',
-            'format' => ['date', 'php:d M Y'],
+            'width' => '160px',
+            'format' => ['date', 'php:M d Y @ h:i'],
             'filter' => false,
         ],
         [

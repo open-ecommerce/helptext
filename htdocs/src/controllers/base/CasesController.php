@@ -38,10 +38,6 @@ class CasesController extends Controller {
         $searchModel = new CasesSearch;
         $dataProvider = $searchModel->search($_GET);
 
-        Tabs::clearLocalStorage();
-
-        Url::remember();
-        \Yii::$app->session['__crudReturnUrl'] = null;
 
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
