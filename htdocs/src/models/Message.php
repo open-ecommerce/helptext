@@ -457,7 +457,6 @@ class Message extends BaseMessage {
         
         $project = $telerivetService->initProjectById($this->projectKey);
 
-        $project->debug = TRUE;        
         
         try {
             $newsms = $project->sendMessage(array(
