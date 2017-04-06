@@ -148,9 +148,9 @@ abstract class Cases extends \yii\db\ActiveRecord {
                 ->where(['id_case' => $this->id])
                 ->one();
         if ($lastMessage->id_sender_type === 2) {
-            return FALSE;
+            return $lastMessage->id_sender_type;
         } else {
-            return TRUE;
+            return $lastMessage->id_sender_type;
         }
         
     }

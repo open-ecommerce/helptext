@@ -39,6 +39,9 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'vAlign' => 'middle',
         ],
         [
+            'attribute' => 'answered',
+        ],        
+        [
             'class' => 'kartik\grid\ActionColumn',
             'template' => '{view_conversation}',
             'header' => 'View Chats',
@@ -57,7 +60,8 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
                     return $url;
                 }
             }
-        ], [
+        ], 
+        [
             'attribute' => 'id_phone',
             'hAlign' => 'center',
             'vAlign' => 'middle',
