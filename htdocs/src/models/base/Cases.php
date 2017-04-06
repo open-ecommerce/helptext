@@ -126,6 +126,21 @@ abstract class Cases extends \yii\db\ActiveRecord {
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMessages() {
+        return $this->hasMany(\app\models\Message::className(), ['id_case' => 'id']);
+    }    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMessagesCount() {
+        return $this->hasMany(\app\models\Message::className(), ['id_case' => 'id'])->count();
+    }    
+
+    
+    /**
      * @inheritdoc
      * @return CasesQuery the active query used by this AR class.
      */

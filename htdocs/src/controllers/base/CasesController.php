@@ -36,8 +36,14 @@ class CasesController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new CasesSearch;
-        $dataProvider = $searchModel->search($_GET);
-
+        //$dataProvider = $searchModel->search($_GET);
+        
+        
+       $query = Cases::find()->joinWith('messages'); 
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
 
         return $this->render('index', [
                     'dataProvider' => $dataProvider,

@@ -23,15 +23,16 @@ $clientLabel = \Yii::$app->settings->get('helptext.contact_label');
 
 $this->title = " List of Cases";
 
-$deleteTip = Yii::t('app', 'Delete this ' . $clientLabel .' with all the cases, phone numbers and messages.');
+$deleteTip = Yii::t('app', 'Delete this ' . $clientLabel . ' with all the cases, phone numbers and messages.');
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the related messages?');
+
+$messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2x"></i><i class="fa fa-stack-1x">1</i></span>';
 
 
 ?>
-  <div class="col-md-12">
-<?php //echo $this->render('_search', ['model' => $searchModel]);  ?>
+<div class="col-md-12">
+<?php //echo $this->render('_search', ['model' => $searchModel]);   ?>
     <?php
-
     $gridColumns = [
         [
             'attribute' => 'id',
@@ -40,9 +41,27 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the r
             'vAlign' => 'middle',
         ],
         [
+            'class' => 'kartik\grid\ActionColumn',
+            'template' => '{view_conversation}',
+            'header' => 'View Chats',
+            'buttons' => [
+                'view_conversation' => function ($url, $model) {
+                $messagesCount = '<i class="glyphicon glyphicon-comment icon-size"></i><span class="badge messageBadge messageBadge-custom">'.$model->messagesCount.'</span>';
+                return Html::a($messagesCount, $url, ['class' => 'btn btn-success'], [
+                                'title' => Yii::t('app', 'Change today\'s lists'),
+                    ]);
+                }
+            ],
+            'urlCreator' => function ($action, $model, $key, $index) {
+                if ($action === 'view_conversation') {
+                    $url = Yii::$app->urlManager->createUrl(array('message/viewsms', ['id' => $key]));
+                    return $url;
+                }
+            }
+        ], [
             'attribute' => 'id_phone',
             'hAlign' => 'center',
-            'vAlign' => 'middle',            
+            'vAlign' => 'middle',
         ],
         [
             'attribute' => 'fullName',
@@ -61,26 +80,26 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the r
             'value' => 'category.case_category',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>ArrayHelper::map(CaseCategory::find()->orderBy('case_category')->asArray()->all(), 'id', 'case_category'), 
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => ArrayHelper::map(CaseCategory::find()->orderBy('case_category')->asArray()->all(), 'id', 'case_category'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Any Category'],
-            'format'=>'raw'
+            'filterInputOptions' => ['placeholder' => 'Any Category'],
+            'format' => 'raw'
         ],
         [
             'attribute' => 'caseSeverity',
             'value' => 'severity.severity',
             'hAlign' => 'center',
             'vAlign' => 'middle',
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'), 
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => ArrayHelper::map(Severity::find()->orderBy('severity')->asArray()->all(), 'id', 'severity'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Any Severity'],
-            'format'=>'raw'
+            'filterInputOptions' => ['placeholder' => 'Any Severity'],
+            'format' => 'raw'
         ],
 //        [
 //            'attribute' => 'caseOutcome',
@@ -122,85 +141,67 @@ $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the r
             'filter' => false,
         ],
         [
-            'class' => 'kartik\grid\ActionColumn',
-            'template' => '{view_conversation}',
-            'header' => 'View Messages',
-            'buttons' => [
-                'view_conversation' => function ($url, $model) {
-                    return Html::a('<i class="glyphicon glyphicon-comment"></i>', $url, ['class' => 'btn btn-success'], [
-                                'title' => Yii::t('app', 'Change today\'s lists'),
-                    ]);
-                }
-                    ],
-                    'urlCreator' => function ($action, $model, $key, $index) {
-                if ($action === 'view_conversation') {
-                    $url = Yii::$app->urlManager->createUrl(array('message/viewsms', ['id' => $key]));
-                    return $url;
-                }
-            }
+            'attribute' => 'comments',
         ],
         [
-                    'attribute' => 'comments',
-                ],
-                [
-                    'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'View Details',
-                    'template' => '{view}',
-                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
-                ],
-                [
-                    'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'Update Cases',
-                    'template' => '{update}',
-                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
-                ],
-                [
-                    'class' => 'kartik\grid\ActionColumn',
-                    'visible' => (Yii::$app->user->can("administrator")),
-                    'header' => 'Delete Cases',
-                    'template' => '{delete}',
-                    'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
-                    'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'message' => $deleteMsg],
-                ],
-            ];
-            ?>
+            'class' => 'kartik\grid\ActionColumn',
+            'header' => 'View Details',
+            'template' => '{view}',
+            'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
+        ],
+        [
+            'class' => 'kartik\grid\ActionColumn',
+            'header' => 'Update Cases',
+            'template' => '{update}',
+            'viewOptions' => ['label' => '<i class="glyphicon glyphicon-pencil edit-today"></i>'],
+        ],
+        [
+            'class' => 'kartik\grid\ActionColumn',
+            'visible' => (Yii::$app->user->can("administrator")),
+            'header' => 'Delete Cases',
+            'template' => '{delete}',
+            'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-trash"></i>'],
+            'deleteOptions' => ['title' => $deleteTip, 'data-toggle' => 'tooltip', 'message' => $deleteMsg],
+        ],
+    ];
+    ?>
 
 
-            <?=
-            GridView::widget([
-                'id' => 'grid-cases',
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'resizableColumns' => false,
-                'showPageSummary' => false,
-                'headerRowOptions' => ['class' => 'kartik-sheet-style'],
-                'filterRowOptions' => ['class' => 'kartik-sheet-style'],
-                'responsive' => true,
-                'pjax' => true, // pjax is set to always true for this demo
-                'pjaxSettings' => [
-                    'neverTimeout' => true,
-                ],
-                'hover' => true,
-                'panel' => [
-                    'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i>       ' . $this->title . '</h3>',
-                    'type' => 'primary',
-                    'showFooter' => false
-                ],
-                'columns' => $gridColumns,
-                // set export properties
-                'export' => [
-                    'fontAwesome' => true,
-                    'showConfirmAlert'=>false,
-                    'target'=>GridView::TARGET_BLANK                    
-                ],
-                // set your toolbar
-                'toolbar' => [
-                    ['content' =>
-                        Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
-                    ],
-                    '{export}',
-                ],
-            ]);
-            ?>
+    <?=
+    GridView::widget([
+        'id' => 'grid-cases',
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'resizableColumns' => false,
+        'showPageSummary' => false,
+        'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+        'filterRowOptions' => ['class' => 'kartik-sheet-style'],
+        'responsive' => true,
+        'pjax' => true, // pjax is set to always true for this demo
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+        ],
+        'hover' => true,
+        'panel' => [
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i>       ' . $this->title . '</h3>',
+            'type' => 'primary',
+            'showFooter' => false
+        ],
+        'columns' => $gridColumns,
+        // set export properties
+        'export' => [
+            'fontAwesome' => true,
+            'showConfirmAlert' => false,
+            'target' => GridView::TARGET_BLANK
+        ],
+        // set your toolbar
+        'toolbar' => [
+            ['content' =>
+                Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
+            ],
+            '{export}',
+        ],
+    ]);
+    ?>
 
 </div>
