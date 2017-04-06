@@ -36,13 +36,14 @@ class CasesController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new CasesSearch;
-        //$dataProvider = $searchModel->search($_GET);
+        $dataProvider = $searchModel->search($_GET);
+
+
+        $query = Cases::find()->joinWith('messages'); 
         
-        
-       $query = Cases::find()->joinWith('messages'); 
-        
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query
+        $dataProvider1 = new ActiveDataProvider([
+            'query' => $query,
+
         ]);
 
         return $this->render('index', [
@@ -125,7 +126,8 @@ class CasesController extends Controller {
                 'title' => \Yii::t('app', Html::encode('Error checking message system')),
                 'positonY' => 'top',
                 'positonX' => 'right'
-            ]);            return $this->redirect(Url::previous());
+            ]);
+            return $this->redirect(Url::previous());
         }
 
 // TODO: improve detection
@@ -157,7 +159,5 @@ class CasesController extends Controller {
             throw new HttpException(404, 'The requested page does not exist.');
         }
     }
-    
-        
 
 }

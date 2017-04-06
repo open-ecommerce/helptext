@@ -58,7 +58,7 @@ class CasesSearch extends Cases {
 
         $query = Cases::find();
 
-        $query->joinWith(['contact', 'category', 'severity', 'outcome', 'profile', 'phone']);
+        $query->joinWith(['contact', 'category', 'severity', 'profile', 'phone', 'messages']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

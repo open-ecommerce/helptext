@@ -63,7 +63,7 @@ abstract class Cases extends \yii\db\ActiveRecord {
         return [
             'id' => Yii::t('app', '#'),
             'id_contact' => \Yii::$app->settings->get('helptext.contact_label') . ' Name',
-            'id_phone' => 'Active '.\Yii::$app->settings->get('helptext.contact_label') . ' Phone',
+            'id_phone' => 'Active ' . \Yii::$app->settings->get('helptext.contact_label') . ' Phone',
             'id_user' => \Yii::$app->settings->get('helptext.user_label'),
             'userName' => \Yii::$app->settings->get('helptext.user_label'),
             'id_category' => Yii::t('app', 'Category'),
@@ -129,17 +129,32 @@ abstract class Cases extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery
      */
     public function getMessages() {
-        return $this->hasMany(\app\models\Message::className(), ['id_case' => 'id']);
-    }    
+        return $this->hasone(\app\models\Message::className(), ['id_case' => 'id'])
+                        ->orderBy(['message.sent' => SORT_DESC]);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getMessagesCount() {
         return $this->hasMany(\app\models\Message::className(), ['id_case' => 'id'])->count();
-    }    
+    }
 
-    
+//    /**
+//     * @return \yii\db\ActiveQuery
+//     */
+    public function getAnswered() {
+        $lastMessage = \app\models\Message::find()
+                ->where(['id_case' => $this->id])
+                ->one();
+        if ($lastMessage->id_sender_type === 2) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+        
+    }
+
     /**
      * @inheritdoc
      * @return CasesQuery the active query used by this AR class.

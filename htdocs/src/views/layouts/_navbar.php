@@ -8,7 +8,6 @@ use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 use yii\helpers\Html;
 
-
 $bundle = AppAsset::register($this);
 $imgLogoPath = $bundle->baseUrl . "/img/icons/" . \Yii::$app->settings->get('design.icons_folder') . "/logo.png";
 $imgClientLogo = Html::img($imgLogoPath);
@@ -63,8 +62,9 @@ NavBar::begin(
 
 $menuBeforeItems = [
     ['label' => 'Cases', 'url' => ['/cases']],
-    ['label' => \Yii::$app->settings->get('helptext.contact_label').'s', 'url' => ['/contact']],
-    ['label' => \Yii::$app->settings->get('helptext.user_label').'s', 'url' => ['/profile']],
+    ['label' => \Yii::$app->settings->get('helptext.contact_label') . 's', 'url' => ['/contact'],
+        'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),],
+    ['label' => \Yii::$app->settings->get('helptext.user_label') . 's', 'url' => ['/profile']],
 //    ['label' => 'Reports',
 //        'items' => [
 //            ['label' => 'Cases', 'url' => ['#']],
@@ -82,9 +82,8 @@ $menuBeforeItems = [
             ['label' => 'SMS Phone Tester', 'url' => ['message/testsms']],
         ],
         'visible' => \Yii::$app->user->can('view_mnu_utilities', ['route' => true]),
-        ],
+    ],
         //['label' => 'About Us', 'url' => ['/site/about']],
-
 ];
 
 echo Nav::widget(
@@ -94,7 +93,6 @@ echo Nav::widget(
             'items' => $menuBeforeItems,
         ]
 );
-
 ?>
 <!--    <ul class="nav navbar-nav pull-right">
         <li class="dropdown" id="menuLogin">

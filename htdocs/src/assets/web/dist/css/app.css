@@ -6782,6 +6782,10 @@ h1 small,
   top: -22px;
   font-size: 1.2em;
   z-index: 3;
+  color: #545151;
+}
+#grid-cases .messageBadge-custom.not-answered,
+#grid-contacts .messageBadge-custom.not-answered {
   color: #f70a0a;
 }
 /*

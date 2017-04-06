@@ -27,11 +27,9 @@ $deleteTip = Yii::t('app', 'Delete this ' . $clientLabel . ' with all the cases,
 $deleteMsg = Yii::t('app', 'Are you sure you want to delete this case with the related messages?');
 
 $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2x"></i><i class="fa fa-stack-1x">1</i></span>';
-
-
 ?>
 <div class="col-md-12">
-<?php //echo $this->render('_search', ['model' => $searchModel]);   ?>
+<?php //echo $this->render('_search', ['model' => $searchModel]);    ?>
     <?php
     $gridColumns = [
         [
@@ -46,8 +44,9 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'header' => 'View Chats',
             'buttons' => [
                 'view_conversation' => function ($url, $model) {
-                $messagesCount = '<i class="glyphicon glyphicon-comment icon-size"></i><span class="badge messageBadge messageBadge-custom">'.$model->messagesCount.'</span>';
-                return Html::a($messagesCount, $url, ['class' => 'btn btn-success'], [
+                    $colorCount = ($model->answered ? 'answered' : 'not-answered');
+                    $messagesCount = '<i class="glyphicon glyphicon-comment icon-size"></i><span class="badge messageBadge messageBadge-custom ' . $colorCount . '">' . $model->messagesCount . '</span>';
+                    return Html::a($messagesCount, $url, ['class' => 'btn btn-success'], [
                                 'title' => Yii::t('app', 'Change today\'s lists'),
                     ]);
                 }
@@ -131,15 +130,15 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'vAlign' => 'middle',
             'value' => 'state',
         ],
-        [
-            'attribute' => 'close_date',
-            'value' => 'close_date',
-            'hAlign' => 'center',
-            'vAlign' => 'middle',
-            'width' => '10px',
-            'format' => ['date', 'php:d M Y'],
-            'filter' => false,
-        ],
+//        [
+//            'attribute' => 'close_date',
+//            'value' => 'close_date',
+//            'hAlign' => 'center',
+//            'vAlign' => 'middle',
+//            'width' => '10px',
+//            'format' => ['date', 'php:d M Y'],
+//            'filter' => false,
+//        ],
         [
             'attribute' => 'comments',
         ],
@@ -167,41 +166,41 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
     ?>
 
 
-    <?=
-    GridView::widget([
-        'id' => 'grid-cases',
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'resizableColumns' => false,
-        'showPageSummary' => false,
-        'headerRowOptions' => ['class' => 'kartik-sheet-style'],
-        'filterRowOptions' => ['class' => 'kartik-sheet-style'],
-        'responsive' => true,
-        'pjax' => true, // pjax is set to always true for this demo
-        'pjaxSettings' => [
-            'neverTimeout' => true,
+<?=
+GridView::widget([
+    'id' => 'grid-cases',
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'resizableColumns' => false,
+    'showPageSummary' => false,
+    'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+    'filterRowOptions' => ['class' => 'kartik-sheet-style'],
+    'responsive' => true,
+    'pjax' => true, // pjax is set to always true for this demo
+    'pjaxSettings' => [
+        'neverTimeout' => true,
+    ],
+    'hover' => true,
+    'panel' => [
+        'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i>       ' . $this->title . '</h3>',
+        'type' => 'primary',
+        'showFooter' => false
+    ],
+    'columns' => $gridColumns,
+    // set export properties
+    'export' => [
+        'fontAwesome' => true,
+        'showConfirmAlert' => false,
+        'target' => GridView::TARGET_BLANK
+    ],
+    // set your toolbar
+    'toolbar' => [
+        ['content' =>
+            Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
         ],
-        'hover' => true,
-        'panel' => [
-            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i>       ' . $this->title . '</h3>',
-            'type' => 'primary',
-            'showFooter' => false
-        ],
-        'columns' => $gridColumns,
-        // set export properties
-        'export' => [
-            'fontAwesome' => true,
-            'showConfirmAlert' => false,
-            'target' => GridView::TARGET_BLANK
-        ],
-        // set your toolbar
-        'toolbar' => [
-            ['content' =>
-                Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
-            ],
-            '{export}',
-        ],
-    ]);
-    ?>
+        '{export}',
+    ],
+]);
+?>
 
 </div>
