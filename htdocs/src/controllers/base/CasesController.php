@@ -43,6 +43,7 @@ class CasesController extends Controller {
         
         $dataProvider1 = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => false,            
 
         ]);
 
