@@ -41,12 +41,6 @@ class CasesController extends Controller {
 
         $query = Cases::find()->joinWith('messages'); 
         
-        $dataProvider1 = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => false,            
-
-        ]);
-
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
                     'searchModel' => $searchModel,

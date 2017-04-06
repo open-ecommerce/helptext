@@ -62,6 +62,7 @@ class CasesSearch extends Cases {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => false,                        
         ]);
 
         $dataProvider->setSort([
