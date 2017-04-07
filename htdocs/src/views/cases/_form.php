@@ -40,7 +40,7 @@ use kartik\helpers\Html;
 </div>
 <div class="col-md-12">
     <div class="col-md-6">
-        <?= $form->field($model, 'state')->dropDownList(['0' => 'Close', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
+        <?= $form->field($model, 'state')->dropDownList(['0' => 'Closed', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
         <?= $form->field($model, 'start_date')->widget(DateControl::classname(), ['type' => DateControl::FORMAT_DATETIME]); ?>
         <?= $form->field($model, 'close_date')->widget(DateControl::classname(), ['type' => DateControl::FORMAT_DATETIME]); ?>
     </div>

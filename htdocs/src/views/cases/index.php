@@ -128,6 +128,8 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'attribute' => 'caseState',
             'width' => '130px',
             'class' => 'kartik\grid\BooleanColumn',
+            'trueLabel' => 'Open', 
+            'falseLabel' => 'Closed',            
             'vAlign' => 'middle',
             'value' => 'state',
         ],
