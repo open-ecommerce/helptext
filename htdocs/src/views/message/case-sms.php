@@ -32,8 +32,12 @@ $formater = \yii::$app->formatter;
             <div class="row">
                 <div class="col-lg-6">
                     <h4>
-                        <?= Yii::t('app', 'Case Number: ') . $modelCases->id . " / " ?>
-                        <?= Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name ?>
+                        <?= Yii::t('app', 'Case Number: ') . $modelCases->id ?>
+                        <?php
+                        if (Yii::$app->user->can("administrator")) {
+                            echo " / " .Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name;
+                        }
+                        ?>
                     </h4>
                     <h4>
                         <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>

@@ -29,14 +29,21 @@ switch ($model['id_sender_type']) {
         break;
     case 2: //contact
         $sender = $modelCases->contact->first_name . "<br>" . $model->id_phone;
+        if (Yii::$app->user->can("administrator")) {
+            $sender = $modelCases->contact->first_name . "<br>" . $model->id_phone;
+        } else {
+            $sender = $model->id_phone;
+        }
         $sender .= "<br>to: " . $model->userName . "<br>";
-        //$sender = "peron";
         $phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
         break;
     case 3:
         $sender = $model->userName . "<br>" . $model->id_phone;
-        $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
-        //$sender = "balbin";
+
+        if (Yii::$app->user->can("administrator")) {
+            $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
+        }
+
         $phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
         break;
 }
