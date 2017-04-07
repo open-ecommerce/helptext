@@ -17,7 +17,8 @@ use kartik\helpers\Html;
 <div class="col-md-12">
     <div class="col-md-6">
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+        <?php // $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'in_school')->dropDownList(['0' => 'Is in school', '1' => 'Is our of school'], ['prompt' => '- Choose school status']) ?>
         <?= $form->field($model, 'gender')->dropDownList(['M' => 'Male', 'F' => 'Female', 'O' => 'Other'], ['prompt' => '- Choose Gender']) ?>
         <?= $form->field($model, 'marital_status')->dropDownList(['Maried' => 'Maried', 'Single' => 'Single'], ['prompt' => '- Choose Status']) ?>
         <?= $form->field($model, 'birthday')->widget(DateControl::classname(), ['type'=>DateControl::FORMAT_DATE]); ?>
@@ -29,11 +30,12 @@ use kartik\helpers\Html;
         <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'id_language')->dropDownList(ArrayHelper::map(Languages::find()->orderBy('language')->all(), 'id', 'language')) ?>
     </div>
 </div>
 <div class="col-md-12">
     <div class="large-12 columns">
-        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Elegibility comments and other important issues.')); ?>
+        <?= $form->field($model, 'comments', ['template' => "Comments\n\n{input}\n{hint}\n{error}"])->textArea(array('col-md-12s' => 5, 'placeholder' => 'Comments and other important issues.')); ?>
     </div>
 </div>
 

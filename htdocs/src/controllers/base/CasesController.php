@@ -94,7 +94,8 @@ class CasesController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(Url::previous());
+            //return $this->redirect(Url::previous());
+            return $this->redirect('/cases');
         } else {
             return $this->render('update', [
                         'model' => $model,
@@ -122,7 +123,7 @@ class CasesController extends Controller {
                 'positonY' => 'top',
                 'positonX' => 'right'
             ]);
-            return $this->redirect(Url::previous());
+            return $this->redirect('/cases');
         }
 
 // TODO: improve detection

@@ -18,20 +18,31 @@ use kartik\helpers\Html;
 <div class="col-md-12">
     <div class="col-md-6">
         <?php
-            if (!$model->isNewRecord) {
-                echo '<label class="control-label">Contact Name</label><br>';
-                echo Html::textInput("name", $model->contactName, ['readonly' => TRUE, 'class' => 'form-control'])."<br>";
-            } else {
+        echo '<label class="control-label">Active Phone Number</label><br>';
+        echo Html::textInput("id_phone", $model->id_phone, ['readonly' => TRUE, 'class' => 'form-control']) . "<br>";
+        ?>
+    </div>
+    <div class="col-md-6">
+        <?php
+        if ((!$model->isNewRecord) && (Yii::$app->user->can("administrator"))) {
+            echo '<label class="control-label">Contact Name</label><br>';
+            echo Html::textInput("name", $model->contactName, ['readonly' => TRUE, 'class' => 'form-control']) . "<br>";
+        } else {
+            if (Yii::$app->user->can("administrator")) {
                 echo $form->field($model, 'id_contact')->dropDownList(ArrayHelper::map(\app\models\Contact::find()->orderBy('last_name')->all(), 'id', function($model, $defaultValue) {
                             return $model['first_name'] . ' ' . $model['last_name'];
                         })
                         , ['prompt' => '- Select Client']);
             }
-        ?>                      
+        }
+        ?>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="col-md-6">
         <?= $form->field($model, 'state')->dropDownList(['0' => 'Close', '1' => 'Open'], ['prompt' => '- Choose State']) ?>
         <?= $form->field($model, 'start_date')->widget(DateControl::classname(), ['type' => DateControl::FORMAT_DATETIME]); ?>
         <?= $form->field($model, 'close_date')->widget(DateControl::classname(), ['type' => DateControl::FORMAT_DATETIME]); ?>
-
     </div>
 
     <div class="col-md-6">
@@ -43,7 +54,7 @@ use kartik\helpers\Html;
         ?>
         <?= $form->field($model, 'id_category')->dropDownList(ArrayHelper::map(\app\models\CaseCategory::find()->orderBy('case_category')->all(), 'id', 'case_category'), ['prompt' => '- Choose Category']) ?>
         <?= $form->field($model, 'id_severity')->dropDownList(ArrayHelper::map(\app\models\Severity::find()->orderBy('severity')->all(), 'id', 'severity'), ['prompt' => '- Choose Severity']) ?>
-        <?= $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'), ['prompt' => '- Choose Outcome']) ?>
+        <?php // $form->field($model, 'id_outcome')->dropDownList(ArrayHelper::map(\app\models\OutcomeCategory::find()->orderBy('outcome')->all(), 'id', 'outcome'), ['prompt' => '- Choose Outcome']) ?>
     </div>
 </div>
 <div class="col-md-12">

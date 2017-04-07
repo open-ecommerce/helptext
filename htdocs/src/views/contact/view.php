@@ -30,7 +30,6 @@ $this->title = Yii::t('app', 'Contact');
             <div class="panel-heading">
                 <!-- menu buttons -->
                 <div class="pull-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-copy"></span> ' . Yii::t('app', 'Copy'), ['create', 'id' => $model->id, 'Contact' => $copyParams], ['class' => 'btn btn-success']) ?>
                     <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
                 </div>
                 <h3>
@@ -43,10 +42,10 @@ $this->title = Yii::t('app', 'Contact');
                     'model' => $model,
                     'attributes' => [
                         'id',
-                        'id_country',
+                        'country.country_name',
                         'id_language',
                         'first_name',
-                        'last_name',
+                        //'last_name',
                         'gender',
                         'marital_status',
                         'birthday',

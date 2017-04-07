@@ -146,11 +146,12 @@ abstract class Cases extends \yii\db\ActiveRecord {
     public function getAnswered() {
         $lastMessage = \app\models\Message::find()
                 ->where(['id_case' => $this->id])
+                ->orderBy(['message.sent' => SORT_DESC])
                 ->one();
         if ($lastMessage->id_sender_type === 2) {
-            return $lastMessage->id_sender_type;
+            return FALSE;
         } else {
-            return $lastMessage->id_sender_type;
+            return TRUE;
         }
         
     }

@@ -27,6 +27,7 @@ use Yii;
  * @property string $postal_code
  * @property string $comments
  * @property string $aliasModel
+ * @property boolean $in_school
  */
 abstract class Contact extends \yii\db\ActiveRecord
 {
@@ -49,6 +50,7 @@ abstract class Contact extends \yii\db\ActiveRecord
             [['first_name'], 'required'],
             [['id_country', 'id_language'], 'integer'],
             [['birthday', 'lastPhone'], 'safe'],
+            [['in_school'], 'boolean'],            
             [['first_name', 'last_name', 'address_line1', 'address_line2', 'city', 'state'], 'string', 'max' => 50],
             [['gender', 'marital_status'], 'string', 'max' => 10],
             [['postal_code'], 'string', 'max' => 15],
@@ -65,18 +67,19 @@ abstract class Contact extends \yii\db\ActiveRecord
             'id' => '#',
             'id_country' => Yii::t('app', 'Nationality'),
             'id_language' => Yii::t('app', 'First Language'),
-            'first_name' => Yii::t('app', 'Names'),
+            'first_name' => Yii::t('app', 'Name'),
             'last_name' => Yii::t('app', 'Surname'),
             'gender' => Yii::t('app', 'Gender'),
             'marital_status' => Yii::t('app', 'Marital Status'),
             'address_line1' => Yii::t('app', 'Address'),
-            'address_line2' => Yii::t('app', 'Address'),
+            'address_line2' => Yii::t('app', 'Address 2nd line'),
             'city' => Yii::t('app', 'City'),
-            'state' => Yii::t('app', 'County'),
+            'state' => Yii::t('app', 'District'),
             'postal_code' => Yii::t('app', 'Postcode'),
             'comments' => Yii::t('app', 'Comments'),
             'fullName' => \Yii::$app->settings->get('helptext.contact_label') . ' Name',
             'lastPhone' => Yii::t('app', 'Last Used Phone'),
+            'in_school' => Yii::t('app', 'Is in school?'),
         ];
     }
 
@@ -93,22 +96,23 @@ abstract class Contact extends \yii\db\ActiveRecord
         return $this->first_name . " " . $this->last_name;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry() {
+        return $this->hasOne(\app\models\Country::className(), ['id' => 'id_country']);
+    }    
+    
+    
     public function getLastPhone() {
 
         //$phone = new ContactPhone();
-        
-
-        
         $phone = ContactPhone::find()
                 ->where(['id_contact' => $this->id])
                 ->orderBy(['id' => SORT_DESC])
                 ->one();        
         
         return $phone['id_phone'];
-        
-        
-        
-        
     }
     
 }

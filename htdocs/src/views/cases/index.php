@@ -39,9 +39,6 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'vAlign' => 'middle',
         ],
         [
-            'attribute' => 'answered',
-        ],        
-        [
             'class' => 'kartik\grid\ActionColumn',
             'template' => '{view_conversation}',
             'header' => 'View Chats',
@@ -146,12 +143,12 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
         [
             'attribute' => 'comments',
         ],
-        [
-            'class' => 'kartik\grid\ActionColumn',
-            'header' => 'View Details',
-            'template' => '{view}',
-            'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
-        ],
+//        [
+//            'class' => 'kartik\grid\ActionColumn',
+//            'header' => 'View Details',
+//            'template' => '{view}',
+//            'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open edit-today"></i>'],
+//        ],
         [
             'class' => 'kartik\grid\ActionColumn',
             'header' => 'Update Cases',
@@ -198,12 +195,12 @@ GridView::widget([
         'target' => GridView::TARGET_BLANK
     ],
     // set your toolbar
-    'toolbar' => [
-        ['content' =>
-            Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
-        ],
-        '{export}',
-    ],
+//    'toolbar' => [
+//        ['content' =>
+//            Html::a('<i class="glyphicon glyphicon-plus"></i>  Create New Case', ['create'], ['class' => 'btn btn-success']),
+//        ],
+//        '{export}',
+//    ],
 ]);
 ?>
 

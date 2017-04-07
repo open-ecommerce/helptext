@@ -71,12 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
         [
                     'attribute' => 'comments',
                 ],
-                [
-                    'class' => 'kartik\grid\ActionColumn',
-                    'header' => 'View Detail',
-                    'template' => '{view}',
-                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open"></i>'],
-                ],
+//                [
+//                    'class' => 'kartik\grid\ActionColumn',
+//                    'header' => 'View Detail',
+//                    'template' => '{view}',
+//                    'viewOptions' => ['label' => '<i class="glyphicon glyphicon-eye-open"></i>'],
+//                ],
                     
                 [
                     'class' => 'kartik\grid\ActionColumn',
