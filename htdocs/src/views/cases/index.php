@@ -62,6 +62,7 @@ $messagesCount = '<span class="fa-stack fa-lg"><i class="fa fa-star-o fa-stack-2
             'attribute' => 'id_phone',
             'hAlign' => 'center',
             'vAlign' => 'middle',
+            'visible' => (Yii::$app->user->can("administrator")),
         ],
         [
             'attribute' => 'fullName',

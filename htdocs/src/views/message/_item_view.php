@@ -6,6 +6,7 @@ use yii\helpers\Html;
 use app\helpers\OeHelpers;
 
 $formater = \yii::$app->formatter;
+$clientLabel = \Yii::$app->settings->get('helptext.contact_label');
 
 
 if ($model->id_message_type === \Yii::$app->settings->get('helptext.message_type_id_call')) {
@@ -18,33 +19,42 @@ $sender = "";
 $phoneType = "";
 
 if ($formater->asDate($model->sent, 'php:Y-m-d') == date("Y-m-d")) {
-    $messageDate = 'Today at ' . $formater->asDate($model->sent, 'php:g:ia');    
+    $messageDate = 'Today at ' . $formater->asDate($model->sent, 'php:g:ia');
 } else {
-    $messageDate = $formater->asDate($model->sent, 'php:l, jS F, g:ia');    
+    $messageDate = $formater->asDate($model->sent, 'php:l, jS F, g:ia');
 }
 
 switch ($model['id_sender_type']) {
     case 1: //automatic response
-        $sender = $model->id_phone . "<br>Automatic response<hr>";
+        if (Yii::$app->user->can("administrator")) {
+            $sender = $model->id_phone . "<br>Automatic response<hr>";
+        } else {
+            $sender = "<br>Automatic response<hr>";
+        }
         break;
     case 2: //contact
-        $sender = $modelCases->contact->first_name . "<br>" . $model->id_phone;
+        //$sender = $modelCases->contact->first_name . "<br>" . $model->id_phone;
         if (Yii::$app->user->can("administrator")) {
             $sender = $modelCases->contact->first_name . "<br>" . $model->id_phone;
         } else {
-            $sender = $model->id_phone;
+            //  $sender = $model->id_phone;
+            $sender = "from: " . $clientLabel; //chitchat request
         }
         $sender .= "<br>to: " . $model->userName . "<br>";
-        $phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
+        //$phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
+        $phoneType = "<hr>";
         break;
     case 3:
-        $sender = $model->userName . "<br>" . $model->id_phone;
-
+        $sender = "from: " . $model->userName . " (" . $model->id_phone . ")";
         if (Yii::$app->user->can("administrator")) {
             $sender .= "<br>to: " . $modelCases->contact->fullName . "<br>";
+        } 
+        else 
+        {
+            $sender .= "<br>to: " . $clientLabel . "<br>";
         }
-
-        $phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
+        //$phoneType = OeHelpers::isMobileNumber($model->id_phone) . "<hr>";
+        $phoneType = "<hr>";
         break;
 }
 echo '<div class="message-date">' . $messageDate . '</div>';

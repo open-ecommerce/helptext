@@ -166,10 +166,16 @@ abstract class Cases extends \yii\db\ActiveRecord {
 
     public function getUserName() {
         if (isset($this->profile->firstname)) {
-            return $this->profile->firstname . " " . $this->profile->lastname;
+            if (Yii::$app->user->can("administrator")) {
+                return $this->profile->firstname . " " . $this->profile->lastname;
+            }
+            else
+            {
+                return $this->profile->firstname;                
+            }
         }
     }
-
+    
     public function getContactName() {
         if (isset($this->contact->first_name)) {
             return $this->contact->first_name . " " . $this->contact->last_name;

@@ -16,6 +16,8 @@ use yii\widgets\ListView;
 use kop\y2sp\ScrollPager;
 
 $formater = \yii::$app->formatter;
+$clientLabel = \Yii::$app->settings->get('helptext.contact_label');
+
 ?>
 
 
@@ -35,38 +37,39 @@ $formater = \yii::$app->formatter;
                         <?= Yii::t('app', 'Case Number: ') . $modelCases->id ?>
                         <?php
                         if (Yii::$app->user->can("administrator")) {
-                            echo " / " .Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name;
+                            echo " / " . Yii::t('app', 'Client Name: ') . $modelCases->contact->first_name;
                         }
                         ?>
                     </h4>
                     <h4>
-                        <?= Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname ?>
+                        <?php
+                        if (Yii::$app->user->can("administrator")) {
+                            echo Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname . " " . $modelCases->profile->lastname;
+                        } else {
+                            echo Yii::t('app', 'Current helper: ') . $modelCases->profile->firstname;
+                        }
+                        ?>                            
                     </h4>
                 </div>
                 <div class="col-lg-6">
 
                     <div class="form-group">
                         <?= Html::a('<span class="glyphicon glyphicon-folder-open"></span>&nbsp;  View all Cases', ['/cases'], ['class' => 'btn btn-success pull-right']) ?>
-                        <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all Clients', ['/contact'], ['class' => 'btn btn-success pull-right', 'style' => 'margin-right: 5px;']) ?>
+                        <?= Html::a('<span class="glyphicon glyphicon-user"></span>&nbsp; View all ' . $clientLabel .'s', ['/contact'], ['class' => 'btn btn-success pull-right', 'style' => 'margin-right: 5px;']) ?>
                     </div>
                 </div>
-
             </div>
         </div>
-
         <div class="panel-sender">
             <?php
             Pjax::begin();
-
             $form = ActiveForm::begin([
                         'id' => 'sms-form',
                         'type' => ActiveForm::TYPE_HORIZONTAL,
                         'formConfig' => ['showLabels' => false]
             ]);
 
-
             //, 'onkeyup' => 'textCounter(this,"counter",160)';
-
             echo Html::hiddenInput('case_id', $modelCases->id);
             echo "<h5>" . $response . "</h5>";
             echo $form->field($modelNewMessage, 'message', [
